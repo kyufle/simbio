@@ -15,29 +15,35 @@ function createProjectCard(project) {
     card.classList.add('project-card');
 
     card.innerHTML = `
-        <h2>${project.title}</h2>
-        <p><strong>Centro:</strong> ${project.center}</p>
-        <video width="320" height="180" controls preload="metadata">
-            <source src="${project.video}" type="video/mp4">
-            Tu navegador no soporta video.
-        </video>
+<header>
+    <h2>${project.title}</h2>
+    <p><strong>Centro:</strong> ${project.center}</p>
+</header>
 
-        <div class="buttons">
-            <button class="nope-btn">Nope</button>
-            <button class="like-btn">Like</button>
-        </div>
+<section class="video-section">
+    <video width="320" height="180" controls preload="metadata">
+        <source src="${project.video}" type="video/mp4">
+    </video>
+</section>
 
-        <div class="bottom-bar">
-            <a href="profile.php">Perfil</a>
-            <a href="messages.php">Converses</a>
-            <button class="toggle-details">Detalles</button>
-        </div>
+<section class="actions">
+    <div class="buttons">
+        <button class="nope-btn">Nope</button>
+        <button class="like-btn">Like</button>
+    </div>
 
-        <div class="details" style="display:none;">
-            <p class="description">${project.description}</p>
-            <p class="tags"><strong>Etiquetas:</strong> ${project.tags.join(', ')}</p>
-        </div>
-    `;
+    <nav class="bottom-bar">
+        <a href="profile.php">Perfil</a>
+        <a href="messages.php">Converses</a>
+        <button class="toggle-details">Detalles</button>
+    </nav>
+</section>
+
+<aside class="details" style="display:none;">
+    <p class="description">${project.description}</p>
+    <p class="tags"><strong>Etiquetas:</strong> ${project.tags.join(', ')}</p>
+</aside>
+`;
 
     // Toggle de detalles
     const toggleBtn = card.querySelector('.toggle-details');
