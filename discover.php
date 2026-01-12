@@ -1,5 +1,12 @@
 <?php
 require_once 'includes/auth.php';
+session_start();
+
+// Si no está logeado, redirige a login.php
+if (!isLogged()) {
+    header('Location: login.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -7,21 +14,25 @@ require_once 'includes/auth.php';
 <head>
     <meta charset="UTF-8">
     <title>Discover</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="discover-page">
 
-<h1>Discover</h1>
+<header>
+    <h1>Discover</h1>
+    <?php if (isLogged()): ?>
+        <p>Bienvenido, <?= htmlspecialchars($_SESSION['user']['name']) ?></p>
+        <a href="logout.php">Cerrar sesión</a>
+    <?php else: ?>
+        <a href="login.php">Iniciar sesión</a>
+    <?php endif; ?>
+    <hr>
+</header>
 
-<?php if (isLogged()): ?>
-    <p>Bienvenido, <?= htmlspecialchars($_SESSION['user']['name']) ?></p>
-    <a href="logout.php">Cerrar sesión</a>
-<?php else: ?>
-    <a href="login.php">Iniciar sesión</a>
-<?php endif; ?>
+<main id="discover-container">
+    <p>Cargando proyectos...</p>
+</main>
 
-<hr>
-
-<p>Aquí irán los proyectos…</p>
-
+<script src="js/discover.js"></script>
 </body>
 </html>
