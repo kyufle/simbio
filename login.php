@@ -48,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body class="login-page">
+
     <main>
         <h1>Iniciar Sesión</h1>
 
@@ -60,27 +61,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="post">
             <label>
                 Email
-                <input
-                    type="email"
-                    name="email"
-                    value="<?= htmlspecialchars($email) ?>"
-                    placeholder="ejemplo@empresa.com"
-                    maxlength="128"
-                    >
+                <input type="email" name="email" value="<?= htmlspecialchars($email) ?>" placeholder="ejemplo@empresa.com" maxlength="128">
             </label>
 
             <label>
                 Contraseña
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="********"
-                    maxlength="128"
-                    >
+                <input type="password" name="password" placeholder="********" maxlength="128">
             </label>
 
             <button type="submit">Entrar</button>
         </form>
+        <div class="button-group">
+            <button class="registre-btn" onclick="window.location.href='register.php'">Registrarse</button>
+            <button class="back-btn" onclick="window.location.href='index.php'">Ir al inicio</button>
+        </div>
     </main>
 </body>
 
