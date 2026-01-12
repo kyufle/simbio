@@ -1,5 +1,12 @@
-html {
+/* IMPORTAR FUENTES DE GOOGLE */
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Josefin+Sans:wght@300;400;500;600&display=swap');
 
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 .page-index {
@@ -10,8 +17,99 @@ html {
 
 }
 
-.page-login {
+body.login-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
 
+body.login-page main {
+    background-color: #ffffff;
+    padding: 3rem 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+body.login-page h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333333;
+    font-size: 1.8rem;
+    font-weight: 400;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+body.login-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+body.login-page label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    color: #555555;
+    font-weight: 500;
+}
+
+body.login-page input {
+    margin-top: 0.5rem;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    border: 2px solid #E8E8E8;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+}
+
+body.login-page input:focus {
+    outline: none;
+    border-color: #A3D2CA;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(163, 210, 202, 0.15);
+}
+
+body.login-page button {
+    margin-top: 1.5rem;
+    padding: 0.9rem;
+    background: linear-gradient(135deg, #FFAAA7, #ff9593);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 170, 167, 0.3);
+}
+
+body.login-page button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.4);
+}
+
+
+.notification {
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.notification.error {
+    background-color: #FFAAA7;
+    color: white;
+}
+
+.notification.warning {
+    background-color: #FFF3B0;
+    color: #333333;
 }
 
 footer {
