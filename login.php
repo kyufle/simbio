@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
 
-        <form method="post" autocomplete="off">
+        <form method="post">
             <label>
                 Email
                 <input
