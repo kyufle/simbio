@@ -2,30 +2,33 @@
 require_once 'includes/auth.php';
 session_start();
 
-// Si no está logeado, redirige a login.php
 if (!isLogged()) {
     header('Location: login.php');
     exit;
 }
-?>
 
+if (isset($_SESSION['flash_message'])) {
+    $flash = $_SESSION['flash_message'];
+    unset($_SESSION['flash_message']);
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Discover</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=1" />
 </head>
 <body class="discover-page">
+
+<div id="contenedor-toast" class="contenedor-toast"></div>
+
 <nav class="sidebar">
-    <!-- Links a otras páginas a la izquierda -->
     <ul class="nav-links">
         <li><a href="discover.php">Discover</a></li>
         <li><a href="profile.php">Perfil</a></li>
         <li><a href="messages.php">Converses</a></li>
     </ul>
-
-    <!-- Info de sesión a la derecha -->
     <div class="session-info">
         <?php if (isLogged()): ?>
             <span><?= htmlspecialchars($_SESSION['user']['name']) ?></span>
@@ -36,22 +39,31 @@ if (!isLogged()) {
     </div>
 </nav>
 
-<!--
-<header>
-    <h1>Discover</h1>
-    <?php if (isLogged()): ?>
-        <p>Bienvenido, <?= htmlspecialchars($_SESSION['user']['name']) ?></p>
-        <a href="logout.php">Cerrar sesión</a>
-    <?php else: ?>
-        <a href="login.php">Iniciar sesión</a>
-    <?php endif; ?>
-    <hr>
-</header>
-    -->
 <main id="discover-container">
     <p>Cargando proyectos...</p>
 </main>
 
+<script src="utils.js"></script>
 <script src="js/discover.js"></script>
+<?php if (isset($flash) && is_array($flash)): ?>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        <?php
+        $tipo = $flash['tipo'] ?? 'info';
+        $titulo = json_encode($flash['titulo'] ?? '');
+        $descripcion = json_encode($flash['descripcion'] ?? '');
+        if ($tipo === 'exito') {
+            echo "mostrarExito($titulo, $descripcion);";
+        } else if ($tipo === 'error') {
+            echo "mostrarError($titulo, $descripcion);";
+        } else if ($tipo === 'warning') {
+            echo "mostrarAdvertencia($titulo, $descripcion);";
+        } else {
+            echo "mostrarInfo($titulo, $descripcion);";
+        }
+        ?>
+    });
+</script>
+<?php endif; ?>
 </body>
 </html>
