@@ -1,52 +1,101 @@
 <?php
-require_once 'includes/auth.php';
+session_start();
+require_once __DIR__ . '/db.php';
 
+function isLoggedIn()
+{
+    return !empty($_SESSION['user']);
+}
 
-// Redirecciona si ya está logueado
-if (isLogged()) {
+function validateLoginForm($email, $password)
+{
+    if ($email === '' && $password === '') {
+        return 'Debes rellenar el email y la contraseña';
+    }
+
+    if ($email === '') {
+        return 'El email es obligatorio';
+    }
+
+    if ($password === '') {
+        return 'La contraseña es obligatoria';
+    }
+
+    if (strpos($email, '@') === false) {
+        return 'El email no es válido';
+    }
+
+    if (strpos($email, ' ') !== false) {
+        return 'El email no puede contener espacios';
+    }
+
+    if (strlen($password) < 3) {
+        return 'La contraseña es demasiado corta';
+    }
+
+    return null;
+}
+
+function authenticateUser($conn, $email, $password)
+{
+    try {
+        $stmt = $conn->prepare("SELECT id, email, name, password FROM users WHERE email = :email LIMIT 1");
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // validar contraseña
+        if ($user && hash('sha256', $password) === $user['password']) {
+            return [
+                'id' => $user['id'],
+                'email' => $user['email'],
+                'name' => $user['name']
+            ];
+        }
+
+        return null;
+    } catch (PDOException $e) {
+        return null;
+    }
+}
+
+// Redirigir si ya está logueado
+if (isLoggedIn()) {
     header('Location: discover.php');
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = isset($_POST['email']) ? trim($_POST['email']) : '';
-    $password = isset($_POST['password']) ? $_POST['password'] : '';
+$email = '';
+$error = '';
 
-    if ($email === '' && $password === '') {
-        $error = 'Debes rellenar el email y la contraseña';
-    } elseif ($email === '') {
-        $error = 'El email es obligatorio';
-    } elseif ($password === '') {
-        $error = 'La contraseña es obligatoria';
-    } elseif (!strpos($email, '@')) {
-        $error = 'El email no es válido';
-    } elseif (strpos($email, ' ') !== false) {
-        $error = 'El email no puede contener espacios';
-    } elseif (strlen($password) < 3) {
-        $error = 'La contraseña es demasiado corta';
-    } else {
-        $result = login($email, $password);
-        if ($result && !empty($result['success'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    $error = validateLoginForm($email, $password);
+
+    if (!$error) {
+        $user = authenticateUser($conn, $email, $password);
+
+        if ($user) {
+            $_SESSION['user'] = $user;
             header('Location: discover.php');
             exit;
         } else {
-            $error = !empty($result['error']) ? $result['error'] : 'Credenciales incorrectas';
+            $error = 'Credenciales incorrectas';
         }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body class="login-page">
 
     <main>
@@ -61,11 +110,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="post">
             <label>
                 Email
+                <input
+                    type="email" name="email"
+                    value="<?= htmlspecialchars($email) ?>"
+                    placeholder="ejemplo@empresa.com" maxlength="128">
                 <input type="email" name="email" value="<?= htmlspecialchars($email) ?>" placeholder="ejemplo@empresa.com" maxlength="128">
             </label>
 
             <label>
                 Contraseña
+                <input
+                    type="password" name="password"
+                    placeholder="********" maxlength="128">
                 <input type="password" name="password" placeholder="********" maxlength="128">
             </label>
 
@@ -77,5 +133,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </main>
 </body>
-
 </html>
