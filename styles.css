@@ -1,6 +1,16 @@
 /* IMPORTAR FUENTES DE GOOGLE */
 @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Josefin+Sans:wght@300;400;500;600&display=swap');
 
+
+/* Paleta de colores */
+/* Color           | Hex      | Uso recomendado                        |
+|-----------------|----------|---------------------------------------|
+| Azul cielo suave| #A3D2CA  | Fondo principal, fresco y profesional |
+| Verde menta     | #B5EAEA  | Tarjetas, botones secundarios         |
+| Amarillo pálido | #FFF3B0  | Alertas, llamadas a la acción         |
+| Coral suave     | #FFAAA7  | Botones importantes                    |
+| Gris claro      | #E8E8E8  | Fondos neutros, separadores           | */
+
 /* RESET BÁSICO */
 * {
     margin: 0;
@@ -9,13 +19,8 @@
     font-family: 'Josefin Sans', sans-serif;
 }
 
-.page-index {
 
-}
-
-.page-discover {
-
-}
+/* Estilos login.php */
 
 body.login-page {
     min-height: 100vh;
@@ -94,6 +99,29 @@ body.login-page button:hover {
     box-shadow: 0 6px 20px rgba(255, 170, 167, 0.4);
 }
 
+body.login-page .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+body.login-page .registre-btn {
+    background: linear-gradient(135deg, #B5EAEA, #A3D2CA);
+    margin-top: 1rem;
+    font-weight: 600;
+    width: 50%;
+
+}
+body.login-page .back-btn {
+    background: linear-gradient(135deg, #B5EAEA, #A3D2CA);
+    margin-top: 1rem;
+    font-weight: 600;
+    width: 50%;
+}
+
+
+/* Notificaciones */
 
 .notification {
     padding: 0.9rem 1rem;
@@ -112,63 +140,104 @@ body.login-page button:hover {
     color: #333333;
 }
 
-footer {
 
-}
 /* Estilos discover.php */
-/* Contenedor principal */
+
+.discover-page {
+    font-family: Arial, sans-serif;
+    background-color: #A3D2CA;
+    margin: 0;
+    padding: 0;
+}
+
 .discover-page main {
-    max-width: 600px;
+    max-width: 1000px;
     margin: 20px auto;
     padding: 0 10px;
+    text-align: center;
+    margin-top: 50px;
 }
 
-/* Cada proyecto */
+
 .project-card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 15px;
+    background-color: #E8E8E8;
+    border-radius: 10px;
+    padding: 20px;
     margin-bottom: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Header de la card */
+.project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
 .project-card header h2 {
     margin: 0 0 5px;
-    font-size: 1.3em;
+    font-size: 1.4em;
+    color: #247BA0;
 }
 
 .project-card header p {
     margin: 0;
-    font-size: 0.9em;
+    font-size: 0.95em;
+    color: #333;
 }
 
-/* Video */
 .project-card .video-section video {
-    width: 100%;
+    width: 90%;
     height: auto;
-    border-radius: 5px;
+    border-radius: 6px;
     margin-top: 10px;
 }
 
-/* Botones Like / Nope */
+
+
 .project-card .buttons {
     display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+    justify-content: space-around;
+    margin: 20px 0 20px 0;
 }
 
 .project-card .buttons button {
-    padding: 8px 16px;
+    padding: 8px 18px;
+    font-weight: bold;
+    font-size: 1em;
     cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    width: 200px;
+    height: 50px;
 }
 
-/* Barra inferior */
+.project-card .nope-btn {
+    background-color: #FFAAA7;
+    color: #fff;
+}
+
+.project-card .nope-btn:hover {
+    background-color: #FF8A82;
+}
+
+.project-card .like-btn {
+    background-color: #FFF3B0;
+    color: #333;
+}
+
+.project-card .like-btn:hover {
+    background-color: #FFE680;
+}
+
+
 .project-card .bottom-bar {
     display: flex;
     justify-content: space-around;
-    margin-top: 10px;
+    padding: 15px 0;
+    margin: 15px 0 0 0;
+    border-top: 1px solid #E8E8E8;
+
 }
 
 .project-card .bottom-bar a,
@@ -177,11 +246,86 @@ footer {
     border: none;
     cursor: pointer;
     font-weight: bold;
+    color: #247BA0;
+    transition: color 0.2s ease;
+    padding: 10px 15px;
 }
 
-/* Panel de detalles */
+.project-card .bottom-bar a:hover,
+.project-card .bottom-bar button:hover {
+    color: #FFAAA7;
+}
+
+
 .project-card .details {
-    margin-top: 10px;
+    margin-top: 12px;
     padding-top: 10px;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #E8E8E8;
+    background-color: #E8E8E8;
+    border-radius: 6px;
+    text-align: justify;
+    padding: 10px 20px;
+}
+.project-card .details h3 {
+    margin: 0 0 10px;
+    color: #247BA0;
+    font-size: 1.3em;
+}
+
+.project-card .details p {
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+.project-card .details .description {
+    margin: 10px 0 20px 0;
+    line-height: 1.2;
+    color: #333;
+}
+
+
+.project-card {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.5s ease;
+}
+
+
+/* Estilos de la barra de navegación */
+.sidebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+}
+
+.sidebar .nav-links {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .nav-links li {
+    margin-right: 15px;
+}
+
+.sidebar .nav-links li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #247BA0;
+}
+
+.sidebar .session-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar .session-info a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #FF1654;
 }

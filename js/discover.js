@@ -39,9 +39,11 @@ function createProjectCard(project) {
     </nav>
 </section>
 
-<aside class="details" style="display:none;">
+<aside class="details" style="display:block;">
+    <h3 class="description-title">Descripción</h3>
     <p class="description">${project.description}</p>
-    <p class="tags"><strong>Etiquetas:</strong> ${project.tags.join(', ')}</p>
+    <h3 class="tags-title">Etiquetas</h3>
+    <p class="tags">${project.tags.join(', ')}</p>
 </aside>
 `;
 
@@ -60,24 +62,29 @@ function createProjectCard(project) {
     });
 
     // Botones Like / Nope
-    card.querySelector('.nope-btn').addEventListener('click', () => handleAction());
-    card.querySelector('.like-btn').addEventListener('click', () => handleAction());
-
+    card.querySelector('.nope-btn').addEventListener('click', () => handleAction('nope'));
+    card.querySelector('.like-btn').addEventListener('click', () => handleAction('like'));
     return card;
 }
 
 // Manejar Like / Nope con animación
-function handleAction() {
+function handleAction(action) {
     if (!currentVisible) return;
 
     currentVisible.style.transition = 'all 0.5s ease';
     currentVisible.style.opacity = '0';
-    currentVisible.style.transform = 'translateX(100%) scale(0.9)';
+
+    if (action === 'like') {
+        currentVisible.style.transform = 'translateX(100%) scale(0.9)'; // derecha
+    } else {
+        currentVisible.style.transform = 'translateX(-100%) scale(0.9)'; // izquierda
+    }
 
     setTimeout(() => {
         showNextProject();
     }, 500);
 }
+
 
 // Mostrar siguiente proyecto del buffer
 function showNextProject() {
