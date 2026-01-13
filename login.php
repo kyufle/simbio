@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/includes/db.php';
 
 function isLoggedIn()
 {
@@ -121,18 +121,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="post">
             <label>
                 Email
-                <input
-                    type="email" name="email"
-                    value="<?= htmlspecialchars($email) ?>"
-                    placeholder="ejemplo@empresa.com" maxlength="128">
                 <input type="email" name="email" value="<?= htmlspecialchars($email) ?>" placeholder="ejemplo@empresa.com" maxlength="128">
             </label>
 
             <label>
                 Contraseña
-                <input
-                    type="password" name="password"
-                    placeholder="********" maxlength="128">
                 <input type="password" name="password" placeholder="********" maxlength="128">
             </label>
 

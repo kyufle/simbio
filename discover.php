@@ -2,10 +2,14 @@
 require_once 'includes/auth.php';
 session_start();
 
+// Si no está logeado, redirige a login.php
+/*
 if (!isLogged()) {
     header('Location: login.php');
     exit;
 }
+    */
+?>
 
 if (isset($_SESSION['flash_message'])) {
     $flash = $_SESSION['flash_message'];
@@ -16,8 +20,9 @@ if (isset($_SESSION['flash_message'])) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discover</title>
-    <link rel="stylesheet" href="styles.css?v=1" />
+    <link rel="stylesheet" type="text/css" href="styles.css?v=1" />
 </head>
 <body class="discover-page">
 
