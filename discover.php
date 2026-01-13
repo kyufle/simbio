@@ -3,10 +3,12 @@ require_once 'includes/auth.php';
 session_start();
 
 // Si no está logeado, redirige a login.php
+/*
 if (!isLogged()) {
     header('Location: login.php');
     exit;
 }
+    */
 ?>
 
 <!DOCTYPE html>

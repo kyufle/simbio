@@ -1,3 +1,8 @@
+<?php
+header('Location: discover.php');
+exit;
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,6 +11,6 @@
     <title>Pàgina principal</title>
 </head>
 <body>
-    <a href="/discover.php">Discover</a>
+
 </body>
 </html>
