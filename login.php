@@ -44,8 +44,8 @@ function authenticateUser($conn, $email, $password)
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // validar contraseña
-        if ($user && hash('sha256', $password) === $user['password']) {
+        // validar contraseña usando md5
+        if ($user && md5($password) === $user['password']) {
             return [
                 'id' => $user['id'],
                 'email' => $user['email'],
@@ -78,7 +78,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = authenticateUser($conn, $email, $password);
 
         if ($user) {
+
             $_SESSION['user'] = $user;
+
+            // ✅ Guardar mensaje flash
+
+            $_SESSION['flash_message'] = [
+                'tipo' => 'exito',
+                'titulo' => '¡Bienvenido!',
+                'descripcion' => 'Has iniciado sesión correctamente'
+            ];
+
             header('Location: discover.php');
             exit;
         } else {
@@ -97,6 +107,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="login-page">
+    <!-- Contenedor para los toasts -->
+    <div id="contenedor-toast" class="contenedor-toast"></div>
     <main>
         <h1>Iniciar Sesión</h1>
 
@@ -125,5 +137,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Entrar</button>
         </form>
     </main>
+    <script src="utils.js"></script>
 </body>
 </html>
