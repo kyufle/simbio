@@ -24,7 +24,7 @@ function createProjectCard(project) {
 
         <section class="video-section">
             <video autoplay muted loop playsinline>
-                <source src="${project.video}" type="video/mp4">
+                <source src="${project.video+"?v=" + Date.now()}" type="video/mp4">
             </video>
         </section>
 
