@@ -1,9 +1,10 @@
 <?php
 /* bd ejemplo */
+$env = parse_ini_file('../.env');
 $servername = "localhost";
-$username = "tinder";
-$password = "tinder123";
-$dbname = "tinder_empresa";
+$user     = $env['db_user'];
+$password = $env['db_password'];
+$dbname = "simbio";
 
 try {
     $conn = new PDO(
