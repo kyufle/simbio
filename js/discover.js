@@ -1,6 +1,6 @@
 // js/discover.js - Versión TikTok vertical optimizada
 
-const PROJECTS_JSON = 'includes/projects.json';
+const PROJECTS_JSON = 'includes/projects.php';
 const BUFFER_SIZE = 5;
 
 let allProjects = [];
@@ -19,7 +19,7 @@ function createProjectCard(project) {
     card.innerHTML = `
         <header>
             <h2>${project.title}</h2>
-            <p><strong>Centre:</strong> ${project.center}</p>
+            <p><strong>${project.type}:</strong> ${project.entity}</p>
         </header>
 
         <section class="video-section">
