@@ -1,11 +1,15 @@
 <?php
 require_once 'includes/auth.php';
+require_once 'includes/logger.php';
 
 // Si no està connectat, redirigeix a login.php
 if (!isLogged()) {
+    log_warning("Acceso denegado a discover.php - Usuario no autenticado");
     header('Location: login.php');
     exit;
 }
+
+log_info("Usuario accedió a discover.php");
 
 $flash = $_SESSION['flash_message'] ?? null;
 if ($flash) {

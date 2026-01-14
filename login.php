@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/includes/logger.php';
 
 function isLoggedIn()
 {
@@ -56,9 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = login($email, $password);
 
         if ($result['success']) {
+            log_auth('LOGIN', $email, true);
 
             // ✅ Guardar mensaje flash
-
             $_SESSION['flash_message'] = [
                 'tipo' => 'exito',
                 'titulo' => 'Benvingut!',
@@ -68,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: discover.php');
             exit;
         } else {
+            log_auth('LOGIN', $email, false, $result['error']);
             $error = $result['error'];
         }
     }
