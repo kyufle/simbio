@@ -10,7 +10,6 @@ if (!isLogged()) {
 }
 
 log_info("Usuario accedió a discover.php");
-
 $flash = $_SESSION['flash_message'] ?? null;
 if ($flash) {
     unset($_SESSION['flash_message']);
