@@ -14,10 +14,10 @@ try {
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     ]);
 
-    echo "Conectado a la base de datos...\n";
+    echo "Creant la base de dades...\n";
 
     $sql = <<<SQL
-    DROP DATABASE simbio;
+    DROP DATABASE IF EXISTS simbio;
     CREATE DATABASE IF NOT EXISTS simbio;
     USE simbio;
 
@@ -46,12 +46,12 @@ try {
     CREATE TABLE project (
         project_id INT AUTO_INCREMENT,
         user_id INT NOT NULL,
-        tag_id INT NOT NULL,
         title VARCHAR(120) NOT NULL,
         description TEXT NOT NULL,
+        image_path VARCHAR(255),
+        video_path VARCHAR(255),
         PRIMARY KEY (project_id),
-        FOREIGN KEY (user_id) REFERENCES user(user_id),
-        FOREIGN KEY (tag_id) REFERENCES tag(tag_id)
+        FOREIGN KEY (user_id) REFERENCES user(user_id)
     );
 
     CREATE TABLE message (
