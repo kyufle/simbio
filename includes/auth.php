@@ -1,38 +1,33 @@
 <?php
 session_start();
-
-function getUsers()
-{
-    return require __DIR__ . '/users_mock.php';
-}
+require_once 'db.php';
+require_once 'logger.php';
 
 function login($email, $password)
 {
-    $users = getUsers();
+    global $conn;
+    try {
+        $stmt = $conn->prepare("SELECT user_id, email, name, password_hash FROM user WHERE email = :email LIMIT 1");
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    foreach ($users as $user) {
-
-        // 1. Email existe
-        if ($user['email'] === $email) {
-
-            // 2. Password correcta
-            if (password_verify($password, $user['password'])) {
-                $_SESSION['user'] = [
-                    'id' => $user['id'],
-                    'email' => $user['email'],
-                    'name' => $user['name'],
-                    'role' => $user['role']
-                ];
-                return ['success' => true];
-            }
-
-            // Email bien, contraseña mal
-            return ['success' => false, 'error' => 'Contraseña incorrecta'];
+        if ($user && hash("sha256", $password) === $user['password_hash']) {
+            $_SESSION['user'] = [
+                'id' => $user['user_id'],
+                'email' => $user['email'],
+                'name' => $user['name']
+            ];
+            log_info("Usuario autenticado: {$user['email']}");
+            return ['success' => true];
         }
-    }
 
-    // Email no encontrado
-    return ['success' => false, 'error' => 'El usuario no existe'];
+        log_warning("Intento de login fallido para: {$email}");
+        return ['success' => false, 'error' => 'Credencials incorrectes'];
+    } catch (PDOException $e) {
+        log_error("Error en BD durante login para {$email}: " . $e->getMessage());
+        return ['success' => false, 'error' => 'Error de base de dades'];
+    }
 }
 
 function isLogged()
@@ -42,6 +37,9 @@ function isLogged()
 
 function logout()
 {
+    if (isset($_SESSION['user'])) {
+        log_info("Usuario desconectado: " . $_SESSION['user']['email']);
+    }
     session_unset();
     session_destroy();
 }

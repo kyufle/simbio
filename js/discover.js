@@ -1,6 +1,6 @@
-// js/discover.js
+// js/discover.js - Versión TikTok vertical optimizada
 
-const PROJECTS_JSON = 'includes/projects.json';
+const PROJECTS_JSON = 'includes/projects.php';
 const BUFFER_SIZE = 5;
 
 let allProjects = [];
@@ -9,89 +9,112 @@ let currentVisible = null;
 
 const container = document.getElementById('discover-container');
 
-// Crear card de proyecto con barra inferior y toggle de detalles
+/* ============================================================
+   CREAR CARD DE PROYECTO
+============================================================ */
 function createProjectCard(project) {
     const card = document.createElement('div');
     card.classList.add('project-card');
 
     card.innerHTML = `
-<header>
-    <h2>${project.title}</h2>
-    <p><strong>Centro:</strong> ${project.center}</p>
-</header>
+        <header>
+            <h2>${project.title}</h2>
+            <p><strong>${project.type}:</strong> ${project.entity}</p>
+        </header>
 
-<section class="video-section">
-    <video width="320" height="180" controls preload="metadata">
-        <source src="${project.video}" type="video/mp4">
-    </video>
-</section>
+        <section class="video-section">
+            <video autoplay muted loop playsinline>
+                <source src="${project.video+"?v=" + Date.now()}" type="video/mp4">
+            </video>
+        </section>
 
-<section class="actions">
-    <div class="buttons">
-        <button class="nope-btn">Nope</button>
-        <button class="like-btn">Like</button>
-    </div>
+        <section class="actions">
+            <div class="buttons">
+                <button class="nope-btn" aria-label="No m'interessa"></button>
+                <button class="like-btn" aria-label="M'interessa"></button>
+            </div>
 
-    <nav class="bottom-bar">
-        <a href="profile.php">Perfil</a>
-        <a href="messages.php">Converses</a>
-        <button class="toggle-details">Detalles</button>
-    </nav>
-</section>
+            <nav class="bottom-bar">
+                <a href="profile.php">Perfil</a>
+                <a href="messages.php">Converses</a>
+                <button class="toggle-details">Detalls</button>
+            </nav>
+        </section>
 
-<aside class="details" style="display:block;">
-    <h3 class="description-title">Descripción</h3>
-    <p class="description">${project.description}</p>
-    <h3 class="tags-title">Etiquetas</h3>
-    <p class="tags">${project.tags.join(', ')}</p>
-</aside>
-`;
+        <aside class="details hidden">
+            <button class="close-details" aria-label="Tancar">&times;</button>
+            <h3>Descripció</h3>
+            <p class="description">${project.description}</p>
+            <h3>Etiquetes</h3>
+            <p class="tags">${project.tags.join(', ')}</p>
+        </aside>
+    `;
 
-    // Toggle de detalles
-    const toggleBtn = card.querySelector('.toggle-details');
+    /* ----- Toggle de detalles ----- */
+    const openDetailsBtn = card.querySelector('.toggle-details');
+    const closeDetailsBtn = card.querySelector('.close-details');
     const detailsDiv = card.querySelector('.details');
+    const video = card.querySelector('video');
 
-    toggleBtn.addEventListener('click', () => {
-        if (detailsDiv.style.display === 'none') {
-            detailsDiv.style.display = 'block';
-            toggleBtn.textContent = 'Ocultar detalles';
-        } else {
-            detailsDiv.style.display = 'none';
-            toggleBtn.textContent = 'Detalles';
-        }
+    openDetailsBtn.addEventListener('click', () => {
+        detailsDiv.classList.remove('hidden');
+        video.pause();
     });
 
-    // Botones Like / Nope
-    card.querySelector('.nope-btn').addEventListener('click', () => handleAction('nope'));
-    card.querySelector('.like-btn').addEventListener('click', () => handleAction('like'));
+    closeDetailsBtn.addEventListener('click', () => {
+        detailsDiv.classList.add('hidden');
+        video.play();
+    });
+
     return card;
 }
 
-// Manejar Like / Nope con animación
-function handleAction(action) {
-    if (!currentVisible) return;
+/* ============================================================
+   ANIMACIÓN DE SWIPE
+============================================================ */
+function animateSwipe(card, direction) {
+    if (!card) return;
 
-    currentVisible.style.transition = 'all 0.5s ease';
-    currentVisible.style.opacity = '0';
-
-    if (action === 'like') {
-        currentVisible.style.transform = 'translateX(100%) scale(0.9)'; // derecha
-    } else {
-        currentVisible.style.transform = 'translateX(-100%) scale(0.9)'; // izquierda
+    if (direction === "like") {
+        card.classList.add("swipe-right");
+    } else if (direction === "nope") {
+        card.classList.add("swipe-left");
     }
 
-    setTimeout(() => {
+    card.addEventListener("animationend", () => {
+        card.remove();
         showNextProject();
-    }, 500);
+    }, { once: true });
 }
 
+/* ============================================================
+   LISTENERS DE LIKE / NOPE
+============================================================ */
+document.addEventListener("click", (e) => {
+    if (!currentVisible) return;
 
-// Mostrar siguiente proyecto del buffer
+    if (e.target.classList.contains("like-btn")) {
+        animateSwipe(currentVisible, "like");
+    }
+
+    if (e.target.classList.contains("nope-btn")) {
+        animateSwipe(currentVisible, "nope");
+    }
+});
+
+/* ============================================================
+   MOSTRAR SIGUIENTE PROYECTO
+============================================================ */
 function showNextProject() {
     container.innerHTML = '';
 
     if (buffer.length === 0) {
-        container.innerHTML = '<p>No hay más proyectos</p>';
+        container.innerHTML = `
+            <div class="empty-message">
+                <h2>🎉 ¡Has visto todos los proyectos!</h2>
+                <p>No hay más proyectos disponibles en este momento.</p>
+            </div>
+        `;
         return;
     }
 
@@ -99,26 +122,73 @@ function showNextProject() {
     currentVisible = createProjectCard(project);
     container.appendChild(currentVisible);
 
-    // Animación de entrada
+    /* Animación de entrada */
     currentVisible.style.opacity = '0';
-    currentVisible.style.transform = 'translateX(-20px)';
-    setTimeout(() => {
-        currentVisible.style.transition = 'all 0.5s ease';
-        currentVisible.style.opacity = '1';
-        currentVisible.style.transform = 'translateX(0)';
-    }, 50);
+    currentVisible.style.transform = 'scale(0.85) translateY(30px)';
 
-    // Precargar siguiente proyecto si existe
+    setTimeout(() => {
+        currentVisible.style.transition = 'all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        currentVisible.style.opacity = '1';
+        currentVisible.style.transform = 'scale(1) translateY(0)';
+    }, 30);
+
+    /* Precarga del siguiente */
     if (allProjects.length > 0) {
         const nextProject = allProjects.shift();
         buffer.push(nextProject);
-        const videoPreload = document.createElement('video');
-        videoPreload.src = nextProject.video;
-        videoPreload.preload = 'metadata';
+
+        const preload = document.createElement('video');
+        preload.src = nextProject.video;
+        preload.preload = 'metadata';
     }
+
+    /* Reproducir video */
+    const video = currentVisible.querySelector('video');
+    video.play().catch(() => {});
 }
 
-// Inicializar Discover
+/* ============================================================
+   SWIPE TÁCTIL (MÓVIL)
+============================================================ */
+let touchStartX = 0;
+let touchStartY = 0;
+
+document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+});
+
+document.addEventListener('touchend', (e) => {
+    if (!currentVisible) return;
+
+    const endX = e.changedTouches[0].screenX;
+    const endY = e.changedTouches[0].screenY;
+
+    const diffX = endX - touchStartX;
+    const diffY = Math.abs(endY - touchStartY);
+
+    if (Math.abs(diffX) > 80 && Math.abs(diffX) > diffY) {
+        if (diffX > 0) {
+            animateSwipe(currentVisible, "like");
+        } else {
+            animateSwipe(currentVisible, "nope");
+        }
+    }
+});
+
+/* ============================================================
+   TECLADO (OPCIONAL)
+============================================================ */
+document.addEventListener('keydown', (e) => {
+    if (!currentVisible) return;
+
+    if (e.key === 'ArrowLeft') animateSwipe(currentVisible, "nope");
+    if (e.key === 'ArrowRight') animateSwipe(currentVisible, "like");
+});
+
+/* ============================================================
+   INICIALIZAR DISCOVER
+============================================================ */
 function initDiscover() {
     fetch(PROJECTS_JSON)
         .then(res => res.json())
@@ -128,8 +198,12 @@ function initDiscover() {
             showNextProject();
         })
         .catch(err => {
-            container.innerHTML = '<p>Error cargando proyectos</p>';
-            console.error(err);
+            container.innerHTML = `
+                <div class="error-message">
+                    <h2>Error al cargar proyectos</h2>
+                    <p>${err.message}</p>
+                </div>
+            `;
         });
 }
 
