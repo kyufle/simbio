@@ -47,7 +47,7 @@ if ($flash) {
 </main>
 
 <script src="utils.js"></script>
-<script src="js/discover.js"></script>
+<script src="js/discover.js?v=<?php echo filemtime('js/discover.js'); ?>"></script>
 <?php if (isset($flash) && is_array($flash)): ?>
 <script>
     window.addEventListener('DOMContentLoaded', function() {
