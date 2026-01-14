@@ -6,17 +6,16 @@ function login($email, $password)
 {
     global $conn;
     try {
-        $stmt = $conn->prepare("SELECT id, email, name, password, role FROM users WHERE email = :email LIMIT 1");
+        $stmt = $conn->prepare("SELECT user_id, email, name, password_hash FROM user WHERE email = :email LIMIT 1");
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && md5($password) === $user['password']) {
+        if ($user && hash("sha256", $password) === $user['password_hash']) {
             $_SESSION['user'] = [
-                'id' => $user['id'],
+                'id' => $user['user_id'],
                 'email' => $user['email'],
-                'name' => $user['name'],
-                'role' => $user['role']
+                'name' => $user['name']
             ];
             return ['success' => true];
         }
