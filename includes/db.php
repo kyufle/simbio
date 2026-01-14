@@ -1,8 +1,8 @@
 <?php
 /* bd ejemplo */
-$env = parse_ini_file('../.env');
+$env = parse_ini_file(__DIR__ .'/../.env');
 $servername = "localhost";
-$user     = $env['db_user'];
+$username     = $env['db_user'];
 $password = $env['db_password'];
 $dbname = "simbio";
 
