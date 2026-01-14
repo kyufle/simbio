@@ -1,38 +1,30 @@
 <?php
 session_start();
-
-function getUsers()
-{
-    return require __DIR__ . '/users_mock.php';
-}
+require_once 'db.php';
 
 function login($email, $password)
 {
-    $users = getUsers();
+    global $conn;
+    try {
+        $stmt = $conn->prepare("SELECT id, email, name, password, role FROM users WHERE email = :email LIMIT 1");
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    foreach ($users as $user) {
-
-        // 1. Email existe
-        if ($user['email'] === $email) {
-
-            // 2. Password correcta
-            if (password_verify($password, $user['password'])) {
-                $_SESSION['user'] = [
-                    'id' => $user['id'],
-                    'email' => $user['email'],
-                    'name' => $user['name'],
-                    'role' => $user['role']
-                ];
-                return ['success' => true];
-            }
-
-            // Email bien, contraseña mal
-            return ['success' => false, 'error' => 'Contraseña incorrecta'];
+        if ($user && md5($password) === $user['password']) {
+            $_SESSION['user'] = [
+                'id' => $user['id'],
+                'email' => $user['email'],
+                'name' => $user['name'],
+                'role' => $user['role']
+            ];
+            return ['success' => true];
         }
-    }
 
-    // Email no encontrado
-    return ['success' => false, 'error' => 'El usuario no existe'];
+        return ['success' => false, 'error' => 'Credencials incorrectes'];
+    } catch (PDOException $e) {
+        return ['success' => false, 'error' => 'Error de base de dades'];
+    }
 }
 
 function isLogged()

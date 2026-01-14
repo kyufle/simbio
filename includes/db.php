@@ -1,9 +1,10 @@
 <?php
 /* bd ejemplo */
+$env = parse_ini_file(__DIR__ .'/../.env');
 $servername = "localhost";
-$username = "tinder";
-$password = "tinder123";
-$dbname = "tinder_empresa";
+$username     = $env['db_user'];
+$password = $env['db_password'];
+$dbname = "simbio";
 
 try {
     $conn = new PDO(
@@ -21,6 +22,6 @@ try {
     // Nota: La comparación de contraseñas se hace en PHP (md5(...)), por consistencia.
 } catch (PDOException $e) {
     error_log("DB Error: " . $e->getMessage());
-    die("Error al conectar con la base de datos.");
+    die("Error en connectar amb la base de dades.");
 }
 ?>

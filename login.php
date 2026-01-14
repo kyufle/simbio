@@ -10,53 +10,30 @@ function isLoggedIn()
 function validateLoginForm($email, $password)
 {
     if ($email === '' && $password === '') {
-        return 'Debes rellenar el email y la contraseña';
+        return 'Has d\'emplenar el correu electrònic i la contrasenya';
     }
 
     if ($email === '') {
-        return 'El email es obligatorio';
+        return 'El correu electrònic és obligatori';
     }
 
     if ($password === '') {
-        return 'La contraseña es obligatoria';
+        return 'La contrasenya és obligatòria';
     }
 
     if (strpos($email, '@') === false) {
-        return 'El email no es válido';
+        return 'El correu electrònic no és vàlid';
     }
 
     if (strpos($email, ' ') !== false) {
-        return 'El email no puede contener espacios';
+        return 'El correu electrònic no pot contenir espais';
     }
 
     if (strlen($password) < 3) {
-        return 'La contraseña es demasiado corta';
+        return 'La contrasenya és massa curta';
     }
 
     return null;
-}
-
-function authenticateUser($conn, $email, $password)
-{
-    try {
-        $stmt = $conn->prepare("SELECT id, email, name, password FROM users WHERE email = :email LIMIT 1");
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // validar contraseña usando md5
-        if ($user && md5($password) === $user['password']) {
-            return [
-                'id' => $user['id'],
-                'email' => $user['email'],
-                'name' => $user['name']
-            ];
-        }
-
-        return null;
-    } catch (PDOException $e) {
-        return null;
-    }
 }
 
 // Redirigir si ya está logueado
@@ -75,42 +52,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $error = validateLoginForm($email, $password);
 
     if (!$error) {
-        $user = authenticateUser($conn, $email, $password);
+        require_once __DIR__ . '/includes/auth.php';
+        $result = login($email, $password);
 
-        if ($user) {
-
-            $_SESSION['user'] = $user;
+        if ($result['success']) {
 
             // ✅ Guardar mensaje flash
 
             $_SESSION['flash_message'] = [
                 'tipo' => 'exito',
-                'titulo' => '¡Bienvenido!',
-                'descripcion' => 'Has iniciado sesión correctamente'
+                'titulo' => 'Benvingut!',
+                'descripcion' => 'Has iniciat sessió correctament'
             ];
 
             header('Location: discover.php');
             exit;
         } else {
-            $error = 'Credenciales incorrectas';
+            $error = $result['error'];
         }
     }
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Inici de sessió</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="login-page">
     <!-- Contenedor para los toasts -->
     <div id="contenedor-toast" class="contenedor-toast"></div>
     <main>
-        <h1>Iniciar Sesión</h1>
+        <h1>Iniciar sessió</h1>
 
         <?php if ($error): ?>
             <div class="notification error">
@@ -120,21 +96,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <form method="post">
             <label>
-                Email
-                <input type="email" name="email" value="<?= htmlspecialchars($email) ?>" placeholder="ejemplo@empresa.com" maxlength="128">
+                Correu electrònic
+                <input
+                    type="email" name="email"
+                    value="<?= htmlspecialchars($email) ?>"
+                    placeholder="exemple@empresa.cat" maxlength="128">
             </label>
 
             <label>
-                Contraseña
-                <input type="password" name="password" placeholder="********" maxlength="128">
+                Contrasenya
+                <input
+                    type="password" name="password"
+                    placeholder="********" maxlength="128">
             </label>
 
-            <button type="submit">Entrar</button>
+            <button type="submit">Iniciar sessió</button>
         </form>
-        <div class="button-group">
-            <button class="registre-btn" onclick="window.location.href='register.php'">Registrarse</button>
-            <button class="back-btn" onclick="window.location.href='index.php'">Ir al inicio</button>
-        </div>
     </main>
     <script src="utils.js"></script>
 </body>
