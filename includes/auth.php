@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'db.php';
+require_once 'logger.php';
 
 function login($email, $password)
 {
@@ -17,11 +18,14 @@ function login($email, $password)
                 'email' => $user['email'],
                 'name' => $user['name']
             ];
+            log_info("Usuario autenticado: {$user['email']}");
             return ['success' => true];
         }
 
+        log_warning("Intento de login fallido para: {$email}");
         return ['success' => false, 'error' => 'Credencials incorrectes'];
     } catch (PDOException $e) {
+        log_error("Error en BD durante login para {$email}: " . $e->getMessage());
         return ['success' => false, 'error' => 'Error de base de dades'];
     }
 }
@@ -33,6 +37,9 @@ function isLogged()
 
 function logout()
 {
+    if (isset($_SESSION['user'])) {
+        log_info("Usuario desconectado: " . $_SESSION['user']['email']);
+    }
     session_unset();
     session_destroy();
 }

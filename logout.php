@@ -1,6 +1,7 @@
 <?php
 require_once 'includes/auth.php';
+require_once 'includes/logger.php';
 
 logout();
-header('Location: discover.php');
+header('Location: index.php');
 exit;
