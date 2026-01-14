@@ -1,8 +1,9 @@
     <?php
+    $env = parse_ini_file('../.env');
     $host     = 'localhost';
     $db       = 'simbio';
-    $user     = 'root';
-    $password = '';
+    $user     = $env['db_user'];
+    $password = $env['db_password'];
     $charset  = 'utf8mb4';
 
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
