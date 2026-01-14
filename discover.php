@@ -1,7 +1,7 @@
 <?php
 require_once 'includes/auth.php';
 
-// Si no está logeado, redirige a login.php
+// Si no està connectat, redirigeix a login.php
 if (!isLogged()) {
     header('Location: login.php');
     exit;
@@ -15,11 +15,11 @@ if ($flash) {
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discover</title>
+    <title>Descobrir</title>
     <link rel="stylesheet" type="text/css" href="styles.css?v=1" />
 </head>
 <body class="discover-page">
@@ -28,22 +28,22 @@ if ($flash) {
 
 <nav class="sidebar">
     <ul class="nav-links">
-        <li><a href="discover.php">Discover</a></li>
+        <li><a href="discover.php">Descobrir</a></li>
         <li><a href="profile.php">Perfil</a></li>
         <li><a href="messages.php">Converses</a></li>
     </ul>
     <div class="session-info">
         <?php if (isLogged()): ?>
             <span><?= htmlspecialchars($_SESSION['user']['name']) ?></span>
-            <a href="logout.php">Cerrar sesión</a>
+            <a href="logout.php">Tancar sessió</a>
         <?php else: ?>
-            <a href="login.php">Iniciar sesión</a>
+            <a href="login.php">Iniciar sessió</a>
         <?php endif; ?>
     </div>
 </nav>
 
 <main id="discover-container">
-    <p>Cargando proyectos...</p>
+    <p>Carregant projectes...</p>
 </main>
 
 <script src="utils.js"></script>

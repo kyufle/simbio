@@ -21,6 +21,6 @@ try {
     // Nota: La comparación de contraseñas se hace en PHP (md5(...)), por consistencia.
 } catch (PDOException $e) {
     error_log("DB Error: " . $e->getMessage());
-    die("Error al conectar con la base de datos.");
+    die("Error en connectar amb la base de dades.");
 }
 ?>

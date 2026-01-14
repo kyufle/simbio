@@ -21,9 +21,9 @@ function login($email, $password)
             return ['success' => true];
         }
 
-        return ['success' => false, 'error' => 'Credenciales incorrectas'];
+        return ['success' => false, 'error' => 'Credencials incorrectes'];
     } catch (PDOException $e) {
-        return ['success' => false, 'error' => 'Error de base de datos'];
+        return ['success' => false, 'error' => 'Error de base de dades'];
     }
 }
 

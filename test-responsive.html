@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Responsive Discover</title>
+    <title>Prova Responsive Descobrir</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body class="discover-page">
 
 <nav class="sidebar">
     <ul class="nav-links">
-        <li><a href="#">Discover</a></li>
+        <li><a href="#">Descobrir</a></li>
         <li><a href="#">Perfil</a></li>
         <li><a href="#">Converses</a></li>
     </ul>
     <div class="session-info">
         <span>David</span>
-        <a href="#">Cerrar sesión</a>
+        <a href="#">Tancar sessió</a>
     </div>
 </nav>
 
@@ -31,37 +31,37 @@
 
         <!-- Header -->
         <header>
-            <h2>Mi Proyecto Increíble</h2>
-            <p><strong>Centro:</strong> CIFP Txurdinaga</p>
+            <h2>El meu projecte increïble</h2>
+            <p><strong>Centre:</strong> CIFP Txurdinaga</p>
         </header>
 
         <!-- Acciones -->
         <section class="actions">
             <div class="buttons">
-                <button class="nope-btn" aria-label="No me interesa"></button>
-                <button class="like-btn" aria-label="Me interesa"></button>
+                <button class="nope-btn" aria-label="No m'interessa"></button>
+                <button class="like-btn" aria-label="M'interessa"></button>
             </div>
 
             <nav class="bottom-bar">
                 <a href="#">Perfil</a>
                 <a href="#">Converses</a>
-                <button class="toggle-details">Detalles</button>
+                <button class="toggle-details">Detalls</button>
             </nav>
         </section>
 
         <!-- Detalles -->
         <aside class="details hidden">
-            <button class="close-details" aria-label="Cerrar">&times;</button>
-            <h3>Descripción</h3>
-            <p class="description">Este es un proyecto increíble sobre inteligencia artificial y machine learning aplicado a la educación. Buscamos mejorar la experiencia de aprendizaje de los estudiantes.</p>
-            <h3>Etiquetas</h3>
-            <p class="tags">IA, Python, Backend, Educación, Innovación</p>
+            <button class="close-details" aria-label="Tancar">&times;</button>
+            <h3>Descripció</h3>
+            <p class="description">Aquest és un projecte increïble sobre intel·ligència artificial i aprenentatge automàtic aplicat a l'educació. Busquem millorar l'experiència d'aprenentatge dels estudiants.</p>
+            <h3>Etiquetes</h3>
+            <p class="tags">IA, Python, Backend, Educació, Innovació</p>
         </aside>
     </div>
 </main>
 
 <script>
-    // Toggle detalles
+    // Commutar detalls
     document.querySelector('.toggle-details').addEventListener('click', function() {
         document.querySelector('.details').classList.toggle('hidden');
     });
@@ -70,7 +70,7 @@
         document.querySelector('.details').classList.add('hidden');
     });
 
-    // Botones like/nope
+    // Botons m'agrada/no
     document.querySelector('.like-btn').addEventListener('click', function() {
         document.querySelector('.project-card').classList.add('swipe-right');
         setTimeout(() => {

@@ -19,7 +19,7 @@ function createProjectCard(project) {
     card.innerHTML = `
         <header>
             <h2>${project.title}</h2>
-            <p><strong>Centro:</strong> ${project.center}</p>
+            <p><strong>Centre:</strong> ${project.center}</p>
         </header>
 
         <section class="video-section">
@@ -30,22 +30,22 @@ function createProjectCard(project) {
 
         <section class="actions">
             <div class="buttons">
-                <button class="nope-btn" aria-label="No me interesa"></button>
-                <button class="like-btn" aria-label="Me interesa"></button>
+                <button class="nope-btn" aria-label="No m'interessa"></button>
+                <button class="like-btn" aria-label="M'interessa"></button>
             </div>
 
             <nav class="bottom-bar">
                 <a href="profile.php">Perfil</a>
                 <a href="messages.php">Converses</a>
-                <button class="toggle-details">Detalles</button>
+                <button class="toggle-details">Detalls</button>
             </nav>
         </section>
 
         <aside class="details hidden">
-            <button class="close-details" aria-label="Cerrar">&times;</button>
-            <h3>Descripción</h3>
+            <button class="close-details" aria-label="Tancar">&times;</button>
+            <h3>Descripció</h3>
             <p class="description">${project.description}</p>
-            <h3>Etiquetas</h3>
+            <h3>Etiquetes</h3>
             <p class="tags">${project.tags.join(', ')}</p>
         </aside>
     `;
