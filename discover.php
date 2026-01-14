@@ -1,14 +1,17 @@
 <?php
 require_once 'includes/auth.php';
 
-
 // Si no está logeado, redirige a login.php
-/*
 if (!isLogged()) {
     header('Location: login.php');
     exit;
 }
-    */
+
+$flash = $_SESSION['flash_message'] ?? null;
+if ($flash) {
+    unset($_SESSION['flash_message']);
+}
+    
 ?>
 
 <!DOCTYPE html>

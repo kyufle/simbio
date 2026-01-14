@@ -36,29 +36,6 @@ function validateLoginForm($email, $password)
     return null;
 }
 
-function authenticateUser($conn, $email, $password)
-{
-    try {
-        $stmt = $conn->prepare("SELECT id, email, name, password FROM users WHERE email = :email LIMIT 1");
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // validar contraseña usando md5
-        if ($user && md5($password) === $user['password']) {
-            return [
-                'id' => $user['id'],
-                'email' => $user['email'],
-                'name' => $user['name']
-            ];
-        }
-
-        return null;
-    } catch (PDOException $e) {
-        return null;
-    }
-}
-
 // Redirigir si ya está logueado
 if (isLoggedIn()) {
     header('Location: discover.php');
@@ -75,11 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $error = validateLoginForm($email, $password);
 
     if (!$error) {
-        $user = authenticateUser($conn, $email, $password);
+        require_once __DIR__ . '/includes/auth.php';
+        $result = login($email, $password);
 
-        if ($user) {
-
-            $_SESSION['user'] = $user;
+        if ($result['success']) {
 
             // ✅ Guardar mensaje flash
 
@@ -92,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: discover.php');
             exit;
         } else {
-            $error = 'Credenciales incorrectas';
+            $error = $result['error'];
         }
     }
 }
