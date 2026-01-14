@@ -66,9 +66,9 @@ try {
     (1, 1, 'App Gestió de Residus Urbans', 'Aplicació mòbil per a l''optimització de rutes de recollida de residus utilitzant sensors a contenidors.', 'imageproject1.jpeg', 'videoproject1.mp4'),
     (2, 21, 'Eco-Packaging Textil', 'Investigació de nous materials biodegradables a partir de polpa de paper per a l''embalatge logístic.', 'imageproject2.jpg', 'videoproject2.mp4'),
     (3, 4, 'Restauració Seat 600 Elèctric', 'Conversió d''un vehicle clàssic a motorització 100% elèctrica com a projecte de fi de grau.', 'imageproject3.jpg', 'videoproject3.mp4'),
-    (4, 32, 'Fleca Saludable i Celíaca', 'Desenvolupament d''una línia de productes de forn industrial sense al·lèrgens amb traçabilitat total.', 'imageproject4.jpg', ''),
-    (5, 6, 'Menú Gastronómico Km0', 'Disseny d´una carta estacional basada exclusivament en productes de l´horta local i tècniques d´avantguarda.', 'imageproject5.jpg', ''),
-    (6, 10, 'Rehabilitació Energètica BIM', 'Projecte de modelatge 3D per millorar l''aïllament tèrmic d''un edifici públic dels anys 70.', 'imageproject6.jpg', '');
+    (4, 32, 'Fleca Saludable i Celíaca', 'Desenvolupament d''una línia de productes de forn industrial sense al·lèrgens amb traçabilitat total.', 'imageproject4.jpg', 'videoproject4.mp4'),
+    (5, 6, 'Menú Gastronómico Km0', 'Disseny d´una carta estacional basada exclusivament en productes de l´horta local i tècniques d´avantguarda.', 'imageproject5.jpg', 'videoproject5.mp4'),
+    (6, 10, 'Rehabilitació Energètica BIM', 'Projecte de modelatge 3D per millorar l''aïllament tèrmic d''un edifici públic dels anys 70.', 'imageproject6.jpg', 'videoproject6.mp4');
 
     /*insertar las etiquetas a los proyectos*/
     INSERT INTO project_tags (project_id, tag_id) VALUES
