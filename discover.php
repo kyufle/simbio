@@ -1,6 +1,6 @@
 <?php
 require_once 'includes/auth.php';
-session_start();
+
 
 // Si no está logeado, redirige a login.php
 /*
@@ -11,11 +11,6 @@ if (!isLogged()) {
     */
 ?>
 
-if (isset($_SESSION['flash_message'])) {
-    $flash = $_SESSION['flash_message'];
-    unset($_SESSION['flash_message']);
-}
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

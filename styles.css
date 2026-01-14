@@ -132,7 +132,6 @@ body.login-page .back-btn:hover {
     box-shadow: 0 6px 20px rgba(181, 234, 234, 0.5);
 }
 
-/* Notificaciones */
 .notification {
     padding: 0.9rem 1rem;
     border-radius: 10px;
@@ -152,11 +151,8 @@ body.login-page .back-btn:hover {
 
 /* ========================================
    ESTILOS DISCOVER.PHP - MODO VERTICAL TIKTOK
-   ORGANIZADO: PRIMERO ESTILOS GENERALES,
-   LUEGO MOBILE, LUEGO DESKTOP
    ======================================== */
 
-/* ESTILOS GENERALES - APLICAN A TODA LA PÁGINA */
 .discover-page {
     font-family: 'Josefin Sans', sans-serif;
     background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
@@ -167,7 +163,6 @@ body.login-page .back-btn:hover {
     width: 100vw;
 }
 
-/* Sidebar superior minimalista */
 .discover-page .sidebar {
     position: fixed;
     top: 0;
@@ -222,7 +217,6 @@ body.login-page .back-btn:hover {
     color: #FF8A82;
 }
 
-/* Contenedor principal */
 .discover-page main {
     height: 100vh;
     width: 100vw;
@@ -234,7 +228,6 @@ body.login-page .back-btn:hover {
     overflow: hidden;
 }
 
-/* Card de proyecto */
 .discover-page .project-card {
     position: relative;
     width: 90%;
@@ -248,7 +241,6 @@ body.login-page .back-btn:hover {
     transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Header del proyecto */
 .discover-page .project-card header {
     position: absolute;
     top: 70px;
@@ -275,7 +267,6 @@ body.login-page .back-btn:hover {
     font-weight: 500;
 }
 
-/* Video */
 .discover-page .project-card .video-section {
     position: absolute;
     top: 0;
@@ -292,7 +283,6 @@ body.login-page .back-btn:hover {
     object-fit: cover;
 }
 
-/* Sección de acciones */
 .discover-page .project-card .actions {
     position: absolute;
     bottom: 0;
@@ -306,7 +296,6 @@ body.login-page .back-btn:hover {
     gap: 15px;
 }
 
-/* Botones Like/Nope */
 .discover-page .project-card .buttons {
     display: flex;
     justify-content: center;
@@ -357,7 +346,6 @@ body.login-page .back-btn:hover {
     content: '♥';
 }
 
-/* Barra inferior */
 .discover-page .project-card .bottom-bar {
     display: flex;
     justify-content: space-around;
@@ -387,7 +375,6 @@ body.login-page .back-btn:hover {
     transform: translateY(-2px);
 }
 
-/* Detalles del proyecto */
 .discover-page .project-card .details {
     position: absolute;
     bottom: 0;
@@ -446,7 +433,6 @@ body.login-page .back-btn:hover {
     font-weight: bold;
 }
 
-/* Animaciones de swipe */
 .discover-page .project-card.swipe-right {
     transform: translateX(120vw) rotate(25deg) scale(0.7);
     opacity: 0;
@@ -475,7 +461,6 @@ body.login-page .back-btn:hover {
     100% { transform: translateX(-120%) rotate(-12deg); opacity: 0; }
 }
 
-/* Scrollbar personalizado */
 .discover-page .project-card .details::-webkit-scrollbar {
     width: 6px;
 }
@@ -494,7 +479,6 @@ body.login-page .back-btn:hover {
     background: #8BC4BC;
 }
 
-/* Scrollbar personalizado */
 .discover-page .project-card .details::-webkit-scrollbar {
     width: 6px;
 }
@@ -518,7 +502,6 @@ body.login-page .back-btn:hover {
    Solo edita esto para cambiar MOBILE
    ======================================== */
 @media (max-width: 767px) {
-    /* El body/html ocupa toda la pantalla en mobile */
     body.discover-page,
     html {
         height: 100vh;
@@ -526,7 +509,6 @@ body.login-page .back-btn:hover {
         overflow: hidden;
     }
 
-    /* Sidebar más compacto en mobile */
     .discover-page .sidebar {
         padding: 12px 15px;
         font-size: 0.8rem;
@@ -547,7 +529,6 @@ body.login-page .back-btn:hover {
         gap: 10px;
     }
 
-    /* Main ocupa toda la pantalla en mobile */
     .discover-page main {
         position: fixed;
         top: 0;
@@ -561,7 +542,6 @@ body.login-page .back-btn:hover {
         align-items: center;
     }
     
-    /* Card: PANTALLA COMPLETA en mobile */
     .discover-page .project-card {
         position: fixed;
         top: 0;
@@ -576,7 +556,6 @@ body.login-page .back-btn:hover {
         padding: 0;
     }
     
-    /* Header más pequeño en mobile */
     .discover-page .project-card header {
         top: 55px;
         left: 12px;
@@ -594,7 +573,6 @@ body.login-page .back-btn:hover {
         font-size: 0.85rem;
     }
     
-    /* Acciones compactas al fondo */
     .discover-page .project-card .actions {
         position: fixed;
         bottom: 0;
@@ -608,7 +586,6 @@ body.login-page .back-btn:hover {
         gap: 12px;
     }
     
-    /* Botones más pequeños en mobile */
     .discover-page .project-card .buttons {
         gap: 25px;
         margin-bottom: 0;
@@ -622,7 +599,6 @@ body.login-page .back-btn:hover {
         font-size: 1.3rem;
     }
 
-    /* Barra de navegación más pequeña */
     .discover-page .project-card .bottom-bar {
         padding: 10px 12px;
         border-top: none;
@@ -640,7 +616,6 @@ body.login-page .back-btn:hover {
         text-align: center;
     }
 
-    /* Detalles adaptados a mobile */
     .discover-page .project-card .details {
         max-height: 70vh;
         padding: 25px 20px 35px 20px;
