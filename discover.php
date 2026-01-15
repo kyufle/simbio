@@ -84,45 +84,26 @@ try {
 
 <script src="js/utils.js"></script>
 <script src="js/discover.js?v=<?php echo filemtime('js/discover.js'); ?>"></script>
-
-<!-- DEBUG: Mostrar estado -->
-<div id="debug-info" style="position: fixed; top: 10px; left: 10px; background: #222; color: #0f0; padding: 10px; font-size: 12px; font-family: monospace; z-index: 10000; max-width: 300px; border: 1px solid #0f0;">
-    <div>Flash detectado: <?php echo isset($flash) ? 'SÍ' : 'NO'; ?></div>
-    <?php if (isset($flash)): ?>
-        <div>Tipo: <?php echo htmlspecialchars($flash['tipo']); ?></div>
-        <div>Título: <?php echo htmlspecialchars($flash['titulo']); ?></div>
-    <?php endif; ?>
-    <div>Contenedor existe: <span id="contenedor-check">?</span></div>
-    <div>Utils cargado: <span id="utils-check">?</span></div>
-</div>
-
+<?php if (isset($flash) && is_array($flash)): ?>
 <script>
-    // Verificar que todo esté cargado
     setTimeout(function() {
-        document.getElementById('contenedor-check').textContent = document.getElementById('contenedor-toast') ? 'SÍ' : 'NO';
-        document.getElementById('utils-check').textContent = typeof window.mostrarExito === 'function' ? 'SÍ' : 'NO';
-        
-        // Si flash existe, mostrar la notificación
-        <?php if (isset($flash) && is_array($flash)): ?>
-            <?php
-            $tipo = $flash['tipo'] ?? 'info';
-            $titulo = json_encode($flash['titulo'] ?? '');
-            $descripcion = json_encode($flash['descripcion'] ?? '');
+        <?php
+        $tipo = $flash['tipo'] ?? 'info';
+        $titulo = json_encode($flash['titulo'] ?? '');
+        $descripcion = json_encode($flash['descripcion'] ?? '');
 
-            if ($tipo === 'exito') {
-                echo "window.mostrarExito($titulo, $descripcion);";
-            } elseif ($tipo === 'error') {
-                echo "window.mostrarError($titulo, $descripcion);";
-            } elseif ($tipo === 'warning') {
-                echo "window.mostrarAdvertencia($titulo, $descripcion);";
-            } else {
-                echo "window.mostrarInfo($titulo, $descripcion);";
-            }
-            ?>
-        <?php endif; ?>
-    }, 100);
+        if ($tipo === 'exito') {
+            echo "window.mostrarExito($titulo, $descripcion);";
+        } elseif ($tipo === 'error') {
+            echo "window.mostrarError($titulo, $descripcion);";
+        } elseif ($tipo === 'warning') {
+            echo "window.mostrarAdvertencia($titulo, $descripcion);";
+        } else {
+            echo "window.mostrarInfo($titulo, $descripcion);";
+        }
+        ?>
+    }, 50);
 </script>
-
-<?php unset($_SESSION['flash_message']); ?>
+<?php unset($_SESSION['flash_message']); endif; ?>
 </body>
 </html>
