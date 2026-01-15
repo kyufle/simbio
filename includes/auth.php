@@ -12,21 +12,38 @@ function login($email, $password)
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && hash("sha256", $password) === $user['password_hash']) {
-            $_SESSION['user'] = [
-                'id' => $user['user_id'],
-                'email' => $user['email'],
-                'name' => $user['name']
+        if (!$user) {
+            log_warning("Intento de login con email inexistente: {$email}");
+            return [
+                'success' => false,
+                'error' => 'Correu electrònic no registrat',
+                'errors' => ['email' => 'No existeix cap compte amb aquest correu electrònic']
             ];
-            log_info("Usuario autenticado: {$user['email']}");
-            return ['success' => true];
         }
 
-        log_warning("Intento de login fallido para: {$email}");
-        return ['success' => false, 'error' => 'Credencials incorrectes'];
+        if (hash("sha256", $password) !== $user['password_hash']) {
+            log_warning("Intento de login con contraseña incorrecta para: {$email}");
+            return [
+                'success' => false,
+                'error' => 'Contrasenya incorrecta',
+                'errors' => ['password' => 'La contrasenya és incorrecta']
+            ];
+        }
+
+        $_SESSION['user'] = [
+            'id' => $user['user_id'],
+            'email' => $user['email'],
+            'name' => $user['name']
+        ];
+        log_info("Usuario autenticado: {$user['email']}");
+        return ['success' => true];
     } catch (PDOException $e) {
         log_error("Error en BD durante login para {$email}: " . $e->getMessage());
-        return ['success' => false, 'error' => 'Error de base de dades'];
+        return [
+            'success' => false,
+            'error' => 'Error de base de dades',
+            'errors' => ['general' => 'Hi ha hagut un error en accedir a la base de dades']
+        ];
     }
 }
 
