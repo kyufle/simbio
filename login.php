@@ -46,7 +46,7 @@ if (isLoggedIn()) {
 }
 
 $email = '';
-$error = '';
+$errors = []; // Array de errores para mostrar individualmente
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($result['success']) {
             log_auth('LOGIN', $email, true);
 
-            // ✅ Guardar mensaje flash
+            // ✅ Guardar mensaje flash de éxito
             $_SESSION['flash_message'] = [
                 'tipo' => 'exito',
                 'titulo' => 'Benvingut!',
@@ -72,18 +72,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } else {
             log_auth('LOGIN', $email, false, $result['error']);
-            // Crear string de error claro
+            
+            // Error de autenticación (credenciales incorrectas)
             if (is_array($result['errors'])) {
-                $error_messages = array_values($result['errors']);
-                $error = implode(' / ', $error_messages);
+                $errors = $result['errors'];
             } else {
-                $error = $result['error'];
+                $errors['auth'] = $result['error'];
             }
         }
-    } else {
-        // Convertir array de errores a string
-        $error_messages = array_values($errors);
-        $error = implode(' / ', $error_messages);
     }
 }
 ?>
@@ -94,45 +90,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inici de sessió</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
 </head>
 <body class="login-page">
     <!-- Contenedor para los toasts -->
     <div id="contenedor-toast" class="contenedor-toast"></div>
+    
     <main>
         <h1>Iniciar sessió</h1>
 
-        <?php if ($error): ?>
-            <div class="notification error">
-                <?= htmlspecialchars($error) ?>
-            </div>
+        <!-- ⭐ Mostrar cada error como una notificación separada -->
+        <?php if (!empty($errors)): ?>
+            <?php foreach ($errors as $field => $error_message): ?>
+                <div class="notification error">
+                    <?= htmlspecialchars($error_message) ?>
+                </div>
+            <?php endforeach; ?>
         <?php endif; ?>
 
-        <form method="post">
+        <!-- ⭐ IMPORTANTE: novalidate desactiva la validación HTML5 -->
+        <form method="post" novalidate>
             <label>
                 Correu electrònic
                 <input
-                    type="email" name="email"
+                    type="email" 
+                    name="email"
                     value="<?= htmlspecialchars($email) ?>"
-                    placeholder="exemple@empresa.cat" maxlength="128">
+                    placeholder="exemple@empresa.cat" 
+                    maxlength="128"
+                    autocomplete="email">
             </label>
 
             <label>
                 Contrasenya
                 <input
-                    type="password" name="password"
-                    placeholder="********" maxlength="128">
+                    type="password" 
+                    name="password"
+                    placeholder="********" 
+                    maxlength="128"
+                    autocomplete="current-password">
             </label>
 
             <button type="submit">Iniciar sessió</button>
         </form>
+        
         <!--
         <div class="button-group">
             <button href="register.php" class="registre-btn">Registrar-se</button>
             <button href="index.php" class="back-btn">Anar al inici</button>
         </div>
-            -->
+        -->
     </main>
-    <script src="js/utils.js"></script>
+    
+    <script src="js/utils.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>
