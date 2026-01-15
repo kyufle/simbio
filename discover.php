@@ -11,9 +11,7 @@ if (!isLogged()) {
 
 log_info("Usuario accedió a discover.php");
 $flash = $_SESSION['flash_message'] ?? null;
-if ($flash) {
-    unset($_SESSION['flash_message']);
-}
+
     
 ?>
 
@@ -58,11 +56,12 @@ if ($flash) {
         $tipo = $flash['tipo'] ?? 'info';
         $titulo = json_encode($flash['titulo'] ?? '');
         $descripcion = json_encode($flash['descripcion'] ?? '');
+
         if ($tipo === 'exito') {
             echo "mostrarExito($titulo, $descripcion);";
-        } else if ($tipo === 'error') {
+        } elseif ($tipo === 'error') {
             echo "mostrarError($titulo, $descripcion);";
-        } else if ($tipo === 'warning') {
+        } elseif ($tipo === 'warning') {
             echo "mostrarAdvertencia($titulo, $descripcion);";
         } else {
             echo "mostrarInfo($titulo, $descripcion);";
@@ -70,6 +69,6 @@ if ($flash) {
         ?>
     });
 </script>
-<?php endif; ?>
+<?php unset($_SESSION['flash_message']); endif; ?>
 </body>
 </html>
