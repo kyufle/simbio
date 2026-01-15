@@ -86,21 +86,23 @@ try {
 <script src="js/discover.js?v=<?php echo filemtime('js/discover.js'); ?>"></script>
 <?php if (isset($flash) && is_array($flash)): ?>
 <script>
-    <?php
-    $tipo = $flash['tipo'] ?? 'info';
-    $titulo = json_encode($flash['titulo'] ?? '');
-    $descripcion = json_encode($flash['descripcion'] ?? '');
+    window.addEventListener('DOMContentLoaded', function() {
+        <?php
+        $tipo = $flash['tipo'] ?? 'info';
+        $titulo = json_encode($flash['titulo'] ?? '');
+        $descripcion = json_encode($flash['descripcion'] ?? '');
 
-    if ($tipo === 'exito') {
-        echo "mostrarExito($titulo, $descripcion);";
-    } elseif ($tipo === 'error') {
-        echo "mostrarError($titulo, $descripcion);";
-    } elseif ($tipo === 'warning') {
-        echo "mostrarAdvertencia($titulo, $descripcion);";
-    } else {
-        echo "mostrarInfo($titulo, $descripcion);";
-    }
-    ?>
+        if ($tipo === 'exito') {
+            echo "mostrarExito($titulo, $descripcion);";
+        } elseif ($tipo === 'error') {
+            echo "mostrarError($titulo, $descripcion);";
+        } elseif ($tipo === 'warning') {
+            echo "mostrarAdvertencia($titulo, $descripcion);";
+        } else {
+            echo "mostrarInfo($titulo, $descripcion);";
+        }
+        ?>
+    });
 </script>
 <?php unset($_SESSION['flash_message']); endif; ?>
 </body>
