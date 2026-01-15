@@ -718,18 +718,21 @@ body.login-page .back-btn:hover {
     position: fixed;
     right: 40px;
     bottom: 40px;
-    width: 100%;
+    width: auto;
     max-width: 400px;
     display: flex;
     gap: 20px;
     flex-direction: column-reverse;
+    z-index: 9999;
 }
 
 .toast {
     background: #ccc;    
     display: flex;
     justify-content: space-between;
+    align-items: stretch;
     border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 	animation-name: apertura;
 	animation-duration: 200ms;
 	animation-timing-function: ease-out;
