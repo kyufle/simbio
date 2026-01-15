@@ -133,6 +133,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
             -->
     </main>
-    <script src="js/utils.js"></script>
+    <script src="utils.js"></script>
 </body>
 </html>
