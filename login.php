@@ -67,6 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'titulo' => 'Benvingut!',
                 'descripcion' => 'Has iniciat sessió correctament'
             ];
+            
+            // DEBUG
+            error_log("Flash guardado en login.php: " . json_encode($_SESSION['flash_message']));
+            error_log("Session ID: " . session_id());
 
             header('Location: discover.php');
             exit;
