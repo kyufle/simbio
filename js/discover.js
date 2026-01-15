@@ -1,4 +1,4 @@
-// js/discover.js - Versión TikTok vertical optimizada
+// js/discover.js - Versión TikTok vertical optimizada con Toasts
 
 const PROJECTS_JSON = 'includes/projects.php';
 const BUFFER_SIZE = 5;
@@ -108,13 +108,24 @@ document.addEventListener("click", (e) => {
 function showNextProject() {
     container.innerHTML = '';
 
+    // ⭐ TOAST: Si no quedan proyectos
     if (buffer.length === 0) {
         container.innerHTML = `
             <div class="empty-message">
-                <h2>🎉 ¡Has visto todos los proyectos!</h2>
-                <p>No hay más proyectos disponibles en este momento.</p>
+                <h2>🎉 Has vist tots els projectes!</h2>
+                <p>No hi ha més projectes disponibles en aquest moment.</p>
+                <p style="margin-top: 15px; font-size: 0.9rem;">Torna més tard per veure nous projectes.</p>
             </div>
         `;
+        
+        // ⭐ Mostrar toast informativo
+        if (typeof window.mostrarInfo === 'function') {
+            window.mostrarInfo(
+                'Sense més projectes', 
+                'Has vist tots els projectes disponibles!'
+            );
+        }
+        
         return;
     }
 
@@ -191,8 +202,15 @@ document.addEventListener('keydown', (e) => {
 ============================================================ */
 function initDiscover() {
     fetch(PROJECTS_JSON)
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) throw new Error('Error al carregar projectes');
+            return res.json();
+        })
         .then(data => {
+            if (!Array.isArray(data) || data.length === 0) {
+                throw new Error('No hi ha projectes disponibles');
+            }
+            
             allProjects = data;
             buffer = allProjects.splice(0, BUFFER_SIZE);
             showNextProject();
@@ -200,10 +218,20 @@ function initDiscover() {
         .catch(err => {
             container.innerHTML = `
                 <div class="error-message">
-                    <h2>Error al cargar proyectos</h2>
+                    <h2>⚠️ Error al carregar projectes</h2>
                     <p>${err.message}</p>
+                    <p style="font-size: 0.85rem; margin-top: 10px;">
+                        Verifica que l'arxiu <code>includes/projects.php</code> funcioni correctament.
+                    </p>
                 </div>
             `;
+            
+            // ⭐ TOAST: Error al cargar proyectos
+            if (typeof window.mostrarError === 'function') {
+                window.mostrarError('Error de càrrega', err.message);
+            }
+            
+            console.error('Error en initDiscover:', err);
         });
 }
 

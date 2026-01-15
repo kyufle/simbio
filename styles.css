@@ -703,95 +703,243 @@ body.login-page .back-btn:hover {
     margin-bottom: 10px;
 }
 
+/* ========================================
+   VARIABLES CSS PARA TOASTS
+   ======================================== */
+:root {
+    --exito: #B5EAEA;   /* Verde menta - éxito */
+    --error: #FFAAA7;   /* Coral suave - error */
+    --info: #A3D2CA;    /* Azul cielo - info */
+    --warning: #FFF3B0; /* Amarillo pálido - advertencia */
+}
 
-/* TOAST */
 
+/* ========================================
+   CONTENEDOR DE TOASTS
+   ======================================== */
 .contenedor-toast {
     position: fixed;
-    right: 40px;
-    bottom: 40px;
-    width: 100%;
-    max-width: 400px;
+    right: 20px;
+    bottom: 20px;
+    width: calc(100% - 40px);
+    max-width: 380px;
     display: flex;
-    gap: 20px;
+    gap: 15px;
     flex-direction: column-reverse;
+    z-index: 9999;
+    pointer-events: none;
 }
 
+/* ========================================
+   TOAST BASE
+   ======================================== */
 .toast {
-    background: #ccc;    
+    background: #fff;
     display: flex;
     justify-content: space-between;
-    border-radius: 10px;
-	animation-name: apertura;
-	animation-duration: 200ms;
-	animation-timing-function: ease-out;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    animation: apertura 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: all;
+    overflow: hidden;
 }
 
-.toast.exito { background: var(--exito); }
-.toast.error { background: var(--error); }
-.toast.info { background: var(--info); }
-.toast.warning { background: var(--warning); }
+/* Tipos de toast con paleta de colores */
+.toast.exito { 
+    background: var(--exito);
+    border-left: 5px solid #8BC4BC;
+}
 
+.toast.error { 
+    background: var(--error);
+    border-left: 5px solid #FF8A82;
+}
+
+.toast.info { 
+    background: var(--info);
+    border-left: 5px solid #8BC4BC;
+}
+
+.toast.warning { 
+    background: var(--warning);
+    border-left: 5px solid #FFE680;
+}
+
+/* ========================================
+   CONTENIDO DEL TOAST
+   ======================================== */
 .toast .contenido {
     display: grid;
-    grid-template-columns: 30px auto;
+    grid-template-columns: 35px 1fr;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     padding: 15px;
-}
-.toast .titulo {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: #fff;
+    flex: 1;
 }
 
 .toast .icono {
-	color: rgba(0, 0, 0,0.4);
+    width: 24px;
+    height: 24px;
+    color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.toast .icono svg {
+    width: 100%;
+    height: 100%;
+}
+
+.toast .texto {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.toast .titulo {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    font-family: 'Fjalla One', sans-serif;
+    margin: 0;
+}
+
+.toast .descripcion {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #555;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ========================================
+   BOTÓN CERRAR
+   ======================================== */
 .toast .btn-cerrar {
-    background: rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.1);
     border: none;
     cursor: pointer;
-    padding: 0px 5px;
-    transition: 0.3s ease all;
+    padding: 15px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
 }
 
 .toast .btn-cerrar:hover {
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .toast .btn-cerrar .icono {
     width: 20px;
     height: 20px;
-    color: #fff;
-
+    color: rgba(0, 0, 0, 0.6);
 }
 
+.toast .btn-cerrar .icono svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ========================================
+   ANIMACIONES
+   ======================================== */
 .toast.cerrando {
-	animation-name: cierre;
-	animation-duration: 200ms;
-	animation-timing-function: ease-out;
-	animation-fill-mode: forwards;
+    animation: cierre 0.3s ease-out forwards;
 }
 
 @keyframes apertura {
-	from {
-		transform: translateY(100px);
-		opacity: 0;
-	}
-	to {
-		transform: translateY(0);
-		opacity: 1;
-	}
+    from {
+        transform: translateX(calc(100% + 40px));
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 @keyframes cierre {
-	from {
-		transform: translateX(0);
-	}
-	to {
-		transform: translateX(calc(100% + 40px));
-	}
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(calc(100% + 40px));
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   RESPONSIVE - MÓVIL
+   ======================================== */
+@media (max-width: 767px) {
+    .contenedor-toast {
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+        width: calc(100% - 20px);
+        max-width: none;
+    }
+
+    .toast .contenido {
+        padding: 12px;
+        gap: 10px;
+        grid-template-columns: 30px 1fr;
+    }
+
+    .toast .titulo {
+        font-size: 0.95rem;
+    }
+
+    .toast .descripcion {
+        font-size: 0.8rem;
+    }
+
+    .toast .btn-cerrar {
+        padding: 12px;
+    }
+}
+
+/* ========================================
+   ESTILOS ESPECÍFICOS POR COLOR
+   ======================================== */
+
+/* Toast de éxito - Verde menta */
+.toast.exito .titulo {
+    color: #2d5a50;
+}
+
+.toast.exito .descripcion {
+    color: #3d6a60;
+}
+
+/* Toast de error - Coral */
+.toast.error .titulo {
+    color: #8b3432;
+}
+
+.toast.error .descripcion {
+    color: #a04442;
+}
+
+/* Toast de info - Azul cielo */
+.toast.info .titulo {
+    color: #2d5a50;
+}
+
+.toast.info .descripcion {
+    color: #3d6a60;
+}
+
+/* Toast de warning - Amarillo */
+.toast.warning .titulo {
+    color: #7a6c1f;
+}
+
+.toast.warning .descripcion {
+    color: #8a7c2f;
 }
