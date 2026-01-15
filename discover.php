@@ -13,10 +13,6 @@ if (!isLogged()) {
 log_info("Usuario accedió a discover.php");
 $flash = $_SESSION['flash_message'] ?? null;
 
-// DEBUG: Ver estado de sesión
-error_log("SESSION: " . json_encode($_SESSION));
-error_log("Flash message: " . json_encode($flash));
-
 // Cargar proyectos desde PHP
 try {
     $projects_file = __DIR__ . '/includes/projects.json';
