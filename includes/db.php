@@ -1,5 +1,7 @@
 <?php
 /* bd ejemplo */
+require_once __DIR__ . '/logger.php';
+
 $env = parse_ini_file(__DIR__ .'/../.env');
 $servername = "localhost";
 $username     = $env['db_user'];
@@ -20,8 +22,13 @@ try {
     // Hacer que MySQL use MD5 en contraseñas si se usa directamente en SQL (por ejemplo en inserts).
     // Ejemplo: INSERT INTO users (email, password) VALUES ('a@b.com', MD5('clave'))
     // Nota: La comparación de contraseñas se hace en PHP (md5(...)), por consistencia.
+    log_info("Conexión a BD establecida exitosamente");
 } catch (PDOException $e) {
-    error_log("DB Error: " . $e->getMessage());
+    log_error("Error de conexión a BD", [
+        'servidor' => $servername,
+        'base_datos' => $dbname,
+        'error' => $e->getMessage()
+    ]);
     die("Error en connectar amb la base de dades.");
 }
 ?>
