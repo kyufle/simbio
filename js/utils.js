@@ -19,6 +19,8 @@ const cerrarToast = function(id) {
 const agregarToast = function(tipo, titulo, descripcion) {
     const container = getContenedorToast();
     
+    console.log('agregarToast llamado:', {tipo, titulo, descripcion, container: !!container});
+    
     if (!container) {
         console.error('No se encontró el contenedor de toasts');
         return;
@@ -29,6 +31,8 @@ const agregarToast = function(tipo, titulo, descripcion) {
 
     const toastId = Date.now() + Math.floor(Math.random() * 100);
     nuevoToast.id = toastId;
+    
+    console.log('Toast creado con ID:', toastId);
 
     const iconos = {
         exito: `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
@@ -65,6 +69,9 @@ const agregarToast = function(tipo, titulo, descripcion) {
 
     // Agregar al contenedor
     container.appendChild(nuevoToast);
+    console.log('Toast añadido al contenedor. Contenedor children:', container.children.length);
+    console.log('Toast classList:', nuevoToast.className);
+    console.log('Toast visibility:', window.getComputedStyle(nuevoToast).display);
 
     // Listener para eliminar el toast cuando termine la animación de cierre
     nuevoToast.addEventListener('animationend', function(e) {
