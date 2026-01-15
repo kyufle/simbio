@@ -86,21 +86,29 @@ try {
 <script src="js/discover.js?v=<?php echo filemtime('js/discover.js'); ?>"></script>
 <?php if (isset($flash) && is_array($flash)): ?>
 <script>
-    <?php
-    $tipo = $flash['tipo'] ?? 'info';
-    $titulo = json_encode($flash['titulo'] ?? '');
-    $descripcion = json_encode($flash['descripcion'] ?? '');
+    // Debug: verificar que se ejecuta
+    console.log('Flash message encontrado:', <?php echo json_encode($flash); ?>);
+    
+    // Esperar a que utils.js esté completamente cargado
+    setTimeout(function() {
+        <?php
+        $tipo = $flash['tipo'] ?? 'info';
+        $titulo = json_encode($flash['titulo'] ?? '');
+        $descripcion = json_encode($flash['descripcion'] ?? '');
 
-    if ($tipo === 'exito') {
-        echo "mostrarExito($titulo, $descripcion);";
-    } elseif ($tipo === 'error') {
-        echo "mostrarError($titulo, $descripcion);";
-    } elseif ($tipo === 'warning') {
-        echo "mostrarAdvertencia($titulo, $descripcion);";
-    } else {
-        echo "mostrarInfo($titulo, $descripcion);";
-    }
-    ?>
+        echo "console.log('Tipo:', '$tipo', 'Titulo:', $titulo, 'Descripcion:', $descripcion);";
+
+        if ($tipo === 'exito') {
+            echo "if (typeof window.mostrarExito === 'function') { window.mostrarExito($titulo, $descripcion); } else { console.error('mostrarExito no está disponible'); }";
+        } elseif ($tipo === 'error') {
+            echo "if (typeof window.mostrarError === 'function') { window.mostrarError($titulo, $descripcion); } else { console.error('mostrarError no está disponible'); }";
+        } elseif ($tipo === 'warning') {
+            echo "if (typeof window.mostrarAdvertencia === 'function') { window.mostrarAdvertencia($titulo, $descripcion); } else { console.error('mostrarAdvertencia no está disponible'); }";
+        } else {
+            echo "if (typeof window.mostrarInfo === 'function') { window.mostrarInfo($titulo, $descripcion); } else { console.error('mostrarInfo no está disponible'); }";
+        }
+        ?>
+    }, 100);
 </script>
 <?php unset($_SESSION['flash_message']); endif; ?>
 </body>
