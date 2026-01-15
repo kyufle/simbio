@@ -82,7 +82,7 @@ try {
     <p>Carregant projectes...</p>
 </main>
 
-<script src="utils.js"></script>
+<script src="js/utils.js"></script>
 <script src="js/discover.js?v=<?php echo filemtime('js/discover.js'); ?>"></script>
 <?php if (isset($flash) && is_array($flash)): ?>
 <script>
