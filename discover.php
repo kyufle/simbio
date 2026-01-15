@@ -98,56 +98,33 @@ try {
     <?php endif; ?>
     <div>Contenedor existe: <span id="contenedor-check">?</span></div>
     <div>Utils cargado: <span id="utils-check">?</span></div>
-    <div id="script-info">Script: pendiente...</div>
 </div>
-
-<?php if (isset($flash) && is_array($flash)): ?>
-<script>
-    console.log('=== SCRIPT DE FLASH EJECUTÁNDOSE ===');
-    console.log('Flash data:', <?php echo json_encode($flash); ?>);
-    
-    // Mostrar que se va a ejecutar
-    document.getElementById('script-info').textContent = 'Script GENERADO';
-    
-    setTimeout(function() {
-        console.log('Timeout ejecutándose...');
-        document.getElementById('script-info').textContent = 'Timeout ejecutado';
-        
-        console.log('mostrarExito existe:', typeof window.mostrarExito);
-        console.log('mostrarError existe:', typeof window.mostrarError);
-        console.log('mostrarAdvertencia existe:', typeof window.mostrarAdvertencia);
-        
-        <?php
-        $tipo = $flash['tipo'] ?? 'info';
-        $titulo = json_encode($flash['titulo'] ?? '');
-        $descripcion = json_encode($flash['descripcion'] ?? '');
-        
-        echo "console.log('Tipo: $tipo, Titulo: $titulo, Descripcion: $descripcion');\n";
-
-        if ($tipo === 'exito') {
-            echo "console.log('Llamando mostrarExito...');\n";
-            echo "window.mostrarExito($titulo, $descripcion);\n";
-        } elseif ($tipo === 'error') {
-            echo "console.log('Llamando mostrarError...');\n";
-            echo "window.mostrarError($titulo, $descripcion);\n";
-        } elseif ($tipo === 'warning') {
-            echo "console.log('Llamando mostrarAdvertencia...');\n";
-            echo "window.mostrarAdvertencia($titulo, $descripcion);\n";
-        } else {
-            echo "console.log('Llamando mostrarInfo...');\n";
-            echo "window.mostrarInfo($titulo, $descripcion);\n";
-        }
-        ?>
-    }, 100);
-</script>
-<?php endif; ?>
 
 <script>
     // Verificar que todo esté cargado
     setTimeout(function() {
         document.getElementById('contenedor-check').textContent = document.getElementById('contenedor-toast') ? 'SÍ' : 'NO';
         document.getElementById('utils-check').textContent = typeof window.mostrarExito === 'function' ? 'SÍ' : 'NO';
-    }, 50);
+        
+        // Si flash existe, mostrar la notificación
+        <?php if (isset($flash) && is_array($flash)): ?>
+            <?php
+            $tipo = $flash['tipo'] ?? 'info';
+            $titulo = json_encode($flash['titulo'] ?? '');
+            $descripcion = json_encode($flash['descripcion'] ?? '');
+
+            if ($tipo === 'exito') {
+                echo "window.mostrarExito($titulo, $descripcion);";
+            } elseif ($tipo === 'error') {
+                echo "window.mostrarError($titulo, $descripcion);";
+            } elseif ($tipo === 'warning') {
+                echo "window.mostrarAdvertencia($titulo, $descripcion);";
+            } else {
+                echo "window.mostrarInfo($titulo, $descripcion);";
+            }
+            ?>
+        <?php endif; ?>
+    }, 100);
 </script>
 
 <?php unset($_SESSION['flash_message']); ?>
