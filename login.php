@@ -46,7 +46,7 @@ if (isLoggedIn()) {
 }
 
 $email = '';
-$error = '';
+$errors = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
@@ -76,18 +76,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } else {
             log_auth('LOGIN', $email, false, $result['error']);
-            // Crear string de error claro
-            if (is_array($result['errors'])) {
-                $error_messages = array_values($result['errors']);
-                $error = implode(' / ', $error_messages);
-            } else {
-                $error = $result['error'];
-            }
+            // Agregar errores de credenciales de forma estructurada
+            $errors = $result['errors'] ?? ['general' => $result['error']];
         }
-    } else {
-        // Convertir array de errores a string
-        $error_messages = array_values($errors);
-        $error = implode(' / ', $error_messages);
     }
 }
 ?>
@@ -106,26 +97,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main>
         <h1>Iniciar sessió</h1>
 
-        <?php if ($error): ?>
-            <div class="notification error">
-                <?= htmlspecialchars($error) ?>
+        <?php if ($errors): ?>
+            <div class="notification error-box">
+                <div class="error-title">⚠️ Errors en l'inici de sessió:</div>
+                <ul class="error-list">
+                    <?php foreach ($errors as $field => $message): ?>
+                        <li class="error-item<?= $field !== 'general' ? ' field-' . htmlspecialchars($field) : '' ?>">
+                            <?= htmlspecialchars($message) ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
         <?php endif; ?>
 
         <form method="post">
-            <label>
+            <label class="<?= isset($errors['email']) ? 'input-error' : '' ?>">
                 Correu electrònic
+                <?php if (isset($errors['email'])): ?>
+                    <span class="field-error-indicator">❌</span>
+                <?php endif; ?>
                 <input
                     type="email" name="email"
                     value="<?= htmlspecialchars($email) ?>"
-                    placeholder="exemple@empresa.cat" maxlength="128">
+                    placeholder="exemple@empresa.cat" maxlength="128"
+                    aria-invalid="<?= isset($errors['email']) ? 'true' : 'false' ?>">
             </label>
 
-            <label>
+            <label class="<?= isset($errors['password']) ? 'input-error' : '' ?>">
                 Contrasenya
+                <?php if (isset($errors['password'])): ?>
+                    <span class="field-error-indicator">❌</span>
+                <?php endif; ?>
                 <input
                     type="password" name="password"
-                    placeholder="********" maxlength="128">
+                    placeholder="********" maxlength="128"
+                    aria-invalid="<?= isset($errors['password']) ? 'true' : 'false' ?>">
             </label>
 
             <button type="submit">Iniciar sessió</button>
