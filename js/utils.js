@@ -1,4 +1,12 @@
-const contenedorToast = document.getElementById('contenedor-toast');
+let contenedorToast = null;
+
+// Función para obtener el contenedor dinámicamente
+function getContenedorToast() {
+    if (!contenedorToast) {
+        contenedorToast = document.getElementById('contenedor-toast');
+    }
+    return contenedorToast;
+}
 
 const cerrarToast = function(id) {
     const el = document.getElementById(id);
@@ -9,6 +17,13 @@ const cerrarToast = function(id) {
 
 /* Agrega un nuevo toast al contenedor */
 const agregarToast = function(tipo, titulo, descripcion) {
+    const container = getContenedorToast();
+    
+    if (!container) {
+        console.error('No se encontró el contenedor de toasts');
+        return;
+    }
+    
     const nuevoToast = document.createElement('div');
     nuevoToast.classList.add('toast', tipo);
 
@@ -49,7 +64,7 @@ const agregarToast = function(tipo, titulo, descripcion) {
     `;
 
     // Agregar al contenedor
-    contenedorToast.appendChild(nuevoToast);
+    container.appendChild(nuevoToast);
 
     // Listener para eliminar el toast cuando termine la animación de cierre
     nuevoToast.addEventListener('animationend', function(e) {
@@ -60,14 +75,12 @@ const agregarToast = function(tipo, titulo, descripcion) {
 };
 
 // Event listener para cerrar toasts
-if (contenedorToast) {
-    contenedorToast.addEventListener('click', function(e) {
-        const toastElement = e.target.closest('div.toast');
-        if (toastElement && e.target.closest('button.btn-cerrar')) {
-            cerrarToast(toastElement.id);
-        }
-    });
-}
+document.addEventListener('click', function(e) {
+    const toastElement = e.target.closest('div.toast');
+    if (toastElement && e.target.closest('button.btn-cerrar')) {
+        cerrarToast(toastElement.id);
+    }
+}, true);
 
 // FUNCIONES GLOBALES - Usar en toda la app
 /* Muestra un toast de éxito */
