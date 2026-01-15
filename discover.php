@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once 'includes/auth.php';
 require_once 'includes/logger.php';
 
@@ -12,40 +11,6 @@ if (!isLogged()) {
 
 log_info("Usuario accedió a discover.php");
 $flash = $_SESSION['flash_message'] ?? null;
-
-// Cargar proyectos desde PHP
-try {
-    $projects_file = __DIR__ . '/includes/projects.json';
-    
-    if (!file_exists($projects_file)) {
-        throw new Exception('Archivo de proyectos no encontrado');
-    }
-    
-    $projects_json = file_get_contents($projects_file);
-    $projects = json_decode($projects_json, true);
-    
-    // Si no hay proyectos y no hay flash anterior, crear uno
-    if (!$flash) {
-        if (empty($projects)) {
-            $_SESSION['flash_message'] = [
-                'tipo' => 'warning',
-                'titulo' => 'Sense més projectes',
-                'descripcion' => 'No hi ha projectes disponibles en aquest moment'
-            ];
-            $flash = $_SESSION['flash_message'];
-        }
-    }
-} catch (Exception $e) {
-    log_error("Error cargando proyectos: " . $e->getMessage());
-    if (!$flash) {
-        $_SESSION['flash_message'] = [
-            'tipo' => 'error',
-            'titulo' => 'Error',
-            'descripcion' => "No s'han pogut carregar els projectes"
-        ];
-        $flash = $_SESSION['flash_message'];
-    }
-}
 
     
 ?>
