@@ -10,7 +10,7 @@ if (!isLogged()) {
 
 global $conn;
 try {
-    $stmt = $conn->prepare("SELECT project_id, title, description, project.image_path, video_path, project.user_id, entity, type FROM project join user on project.user_id = user.user_id where video_path is not null;");
+    $stmt = $conn->prepare("SELECT project_id, user_id, title, description, project.image_path, video_path, project.user_id, entity, type FROM project join user on project.user_id = user.user_id where video_path is not null;");
     $stmt->execute();
     $projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -18,6 +18,7 @@ try {
     foreach ($projects as $project) {
         $mappedProject = array();
         $mappedProject['id'] = $project['project_id'];
+        $mappedProject['user_id'] = $project['user_id'];
         $mappedProject['entity'] = $project['entity'];
         $mappedProject['type'] = $project['type'];
         $mappedProject['title'] = $project['title'];

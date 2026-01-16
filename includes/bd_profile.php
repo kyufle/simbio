@@ -6,7 +6,7 @@
     function getUserProfile($userId) {
         global $conn;
         try {
-            $stmt = $conn->prepare("SELECT user_id, name, email, bio, profile_image_path FROM user WHERE user_id = :user_id LIMIT 1");
+            $stmt = $conn->prepare("SELECT user_id, name, surnames, email, entity, type, phone_number_entity, city, image_path FROM user WHERE user_id = :user_id LIMIT 1");
             $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -20,9 +20,13 @@
             $profile = array();
             $profile['id'] = $user['user_id'];
             $profile['name'] = $user['name'];
+            $profile['surnames'] = $user['surnames'];
             $profile['email'] = $user['email'];
-            $profile['bio'] = $user['bio'];
-            $profile['profile_image'] = "/uploads/" . $user['profile_image_path'];
+            $profile['entity'] = $user['entity'];
+            $profile['type'] = $user['type'];
+            $profile['phone_number'] = $user['phone_number_entity'];
+            $profile['city'] = $user['city'];
+            $profile['image'] = "/uploads/" . $user['image_path'];
 
             log_info("Perfil de usuario obtenido: {$userId}");
             return $profile;
