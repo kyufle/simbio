@@ -1,15 +1,6 @@
 /* IMPORTAR FUENTES DE GOOGLE */
 @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Josefin+Sans:wght@300;400;500;600&display=swap');
 
-/* Paleta de colores */
-/* Color           | Hex      | Uso recomendado                        |
-|-----------------|----------|---------------------------------------|
-| Azul cielo suave| #A3D2CA  | Fondo principal, fresco y profesional |
-| Verde menta     | #B5EAEA  | Tarjetas, botones secundarios         |
-| Amarillo pálido | #FFF3B0  | Alertas, llamadas a la acción         |
-| Coral suave     | #FFAAA7  | Botones importantes                    |
-| Gris claro      | #E8E8E8  | Fondos neutros, separadores           | */
-
 /* RESET BÁSICO */
 * {
     margin: 0;
@@ -18,10 +9,7 @@
     font-family: 'Josefin Sans', sans-serif;
 }
 
-/* ========================================
-   ESTILOS LOGIN.PHP
-   ======================================== */
-
+/* ========== ESTILOS LOGIN.PHP ========== */
 body.login-page {
     min-height: 100vh;
     background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
@@ -140,19 +128,39 @@ body.login-page .back-btn:hover {
 }
 
 .notification.error {
-    background-color: #FFAAA7;
-    color: white;
+    background: linear-gradient(90deg, #FFF2F2 16px 100%);
+    color: #B41F1F;
+    border-left: 8px solid #FF1818;
+    border-top: 1px solid #FFAEB0;
+    border-bottom: 1px solid #FFAEB0;
+    border-right: 1px solid #FFD3D2;
+    box-shadow: 0 4px 16px 0 rgba(255, 92, 92, 0.15), 0 0 0 2px #FFB8B6 inset;
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 4px #ffeaea;
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
 }
 
 .notification.warning {
-    background-color: #FFF3B0;
-    color: #333333;
+    background: linear-gradient(90deg, #FFFCE6 16px 100%);
+    color: #9E7700;
+    border-left: 8px solid #FFD600;
+    border-top: 1px solid #FFE082;
+    border-bottom: 1px solid #FFE082;
+    border-right: 1px solid #FFF9D6;
+    box-shadow: 0 4px 14px 0 rgba(255, 215, 0, 0.10), 0 0 0 2px #FFF7B0 inset;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
 }
 
-/* ========================================
-   ESTILOS DISCOVER.PHP - MODO VERTICAL TIKTOK
-   ======================================== */
-
+/* ========== ESTILOS DISCOVER.PHP ========== */
 .discover-page {
     font-family: 'Josefin Sans', sans-serif;
     background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
@@ -464,219 +472,19 @@ body.login-page .back-btn:hover {
 .discover-page .project-card .details::-webkit-scrollbar {
     width: 6px;
 }
-
 .discover-page .project-card .details::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
 }
-
 .discover-page .project-card .details::-webkit-scrollbar-thumb {
     background: #A3D2CA;
     border-radius: 10px;
 }
-
 .discover-page .project-card .details::-webkit-scrollbar-thumb:hover {
     background: #8BC4BC;
 }
 
-.discover-page .project-card .details::-webkit-scrollbar {
-    width: 6px;
-}
-
-.discover-page .project-card .details::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-}
-
-.discover-page .project-card .details::-webkit-scrollbar-thumb {
-    background: #A3D2CA;
-    border-radius: 10px;
-}
-
-.discover-page .project-card .details::-webkit-scrollbar-thumb:hover {
-    background: #8BC4BC;
-}
-
-
-/* ========================================
-   MEDIA QUERY MOBILE (max-width: 767px)
-   Solo edita esto para cambiar MOBILE
-   ======================================== */
-@media (max-width: 767px) {
-    body.discover-page,
-    html {
-        height: 100vh;
-        width: 100vw;
-        overflow: hidden;
-    }
-
-    .discover-page .sidebar {
-        padding: 12px 15px;
-        font-size: 0.8rem;
-        background: linear-gradient(180deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.85) 100%);
-        height: auto;
-    }
-    
-    .discover-page .sidebar .nav-links {
-        gap: 12px;
-    }
-
-    .discover-page .sidebar .nav-links li a {
-        font-size: 0.85rem;
-    }
-
-    .discover-page .sidebar .session-info {
-        font-size: 0.8rem;
-        gap: 10px;
-    }
-
-    .discover-page main {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        padding: 0;
-        display: block;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .discover-page .project-card {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        max-width: 100vw;
-        max-height: 100vh;
-        border-radius: 0;
-        box-shadow: none;
-        margin: 0;
-        padding: 0;
-    }
-    
-    .discover-page .project-card header {
-        top: 55px;
-        left: 12px;
-        right: 12px;
-        padding: 12px 15px;
-        border-radius: 12px;
-    }
-    
-    .discover-page .project-card header h2 {
-        font-size: 1.2rem;
-        margin-bottom: 5px;
-    }
-
-    .discover-page .project-card header p {
-        font-size: 0.85rem;
-    }
-    
-    .discover-page .project-card .actions {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        padding: 20px 15px 15px;
-        background: transparent;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-    
-    .discover-page .project-card .buttons {
-        gap: 25px;
-        margin-bottom: 0;
-        display: flex;
-        justify-content: center;
-    }
-    
-    .discover-page .project-card .buttons button {
-        width: 55px;
-        height: 55px;
-        font-size: 1.3rem;
-    }
-
-    .discover-page .project-card .bottom-bar {
-        padding: 10px 12px;
-        border-top: none;
-        gap: 5px;
-        background: linear-gradient(0deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.95) 100%);
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.4);
-    }
-
-    .discover-page .project-card .bottom-bar a,
-    .discover-page .project-card .bottom-bar button {
-        font-size: 0.75rem;
-        padding: 6px 8px;
-        flex: 1;
-        text-align: center;
-    }
-
-    .discover-page .project-card .details {
-        max-height: 70vh;
-        padding: 25px 20px 35px 20px;
-    }
-
-    .discover-page .project-card .details h3 {
-        font-size: 1rem;
-        margin-bottom: 8px;
-    }
-
-    .discover-page .project-card .details .description {
-        font-size: 0.9rem;
-    }
-
-    .discover-page .project-card .details .tags {
-        font-size: 0.85rem;
-    }
-}
-
-/* ========================================
-   MEDIA QUERY DESKTOP (min-width: 768px)
-   Solo edita esto para cambiar DESKTOP
-   ======================================== */
-@media (min-width: 768px) {
-    /* Desktop puede tener scroll */
-    body.discover-page,
-    html {
-        overflow: auto;
-    }
-
-    .discover-page {
-        position: relative;
-    }
-
-    /* Main centrado en desktop */
-    .discover-page main {
-        position: relative;
-        background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
-    }
-    
-    /* Card con tamaño fijo en desktop */
-    .discover-page .project-card {
-        position: relative;
-        max-width: 450px;
-        height: 90vh;
-        border-radius: 20px;
-        box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
-        margin: auto;
-    }
-    
-    /* Sidebar normal en desktop */
-    .discover-page .sidebar {
-        padding: 20px 40px;
-    }
-}
-
-/* ========================================
-   ESTILOS PARA MENSAJES DINÁMICOS
-   ======================================== */
-
+/* ========== ESTILOS MENSAJES DINÁMICOS ========== */
 .empty-message {
     color: #333;
     text-align: center;
@@ -704,20 +512,14 @@ body.login-page .back-btn:hover {
     margin-bottom: 10px;
 }
 
-/* ========================================
-   VARIABLES CSS PARA TOASTS
-   ======================================== */
+/* ========== ESTILOS TOASTS (GENÉRICOS Y COLOR) ========== */
 :root {
-    --exito: #B5EAEA;   /* Verde menta - éxito */
-    --error: #FFAAA7;   /* Coral suave - error */
-    --info: #A3D2CA;    /* Azul cielo - info */
-    --warning: #FFF3B0; /* Amarillo pálido - advertencia */
+    --exito: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);    /* Verde menta intenso - éxito */
+    --error: linear-gradient(135deg, #ff5858 0%, #f98a77 100%);    /* Rojo coral brillante - error */
+    --info: linear-gradient(135deg, #2d8cf0 0%, #6fd6ff 100%);     /* Azul vibrante - info */
+    --warning: linear-gradient(135deg, #ffe259 0%, #ffa751 100%);  /* Amarillo/naranja fuerte - advertencia */
 }
 
-
-/* ========================================
-   CONTENEDOR DE TOASTS
-   ======================================== */
 .contenedor-toast {
     position: fixed;
     right: 20px;
@@ -731,127 +533,95 @@ body.login-page .back-btn:hover {
     pointer-events: none;
 }
 
-/* ========================================
-   TOAST BASE
-   ======================================== */
 .toast {
     background: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 14px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.14);
     animation: apertura 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     pointer-events: all;
     overflow: hidden;
+    border: 2px solid transparent;
 }
 
-/* Tipos de toast con paleta de colores */
-.toast.exito { 
-    background: var(--exito);
-    border-left: 5px solid #8BC4BC;
-}
+.toast.exito      { background: var(--exito);    border-left: 8px solid #1fc47a;  color: #16432a; }
+.toast.error      { background: var(--error);    border-left: 8px solid #e2373e;  color: #7d191b; }
+.toast.info       { background: var(--info);     border-left: 8px solid #2776b0;  color: #1c295c; }
+.toast.warning    { background: var(--warning);  border-left: 8px solid #ffa303;  color: #835000; }
 
-.toast.error { 
-    background: var(--error);
-    border-left: 5px solid #FF8A82;
-}
-
-.toast.info { 
-    background: var(--info);
-    border-left: 5px solid #8BC4BC;
-}
-
-.toast.warning { 
-    background: var(--warning);
-    border-left: 5px solid #FFE680;
-}
-
-/* ========================================
-   CONTENIDO DEL TOAST
-   ======================================== */
+/* CONTENIDO DEL TOAST */
 .toast .contenido {
     display: grid;
     grid-template-columns: 35px 1fr;
     align-items: center;
     gap: 12px;
-    padding: 15px;
+    padding: 16px;
     flex: 1;
 }
-
 .toast .icono {
-    width: 24px;
-    height: 24px;
-    color: rgba(0, 0, 0, 0.6);
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 .toast .icono svg {
     width: 100%;
     height: 100%;
 }
-
 .toast .texto {
     display: flex;
     flex-direction: column;
     gap: 3px;
 }
-
 .toast .titulo {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #333;
-    font-family: 'Fjalla One', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #000000;
+    font-family: 'Josefin Sans', sans-serif;
     margin: 0;
+    letter-spacing: 0.01em;
+    text-shadow: 0 1px 5px rgba(255,255,255,0.22), 0 1px 15px rgba(0,0,0,0.16);
 }
-
 .toast .descripcion {
-    font-size: 0.85rem;
+    font-size: 0.90rem;
     font-weight: 400;
-    color: #555;
+    color: #000000;
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.5;
+    text-shadow: 0 1px 6px rgba(255,255,255,0.12), 0 1px 8px rgba(0,0,0,0.08);
 }
-
-/* ========================================
-   BOTÓN CERRAR
-   ======================================== */
+/* BOTÓN CERRAR */
 .toast .btn-cerrar {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.13);
     border: none;
     cursor: pointer;
     padding: 15px;
-    transition: all 0.2s ease;
+    transition: background 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
     align-self: stretch;
 }
-
 .toast .btn-cerrar:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.22);
 }
-
 .toast .btn-cerrar .icono {
-    width: 20px;
-    height: 20px;
-    color: rgba(0, 0, 0, 0.6);
+    width: 23px;
+    height: 23px;
+    color: rgba(60, 60, 60, 0.7);
 }
-
 .toast .btn-cerrar .icono svg {
     width: 100%;
     height: 100%;
 }
 
-/* ========================================
-   ANIMACIONES
-   ======================================== */
+/* ANIMACIONES */
 .toast.cerrando {
     animation: cierre 0.3s ease-out forwards;
 }
-
 @keyframes apertura {
     from {
         transform: translateX(calc(100% + 40px));
@@ -862,7 +632,6 @@ body.login-page .back-btn:hover {
         opacity: 1;
     }
 }
-
 @keyframes cierre {
     from {
         transform: translateX(0);
@@ -874,9 +643,157 @@ body.login-page .back-btn:hover {
     }
 }
 
-/* ========================================
-   RESPONSIVE - MÓVIL
-   ======================================== */
+/* TOAST ESPECÍFICOS POR COLOR */
+.toast.exito .titulo      { color: #2d5a50; }
+.toast.exito .descripcion { color: #3d6a60; }
+.toast.error .titulo      { color: #8b3432; }
+.toast.error .descripcion { color: #a04442; }
+.toast.info .titulo       { color: #2d5a50; }
+.toast.info .descripcion  { color: #3d6a60; }
+.toast.warning .titulo    { color: #7a6c1f; }
+.toast.warning .descripcion { color: #8a7c2f; }
+
+/* ========== MEDIA QUERIES AL FINAL ========== */
+
+/* --- DISCOVER.PHP MOBILE --- */
+@media (max-width: 767px) {
+    body.discover-page,
+    html {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+    }
+    .discover-page .sidebar {
+        padding: 12px 15px;
+        font-size: 0.8rem;
+        background: linear-gradient(180deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.85) 100%);
+        height: auto;
+    }
+    .discover-page .sidebar .nav-links {
+        gap: 12px;
+    }
+    .discover-page .sidebar .nav-links li a {
+        font-size: 0.85rem;
+    }
+    .discover-page .sidebar .session-info {
+        font-size: 0.8rem;
+        gap: 10px;
+    }
+    .discover-page main {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        display: block;
+        justify-content: center;
+        align-items: center;
+    }
+    .discover-page .project-card {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+    }
+    .discover-page .project-card header {
+        top: 55px;
+        left: 12px;
+        right: 12px;
+        padding: 12px 15px;
+        border-radius: 12px;
+    }
+    .discover-page .project-card header h2 {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+    .discover-page .project-card header p {
+        font-size: 0.85rem;
+    }
+    .discover-page .project-card .actions {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding: 20px 15px 15px;
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .discover-page .project-card .buttons {
+        gap: 25px;
+        margin-bottom: 0;
+        display: flex;
+        justify-content: center;
+    }
+    .discover-page .project-card .buttons button {
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
+    }
+    .discover-page .project-card .bottom-bar {
+        padding: 10px 12px;
+        border-top: none;
+        gap: 5px;
+        background: linear-gradient(0deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.95) 100%);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    .discover-page .project-card .bottom-bar a,
+    .discover-page .project-card .bottom-bar button {
+        font-size: 0.75rem;
+        padding: 6px 8px;
+        flex: 1;
+        text-align: center;
+    }
+    .discover-page .project-card .details {
+        max-height: 70vh;
+        padding: 25px 20px 35px 20px;
+    }
+    .discover-page .project-card .details h3 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+    .discover-page .project-card .details .description {
+        font-size: 0.9rem;
+    }
+    .discover-page .project-card .details .tags {
+        font-size: 0.85rem;
+    }
+}
+
+/* --- DISCOVER.PHP DESKTOP --- */
+@media (min-width: 768px) {
+    body.discover-page, html { overflow: auto; }
+    .discover-page { position: relative; }
+    .discover-page main {
+        position: relative;
+        background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    }
+    .discover-page .project-card {
+        position: relative;
+        max-width: 450px;
+        height: 90vh;
+        border-radius: 20px;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+        margin: auto;
+    }
+    .discover-page .sidebar {
+        padding: 20px 40px;
+    }
+}
+
+/* --- TOAST RESPONSIVE --- */
 @media (max-width: 767px) {
     .contenedor-toast {
         right: 10px;
@@ -885,62 +802,18 @@ body.login-page .back-btn:hover {
         width: calc(100% - 20px);
         max-width: none;
     }
-
     .toast .contenido {
         padding: 12px;
         gap: 10px;
         grid-template-columns: 30px 1fr;
     }
-
     .toast .titulo {
         font-size: 0.95rem;
     }
-
     .toast .descripcion {
         font-size: 0.8rem;
     }
-
     .toast .btn-cerrar {
         padding: 12px;
     }
-}
-
-/* ========================================
-   ESTILOS ESPECÍFICOS POR COLOR
-   ======================================== */
-
-/* Toast de éxito - Verde menta */
-.toast.exito .titulo {
-    color: #2d5a50;
-}
-
-.toast.exito .descripcion {
-    color: #3d6a60;
-}
-
-/* Toast de error - Coral */
-.toast.error .titulo {
-    color: #8b3432;
-}
-
-.toast.error .descripcion {
-    color: #a04442;
-}
-
-/* Toast de info - Azul cielo */
-.toast.info .titulo {
-    color: #2d5a50;
-}
-
-.toast.info .descripcion {
-    color: #3d6a60;
-}
-
-/* Toast de warning - Amarillo */
-.toast.warning .titulo {
-    color: #7a6c1f;
-}
-
-.toast.warning .descripcion {
-    color: #8a7c2f;
 }
