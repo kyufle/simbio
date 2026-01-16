@@ -19,7 +19,7 @@
 }
 
 /* ========================================
-   ESTILOS LOGIN.PHP (sin cambios)
+   ESTILOS LOGIN.PHP
    ======================================== */
 
 body.login-page {
@@ -496,6 +496,7 @@ body.login-page .back-btn:hover {
 .discover-page .project-card .details::-webkit-scrollbar-thumb:hover {
     background: #8BC4BC;
 }
+
 
 /* ========================================
    MEDIA QUERY MOBILE (max-width: 767px)
