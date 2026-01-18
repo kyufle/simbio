@@ -10,10 +10,13 @@ if (!isLogged()) {
     exit;
 }
 
-$userId = $_SESSION['user']['id'];
+// En vez de obtener el ID del usuario, obtendremos el nombre del usuario ya que es mas facil de tratar
+$userId = $_SESSION['user']['user_id'];
 $profile = getUserProfile($userId);
 if (!$profile) {
-    die("Error al carregar el perfil d'usuari.");
+    // Si no se encuentra el perfil, redirigir o mostrar un error
+    log_error("Perfil de usuario no encontrado - ID: $userId");
+    die("Perfil de usuario no encontrado.");
 }
 log_info("Usuario accedió a profile.php - ID: $userId");
 function getUserTags($userId) {
