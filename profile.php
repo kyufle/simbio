@@ -62,7 +62,7 @@ function getUserTagsByEmail($email) {
             <h2>Etiquetes</h2>
             <div class="tags-list">
                 <?php
-                $tags = getUserTagsByEmail($_SESSION['user']['email']);
+                $tags = getUserTagsByEmail($email);
                 foreach ($tags as $tag): ?>
                     <div class="tag-item">
                         <span><?php echo htmlspecialchars($tag); ?></span>
@@ -78,7 +78,7 @@ function getUserTagsByEmail($email) {
             <a href="new_project.php" class="btn btn-primary">+ Nou projecte</a>
             <div class="projects-list">
                 <script>
-                    const userEmail = <?php echo json_encode($profile["email"]); ?>;
+                    const userEmail = <?php echo json_encode($email); ?>;
                 </script>
                 <script src="js/profile.js"></script>
             </div>
