@@ -44,7 +44,5 @@ async function displayUserProjects(userId) {
     });
 }
 
-/*
 // Suponiendo que tenemos el userId del usuario actual disponible
-const currentUserId = 1; // Reemplazar con el ID real del usuario
-displayUserProjects(currentUserId); */
+displayUserProjects(userId);

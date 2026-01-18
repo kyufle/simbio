@@ -1,6 +1,7 @@
 <?php
 require_once 'includes/bd_profile.php';
 require_once 'includes/logger.php';
+require_once 'includes/auth.php';
 
 // Si no està connectat, redirigeix a login.php
 if (!isLogged()) {
@@ -61,10 +62,10 @@ function getUserTags($userId) {
             <h2>Els meus projectes</h2>
             <a href="new_project.php" class="btn btn-primary">+ Nou projecte</a>
             <div class="projects-list">
-                <script src="js/profile.js">
+                <script>
                     const userId = <?php echo json_encode($userId); ?>;
-                    displayUserProjects(userId);
                 </script>
+                <script src="js/profile.js"></script>
             </div>
         </section>
         <nav class="profile-nav">
