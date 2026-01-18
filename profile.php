@@ -1,13 +1,14 @@
 <?php
-require_once 'includes/db.php';
 require_once 'includes/bd_profile.php';
 require_once 'includes/logger.php';
-require_once 'includes/projects.php';
 
-if (!isset($_SESSION['user'])) {
+// Si no està connectat, redirigeix a login.php
+if (!isLogged()) {
+    log_warning("Acceso denegado a discover.php - Usuario no autenticado");
     header('Location: login.php');
     exit;
 }
+
 $userId = $_SESSION['user']['id'];
 $profile = getUserProfile($userId);
 if (!$profile) {
