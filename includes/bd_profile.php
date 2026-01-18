@@ -5,6 +5,12 @@ require_once 'logger.php';
 function getUserProfileByEmail($email) {
     global $conn;
     try {
+        // Debug: verificar si $conn existe
+        if (!$conn) {
+            log_error("Conexión a BD no disponible");
+            return null;
+        }
+
         $stmt = $conn->prepare("
             SELECT 
                 user_id, name, surnames, email, entity, type, 
@@ -18,7 +24,7 @@ function getUserProfileByEmail($email) {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$user) {
-            log_warning("Intento de acceso a perfil de usuario inexistente con email: {$email}");
+            log_warning("Perfil de usuario no encontrado para email: {$email}");
             return null;
         }
 

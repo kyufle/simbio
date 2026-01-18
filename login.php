@@ -2,6 +2,7 @@
 session_start();
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/logger.php';
+require_once __DIR__ . '/includes/auth.php';
 
 function isLoggedIn()
 {
@@ -55,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = validateLoginForm($email, $password);
 
     if (!$errors) {
-        require_once __DIR__ . '/includes/auth.php';
         $result = login($email, $password);
 
         if ($result['success']) {

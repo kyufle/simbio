@@ -10,11 +10,18 @@ if (!isLogged()) {
     exit;
 }
 
-$profile = getUserProfileByEmail($_SESSION['user']['email']);
+$email = isset($_SESSION['user']['email']) ? trim($_SESSION['user']['email']) : null;
+
+if (!$email) {
+    log_error("Email vacío o no definido en sesión");
+    die("Error: Email de sesión no disponible");
+}
+
+$profile = getUserProfileByEmail($email);
 if (!$profile) {
     // Si no se encuentra el perfil, redirigir o mostrar un error
-    log_error("Perfil de usuario no encontrado - Email: " . $_SESSION['user']['email']);
-    die("Perfil de usuario no encontrado.");
+    log_error("Perfil de usuario no encontrado - Email: " . $email);
+    die("Perfil de usuario no encontrado para el email: " . htmlspecialchars($email));
 }
 log_info("Usuario accedió a profile.php - Email: " . $_SESSION['user']['email']);
 function getUserTagsByEmail($email) {
