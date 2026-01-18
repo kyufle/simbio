@@ -24,22 +24,7 @@ if (!$profile) {
     die("Perfil de usuario no encontrado para el email: " . htmlspecialchars($email));
 }
 log_info("Usuario accedió a profile.php - Email: " . $_SESSION['user']['email']);
-function getUserTagsByEmail($email) {
-    global $conn;
-
-    $stmt = $db->prepare("
-        SELECT DISTINCT t.name
-        FROM user u
-        INNER JOIN project p       ON p.user_id = u.user_id
-        INNER JOIN project_tags pt ON pt.project_id = p.project_id
-        INNER JOIN tag t           ON t.tag_id = pt.tag_id
-        WHERE u.email = ?
-    ");
-
-    $stmt->execute([$email]);
-
-    return $stmt->fetchAll(PDO::FETCH_COLUMN);
-}
+$tags = getUserTagsByEmail($conn, $email);
 ?>
 <!DOCTYPE html>
 <html lang="ca">
