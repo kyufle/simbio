@@ -28,11 +28,14 @@ function getUserTagsByEmail($email) {
     global $db;
 
     $stmt = $db->prepare("
-        SELECT ut.name
-        FROM tag ut
-        INNER JOIN user u ON ut.user_id = u.user_id
+        SELECT DISTINCT t.name
+        FROM user u
+        INNER JOIN project p       ON p.user_id = u.user_id
+        INNER JOIN project_tags pt ON pt.project_id = p.project_id
+        INNER JOIN tag t           ON t.tag_id = pt.tag_id
         WHERE u.email = ?
     ");
+
     $stmt->execute([$email]);
 
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
