@@ -11,7 +11,7 @@ if (!isLogged()) {
 }
 
 $userId = $_SESSION['user']['id'];
-$profile = getUserProfile($userId);
+$profile = fetchUserProjects($userId);
 if (!$profile) {
     die("Error al carregar el perfil d'usuari.");
 }
