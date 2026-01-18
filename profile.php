@@ -1,19 +1,4 @@
-<!-- Nom i cognoms usuari
-- Nom entitat (centre/empresa)
-- Població
-- Email
-- Telèfon
-- Etiquetes (families professionals i cicles, i +): Botó "+ Afegir" (no funcional).
-Els elements de llista de families i cicles tenen una "X" per eliminar l'element.
-
-Llista de projectes propis. Es mostra el títol (amb link a lal Vista Projecte) i la imatge destacada.
-Botó "+ Nou projecte".
-
-Enllaços amb icones a:
-- Vista Converses
-- Vista Descobrir -->
 <?php
-session_start();
 require_once 'includes/db.php';
 require_once 'includes/bd_profile.php';
 require_once 'includes/logger.php';
