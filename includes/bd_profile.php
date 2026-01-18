@@ -14,7 +14,7 @@ function getUserProfileByEmail($email) {
         $stmt = $conn->prepare("
             SELECT 
                 user_id, name, surnames, email, entity, type, 
-                phone_number_entity, city, image_path 
+                phone_number, city, image_path 
             FROM user 
             WHERE email = :email 
             LIMIT 1
@@ -35,7 +35,7 @@ function getUserProfileByEmail($email) {
             'email'        => $user['email'],
             'entity'       => $user['entity'],
             'type'         => $user['type'],
-            'phone_number' => $user['phone_number_entity'],
+            'phone_number' => $user['phone_number'],
             'city'         => $user['city'],
             'image'        => "/uploads/" . $user['image_path']
         );
