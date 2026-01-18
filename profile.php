@@ -75,7 +75,7 @@ function getUserTags($userId) {
             <h2>Els meus projectes</h2>
             <a href="new_project.php" class="btn btn-primary">+ Nou projecte</a>
             <div class="projects-list">
-                <script src="/js/profile.js">
+                <script src="js/profile.js">
                     const userId = <?php echo json_encode($userId); ?>;
                     displayUserProjects(userId);
                 </script>
