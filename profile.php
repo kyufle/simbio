@@ -24,7 +24,7 @@ if (!$profile) {
     die("Perfil de usuario no encontrado para el email: " . htmlspecialchars($email));
 }
 log_info("Usuario accedió a profile.php - Email: " . $_SESSION['user']['email']);
-$tags = getUserTagsByEmail($conn, $email);
+$tags = getUserTagsByEmail($email);
 ?>
 <!DOCTYPE html>
 <html lang="ca">

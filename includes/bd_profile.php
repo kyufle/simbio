@@ -49,7 +49,8 @@ function getUserProfileByEmail($email) {
     }
 }
 
-function getUserTagsByEmail(PDO $conn, string $email): array {
+function getUserTagsByEmail(string $email): array {
+    global $conn;
     $stmt = $conn->prepare("
         SELECT DISTINCT t.name
         FROM user u
