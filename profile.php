@@ -25,7 +25,7 @@ if (!$profile) {
 }
 log_info("Usuario accedió a profile.php - Email: " . $_SESSION['user']['email']);
 function getUserTagsByEmail($email) {
-    global $db;
+    global $conn;
 
     $stmt = $db->prepare("
         SELECT DISTINCT t.name
