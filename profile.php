@@ -1,7 +1,7 @@
 <?php
+require_once 'includes/auth.php';
 require_once 'includes/bd_profile.php';
 require_once 'includes/logger.php';
-require_once 'includes/auth.php';
 
 // Si no està connectat, redirigeix a login.php
 if (!isLogged()) {
