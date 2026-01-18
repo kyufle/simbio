@@ -10,19 +10,24 @@ if (!isLogged()) {
     exit;
 }
 
-// En vez de obtener el ID del usuario, obtendremos el nombre del usuario ya que es mas facil de tratar
-$userId = $_SESSION['user']['user_id'];
-$profile = getUserProfile($userId);
+$profile = getUserProfileByEmail($_SESSION['user']['email']);
 if (!$profile) {
     // Si no se encuentra el perfil, redirigir o mostrar un error
-    log_error("Perfil de usuario no encontrado - ID: $userId");
+    log_error("Perfil de usuario no encontrado - Email: " . $_SESSION['user']['email']);
     die("Perfil de usuario no encontrado.");
 }
-log_info("Usuario accedió a profile.php - ID: $userId");
-function getUserTags($userId) {
+log_info("Usuario accedió a profile.php - Email: " . $_SESSION['user']['email']);
+function getUserTagsByEmail($email) {
     global $db;
-    $stmt = $db->prepare("SELECT tag FROM user_tags WHERE user_id = ?");
-    $stmt->execute([$userId]);
+
+    $stmt = $db->prepare("
+        SELECT ut.tag
+        FROM user_tags ut
+        INNER JOIN user u ON ut.user_id = u.user_id
+        WHERE u.email = ?
+    ");
+    $stmt->execute([$email]);
+
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
 }
 ?>
@@ -50,7 +55,7 @@ function getUserTags($userId) {
             <h2>Etiquetes</h2>
             <div class="tags-list">
                 <?php
-                $tags = getUserTags($userId);
+                $tags = getUserTagsByEmail($_SESSION['user']['email']);
                 foreach ($tags as $tag): ?>
                     <div class="tag-item">
                         <span><?php echo htmlspecialchars($tag); ?></span>
@@ -66,7 +71,7 @@ function getUserTags($userId) {
             <a href="new_project.php" class="btn btn-primary">+ Nou projecte</a>
             <div class="projects-list">
                 <script>
-                    const userId = <?php echo json_encode($userId); ?>;
+                    const userEmail = <?php echo json_encode($profile["email"]); ?>;
                 </script>
                 <script src="js/profile.js"></script>
             </div>

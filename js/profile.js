@@ -1,18 +1,17 @@
 const PROJECTS_API_URL = 'includes/projects.php';
 
-// Aqui vamos a programar la funcionalidad de obtener los proyectos relacionados con el usuario (es decir, el proyecto debe estar relacionado con el user_id del usuario)
-// Los proyectos se mostrarán debajo de toda la información del perfil del usuario como se indica en el archivo "profile.php".
-// Solo se mostrará el titulo del video (en la cual el titulo sera un enlace para una vista previa del video) y la imagen destacada del proyecto.
-// La información del proyecto se obtiene de la tabla "project" en la base de datos "simbio".
-// La relación entre el usuario y el proyecto se establece a través del campo "user_id" en ambas tablas "user" y "project".
-
-// Función para obtener los proyectos relacionados con el usuario
-async function fetchUserProjects(userId) {
+// Función para obtener los proyectos del usuario por email
+async function fetchUserProjects(userEmail) {
     try {
-        const response = await fetch(PROJECTS_API_URL);
-        const projects = await response.json();
-        // Filtrar los proyectos que pertenecen al usuario actual
-        return projects.filter(project => project.user_id === userId);
+        const response = await fetch(
+            `${PROJECTS_API_URL}?email=${encodeURIComponent(userEmail)}`
+        );
+
+        if (!response.ok) {
+            throw new Error('Error en la respuesta del servidor');
+        }
+
+        return await response.json();
     } catch (error) {
         console.error('Error fetching user projects:', error);
         return [];
@@ -20,9 +19,11 @@ async function fetchUserProjects(userId) {
 }
 
 // Función para mostrar los proyectos en el perfil del usuario
-async function displayUserProjects(userId) {
+async function displayUserProjects(userEmail) {
     const projectsContainer = document.getElementById('user-projects');
-    const projects = await fetchUserProjects(userId);
+    projectsContainer.innerHTML = '';
+
+    const projects = await fetchUserProjects(userEmail);
 
     projects.forEach(project => {
         const projectElement = document.createElement('div');
@@ -44,5 +45,5 @@ async function displayUserProjects(userId) {
     });
 }
 
-// Suponiendo que tenemos el userId del usuario actual disponible
-displayUserProjects(userId);
+// Suponiendo que ya tienes el email del usuario autenticado
+displayUserProjects(userEmail);
