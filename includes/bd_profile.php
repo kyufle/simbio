@@ -6,7 +6,7 @@
     function getUserProfile($userId) {
         global $conn;
         try {
-            $stmt = $conn->prepare("SELECT user_id, name, surnames, email, entity, type, phone_number_entity, city, image_path FROM user WHERE user_id = :user_id LIMIT 1");
+            $stmt = $conn->prepare("SELECT name, surnames, email, entity, type, phone_number_entity, city, image_path FROM user WHERE user_id = :user_id LIMIT 1");
             $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -18,7 +18,6 @@
 
             // Mapear datos del usuario
             $profile = array();
-            $profile['id'] = $user['user_id'];
             $profile['name'] = $user['name'];
             $profile['surnames'] = $user['surnames'];
             $profile['email'] = $user['email'];
