@@ -28,7 +28,7 @@ function getUserTagsByEmail($email) {
     global $db;
 
     $stmt = $db->prepare("
-        SELECT ut.tag
+        SELECT ut.name
         FROM tag ut
         INNER JOIN user u ON ut.user_id = u.user_id
         WHERE u.email = ?
