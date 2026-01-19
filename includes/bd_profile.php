@@ -127,6 +127,10 @@ function updateUserTags($email, $new_tags): bool {
         }
         
         $user_id = $user['user_id'];
+
+        if ($user_id === null) {
+            die("ID de usuario no encontrado para el email: " . htmlspecialchars($email));
+        }
         
         // Obtener los proyectos del usuario
         $stmt = $conn->prepare("SELECT project_id FROM project WHERE user_id = :user_id");
