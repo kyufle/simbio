@@ -29,18 +29,24 @@ async function displayUserProjects(userEmail) {
         const projectElement = document.createElement('div');
         projectElement.classList.add('project');
 
-        const projectTitle = document.createElement('h3');
         const projectLink = document.createElement('a');
         projectLink.href = `preview_video.html?video_path=${encodeURIComponent(project.video_path)}`;
-        projectLink.textContent = project.title;
-        projectTitle.appendChild(projectLink);
 
         const projectImage = document.createElement('img');
         projectImage.src = project.image_path;
         projectImage.alt = project.title;
+        projectImage.classList.add('project-preview');
 
+        projectLink.appendChild(projectImage);
+
+        const projectTitle = document.createElement('h3');
+        projectTitle.textContent = project.title;
+
+        projectElement.appendChild(projectLink);
         projectElement.appendChild(projectTitle);
-        projectElement.appendChild(projectImage);
+
+        projectLink.textContent = project.title;
+        projectTitle.appendChild(projectLink);
         projectsContainer.appendChild(projectElement);
     });
 }
