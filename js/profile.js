@@ -49,7 +49,8 @@ async function displayUserProjects(userEmail) {
         projectTitle.appendChild(projectLink);
         projectsContainer.appendChild(projectElement);
     });
-    console.log(project);
+
+    console.log(projects);
 }
 
 // Suponiendo que ya tienes el email del usuario autenticado
