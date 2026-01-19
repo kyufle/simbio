@@ -1083,7 +1083,7 @@ body.login-page .back-btn:hover {
 .profile-page .profile-nav {
     margin-top: 15px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     gap: 25px;
 }
 .profile-page .profile-nav a {
