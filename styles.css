@@ -448,8 +448,15 @@ body.login-page .back-btn:hover {
 }
 
 @keyframes swipeRight {
-    0% { transform: translateX(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateX(120%) rotate(12deg); opacity: 0; }
+    0% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(120%) rotate(12deg);
+        opacity: 0;
+    }
 }
 
 .swipe-left {
@@ -457,8 +464,15 @@ body.login-page .back-btn:hover {
 }
 
 @keyframes swipeLeft {
-    0% { transform: translateX(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateX(-120%) rotate(-12deg); opacity: 0; }
+    0% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-120%) rotate(-12deg);
+        opacity: 0;
+    }
 }
 
 .discover-page .project-card .details::-webkit-scrollbar {
@@ -502,6 +516,7 @@ body.login-page .back-btn:hover {
    Solo edita esto para cambiar MOBILE
    ======================================== */
 @media (max-width: 767px) {
+
     body.discover-page,
     html {
         height: 100vh;
@@ -515,7 +530,7 @@ body.login-page .back-btn:hover {
         background: linear-gradient(180deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.85) 100%);
         height: auto;
     }
-    
+
     .discover-page .sidebar .nav-links {
         gap: 12px;
     }
@@ -541,7 +556,7 @@ body.login-page .back-btn:hover {
         justify-content: center;
         align-items: center;
     }
-    
+
     .discover-page .project-card {
         position: fixed;
         top: 0;
@@ -555,7 +570,7 @@ body.login-page .back-btn:hover {
         margin: 0;
         padding: 0;
     }
-    
+
     .discover-page .project-card header {
         top: 55px;
         left: 12px;
@@ -563,7 +578,7 @@ body.login-page .back-btn:hover {
         padding: 12px 15px;
         border-radius: 12px;
     }
-    
+
     .discover-page .project-card header h2 {
         font-size: 1.2rem;
         margin-bottom: 5px;
@@ -572,7 +587,7 @@ body.login-page .back-btn:hover {
     .discover-page .project-card header p {
         font-size: 0.85rem;
     }
-    
+
     .discover-page .project-card .actions {
         position: fixed;
         bottom: 0;
@@ -585,14 +600,14 @@ body.login-page .back-btn:hover {
         flex-direction: column;
         gap: 12px;
     }
-    
+
     .discover-page .project-card .buttons {
         gap: 25px;
         margin-bottom: 0;
         display: flex;
         justify-content: center;
     }
-    
+
     .discover-page .project-card .buttons button {
         width: 55px;
         height: 55px;
@@ -640,6 +655,7 @@ body.login-page .back-btn:hover {
    Solo edita esto para cambiar DESKTOP
    ======================================== */
 @media (min-width: 768px) {
+
     /* Desktop puede tener scroll */
     body.discover-page,
     html {
@@ -655,7 +671,7 @@ body.login-page .back-btn:hover {
         position: relative;
         background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
     }
-    
+
     /* Card con tamaño fijo en desktop */
     .discover-page .project-card {
         position: relative;
@@ -665,7 +681,7 @@ body.login-page .back-btn:hover {
         box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
         margin: auto;
     }
-    
+
     /* Sidebar normal en desktop */
     .discover-page .sidebar {
         padding: 20px 40px;
@@ -707,10 +723,14 @@ body.login-page .back-btn:hover {
    VARIABLES CSS PARA TOASTS
    ======================================== */
 :root {
-    --exito: #B5EAEA;   /* Verde menta - éxito */
-    --error: #FFAAA7;   /* Coral suave - error */
-    --info: #A3D2CA;    /* Azul cielo - info */
-    --warning: #FFF3B0; /* Amarillo pálido - advertencia */
+    --exito: #B5EAEA;
+    /* Verde menta - éxito */
+    --error: #FFAAA7;
+    /* Coral suave - error */
+    --info: #A3D2CA;
+    /* Azul cielo - info */
+    --warning: #FFF3B0;
+    /* Amarillo pálido - advertencia */
 }
 
 
@@ -746,22 +766,22 @@ body.login-page .back-btn:hover {
 }
 
 /* Tipos de toast con paleta de colores */
-.toast.exito { 
+.toast.exito {
     background: var(--exito);
     border-left: 5px solid #8BC4BC;
 }
 
-.toast.error { 
+.toast.error {
     background: var(--error);
     border-left: 5px solid #FF8A82;
 }
 
-.toast.info { 
+.toast.info {
     background: var(--info);
     border-left: 5px solid #8BC4BC;
 }
 
-.toast.warning { 
+.toast.warning {
     background: var(--warning);
     border-left: 5px solid #FFE680;
 }
@@ -856,6 +876,7 @@ body.login-page .back-btn:hover {
         transform: translateX(calc(100% + 40px));
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;
@@ -867,6 +888,7 @@ body.login-page .back-btn:hover {
         transform: translateX(0);
         opacity: 1;
     }
+
     to {
         transform: translateX(calc(100% + 40px));
         opacity: 0;
@@ -947,15 +969,27 @@ body.login-page .back-btn:hover {
 /* ========================================
    ESTILOS PROFILE.PHP
    ======================================== */
-/* ===== PROFILE HEADER AJUSTADO ===== */
+.profile-page {
+    font-family: 'Josefin Sans', sans-serif;
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
 .profile-page .profile-header {
-    display: flex;                  /* Flex para alinear en fila */
-    align-items: center;            /* Centrar verticalmente */
-    justify-content: space-between; /* Separar título y sesión */
-    padding: 10px 20px;             /* Menos padding vertical para que no quede tan alto */
+    display: flex;
+    /* Flex para alinear en fila */
+    align-items: center;
+    /* Centrar verticalmente */
+    justify-content: space-between;
+    /* Separar título y sesión */
+    padding: 10px 20px;
+    /* Menos padding vertical para que no quede tan alto */
     background: linear-gradient(135deg, #A3D2CA, #B5EAEA);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    border-radius: 0 0 12px 12px;   /* Bordes redondeados solo abajo */
+    border-radius: 0 0 12px 12px;
+    /* Bordes redondeados solo abajo */
     margin-bottom: 20px;
 }
 
@@ -995,9 +1029,11 @@ body.login-page .back-btn:hover {
 
 /* Si quieres, el título puede crecer y centrar el espacio restante */
 .profile-page .profile-header h1 {
-    flex: 1; /* Toma todo el espacio disponible */
+    flex: 1;
+    /* Toma todo el espacio disponible */
     text-align: center;
 }
+
 .profile-page .user-info {
     color: #555;
     font-size: 1rem;
@@ -1005,16 +1041,19 @@ body.login-page .back-btn:hover {
     text-align: center;
     font-family: "Fjalla One", sans-serif;
 }
+
 .profile-page .user-tags {
     margin-top: 10px;
     text-align: center;
 }
+
 .profile-page .user-tags h2 {
     font-family: 'Fjalla One', sans-serif;
     color: #333;
     font-size: 1.2rem;
     margin-bottom: 8px;
 }
+
 .profile-page .user-tags .tags-list {
     display: inline-block;
     padding: 8px 12px;
@@ -1024,6 +1063,7 @@ body.login-page .back-btn:hover {
     font-weight: 500;
     margin-top: 10px;
 }
+
 .profile-page .user-tags .tags-list span {
     background-color: #FFF3B0;
     margin: 5px;
@@ -1031,6 +1071,7 @@ body.login-page .back-btn:hover {
     border-radius: 8px;
     display: inline-block;
 }
+
 .profile-page .user-tags .tags-list button {
     background: none;
     border: none;
@@ -1040,6 +1081,7 @@ body.login-page .back-btn:hover {
     cursor: pointer;
     font-size: 0.9rem;
 }
+
 .profile-page .user-tags #add-tag-btn {
     margin-left: 15px;
     padding: 6px 12px;
@@ -1052,12 +1094,15 @@ body.login-page .back-btn:hover {
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(255, 170, 167, 0.4);
 }
+
 .profile-page .user-tags #add-tag-btn:hover {
     box-shadow: 0 6px 20px rgba(255, 170, 167, 0.5);
 }
+
 .profile-page .user-projects {
     margin: 20px;
 }
+
 .profile-page .user-projects h2 {
     font-family: 'Fjalla One', sans-serif;
     color: #333;
@@ -1065,6 +1110,7 @@ body.login-page .back-btn:hover {
     margin-bottom: 15px;
     text-align: center;
 }
+
 .profile-page .user-projects a {
     text-decoration: none;
     color: #333;
@@ -1076,24 +1122,29 @@ body.login-page .back-btn:hover {
     margin-bottom: 15px;
     transition: all 0.3s ease;
 }
+
 .profile-page .user-projects a:hover {
     background-color: #D0D0D0;
 }
+
 .profile-page .user-projects #user-projects {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
+
 .profile-page .user-projects #user-projects .project {
     padding: 15px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
+
 .profile-page .user-projects #user-projects .project h3 {
     margin-bottom: 8px;
     font-family: 'Fjalla One', sans-serif;
     color: #333;
 }
+
 .profile-page .user-projects #user-projects .project a {
     background: linear-gradient(135deg, #B5EAEA, #A3D2CA);
     color: white;
@@ -1102,14 +1153,17 @@ body.login-page .back-btn:hover {
     font-weight: 600;
     box-shadow: 0 4px 15px rgba(181, 234, 234, 0.4);
 }
-.profile-page .user-projects #user-projects .project a:hover{
+
+.profile-page .user-projects #user-projects .project a:hover {
     box-shadow: 0 6px 20px rgba(181, 234, 234, 0.5);
 }
+
 .profile-page .user-projects #user-projects .project img {
     width: 20%;
     border-radius: 10px;
     margin-top: 10px;
 }
+
 /* Pon estilos tambien para los enlaces nav de profile-page de converses y descobrir */
 .profile-page .profile-nav {
     margin-top: 15px;
@@ -1117,6 +1171,7 @@ body.login-page .back-btn:hover {
     justify-content: start;
     gap: 25px;
 }
+
 .profile-page .profile-nav a {
     color: #333;
     text-decoration: none;
@@ -1124,9 +1179,11 @@ body.login-page .back-btn:hover {
     font-size: 1rem;
     transition: color 0.2s;
 }
+
 .profile-page .profile-nav a:hover {
     color: #FFAAA7;
 }
+
 .profile-page .profile-header .session-info {
     display: flex;
     align-items: center;
