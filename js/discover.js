@@ -15,6 +15,8 @@ const container = document.getElementById('discover-container');
 function createProjectCard(project) {
     const card = document.createElement('div');
     card.classList.add('project-card');
+    // Guardar el id del proyecto en el DOM para fácil acceso
+    card.dataset.projectId = project.id;
 
     card.innerHTML = `
         <header>
@@ -93,13 +95,51 @@ function animateSwipe(card, direction) {
 document.addEventListener("click", (e) => {
     if (!currentVisible) return;
 
+    // Helper para loguear acción en el servidor
+    function logUserAction(accion, projectId) {
+        fetch('log_action.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ accion: accion, project_id: projectId })
+        })
+        .then(res => {
+            if (!res.ok) throw new Error('Error al registrar log');
+            return res.json();
+        })
+        .then(data => {
+            if (!data.success) {
+                console.error('Error en log_action.php:', data.error);
+            }
+        })
+        .catch(err => {
+            console.error('Fallo al registrar acción en log:', err);
+        });
+    }
+
+    // Obtener id de proyecto actual
+    const cardProjectId = currentVisible && currentVisible.dataset && currentVisible.dataset.projectId ? currentVisible.dataset.projectId : null;
+
     if (e.target.classList.contains("like-btn")) {
+        if (cardProjectId) logUserAction("like", cardProjectId);
+        // Notificación visual de éxito al dar like
+        if (typeof window.mostrarExito === 'function') {
+            window.mostrarExito('Like registrat', 'Has indicat que t\'interessa aquest projecte!');
+        }
         animateSwipe(currentVisible, "like");
     }
 
     if (e.target.classList.contains("nope-btn")) {
+        if (cardProjectId) logUserAction("dislike", cardProjectId);
         animateSwipe(currentVisible, "nope");
     }
+});
+// Bloquear recarga de página (F5, Ctrl+R, etc.)
+window.addEventListener('beforeunload', function(e) {
+    e.preventDefault();
+    e.returnValue = '';
+    return '';
 });
 
 /* ============================================================
