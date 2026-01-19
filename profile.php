@@ -1,8 +1,8 @@
 <?php
+session_start();
 require_once 'includes/auth.php';
 require_once 'includes/bd_profile.php';
 require_once 'includes/logger.php';
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $email = $_SESSION['user']['email'];
