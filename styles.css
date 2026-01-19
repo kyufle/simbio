@@ -443,7 +443,6 @@ body.login-page .back-btn:hover {
 }
 
 .discover-page .project-card .details .tags {
-    background-color: #FFF3B0;
     padding: 10px 15px;
     border-radius: 10px;
     color: #333;
@@ -452,6 +451,18 @@ body.login-page .back-btn:hover {
     font-weight: 500;
     font-family: 'Josefin Sans', sans-serif;
 }
+.discover-page .project-card .details .tags .tag {
+    background-color: #FFF3B0;
+    display: inline-block;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin: 5px 8px 5px 0;
+    font-size: 0.85rem;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+
 
 .discover-page .close-details {
     position: absolute;
