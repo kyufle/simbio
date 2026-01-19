@@ -56,8 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $save_message = 'Perfil actualizado correctamente';
 
             // Recargar datos
-            $profile = getUserProfileByEmail($email);
-            $tags    = getUserTagsByEmail($email);
+            $profile = getUserProfileByEmail($email, $name, $surnames, $entity, $city, $phone_number);
+            $tags    = getUserTagsByEmail($email, $selected_tags);
         } else {
             $save_message = 'Error al actualizar las etiquetas';
         }
