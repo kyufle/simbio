@@ -1096,3 +1096,24 @@ body.login-page .back-btn:hover {
 .profile-page .profile-nav a:hover {
     color: #FFAAA7;
 }
+.profile-page .profile-nav .session-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #333;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.profile-page .profile-nav .session-info a {
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+    background-color: #E8E8E8;
+    padding: 8px 16px;
+    border-radius: 5px;
+}
+
+.profile-page .profile-nav .session-info a:hover {
+    color: #FF8A82;
+}

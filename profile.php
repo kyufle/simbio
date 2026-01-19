@@ -37,7 +37,19 @@ $tags = getUserTagsByEmail($email);
 <body class="profile-page">
     <main>
         <header class="profile-header">
-            <h1>Perfil <?php echo htmlspecialchars($profile['name']); ?></h1>
+            <nav class="profile-nav">
+                <a href="chat.php" class="nav-link">Converses</a>
+                <a href="discover.php" class="nav-link">Descobrir</a>
+            </nav>
+            <div class="session-info">
+                <h1>Perfil <?php echo htmlspecialchars($profile['name']); ?></h1>
+                <?php if (isLogged()): ?>
+                <span><?= htmlspecialchars($_SESSION['user']['name']) ?></span>
+                    <a href="logout.php">Tancar sessió</a>
+                <?php else: ?>
+                    <a href="login.php">Iniciar sessió</a>
+                <?php endif; ?>
+            </div>
         </header>
         <section class="user-info">
             <!-- <img src="<?php echo htmlspecialchars($profile['image']); ?>" alt="Imatge de perfil" class="profile-image"> -->
@@ -73,10 +85,6 @@ $tags = getUserTagsByEmail($email);
                 <script src="js/profile.js?v=<?php echo time(); ?>"></script>
             </div>
         </section>
-        <nav class="profile-nav">
-            <a href="chat.php" class="nav-link">Converses</a>
-            <a href="discover.php" class="nav-link">Descobrir</a>
-        </nav>
     </main>
 </body>
 </html>
