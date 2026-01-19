@@ -68,7 +68,7 @@ $tags = getUserTagsByEmail($email);
                 <script>
                     const userEmail = <?php echo json_encode($email); ?>;
                 </script>
-                <script src="js/profile.js"></script>
+                <script src="js/profile.js?v=<?php echo time(); ?>"></script>
             </div>
         </section>
         <nav class="profile-nav">
