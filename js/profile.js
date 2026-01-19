@@ -30,7 +30,7 @@ async function displayUserProjects(userEmail) {
         projectElement.classList.add('project');
 
         const projectLink = document.createElement('a');
-        projectLink.href = `preview_video.html?video=${encodeURIComponent(project.video_path)}`;
+        projectLink.href = `preview_video.php?video=${encodeURIComponent(project.video)}`;
 
         const projectImage = document.createElement('img');
         projectImage.src = project.image;
