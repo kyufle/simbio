@@ -984,7 +984,6 @@ body.login-page .back-btn:hover {
     margin-bottom: 8px;
 }
 .profile-page .user-tags .tags-list {
-    background-color: #FFF3B0;
     display: inline-block;
     padding: 8px 12px;
     border-radius: 8px;
@@ -992,6 +991,22 @@ body.login-page .back-btn:hover {
     font-size: 0.9rem;
     font-weight: 500;
     margin-top: 10px;
+}
+.profile-page .user-tags .tags-list span {
+    background-color: #FFF3B0;
+    margin: 5px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    display: inline-block;
+}
+.profile-page .user-tags .tags-list button {
+    background: none;
+    border: none;
+    color: #FF9593;
+    font-weight: bold;
+    margin-left: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
 }
 .profile-page .user-tags #add-tag-btn {
     margin-left: 15px;
