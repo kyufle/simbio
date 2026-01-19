@@ -112,58 +112,49 @@ function updateUserProfile($email, $name, $surnames, $entity, $city, $phone_numb
     }
 }
 
-function updateUserTags($email, array $new_tags): bool {
+function removeUserTags($email, $tags): bool {
     global $conn;
 
     try {
-        // Obtener user_id
-        $stmt = $conn->prepare("SELECT user_id FROM user WHERE email = :email");
-        $stmt->execute(['email' => $email]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $conn->prepare("SELECT user_id FROM user WHERE email = ?");
+        $stmt->execute([$email]);
+        $user_id = $stmt->fetchColumn();
 
-        if (!$user) {
-            log_error("Usuario no encontrado: {$email}");
-            return false;
-        }
+        if (!$user_id) return false;
 
-        $user_id = (int)$user['user_id'];
-
-        // Obtener proyectos del usuario
-        $stmt = $conn->prepare("SELECT project_id FROM project WHERE user_id = :user_id");
-        $stmt->execute(['user_id' => $user_id]);
+        $stmt = $conn->prepare("SELECT project_id FROM project WHERE user_id = ?");
+        $stmt->execute([$user_id]);
         $projects = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-        if (empty($projects) || empty($new_tags)) {
-            return true;
+        if (empty($projects)) return true;
+
+        $placeholdersProjects = implode(',', array_fill(0, count($projects), '?'));
+        $params = $projects;
+
+        if (!empty($tags)) {
+            $placeholdersTags = implode(',', array_fill(0, count($tags), '?'));
+            $params = array_merge($params, $tags);
+
+            $sql = "
+                DELETE pt FROM project_tags pt
+                JOIN tag t ON t.tag_id = pt.tag_id
+                WHERE pt.project_id IN ($placeholdersProjects)
+                AND t.name NOT IN ($placeholdersTags)
+            ";
+        } else {
+            $sql = "
+                DELETE FROM project_tags
+                WHERE project_id IN ($placeholdersProjects)
+            ";
         }
 
-        // Preparar statements reutilizables
-        $stmtTag = $conn->prepare("SELECT tag_id FROM tag WHERE name = :name");
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($params);
 
-        $stmtInsert = $conn->prepare("
-            INSERT IGNORE INTO project_tags (project_id, tag_id)
-            VALUES (:project_id, :tag_id)
-        ");
-
-        foreach ($projects as $project_id) {
-            foreach ($new_tags as $tag_name) {
-                $stmtTag->execute(['name' => $tag_name]);
-                $tag = $stmtTag->fetch(PDO::FETCH_ASSOC);
-
-                if ($tag) {
-                    $stmtInsert->execute([
-                        'project_id' => $project_id,
-                        'tag_id'     => $tag['tag_id']
-                    ]);
-                }
-            }
-        }
-
-        log_info("Etiquetas añadidas correctamente para {$email}");
         return true;
 
-    } catch (PDOException $e) {
-        log_error("Error al actualizar etiquetas {$email}: " . $e->getMessage());
+    } catch (Throwable $e) {
+        error_log("removeUserTags ERROR: " . $e->getMessage());
         return false;
     }
 }

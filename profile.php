@@ -2,7 +2,15 @@
 require_once 'includes/auth.php';
 require_once 'includes/bd_profile.php';
 require_once 'includes/logger.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $tags = $_POST['tags'] ?? [];
 
+    removeUserTags($_SESSION['user']['email'], $tags);
+    updateUserTags($_SESSION['user']['email'], $tags);
+
+    header('Location: profile.php');
+    exit;
+}
 
 // Si no està connectat, redirigeix a login.php
 if (!isLogged()) {
