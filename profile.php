@@ -36,7 +36,9 @@ $tags = getUserTagsByEmail($email);
 </head>
 <body class="profile-page">
     <main>
-        <h1>Perfil d'Usuari</h1>
+        <header class="profile-header">
+            <h1>Perfil <?php echo htmlspecialchars($profile['name']); ?></h1>
+        </header>
         <section class="user-info">
             <!-- <img src="<?php echo htmlspecialchars($profile['image']); ?>" alt="Imatge de perfil" class="profile-image"> -->
             <h2><?php echo htmlspecialchars($profile['name'] . ' ' . $profile['surnames']); ?></h2>
