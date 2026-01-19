@@ -984,7 +984,7 @@ body.login-page .back-btn:hover {
     justify-content: space-between;
     padding: 10px 20px;
     background: linear-gradient(135deg, #A3D2CA, #B5EAEA);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     border-radius: 0 0 12px 12px;
     margin-bottom: 20px;
 }
@@ -1016,6 +1016,7 @@ body.login-page .back-btn:hover {
     border-radius: 5px;
     transition: all 0.2s ease;
 }
+
 .profile-page .profile-header .session-info a:hover {
     color: #FF8A82;
     background-color: #FFEAEA;
@@ -1035,17 +1036,21 @@ body.login-page .back-btn:hover {
     margin-top: 10px;
     text-align: center;
 }
+
 .profile-page .user-tags h2 {
     font-family: 'Fjalla One', sans-serif;
     font-size: 1.2rem;
     color: #333;
     margin-bottom: 8px;
 }
-.profile-page .tags-list, .tag-item {
+
+.profile-page .tags-list,
+.tag-item {
     display: inline-flex;
     flex-wrap: wrap;
     gap: 8px;
 }
+
 .tag-item {
     align-items: center;
     gap: 6px;
@@ -1054,11 +1059,13 @@ body.login-page .back-btn:hover {
     border-radius: 8px;
     border: 1px solid #FFD580;
 }
+
 .tag-item span {
     font-weight: 500;
     color: #333;
     font-size: 0.9rem;
 }
+
 .remove-tag-btn {
     background: none;
     border: none;
@@ -1069,8 +1076,30 @@ body.login-page .back-btn:hover {
     line-height: 1;
     transition: color 0.2s;
 }
-.remove-tag-btn:hover { color: #FF6B63; }
-.add-tag-container { display: flex; gap: 10px; align-items: flex-start; }
+
+.remove-tag-btn:hover {
+    color: #FF6B63;
+}
+
+.add-tag-container {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.tag-search-wrapper {
+    width: 100%;
+}
+
+.tag-search-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #E0E0E0;
+    border-radius: 8px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
 
 #add-tag-btn {
     margin-left: 15px;
@@ -1081,15 +1110,19 @@ body.login-page .back-btn:hover {
     border-radius: 8px;
     font-size: 0.9rem;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(255,170,167,0.4);
+    box-shadow: 0 4px 15px rgba(255, 170, 167, 0.4);
     transition: all 0.3s;
 }
-#add-tag-btn:hover { box-shadow: 0 6px 20px rgba(255,170,167,0.5); }
+
+#add-tag-btn:hover {
+    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.5);
+}
 
 /* -------- PROJECTS -------- */
 .profile-page .user-projects {
     margin: 20px;
 }
+
 .profile-page .user-projects h2 {
     font-family: 'Fjalla One', sans-serif;
     font-size: 1.5rem;
@@ -1097,6 +1130,7 @@ body.login-page .back-btn:hover {
     margin-bottom: 15px;
     text-align: center;
 }
+
 .profile-page .user-projects a {
     text-decoration: none;
     color: #333;
@@ -1108,29 +1142,47 @@ body.login-page .back-btn:hover {
     margin-bottom: 15px;
     transition: all 0.3s;
 }
-.profile-page .user-projects a:hover { background-color: #D0D0D0; }
+
+.profile-page .user-projects a:hover {
+    background-color: #D0D0D0;
+}
 
 #user-projects {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
+
 .project {
     padding: 15px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-.project h3 { margin-bottom: 8px; font-family: 'Fjalla One', sans-serif; color: #333; }
+
+.project h3 {
+    margin-bottom: 8px;
+    font-family: 'Fjalla One', sans-serif;
+    color: #333;
+}
+
 .project a {
     background: linear-gradient(135deg, #B5EAEA, #A3D2CA);
     color: #fff;
     padding: 8px 14px;
     border-radius: 8px;
     font-weight: 600;
-    box-shadow: 0 4px 15px rgba(181,234,234,0.4);
+    box-shadow: 0 4px 15px rgba(181, 234, 234, 0.4);
 }
-.project a:hover { box-shadow: 0 6px 20px rgba(181,234,234,0.5); }
-.project img { width: 20%; border-radius: 10px; margin-top: 10px; }
+
+.project a:hover {
+    box-shadow: 0 6px 20px rgba(181, 234, 234, 0.5);
+}
+
+.project img {
+    width: 20%;
+    border-radius: 10px;
+    margin-top: 10px;
+}
 
 /* -------- NAV -------- */
 .profile-nav {
@@ -1138,6 +1190,7 @@ body.login-page .back-btn:hover {
     display: flex;
     gap: 25px;
 }
+
 .profile-nav a {
     color: #333;
     text-decoration: none;
@@ -1145,7 +1198,10 @@ body.login-page .back-btn:hover {
     font-size: 1rem;
     transition: color 0.2s;
 }
-.profile-nav a:hover { color: #FFAAA7; }
+
+.profile-nav a:hover {
+    color: #FFAAA7;
+}
 
 /* -------- FORMULARIOS -------- */
 .profile-form {
@@ -1154,15 +1210,22 @@ body.login-page .back-btn:hover {
     background: #fff;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
+
 .profile-form h3 {
     font-family: 'Fjalla One', sans-serif;
     color: #333;
     font-size: 1.1rem;
     margin: 0 0 15px;
 }
-.form-group { margin-bottom: 20px; display: flex; flex-direction: column; }
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
 .form-group label {
     font-family: 'Fjalla One', sans-serif;
     color: #333;
@@ -1170,7 +1233,9 @@ body.login-page .back-btn:hover {
     font-weight: 600;
     margin-bottom: 8px;
 }
-.form-group input, .form-group textarea {
+
+.form-group input,
+.form-group textarea {
     padding: 12px;
     border: 2px solid #E0E0E0;
     border-radius: 8px;
@@ -1178,13 +1243,28 @@ body.login-page .back-btn:hover {
     font-family: 'Josefin Sans', sans-serif;
     transition: all 0.3s ease;
 }
-.form-group input:focus, .form-group textarea:focus {
+
+.form-group input:focus,
+.form-group textarea:focus {
     outline: none;
     border-color: #B5EAEA;
-    box-shadow: 0 0 10px rgba(181,234,234,0.3);
+    box-shadow: 0 0 10px rgba(181, 234, 234, 0.3);
 }
-input[readonly], input[disabled] { background: #F5F5F5; color: #999; cursor: not-allowed; }
-.form-actions { display: flex; gap: 15px; justify-content: center; margin-top: 30px; }
+
+input[readonly],
+input[disabled] {
+    background: #F5F5F5;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
 .form-actions .btn {
     padding: 12px 24px;
     font-size: 0.95rem;
@@ -1195,25 +1275,54 @@ input[readonly], input[disabled] { background: #F5F5F5; color: #999; cursor: not
     transition: all 0.3s ease;
     font-family: 'Josefin Sans', sans-serif;
 }
+
 .btn-primary {
     background: linear-gradient(135deg, #FFAAA7, #FF9593);
     color: #fff;
-    box-shadow: 0 4px 15px rgba(255,170,167,0.4);
+    box-shadow: 0 4px 15px rgba(255, 170, 167, 0.4);
 }
-.btn-primary:hover { box-shadow: 0 6px 20px rgba(255,170,167,0.6); transform: translateY(-2px); }
-.btn-primary:active { transform: translateY(0); }
+
+.btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
 .btn-secondary {
     background: #E8E8E8;
     color: #333;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
-.btn-secondary:hover { background-color: #D0D0D0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+
+.btn-secondary:hover {
+    background-color: #D0D0D0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
 
 /* -------- RESPONSIVE -------- */
 @media (max-width: 768px) {
-    .profile-form { padding: 20px; margin: 0 15px 20px; }
-    .add-tag-container { flex-direction: column; }
-    .tag-search-wrapper, #add-tag-btn { width: 100%; }
-    .form-actions { flex-direction: column; }
-    .form-actions .btn { width: 100%; }
+    .profile-form {
+        padding: 20px;
+        margin: 0 15px 20px;
+    }
+
+    .add-tag-container {
+        flex-direction: column;
+    }
+
+    .tag-search-wrapper,
+    #add-tag-btn {
+        width: 100%;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
 }
