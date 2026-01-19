@@ -37,6 +37,9 @@ async function displayUserProjects(userEmail) {
         projectImage.alt = project.title;
         projectImage.classList.add('project-preview');
 
+        const projectTitle = document.createElement('h3');
+        projectTitle.textContent = project.title;
+
         projectElement.appendChild(projectLink);
         projectElement.appendChild(projectImage);
 
