@@ -1098,7 +1098,7 @@ body.login-page .back-btn:hover {
 }
 .profile-page .profile-header .session-info {
     display: flex;
-    align-items: center;
+    align-items: end;
     gap: 15px;
     color: #333;
     font-size: 0.9rem;
