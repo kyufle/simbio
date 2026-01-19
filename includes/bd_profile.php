@@ -62,3 +62,115 @@ function getUserTagsByEmail(string $email): array {
     $stmt->execute([$email]);
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
 }
+
+function getAllAvailableTags(): array {
+    global $conn;
+    try {
+        $stmt = $conn->prepare("
+            SELECT name 
+            FROM tag 
+            ORDER BY name ASC
+        ");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    } catch (PDOException $e) {
+        log_error("Error al obtener las etiquetas disponibles: " . $e->getMessage());
+        return [];
+    }
+}
+
+function updateUserProfile($email, $name, $surnames, $entity, $city, $phone_number): bool {
+    global $conn;
+    try {
+        $stmt = $conn->prepare("
+            UPDATE user 
+            SET name = :name,
+                surnames = :surnames,
+                entity = :entity,
+                city = :city,
+                phone_number = :phone_number
+            WHERE email = :email
+        ");
+        
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':surnames', $surnames, PDO::PARAM_STR);
+        $stmt->bindParam(':entity', $entity, PDO::PARAM_STR);
+        $stmt->bindParam(':city', $city, PDO::PARAM_STR);
+        $stmt->bindParam(':phone_number', $phone_number, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        
+        $result = $stmt->execute();
+        
+        if ($result) {
+            log_info("Perfil actualizado para usuario: {$email}");
+        }
+        
+        return $result;
+    } catch (PDOException $e) {
+        log_error("Error al actualizar perfil de usuario {$email}: " . $e->getMessage());
+        return false;
+    }
+}
+
+function updateUserTags($email, $new_tags): bool {
+    global $conn;
+    try {
+        // Obtener el user_id
+        $stmt = $conn->prepare("SELECT user_id FROM user WHERE email = :email");
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if (!$user) {
+            log_error("Usuario no encontrado: {$email}");
+            return false;
+        }
+        
+        $user_id = $user['user_id'];
+        
+        // Obtener los proyectos del usuario
+        $stmt = $conn->prepare("SELECT project_id FROM project WHERE user_id = :user_id");
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $projects = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        
+        // Limpiar tags existentes en los proyectos del usuario
+        if (!empty($projects)) {
+            $placeholders = implode(',', array_fill(0, count($projects), '?'));
+            $stmt = $conn->prepare("DELETE FROM project_tags WHERE project_id IN ({$placeholders})");
+            $stmt->execute($projects);
+        }
+        
+        // Agregar nuevos tags
+        if (!empty($new_tags) && !empty($projects)) {
+            foreach ($projects as $project_id) {
+                foreach ($new_tags as $tag_name) {
+                    // Obtener el tag_id
+                    $stmt = $conn->prepare("SELECT tag_id FROM tag WHERE name = :name");
+                    $stmt->bindParam(':name', $tag_name, PDO::PARAM_STR);
+                    $stmt->execute();
+                    $tag = $stmt->fetch(PDO::FETCH_ASSOC);
+                    
+                    if ($tag) {
+                        // Insertar la relación
+                        $stmt = $conn->prepare("
+                            INSERT INTO project_tags (project_id, tag_id) 
+                            VALUES (:project_id, :tag_id)
+                            ON DUPLICATE KEY UPDATE tag_id = :tag_id
+                        ");
+                        $stmt->bindParam(':project_id', $project_id, PDO::PARAM_INT);
+                        $stmt->bindParam(':tag_id', $tag['tag_id'], PDO::PARAM_INT);
+                        $stmt->execute();
+                    }
+                }
+            }
+        }
+        
+        log_info("Etiquetas actualizadas para usuario: {$email}");
+        return true;
+        
+    } catch (PDOException $e) {
+        log_error("Error al actualizar etiquetas del usuario {$email}: " . $e->getMessage());
+        return false;
+    }
+}

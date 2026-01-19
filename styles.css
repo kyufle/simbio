@@ -1206,3 +1206,215 @@ body.login-page .back-btn:hover {
 .profile-page .profile-header .session-info a:hover {
     color: #FF8A82;
 }
+
+/* ========================================
+   ESTILOS FORMULARIO PROFILE.PHP
+   ======================================== */
+.profile-form {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.profile-form h3 {
+    font-family: 'Fjalla One', sans-serif;
+    color: #333;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+.save-message {
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+    animation: slideIn 0.3s ease;
+}
+
+.save-message.success {
+    background-color: #D4EDDA;
+    color: #155724;
+    border: 1px solid #C3E6CB;
+}
+
+.save-message.error {
+    background-color: #F8D7DA;
+    color: #721C24;
+    border: 1px solid #F5C6CB;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-family: 'Fjalla One', sans-serif;
+    color: #333;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+    padding: 12px;
+    border: 2px solid #E0E0E0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: 'Josefin Sans', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #B5EAEA;
+    box-shadow: 0 0 10px rgba(181, 234, 234, 0.3);
+}
+
+.form-group input[readonly],
+.form-group input[disabled] {
+    background-color: #F5F5F5;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.form-section-separator {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #E0E0E0, transparent);
+    margin: 25px 0;
+}
+
+.form-group.tags-group {
+    margin-bottom: 25px;
+}
+
+.form-group.tags-group label {
+    margin-bottom: 15px;
+}
+
+.tags-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+}
+
+.tag-checkbox {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    background-color: #F9F9F9;
+    border: 2px solid #E0E0E0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.tag-checkbox:hover {
+    background-color: #F0F8F8;
+    border-color: #B5EAEA;
+}
+
+.tag-checkbox input[type="checkbox"] {
+    margin-right: 10px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    accent-color: #B5EAEA;
+}
+
+.tag-checkbox input[type="checkbox"]:checked + span {
+    color: #2c5f5f;
+    font-weight: 600;
+}
+
+.tag-checkbox span {
+    transition: color 0.2s ease;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.form-actions .btn {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.form-actions .btn-primary {
+    background: linear-gradient(135deg, #FFAAA7, #FF9593);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 170, 167, 0.4);
+}
+
+.form-actions .btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.6);
+    transform: translateY(-2px);
+}
+
+.form-actions .btn-primary:active {
+    transform: translateY(0);
+}
+
+.form-actions .btn-secondary {
+    background-color: #E8E8E8;
+    color: #333;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-actions .btn-secondary:hover {
+    background-color: #D0D0D0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-form {
+        padding: 20px;
+        margin: 0 15px 20px;
+    }
+
+    .tags-options {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+}

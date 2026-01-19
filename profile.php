@@ -25,6 +25,30 @@ if (!$profile) {
 }
 log_info("Usuario accedió a profile.php - Email: " . $_SESSION['user']['email']);
 $tags = getUserTagsByEmail($email);
+
+// Manejar el guardado del formulario
+$save_message = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = isset($_POST['name']) ? trim($_POST['name']) : $profile['name'];
+    $surnames = isset($_POST['surnames']) ? trim($_POST['surnames']) : $profile['surnames'];
+    $entity = isset($_POST['entity']) ? trim($_POST['entity']) : $profile['entity'];
+    $city = isset($_POST['city']) ? trim($_POST['city']) : $profile['city'];
+    $phone_number = isset($_POST['phone_number']) ? trim($_POST['phone_number']) : $profile['phone_number'];
+    $selected_tags = isset($_POST['tags']) ? $_POST['tags'] : [];
+    
+    if (updateUserProfile($email, $name, $surnames, $entity, $city, $phone_number)) {
+        if (updateUserTags($email, $selected_tags)) {
+            $save_message = 'Perfil actualizado correctamente';
+            // Recargar los datos
+            $profile = getUserProfileByEmail($email);
+            $tags = getUserTagsByEmail($email);
+        } else {
+            $save_message = 'Error al actualizar las etiquetas';
+        }
+    } else {
+        $save_message = 'Error al actualizar el perfil';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -53,26 +77,69 @@ $tags = getUserTagsByEmail($email);
         </header>
         <section class="user-info">
             <!-- <img src="<?php echo htmlspecialchars($profile['image']); ?>" alt="Imatge de perfil" class="profile-image"> -->
-            <h2><?php echo htmlspecialchars($profile['name'] . ' ' . $profile['surnames']); ?></h2>
-            <p><strong>Entitat:</strong> <?php echo htmlspecialchars($profile['entity']); ?></p>
-            <p><strong>Població:</strong> <?php echo htmlspecialchars($profile['city']); ?></p>
-            <p><strong>Email:</strong> <?php echo htmlspecialchars($profile['email']); ?></p>
-            <p><strong>Telèfon:</strong> <?php echo htmlspecialchars($profile['phone_number']); ?></p>
-        </section>
-        <!-- Etiquetes (families professionals i cicles) -->
-        <section class="user-tags">
-            <h2>Etiquetes</h2>
-            <div class="tags-list">
-                <?php
-                $tags = getUserTagsByEmail($email);
-                foreach ($tags as $tag): ?>
-                    <div class="tag-item">
-                        <span><?php echo htmlspecialchars($tag); ?></span>
-                        <button class="remove-tag-btn" data-tag="<?php echo htmlspecialchars($tag); ?>">X</button>
+            <form id="profile-form" method="POST" class="profile-form">
+                <?php if ($save_message): ?>
+                    <div class="save-message <?php echo strpos($save_message, 'Error') === false ? 'success' : 'error'; ?>">
+                        <?php echo htmlspecialchars($save_message); ?>
                     </div>
-                <?php endforeach; ?>
-            </div>
-            <button id="add-tag-btn" class="btn btn-secondary">+ Afegir</button>
+                <?php endif; ?>
+                
+                <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($profile['name']); ?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="surnames">Cognoms</label>
+                    <input type="text" id="surnames" name="surnames" value="<?php echo htmlspecialchars($profile['surnames']); ?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="entity">Entitat</label>
+                    <input type="text" id="entity" name="entity" value="<?php echo htmlspecialchars($profile['entity']); ?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">Població</label>
+                    <input type="text" id="city" name="city" value="<?php echo htmlspecialchars($profile['city']); ?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone_number">Telèfon</label>
+                    <input type="tel" id="phone_number" name="phone_number" value="<?php echo htmlspecialchars($profile['phone_number']); ?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($profile['email']); ?>" disabled readonly>
+                </div>
+
+                <div class="form-section-separator"></div>
+
+                <h3>Etiquetes</h3>
+                <div class="form-group tags-group">
+                    <label>Selecciona les teves etiquetes</label>
+                    <div class="tags-options" id="tags-container">
+                        <?php
+                        // Obtenir totes les etiquetes disponibles
+                        $all_tags = getAllAvailableTags();
+                        foreach ($all_tags as $tag):
+                            $is_selected = in_array($tag, $tags);
+                        ?>
+                            <label class="tag-checkbox">
+                                <input type="checkbox" name="tags[]" value="<?php echo htmlspecialchars($tag); ?>" 
+                                       <?php echo $is_selected ? 'checked' : ''; ?>>
+                                <span><?php echo htmlspecialchars($tag); ?></span>
+                            </label>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">💾 Guardar Canvis</button>
+                    <button type="reset" class="btn btn-secondary">↺ Cancelar</button>
+                </div>
+            </form>
         </section>
         <!-- Llista de projectes propis -->
         <section class="user-projects">
