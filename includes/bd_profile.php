@@ -152,7 +152,7 @@ function updateUserTags($email, $new_tags): bool {
                         // Insertar la relación
                         $stmt = $conn->prepare("
                             UPDATE project_tags SET tag_id = :tag_id
-                            WHERE project_id = :project_id;
+                            WHERE project_id = :project_id
                             VALUES (:project_id, :tag_id)
                             ON DUPLICATE KEY UPDATE tag_id = :tag_id
                         ");
