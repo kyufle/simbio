@@ -3,7 +3,7 @@ require_once 'includes/auth.php';
 require_once 'includes/bd_profile.php';
 require_once 'includes/logger.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $tags = $_POST['tags'] ?? [];
+    $tags = $_POST['tags[]'] ?? [];
 
     removeUserTags($_SESSION['user']['email'], $tags);
     updateUserTags($_SESSION['user']['email'], $tags);
