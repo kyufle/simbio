@@ -1,4 +1,4 @@
-const PROJECTS_API_URL = 'includes/projects.php';
+const PROJECTS_API_URL = 'includes/user_projects.php';
 
 // Función para obtener los proyectos del usuario por email
 async function fetchUserProjects(userEmail) {
