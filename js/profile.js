@@ -43,6 +43,7 @@ async function displayUserProjects(userEmail) {
 
         // Agregar elementos al contenedor
         projectElement.appendChild(projectLink);
+        projectElement.appendChild(document.createElement('br')); // Salto de línea entre título e imagen
         projectElement.appendChild(projectImage);
 
         projectsContainer.appendChild(projectElement);
