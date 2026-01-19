@@ -36,31 +36,32 @@ log_info("Usuario accedió a profile.php - Email: " . $_SESSION['user']['email']
 $tags = getUserTagsByEmail($email);
 
 // Manejar el guardado del formulario
+// Manejar el guardado del formulario
 $save_message = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = isset($_POST['name']) ? trim($_POST['name']) : $profile['name'];
-    $surnames = isset($_POST['surnames']) ? trim($_POST['surnames']) : $profile['surnames'];
-    $entity = isset($_POST['entity']) ? trim($_POST['entity']) : $profile['entity'];
-    $city = isset($_POST['city']) ? trim($_POST['city']) : $profile['city'];
-    $phone_number = isset($_POST['phone_number']) ? trim($_POST['phone_number']) : $profile['phone_number'];
-    $selected_tags = isset($_POST['tags']) ? $_POST['tags'] : [];
-    
+
+    $name         = trim($_POST['name'] ?? $profile['name']);
+    $surnames     = trim($_POST['surnames'] ?? $profile['surnames']);
+    $entity       = trim($_POST['entity'] ?? $profile['entity']);
+    $city         = trim($_POST['city'] ?? $profile['city']);
+    $phone_number = trim($_POST['phone_number'] ?? $profile['phone_number']);
+    $selected_tags = $_POST['tags'] ?? [];
+
     if (updateUserProfile($email, $name, $surnames, $entity, $city, $phone_number)) {
-        if (updateUserTags($email, $selected_tags)) {
-            // 1️⃣ ELIMINAR solo las que se han quitado con ❌
-            removeUserTags($email, $selected_tags);
 
-            // 2️⃣ AÑADIR las nuevas sin borrar las existentes
-            updateUserTags($email, $selected_tags);
+        // 1️⃣ ELIMINAR solo las que se han quitado con ❌
+        removeUserTags($email, $selected_tags);
 
-            $save_message = 'Perfil actualizado correctamente';
+        // 2️⃣ AÑADIR las nuevas sin borrar las existentes
+        updateUserTags($email, $selected_tags);
 
-            // Recargar datos
-            $profile = getUserProfileByEmail($email, $name, $surnames, $entity, $city, $phone_number);
-            $tags    = getUserTagsByEmail($email, $selected_tags);
-        } else {
-            $save_message = 'Error al actualizar las etiquetas';
-        }
+        $save_message = 'Perfil actualizado correctamente';
+
+        // Recargar datos
+        $profile = getUserProfileByEmail($email);
+        $tags    = getUserTagsByEmail($email);
+
     } else {
         $save_message = 'Error al actualizar el perfil';
     }
