@@ -64,7 +64,7 @@ $tags = getUserTagsByEmail($email);
         <section class="user-projects">
             <h2>Els meus projectes</h2>
             <a href="new_project.php" class="btn btn-primary">+ Nou projecte</a>
-            <div class="projects-list">
+            <div class="user-projects">
                 <script>
                     const userEmail = <?php echo json_encode($email); ?>;
                 </script>
