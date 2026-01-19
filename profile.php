@@ -3,7 +3,7 @@ require_once 'includes/auth.php';
 require_once 'includes/bd_profile.php';
 require_once 'includes/logger.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $tags = $_POST['tags[]'] ?? [];
+    $tags = $_POST['tags'] ?? [];
 
     removeUserTags($_SESSION['user']['email'], $tags);
     updateUserTags($_SESSION['user']['email'], $tags);
@@ -47,10 +47,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if (updateUserProfile($email, $name, $surnames, $entity, $city, $phone_number)) {
         if (updateUserTags($email, $selected_tags)) {
+            // 1️⃣ ELIMINAR solo las que se han quitado con ❌
+            removeUserTags($email, $selected_tags);
+
+            // 2️⃣ AÑADIR las nuevas sin borrar las existentes
+            updateUserTags($email, $selected_tags);
+
             $save_message = 'Perfil actualizado correctamente';
-            // Recargar los datos
+
+            // Recargar datos
             $profile = getUserProfileByEmail($email);
-            $tags = getUserTagsByEmail($email);
+            $tags    = getUserTagsByEmail($email);
         } else {
             $save_message = 'Error al actualizar las etiquetas';
         }
