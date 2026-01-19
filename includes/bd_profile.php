@@ -112,9 +112,57 @@ function updateUserProfile($email, $name, $surnames, $entity, $city, $phone_numb
     }
 }
 
-function removeUserTags($email, $tags): bool {
+function updateUserTags($email, $new_tags): bool {
     global $conn;
 
+    try {
+        // Obtener user_id
+        $stmt = $conn->prepare("SELECT user_id FROM user WHERE email = ?");
+        $stmt->execute([$email]);
+        $user_id = $stmt->fetchColumn();
+
+        if (!$user_id) {
+            throw new Exception("Usuario no encontrado");
+        }
+
+        // Obtener proyectos del usuario
+        $stmt = $conn->prepare("SELECT project_id FROM project WHERE user_id = ?");
+        $stmt->execute([$user_id]);
+        $projects = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+        if (empty($projects) || empty($new_tags)) {
+            return true;
+        }
+
+        // Preparar consultas UNA sola vez (mejor rendimiento)
+        $stmtTag = $conn->prepare("SELECT tag_id FROM tag WHERE name = ?");
+        $stmtInsert = $conn->prepare("
+            INSERT INTO project_tags (project_id, tag_id)
+            VALUES (?, ?)
+            ON DUPLICATE KEY UPDATE tag_id = tag_id
+        ");
+
+        foreach ($projects as $project_id) {
+            foreach ($new_tags as $tag_name) {
+                $stmtTag->execute([$tag_name]);
+                $tag_id = $stmtTag->fetchColumn();
+
+                if ($tag_id) {
+                    $stmtInsert->execute([$project_id, $tag_id]);
+                }
+            }
+        }
+
+        return true;
+
+    } catch (Throwable $e) {
+        error_log("updateUserTags ERROR: " . $e->getMessage());
+        return false;
+    }
+}
+
+function removeUserTags($email, $tags): bool {
+    global $conn;
     try {
         $stmt = $conn->prepare("SELECT user_id FROM user WHERE email = ?");
         $stmt->execute([$email]);
