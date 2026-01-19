@@ -112,63 +112,58 @@ function updateUserProfile($email, $name, $surnames, $entity, $city, $phone_numb
     }
 }
 
-function updateUserTags($email, $new_tags): bool {
+function updateUserTags($email, array $new_tags): bool {
     global $conn;
+
     try {
-        // Obtener el user_id
+        // Obtener user_id
         $stmt = $conn->prepare("SELECT user_id FROM user WHERE email = :email");
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->execute();
+        $stmt->execute(['email' => $email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+
         if (!$user) {
             log_error("Usuario no encontrado: {$email}");
             return false;
         }
-        
-        $user_id = $user['user_id'];
 
-        if ($user_id === null) {
-            die("ID de usuario no encontrado para el email: " . htmlspecialchars($email));
-        }
-        
-        // Obtener los proyectos del usuario
+        $user_id = (int)$user['user_id'];
+
+        // Obtener proyectos del usuario
         $stmt = $conn->prepare("SELECT project_id FROM project WHERE user_id = :user_id");
-        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-        $stmt->execute();
+        $stmt->execute(['user_id' => $user_id]);
         $projects = $stmt->fetchAll(PDO::FETCH_COLUMN);
-        
-        // Agregar nuevos tags
-        if (!empty($new_tags) && !empty($projects)) {
-            foreach ($projects as $project_id) {
-                foreach ($new_tags as $tag_name) {
-                    // Obtener el tag_id
-                    $stmt = $conn->prepare("SELECT tag_id FROM tag WHERE name = :name");
-                    $stmt->bindParam(':name', $tag_name, PDO::PARAM_STR);
-                    $stmt->execute();
-                    $tag = $stmt->fetch(PDO::FETCH_ASSOC);
-                    
-                    if ($tag) {
-                        // Insertar la relación
-                        $stmt = $conn->prepare("
-                            UPDATE project_tags SET tag_id = :tag_id
-                            WHERE project_id = :project_id
-                            VALUES (:project_id, :tag_id)
-                            ON DUPLICATE KEY UPDATE tag_id = :tag_id
-                        ");
-                        $stmt->bindParam(':project_id', $project_id, PDO::PARAM_INT);
-                        $stmt->bindParam(':tag_id', $tag['tag_id'], PDO::PARAM_INT);
-                        $stmt->execute();
-                    }
+
+        if (empty($projects) || empty($new_tags)) {
+            return true;
+        }
+
+        // Preparar statements reutilizables
+        $stmtTag = $conn->prepare("SELECT tag_id FROM tag WHERE name = :name");
+
+        $stmtInsert = $conn->prepare("
+            INSERT IGNORE INTO project_tags (project_id, tag_id)
+            VALUES (:project_id, :tag_id)
+        ");
+
+        foreach ($projects as $project_id) {
+            foreach ($new_tags as $tag_name) {
+                $stmtTag->execute(['name' => $tag_name]);
+                $tag = $stmtTag->fetch(PDO::FETCH_ASSOC);
+
+                if ($tag) {
+                    $stmtInsert->execute([
+                        'project_id' => $project_id,
+                        'tag_id'     => $tag['tag_id']
+                    ]);
                 }
             }
         }
-        
-        log_info("Etiquetas actualizadas para usuario: {$email}");
+
+        log_info("Etiquetas añadidas correctamente para {$email}");
         return true;
-        
+
     } catch (PDOException $e) {
-        log_error("Error al actualizar etiquetas del usuario {$email}: " . $e->getMessage());
+        log_error("Error al actualizar etiquetas {$email}: " . $e->getMessage());
         return false;
     }
 }
