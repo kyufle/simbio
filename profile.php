@@ -41,8 +41,8 @@ $tags = getUserTagsByEmail($email);
                 <a href="chat.php" class="nav-link">Converses</a>
                 <a href="discover.php" class="nav-link">Descobrir</a>
             </nav>
+            <h1>Perfil <?php echo htmlspecialchars($profile['name']); ?></h1>
             <div class="session-info">
-                <h1>Perfil <?php echo htmlspecialchars($profile['name']); ?></h1>
                 <?php if (isLogged()): ?>
                 <span><?= htmlspecialchars($_SESSION['user']['name']) ?></span>
                     <a href="logout.php">Tancar sessió</a>
