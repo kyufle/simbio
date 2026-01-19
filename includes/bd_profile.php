@@ -134,13 +134,6 @@ function updateUserTags($email, $new_tags): bool {
         $stmt->execute();
         $projects = $stmt->fetchAll(PDO::FETCH_COLUMN);
         
-        // Limpiar tags existentes en los proyectos del usuario
-        if (!empty($projects)) {
-            $placeholders = implode(',', array_fill(0, count($projects), '?'));
-            $stmt = $conn->prepare("DELETE FROM project_tags WHERE project_id IN ({$placeholders})");
-            $stmt->execute($projects);
-        }
-        
         // Agregar nuevos tags
         if (!empty($new_tags) && !empty($projects)) {
             foreach ($projects as $project_id) {
@@ -154,7 +147,8 @@ function updateUserTags($email, $new_tags): bool {
                     if ($tag) {
                         // Insertar la relación
                         $stmt = $conn->prepare("
-                            INSERT INTO project_tags (project_id, tag_id) 
+                            UPDATE project_tags SET tag_id = :tag_id
+                            WHERE project_id = :project_id;
                             VALUES (:project_id, :tag_id)
                             ON DUPLICATE KEY UPDATE tag_id = :tag_id
                         ");
