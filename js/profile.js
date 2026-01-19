@@ -42,8 +42,8 @@ async function displayUserProjects(userEmail) {
         projectImage.classList.add('project-preview');
 
         // Agregar elementos al contenedor
-        projectElement.appendChild(projectImage); // primero la imagen
-        projectElement.appendChild(projectLink);  // luego el enlace con título
+        projectElement.appendChild(projectLink);
+        projectElement.appendChild(projectImage);
 
         projectsContainer.appendChild(projectElement);
     });
