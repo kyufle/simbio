@@ -41,6 +41,7 @@ async function displayUserProjects(userEmail) {
         projectTitle.textContent = project.title;
 
         projectElement.appendChild(projectLink);
+        projectElement.appendChild(projectTitle);
         projectElement.appendChild(projectImage);
 
         projectLink.textContent = project.title;
