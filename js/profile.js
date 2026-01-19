@@ -29,28 +29,28 @@ async function displayUserProjects(userEmail) {
         const projectElement = document.createElement('div');
         projectElement.classList.add('project');
 
+        // Enlace que contiene el título
         const projectLink = document.createElement('a');
         projectLink.href = `preview_video.php?video=${encodeURIComponent(project.video)}`;
+        projectLink.textContent = project.title; // ✅ solo aquí va el título
+        projectLink.classList.add('project-title-link');
 
+        // Imagen de preview
         const projectImage = document.createElement('img');
         projectImage.src = project.image;
         projectImage.alt = project.title;
         projectImage.classList.add('project-preview');
 
-        const projectTitle = document.createElement('h3');
-        projectTitle.textContent = project.title;
+        // Agregar elementos al contenedor
+        projectElement.appendChild(projectImage); // primero la imagen
+        projectElement.appendChild(projectLink);  // luego el enlace con título
 
-        projectElement.appendChild(projectLink);
-        projectElement.appendChild(projectTitle);
-        projectElement.appendChild(projectImage);
-
-        projectLink.textContent = project.title;
-        projectTitle.appendChild(projectLink);
         projectsContainer.appendChild(projectElement);
     });
 
     console.log(projects);
 }
+
 
 // Suponiendo que ya tienes el email del usuario autenticado
 displayUserProjects(userEmail);
