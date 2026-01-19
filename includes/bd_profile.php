@@ -112,59 +112,58 @@ function updateUserProfile($email, $name, $surnames, $entity, $city, $phone_numb
     }
 }
 
-function removeUserTags($email, array $remaining_tags): bool {
+function updateUserTags($email, array $new_tags): bool {
     global $conn;
 
     try {
         // Obtener user_id
-        $stmt = $conn->prepare("SELECT user_id FROM user WHERE email = ?");
-        $stmt->execute([$email]);
-        $user_id = $stmt->fetchColumn();
+        $stmt = $conn->prepare("SELECT user_id FROM user WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!$user_id) {
+        if (!$user) {
+            log_error("Usuario no encontrado: {$email}");
             return false;
         }
 
+        $user_id = (int)$user['user_id'];
+
         // Obtener proyectos del usuario
-        $stmt = $conn->prepare("SELECT project_id FROM project WHERE user_id = ?");
-        $stmt->execute([$user_id]);
+        $stmt = $conn->prepare("SELECT project_id FROM project WHERE user_id = :user_id");
+        $stmt->execute(['user_id' => $user_id]);
         $projects = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-        if (empty($projects)) {
+        if (empty($projects) || empty($new_tags)) {
             return true;
         }
 
-        // Obtener IDs de tags que se deben conservar
-        if (!empty($remaining_tags)) {
-            $placeholders = implode(',', array_fill(0, count($remaining_tags), '?'));
-            $stmt = $conn->prepare("SELECT tag_id FROM tag WHERE name IN ($placeholders)");
-            $stmt->execute($remaining_tags);
-            $allowed_tag_ids = $stmt->fetchAll(PDO::FETCH_COLUMN);
-        } else {
-            $allowed_tag_ids = [];
-        }
+        // Preparar statements reutilizables
+        $stmtTag = $conn->prepare("SELECT tag_id FROM tag WHERE name = :name");
+
+        $stmtInsert = $conn->prepare("
+            INSERT IGNORE INTO project_tags (project_id, tag_id)
+            VALUES (:project_id, :tag_id)
+        ");
 
         foreach ($projects as $project_id) {
-            if (!empty($allowed_tag_ids)) {
-                $ph = implode(',', array_fill(0, count($allowed_tag_ids), '?'));
-                $sql = "
-                    DELETE FROM project_tags
-                    WHERE project_id = ?
-                    AND tag_id NOT IN ($ph)
-                ";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute(array_merge([$project_id], $allowed_tag_ids));
-            } else {
-                // Si no quedan tags → borrar todos
-                $stmt = $conn->prepare("DELETE FROM project_tags WHERE project_id = ?");
-                $stmt->execute([$project_id]);
+            foreach ($new_tags as $tag_name) {
+                $stmtTag->execute(['name' => $tag_name]);
+                $tag = $stmtTag->fetch(PDO::FETCH_ASSOC);
+
+                if ($tag) {
+                    $stmtInsert->execute([
+                        'project_id' => $project_id,
+                        'tag_id'     => $tag['tag_id']
+                    ]);
+                }
             }
         }
 
+        log_info("Etiquetas añadidas correctamente para {$email}");
         return true;
 
     } catch (PDOException $e) {
-        log_error("Error eliminando etiquetas: " . $e->getMessage());
+        log_error("Error al actualizar etiquetas {$email}: " . $e->getMessage());
         return false;
     }
 }
