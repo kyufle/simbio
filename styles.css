@@ -1070,6 +1070,7 @@ body.login-page .back-btn:hover {
     transition: color 0.2s;
 }
 .remove-tag-btn:hover { color: #FF6B63; }
+.add-tag-container { display: flex; gap: 10px; align-items: flex-start; }
 
 #add-tag-btn {
     margin-left: 15px;
