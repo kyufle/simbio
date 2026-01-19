@@ -970,6 +970,43 @@ body.login-page .back-btn:hover {
     color: #555;
     font-size: 1rem;
     margin-bottom: 15px;
+    text-align: center;
+    font-family: "Fjalla One", sans-serif;
+}
+.profile-page .user-tags {
+    margin-top: 10px;
+    text-align: center;
+}
+.profile-page .user-tags h2 {
+    font-family: 'Fjalla One', sans-serif;
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+.profile-page .user-tags .tags-list {
+    background-color: #FFF3B0;
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #333;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 10px;
+}
+.profile-page .user-tags #add-tag-btn {
+    margin-left: 15px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #FFAAA7, #FF9593);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 170, 167, 0.4);
+}
+.profile-page .user-tags #add-tag-btn:hover {
+    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.5);
 }
 .profile-page .projects-section {
     padding: 30px 20px;
