@@ -1227,6 +1227,117 @@ body.login-page .back-btn:hover {
     margin-top: 0;
 }
 
+.user-tags-section {
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #F9F9F9;
+    border-radius: 8px;
+}
+
+.tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    min-height: 30px;
+}
+
+.tag-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #FFF3B0, #FFE5B4);
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #FFD580;
+    animation: slideIn 0.3s ease;
+}
+
+.tag-item span {
+    font-weight: 500;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.remove-tag-btn {
+    background: none;
+    border: none;
+    color: #FF9593;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.remove-tag-btn:hover {
+    color: #FF6B63;
+}
+
+.add-tag-container {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.tag-search-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+.tag-search-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #E0E0E0;
+    border-radius: 8px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.tag-search-input:focus {
+    outline: none;
+    border-color: #B5EAEA;
+    box-shadow: 0 0 10px rgba(181, 234, 234, 0.3);
+}
+
+.tag-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-item {
+    padding: 10px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #F0F0F0;
+    font-size: 0.9rem;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+.suggestion-item:hover {
+    background-color: #F5F5F5;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+#add-tag-btn {
+    align-self: center;
+}
+
 .save-message {
     padding: 12px 15px;
     border-radius: 8px;
@@ -1307,54 +1418,6 @@ body.login-page .back-btn:hover {
     margin: 25px 0;
 }
 
-.form-group.tags-group {
-    margin-bottom: 25px;
-}
-
-.form-group.tags-group label {
-    margin-bottom: 15px;
-}
-
-.tags-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 12px;
-}
-
-.tag-checkbox {
-    display: flex;
-    align-items: center;
-    padding: 10px 12px;
-    background-color: #F9F9F9;
-    border: 2px solid #E0E0E0;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-}
-
-.tag-checkbox:hover {
-    background-color: #F0F8F8;
-    border-color: #B5EAEA;
-}
-
-.tag-checkbox input[type="checkbox"] {
-    margin-right: 10px;
-    cursor: pointer;
-    width: 18px;
-    height: 18px;
-    accent-color: #B5EAEA;
-}
-
-.tag-checkbox input[type="checkbox"]:checked + span {
-    color: #2c5f5f;
-    font-weight: 600;
-}
-
-.tag-checkbox span {
-    transition: color 0.2s ease;
-}
-
 .form-actions {
     display: flex;
     gap: 15px;
@@ -1406,8 +1469,16 @@ body.login-page .back-btn:hover {
         margin: 0 15px 20px;
     }
 
-    .tags-options {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    .add-tag-container {
+        flex-direction: column;
+    }
+
+    .tag-search-wrapper {
+        width: 100%;
+    }
+
+    #add-tag-btn {
+        width: 100%;
     }
 
     .form-actions {

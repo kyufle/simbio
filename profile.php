@@ -117,21 +117,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-section-separator"></div>
 
                 <h3>Etiquetes</h3>
-                <div class="form-group tags-group">
-                    <label>Selecciona les teves etiquetes</label>
-                    <div class="tags-options" id="tags-container">
-                        <?php
-                        // Obtenir totes les etiquetes disponibles
-                        $all_tags = getAllAvailableTags();
-                        foreach ($all_tags as $tag):
-                            $is_selected = in_array($tag, $tags);
-                        ?>
-                            <label class="tag-checkbox">
-                                <input type="checkbox" name="tags[]" value="<?php echo htmlspecialchars($tag); ?>" 
-                                       <?php echo $is_selected ? 'checked' : ''; ?>>
+                <div class="user-tags-section">
+                    <div class="tags-list" id="tags-list">
+                        <?php foreach ($tags as $tag): ?>
+                            <div class="tag-item">
                                 <span><?php echo htmlspecialchars($tag); ?></span>
-                            </label>
+                                <button type="button" class="remove-tag-btn" data-tag="<?php echo htmlspecialchars($tag); ?>">×</button>
+                                <input type="hidden" name="tags[]" value="<?php echo htmlspecialchars($tag); ?>">
+                            </div>
                         <?php endforeach; ?>
+                    </div>
+                    
+                    <div class="add-tag-container">
+                        <div class="tag-search-wrapper">
+                            <input type="text" id="tag-search" class="tag-search-input" placeholder="Escriu una etiqueta...">
+                            <div class="tag-suggestions" id="tag-suggestions"></div>
+                        </div>
+                        <button type="button" id="add-tag-btn" class="btn btn-secondary">+ Afegir</button>
                     </div>
                 </div>
 
@@ -148,6 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div id="user-projects">
                 <script>
                     const userEmail = <?php echo json_encode($email); ?>;
+                    const allAvailableTags = <?php echo json_encode(getAllAvailableTags()); ?>;
                 </script>
                 <script src="js/profile.js?v=<?php echo time(); ?>"></script>
             </div>
