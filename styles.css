@@ -1098,11 +1098,12 @@ body.login-page .back-btn:hover {
 }
 .profile-page .profile-header .session-info {
     display: flex;
-    align-items: end;
+    align-items: center;
     gap: 15px;
     color: #333;
     font-size: 0.9rem;
     font-weight: 500;
+    justify-content: end;
 }
 
 .profile-page .profile-header .session-info a {
