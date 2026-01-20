@@ -30,6 +30,7 @@ function getUserProfileByEmail($email) {
 
         // Mapear datos del usuario
         $profile = array(
+            'user_id'      => $user['user_id'],
             'name'         => $user['name'],
             'surnames'     => $user['surnames'],
             'email'        => $user['email'],

@@ -1,5 +1,6 @@
 <?php
 require_once 'includes/auth.php';
+require_once 'includes/bd_profile.php';
 require_once 'includes/project_service.php';
 
 if (!isLogged()) {
@@ -7,34 +8,28 @@ if (!isLogged()) {
     exit;
 }
 
-$user_id = $_SESSION['user']['user_id'];
+$email = $_SESSION['user']['email'];
+
+$profile = getUserProfileByEmail($email);
+if (!$profile) {
+    http_response_code(403);
+    exit('Usuario no válido');
+}
+
+$user_id = $profile['user_id'];
 
 $project_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 if (!$project_id) {
     http_response_code(400);
-    die('Proyecto inválido');
+    exit('Proyecto inválido');
 }
 
-// Obtener proyecto SOLO si es del usuario
+// 🔒 Seguridad: solo proyectos del usuario
 $project = getProjectByIdAndUser($project_id, $user_id);
 
 if (!$project) {
     http_response_code(403);
-    die('No tienes permiso para editar este proyecto');
-}
-
-// Guardado del formulario
-$save_message = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title       = trim($_POST['title'] ?? '');
-    $description = trim($_POST['description'] ?? '');
-
-    if (updateProject($project_id, $user_id, $title, $description)) {
-        $save_message = 'Proyecto actualizado correctamente';
-        $project = getProjectByIdAndUser($project_id, $user_id); // recargar
-    } else {
-        $save_message = 'Error al actualizar el proyecto';
-    }
+    exit('No tienes permiso para editar este proyecto');
 }
 ?>
 <!DOCTYPE html>
