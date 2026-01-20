@@ -28,13 +28,24 @@ if (!$project_id) {
 $project = getProjectByIdAndUser($project_id, $user_id);
 
 $tags = getUserTagsByEmail($email);
+
+$imagePath = null;
+$videoPath = null;
+
+if (!empty($_FILES['image']['name'])) {
+    $imagePath = uploadProjectFile($_FILES['image'], 'projects', ['image/jpeg','image/png','image/webp']);
+}
+
+if (!empty($_FILES['video']['name'])) {
+    $videoPath = uploadProjectFile($_FILES['video'], 'projects', ['video/mp4','video/webm']);
+}
 $save_message = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title       = trim($_POST['title'] ?? '');
     $description = trim($_POST['description'] ?? '');
     $selected_tags = $_POST['tags'] ?? [];
 
-    if (updateProject($project_id, $user_id, $title, $description)) {
+    if (updateProject($project_id, $user_id, $title, $description, $imagePath, $videoPath)) {
         // 1️⃣ ELIMINAR solo las que se han quitado con ❌
         removeUserTags($email, $selected_tags);
         // 2️⃣ AÑADIR las nuevas sin borrar las existentes
@@ -97,13 +108,13 @@ if (!$project) {
                 </div>
 
                 <div class="form-group">
-                    <label>Imagen</label>
-                    <input type="text" name="image_path" value="<?= htmlspecialchars($project['image_path']) ?>">
+                    <label for="image">Canviar imatge</label>
+                    <input type="file" name="image" id="image" accept="image/*">
                 </div>
 
                 <div class="form-group">
-                    <label>Video</label>
-                    <input type="text" name="video_path" value="<?= htmlspecialchars($project['video_path']) ?>">
+                    <label>Vídeo actual</label><br>
+                    <video src="<?= htmlspecialchars($project['video']) ?>" width="200" controls></video>
                 </div>
 
                 <h3>Etiquetes</h3>
