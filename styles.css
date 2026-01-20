@@ -1,3 +1,112 @@
+/* ========================================
+   ESTILOS REGISTRO (register.php)
+   ======================================== */
+
+.register-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.register-form {
+    background: #fff;
+    padding: 2.5rem 2rem;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.register-form h1 {
+    text-align: center;
+    color: #2a7ae2;
+    font-family: 'Fjalla One', sans-serif;
+    margin-bottom: 1.5rem;
+}
+
+.register-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.register-form input,
+.register-form select {
+    padding: 0.7rem 1rem;
+    border: 1px solid #A3D2CA;
+    border-radius: 7px;
+    font-size: 1rem;
+    background: #f9f9f9;
+    transition: border 0.2s;
+}
+.register-form input:focus,
+.register-form select:focus {
+    border-color: #2a7ae2;
+    outline: none;
+}
+
+.register-form button[type="submit"] {
+    background: #2a7ae2;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 0.9rem 0;
+    font-size: 1.1rem;
+    font-family: 'Fjalla One', sans-serif;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    box-shadow: 0 2px 8px #2a7ae220;
+    transition: background 0.2s, transform 0.2s;
+}
+.register-form button[type="submit"]:hover {
+    background: #1b5fa7;
+    transform: translateY(-2px) scale(1.03);
+}
+
+.register-form .error {
+    color: #ff4d4f;
+    background: #fff3b0;
+    border-left: 4px solid #ffaaa7;
+    padding: 0.7rem 1rem;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+.register-form .success {
+    color: #2a7ae2;
+    background: #b5eaea;
+    border-left: 4px solid #A3D2CA;
+    padding: 0.7rem 1rem;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+    .register-form {
+        padding: 1.2rem 0.7rem;
+        max-width: 98vw;
+        border-radius: 10px;
+    }
+    .register-form h1 {
+        font-size: 1.3rem;
+    }
+    .register-form input,
+    .register-form select {
+        font-size: 0.98rem;
+        padding: 0.6rem 0.7rem;
+    }
+    .register-form button[type="submit"] {
+        font-size: 1rem;
+        padding: 0.7rem 0;
+    }
+}
 /* IMPORTAR FUENTES DE GOOGLE */
 @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Josefin+Sans:wght@300;400;500;600&display=swap');
 
