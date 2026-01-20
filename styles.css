@@ -1,4 +1,27 @@
-/* ========== ESTILOS LOGIN.PHP ========== */
+/* IMPORTAR FUENTES DE GOOGLE */
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Josefin+Sans:wght@300;400;500;600&display=swap');
+
+/* Paleta de colores */
+/* Color           | Hex      | Uso recomendado                        |
+|-----------------|----------|---------------------------------------|
+| Azul cielo suave| #A3D2CA  | Fondo principal, fresco y profesional |
+| Verde menta     | #B5EAEA  | Tarjetas, botones secundarios         |
+| Amarillo pálido | #FFF3B0  | Alertas, llamadas a la acción         |
+| Coral suave     | #FFAAA7  | Botones importantes                    |
+| Gris claro      | #E8E8E8  | Fondos neutros, separadores           | */
+
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+/* ========================================
+   ESTILOS LOGIN.PHP (sin cambios)
+   ======================================== */
+
 body.login-page {
     min-height: 100vh;
     background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
@@ -30,7 +53,6 @@ body.login-page form {
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 body.login-page label {
@@ -39,7 +61,6 @@ body.login-page label {
     font-size: 0.9rem;
     color: #555555;
     font-weight: 500;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 body.login-page input {
@@ -50,7 +71,6 @@ body.login-page input {
     font-size: 0.95rem;
     transition: all 0.3s ease;
     background-color: #fafafa;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 body.login-page input:focus {
@@ -72,7 +92,6 @@ body.login-page button {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 6px 20px rgba(255, 170, 167, 0.5);
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 body.login-page button:hover {
@@ -94,7 +113,6 @@ body.login-page .registre-btn {
     width: 50%;
     color: white;
     box-shadow: 0 4px 15px rgba(181, 234, 234, 0.4);
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 body.login-page .registre-btn:hover {
@@ -108,7 +126,6 @@ body.login-page .back-btn {
     width: 50%;
     color: white;
     box-shadow: 0 4px 15px rgba(181, 234, 234, 0.4);
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 body.login-page .back-btn:hover {
@@ -158,7 +175,10 @@ body.login-page .back-btn:hover {
     font-family: 'Josefin Sans', sans-serif;
 }
 
-/* ========== ESTILOS DISCOVER.PHP ========== */
+/* ========================================
+   ESTILOS DISCOVER.PHP - MODO VERTICAL TIKTOK
+   ======================================== */
+
 .discover-page {
     font-family: 'Josefin Sans', sans-serif;
     background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
@@ -181,7 +201,6 @@ body.login-page .back-btn:hover {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .discover-page .sidebar .nav-links {
@@ -196,7 +215,6 @@ body.login-page .back-btn:hover {
     font-weight: 600;
     font-size: 0.9rem;
     transition: color 0.2s;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .discover-page .sidebar .nav-links li a:hover {
@@ -210,7 +228,6 @@ body.login-page .back-btn:hover {
     color: #333;
     font-size: 0.9rem;
     font-weight: 500;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .discover-page .sidebar .session-info a {
@@ -220,7 +237,6 @@ body.login-page .back-btn:hover {
     background-color: #E8E8E8;
     padding: 8px 16px;
     border-radius: 5px;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .discover-page .sidebar .session-info a:hover {
@@ -236,7 +252,6 @@ body.login-page .back-btn:hover {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .discover-page .project-card {
@@ -250,7 +265,6 @@ body.login-page .back-btn:hover {
     opacity: 1;
     transform: translateX(0) scale(1) rotate(0deg);
     transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .discover-page .project-card header {
@@ -263,7 +277,6 @@ body.login-page .back-btn:hover {
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .discover-page .project-card header h2 {
@@ -278,7 +291,6 @@ body.login-page .back-btn:hover {
     color: #555;
     font-size: 1rem;
     font-weight: 500;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .discover-page .project-card .video-section {
@@ -308,7 +320,6 @@ body.login-page .back-btn:hover {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .discover-page .project-card .buttons {
@@ -331,7 +342,6 @@ body.login-page .back-btn:hover {
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-family: 'Fjalla One', sans-serif;
 }
 
 .discover-page .project-card .nope-btn {
@@ -370,7 +380,6 @@ body.login-page .back-btn:hover {
     background: linear-gradient(0deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.95) 100%);
     border-radius: 12px;
     margin-top: auto;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .discover-page .project-card .bottom-bar a,
@@ -384,7 +393,6 @@ body.login-page .back-btn:hover {
     transition: all 0.2s ease;
     padding: 8px 12px;
     text-decoration: none;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .discover-page .project-card .bottom-bar a:hover,
@@ -407,7 +415,6 @@ body.login-page .back-btn:hover {
     transform: translateY(0);
     transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .discover-page .project-card .details.hidden {
@@ -428,18 +435,18 @@ body.login-page .back-btn:hover {
     line-height: 1.6;
     margin-bottom: 20px;
     text-align: left;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .discover-page .project-card .details .tags {
+    background-color: #FFF3B0;
     padding: 10px 15px;
     border-radius: 10px;
     color: #333;
     font-size: 0.9rem;
     line-height: 1.5;
     font-weight: 500;
-    font-family: 'Josefin Sans', sans-serif;
 }
+
 .discover-page .project-card .details .tags .tag {
     background-color: #FFF3B0;
     display: inline-block;
@@ -451,8 +458,6 @@ body.login-page .back-btn:hover {
     font-family: 'Josefin Sans', sans-serif;
 }
 
-
-
 .discover-page .close-details {
     position: absolute;
     top: 15px;
@@ -463,7 +468,6 @@ body.login-page .back-btn:hover {
     color: #333;
     cursor: pointer;
     font-weight: bold;
-    font-family: 'Fjalla One', sans-serif;
 }
 
 .discover-page .project-card.swipe-right {
@@ -481,8 +485,15 @@ body.login-page .back-btn:hover {
 }
 
 @keyframes swipeRight {
-    0% { transform: translateX(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateX(120%) rotate(12deg); opacity: 0; }
+    0% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(120%) rotate(12deg);
+        opacity: 0;
+    }
 }
 
 .swipe-left {
@@ -490,26 +501,234 @@ body.login-page .back-btn:hover {
 }
 
 @keyframes swipeLeft {
-    0% { transform: translateX(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateX(-120%) rotate(-12deg); opacity: 0; }
+    0% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-120%) rotate(-12deg);
+        opacity: 0;
+    }
 }
 
 .discover-page .project-card .details::-webkit-scrollbar {
     width: 6px;
 }
+
 .discover-page .project-card .details::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
 }
+
 .discover-page .project-card .details::-webkit-scrollbar-thumb {
     background: #A3D2CA;
     border-radius: 10px;
 }
+
 .discover-page .project-card .details::-webkit-scrollbar-thumb:hover {
     background: #8BC4BC;
 }
 
-/* ========== ESTILOS MENSAJES DINÁMICOS ========== */
+.discover-page .project-card .details::-webkit-scrollbar {
+    width: 6px;
+}
+
+.discover-page .project-card .details::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.discover-page .project-card .details::-webkit-scrollbar-thumb {
+    background: #A3D2CA;
+    border-radius: 10px;
+}
+
+.discover-page .project-card .details::-webkit-scrollbar-thumb:hover {
+    background: #8BC4BC;
+}
+
+/* ========================================
+   MEDIA QUERY MOBILE (max-width: 767px)
+   Solo edita esto para cambiar MOBILE
+   ======================================== */
+@media (max-width: 767px) {
+
+    body.discover-page,
+    html {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+    }
+
+    .discover-page .sidebar {
+        padding: 12px 15px;
+        font-size: 0.8rem;
+        background: linear-gradient(180deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.85) 100%);
+        height: auto;
+    }
+
+    .discover-page .sidebar .nav-links {
+        gap: 12px;
+    }
+
+    .discover-page .sidebar .nav-links li a {
+        font-size: 0.85rem;
+    }
+
+    .discover-page .sidebar .session-info {
+        font-size: 0.8rem;
+        gap: 10px;
+    }
+
+    .discover-page main {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        display: block;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .discover-page .project-card {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .discover-page .project-card header {
+        top: 55px;
+        left: 12px;
+        right: 12px;
+        padding: 12px 15px;
+        border-radius: 12px;
+    }
+
+    .discover-page .project-card header h2 {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+
+    .discover-page .project-card header p {
+        font-size: 0.85rem;
+    }
+
+    .discover-page .project-card .actions {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding: 20px 15px 15px;
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .discover-page .project-card .buttons {
+        gap: 25px;
+        margin-bottom: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .discover-page .project-card .buttons button {
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
+    }
+
+    .discover-page .project-card .bottom-bar {
+        padding: 10px 12px;
+        border-top: none;
+        gap: 5px;
+        background: linear-gradient(0deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.95) 100%);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .discover-page .project-card .bottom-bar a,
+    .discover-page .project-card .bottom-bar button {
+        font-size: 0.75rem;
+        padding: 6px 8px;
+        flex: 1;
+        text-align: center;
+    }
+
+    .discover-page .project-card .details {
+        max-height: 70vh;
+        padding: 25px 20px 35px 20px;
+    }
+
+    .discover-page .project-card .details h3 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+
+    .discover-page .project-card .details .description {
+        font-size: 0.9rem;
+    }
+
+    .discover-page .project-card .details .tags {
+        font-size: 0.85rem;
+    }
+}
+
+/* ========================================
+   MEDIA QUERY DESKTOP (min-width: 768px)
+   Solo edita esto para cambiar DESKTOP
+   ======================================== */
+@media (min-width: 768px) {
+
+    /* Desktop puede tener scroll */
+    body.discover-page,
+    html {
+        overflow: auto;
+    }
+
+    .discover-page {
+        position: relative;
+    }
+
+    /* Main centrado en desktop */
+    .discover-page main {
+        position: relative;
+        background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    }
+
+    /* Card con tamaño fijo en desktop */
+    .discover-page .project-card {
+        position: relative;
+        max-width: 450px;
+        height: 90vh;
+        border-radius: 20px;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+        margin: auto;
+    }
+
+    /* Sidebar normal en desktop */
+    .discover-page .sidebar {
+        padding: 20px 40px;
+    }
+}
+
+/* ========================================
+   ESTILOS PARA MENSAJES DINÁMICOS
+   ======================================== */
+
 .empty-message {
     color: #333;
     text-align: center;
@@ -517,7 +736,6 @@ body.login-page .back-btn:hover {
     background: linear-gradient(135deg, #A3D2CA, #B5EAEA);
     border-radius: 20px;
     margin: 20px;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .empty-message h2 {
@@ -532,15 +750,15 @@ body.login-page .back-btn:hover {
     background: #FFAAA7;
     border-radius: 20px;
     margin: 20px;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .error-message h2 {
     margin-bottom: 10px;
-    font-family: 'Fjalla One', sans-serif;
 }
 
-/* ========== ESTILOS TOASTS ========== */
+/* ========================================
+   VARIABLES CSS PARA TOASTS
+   ======================================== */
 :root {
     --exito: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);    /* Verde menta intenso - éxito */
     --error: linear-gradient(135deg, #ff5858 0%, #f98a77 100%);    /* Rojo coral brillante - error */
@@ -548,6 +766,10 @@ body.login-page .back-btn:hover {
     --warning: linear-gradient(135deg, #ffe259 0%, #ffa751 100%);  /* Amarillo/naranja fuerte - advertencia */
 }
 
+
+/* ========================================
+   CONTENEDOR DE TOASTS
+   ======================================== */
 .contenedor-toast {
     position: fixed;
     right: 20px;
@@ -559,133 +781,608 @@ body.login-page .back-btn:hover {
     flex-direction: column-reverse;
     z-index: 9999;
     pointer-events: none;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
+/* ========================================
+   TOAST BASE
+   ======================================== */
 .toast {
     background: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 14px;
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.14);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     animation: apertura 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     pointer-events: all;
     overflow: hidden;
-    border: 2px solid transparent;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
-.toast.exito      { background: var(--exito);    border-left: 8px solid #1fc47a;  color: #16432a; }
-.toast.error      { background: var(--error);    border-left: 8px solid #e2373e;  color: #7d191b; }
-.toast.info       { background: var(--info);     border-left: 8px solid #2776b0;  color: #1c295c; }
-.toast.warning    { background: var(--warning);  border-left: 8px solid #ffa303;  color: #835000; }
+/* Tipos de toast con paleta de colores */
+.toast.exito {
+    background: var(--exito);
+    border-left: 5px solid #8BC4BC;
+}
 
-/* CONTENIDO DEL TOAST */
+.toast.error {
+    background: var(--error);
+    border-left: 5px solid #FF8A82;
+}
+
+.toast.info {
+    background: var(--info);
+    border-left: 5px solid #8BC4BC;
+}
+
+.toast.warning {
+    background: var(--warning);
+    border-left: 5px solid #FFE680;
+}
+
+/* ========================================
+   CONTENIDO DEL TOAST
+   ======================================== */
 .toast .contenido {
     display: grid;
     grid-template-columns: 35px 1fr;
     align-items: center;
     gap: 12px;
-    padding: 16px;
+    padding: 15px;
     flex: 1;
-    font-family: 'Josefin Sans', sans-serif;
 }
+
 .toast .icono {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
+    color: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .toast .icono svg {
     width: 100%;
     height: 100%;
 }
+
 .toast .texto {
     display: flex;
     flex-direction: column;
     gap: 3px;
-    font-family: 'Josefin Sans', sans-serif;
 }
+
 .toast .titulo {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #000000;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
     font-family: 'Fjalla One', sans-serif;
     margin: 0;
-    letter-spacing: 0.01em;
-    text-shadow: 0 1px 5px rgba(255,255,255,0.22), 0 1px 15px rgba(0,0,0,0.16);
 }
+
 .toast .descripcion {
-    font-size: 0.90rem;
+    font-size: 0.85rem;
     font-weight: 400;
-    color: #000000;
+    color: #555;
     margin: 0;
-    line-height: 1.5;
-    text-shadow: 0 1px 6px rgba(255,255,255,0.12), 0 1px 8px rgba(0,0,0,0.08);
-    font-family: 'Josefin Sans', sans-serif;
+    line-height: 1.4;
 }
-/* BOTÓN CERRAR */
+
+/* ========================================
+   BOTÓN CERRAR
+   ======================================== */
 .toast .btn-cerrar {
-    background: rgba(0, 0, 0, 0.13);
+    background: rgba(0, 0, 0, 0.1);
     border: none;
     cursor: pointer;
     padding: 15px;
-    transition: background 0.2s;
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     align-self: stretch;
-    font-family: 'Josefin Sans', sans-serif;
 }
+
 .toast .btn-cerrar:hover {
-    background: rgba(0, 0, 0, 0.22);
+    background: rgba(0, 0, 0, 0.2);
 }
+
 .toast .btn-cerrar .icono {
-    width: 23px;
-    height: 23px;
-    color: rgba(60, 60, 60, 0.7);
+    width: 20px;
+    height: 20px;
+    color: rgba(0, 0, 0, 0.6);
 }
+
 .toast .btn-cerrar .icono svg {
     width: 100%;
     height: 100%;
 }
 
-/* ANIMACIONES */
+/* ========================================
+   ANIMACIONES
+   ======================================== */
 .toast.cerrando {
     animation: cierre 0.3s ease-out forwards;
 }
+
 @keyframes apertura {
     from {
         transform: translateX(calc(100% + 40px));
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;
     }
 }
+
 @keyframes cierre {
     from {
         transform: translateX(0);
         opacity: 1;
     }
+
     to {
         transform: translateX(calc(100% + 40px));
         opacity: 0;
     }
 }
 
-/* TOAST ESPECÍFICOS POR COLOR */
-.toast.exito .titulo      { color: #2d5a50; font-family: 'Fjalla One', sans-serif;}
-.toast.exito .descripcion { color: #3d6a60; font-family: 'Josefin Sans', sans-serif;}
-.toast.error .titulo      { color: #8b3432; font-family: 'Fjalla One', sans-serif;}
-.toast.error .descripcion { color: #a04442; font-family: 'Josefin Sans', sans-serif;}
-.toast.info .titulo       { color: #2d5a50; font-family: 'Fjalla One', sans-serif;}
-.toast.info .descripcion  { color: #3d6a60; font-family: 'Josefin Sans', sans-serif;}
-.toast.warning .titulo    { color: #7a6c1f; font-family: 'Fjalla One', sans-serif;}
-.toast.warning .descripcion { color: #8a7c2f; font-family: 'Josefin Sans', sans-serif;}
+/* ========================================
+   RESPONSIVE - MÓVIL
+   ======================================== */
+@media (max-width: 767px) {
+    .contenedor-toast {
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+        width: calc(100% - 20px);
+        max-width: none;
+    }
+
+    .toast .contenido {
+        padding: 12px;
+        gap: 10px;
+        grid-template-columns: 30px 1fr;
+    }
+
+    .toast .titulo {
+        font-size: 0.95rem;
+    }
+
+    .toast .descripcion {
+        font-size: 0.8rem;
+    }
+
+    .toast .btn-cerrar {
+        padding: 12px;
+    }
+}
+
+/* ========================================
+   ESTILOS ESPECÍFICOS POR COLOR
+   ======================================== */
+
+/* Toast de éxito - Verde menta */
+.toast.exito .titulo {
+    color: #2d5a50;
+}
+
+.toast.exito .descripcion {
+    color: #3d6a60;
+}
+
+/* Toast de error - Coral */
+.toast.error .titulo {
+    color: #8b3432;
+}
+
+.toast.error .descripcion {
+    color: #a04442;
+}
+
+/* Toast de info - Azul cielo */
+.toast.info .titulo {
+    color: #2d5a50;
+}
+
+.toast.info .descripcion {
+    color: #3d6a60;
+}
+
+/* Toast de warning - Amarillo */
+.toast.warning .titulo {
+    color: #7a6c1f;
+}
+
+.toast.warning .descripcion {
+    color: #8a7c2f;
+}
+
+/* ===============================
+   ESTILOS PROFILE.PHP
+   =============================== */
+.profile-page {
+    font-family: 'Josefin Sans', sans-serif;
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* -------- HEADER -------- */
+.profile-page .profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #A3D2CA, #B5EAEA);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 12px 12px;
+    margin-bottom: 20px;
+}
+
+.profile-page .profile-header h1 {
+    flex: 1;
+    text-align: center;
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 1.8rem;
+    color: #333;
+    margin: 0;
+}
+
+.profile-page .profile-header .session-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.profile-page .profile-header .session-info a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    background-color: #E8E8E8;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.profile-page .profile-header .session-info a:hover {
+    color: #FF8A82;
+    background-color: #FFEAEA;
+}
+
+/* -------- USER INFO -------- */
+.profile-page .user-info {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    text-align: center;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+/* -------- TAGS -------- */
+.profile-page .tags-list,
+.tag-item {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-item {
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #FFF3B0, #FFE5B4);
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #FFD580;
+}
+
+.tag-item span {
+    font-weight: 500;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.remove-tag-btn {
+    background: none;
+    border: none;
+    color: #FF9593;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.remove-tag-btn:hover {
+    color: #FF6B63;
+}
+
+.add-tag-container {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.tag-search-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+.tag-search-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #E0E0E0;
+    border-radius: 8px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.tag-search-input:focus {
+    outline: none;
+    border-color: #B5EAEA;
+    box-shadow: 0 0 10px rgba(181, 234, 234, 0.3);
+}
+.tag-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-item {
+    padding: 10px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #F0F0F0;
+    font-size: 0.9rem;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+.suggestion-item:hover {
+    background-color: #F5F5F5;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+#add-tag-btn {
+    margin-left: 15px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #FFAAA7, #FF9593);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 170, 167, 0.4);
+    transition: all 0.3s;
+}
+
+#add-tag-btn:hover {
+    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.5);
+}
+
+/* -------- PROJECTS -------- */
+.profile-page .user-projects {
+    margin: 20px;
+}
+
+.profile-page .user-projects h2 {
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.profile-page .user-projects a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    background-color: #E8E8E8;
+    padding: 10px 16px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+}
+
+.profile-page .user-projects a:hover {
+    background-color: #D0D0D0;
+}
+
+#user-projects {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.project {
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.project h3 {
+    margin-bottom: 8px;
+    font-family: 'Fjalla One', sans-serif;
+    color: #333;
+}
+
+.project a {
+    background: linear-gradient(135deg, #B5EAEA, #A3D2CA);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(181, 234, 234, 0.4);
+}
+
+.project a:hover {
+    box-shadow: 0 6px 20px rgba(181, 234, 234, 0.5);
+}
+
+.project img {
+    width: 20%;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* -------- NAV -------- */
+.profile-nav {
+    margin-top: 15px;
+    display: flex;
+    gap: 25px;
+}
+
+.profile-nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.profile-nav a:hover {
+    color: #FFAAA7;
+}
+
+/* -------- FORMULARIOS -------- */
+.profile-form {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.profile-form h3 {
+    font-family: 'Fjalla One', sans-serif;
+    color: #333;
+    font-size: 1.1rem;
+    margin: 0 0 15px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-family: 'Fjalla One', sans-serif;
+    color: #333;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px;
+    border: 2px solid #E0E0E0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: 'Josefin Sans', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #B5EAEA;
+    box-shadow: 0 0 10px rgba(181, 234, 234, 0.3);
+}
+
+input[readonly],
+input[disabled] {
+    background: #F5F5F5;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.form-actions .btn {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #FFAAA7, #FF9593);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(255, 170, 167, 0.4);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: #E8E8E8;
+    color: #333;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.btn-secondary:hover {
+    background-color: #D0D0D0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* -------- RESPONSIVE -------- */
+@media (max-width: 768px) {
+    .profile-form {
+        padding: 20px;
+        margin: 0 15px 20px;
+    }
+
+    .add-tag-container {
+        flex-direction: column;
+    }
+
+    .tag-search-wrapper,
+    #add-tag-btn {
+        width: 100%;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+}
 
 /* ========== PÁGINAS ERROR ========== */
 body.page-error {
@@ -741,190 +1438,4 @@ body.page-error a.button {
 body.page-error a.button:hover {
     box-shadow: 0 8px 25px rgba(255, 170, 167, 0.6);
     transform: translateY(-2px) scale(1.03);
-}
-
-
-/* ========== MEDIA QUERIES AL FINAL ========== */
-
-/* --- DISCOVER.PHP MOBILE --- */
-@media (max-width: 767px) {
-    body.discover-page,
-    html {
-        height: 100vh;
-        width: 100vw;
-        overflow: hidden;
-    }
-    .discover-page .sidebar {
-        padding: 12px 15px;
-        font-size: 0.8rem;
-        background: linear-gradient(180deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.85) 100%);
-        height: auto;
-    }
-    .discover-page .sidebar .nav-links {
-        gap: 12px;
-    }
-    .discover-page .sidebar .nav-links li a {
-        font-size: 0.85rem;
-    }
-    .discover-page .sidebar .session-info {
-        font-size: 0.8rem;
-        gap: 10px;
-    }
-    .discover-page main {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        padding: 0;
-        display: block;
-        justify-content: center;
-        align-items: center;
-    }
-    .discover-page .project-card {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        max-width: 100vw;
-        max-height: 100vh;
-        border-radius: 0;
-        box-shadow: none;
-        margin: 0;
-        padding: 0;
-        font-family: 'Josefin Sans', sans-serif;
-    }
-    .discover-page .project-card header {
-        top: 55px;
-        left: 12px;
-        right: 12px;
-        padding: 12px 15px;
-        border-radius: 12px;
-        font-family: 'Josefin Sans', sans-serif;
-    }
-    .discover-page .project-card header h2 {
-        font-size: 1.2rem;
-        margin-bottom: 5px;
-        font-family: 'Fjalla One', sans-serif;
-    }
-    .discover-page .project-card header p {
-        font-size: 0.85rem;
-        font-family: 'Josefin Sans', sans-serif;
-    }
-    .discover-page .project-card .actions {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        padding: 20px 15px 15px;
-        background: transparent;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        font-family: 'Josefin Sans', sans-serif;
-    }
-    .discover-page .project-card .buttons {
-        gap: 25px;
-        margin-bottom: 0;
-        display: flex;
-        justify-content: center;
-    }
-    .discover-page .project-card .buttons button {
-        width: 55px;
-        height: 55px;
-        font-size: 1.3rem;
-        font-family: 'Fjalla One', sans-serif;
-    }
-    .discover-page .project-card .bottom-bar {
-        padding: 10px 12px;
-        border-top: none;
-        gap: 5px;
-        background: linear-gradient(0deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.95) 100%);
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        font-family: 'Josefin Sans', sans-serif;
-    }
-    .discover-page .project-card .bottom-bar a,
-    .discover-page .project-card .bottom-bar button {
-        font-size: 0.75rem;
-        padding: 6px 8px;
-        flex: 1;
-        text-align: center;
-        font-family: 'Josefin Sans', sans-serif;
-    }
-    .discover-page .project-card .details {
-        max-height: 70vh;
-        padding: 25px 20px 35px 20px;
-        font-family: 'Josefin Sans', sans-serif;
-    }
-    .discover-page .project-card .details h3 {
-        font-size: 1rem;
-        margin-bottom: 8px;
-        font-family: 'Fjalla One', sans-serif;
-    }
-    .discover-page .project-card .details .description {
-        font-size: 0.9rem;
-        font-family: 'Josefin Sans', sans-serif;
-    }
-    .discover-page .project-card .details .tags {
-        font-size: 0.85rem;
-        font-family: 'Josefin Sans', sans-serif;
-    }
-}
-
-/* --- DISCOVER.PHP DESKTOP --- */
-@media (min-width: 768px) {
-    body.discover-page, html { overflow: auto; }
-    .discover-page { position: relative; }
-    .discover-page main {
-        position: relative;
-        background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
-        font-family: 'Josefin Sans', sans-serif;
-    }
-    .discover-page .project-card {
-        position: relative;
-        max-width: 450px;
-        height: 90vh;
-        border-radius: 20px;
-        box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
-        margin: auto;
-        font-family: 'Josefin Sans', sans-serif;
-    }
-    .discover-page .sidebar {
-        padding: 20px 40px;
-        font-family: 'Josefin Sans', sans-serif;
-    }
-}
-
-/* --- TOAST RESPONSIVE --- */
-@media (max-width: 767px) {
-    .contenedor-toast {
-        right: 10px;
-        bottom: 10px;
-        left: 10px;
-        width: calc(100% - 20px);
-        max-width: none;
-        font-family: 'Josefin Sans', sans-serif;
-    }
-    .toast .contenido {
-        padding: 12px;
-        gap: 10px;
-        grid-template-columns: 30px 1fr;
-        font-family: 'Josefin Sans', sans-serif;
-    }
-    .toast .titulo {
-        font-size: 0.95rem;
-        font-family: 'Fjalla One', sans-serif;
-    }
-    .toast .descripcion {
-        font-size: 0.8rem;
-        font-family: 'Josefin Sans', sans-serif;
-    }
-    .toast .btn-cerrar {
-        padding: 12px;
-        font-family: 'Josefin Sans', sans-serif;
-    }
 }
