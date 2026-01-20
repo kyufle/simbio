@@ -78,11 +78,6 @@ if (!$project) {
             <textarea name="description"><?= htmlspecialchars($project['description']) ?></textarea>
         </div>
 
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Guardar cambios</button>
-            <a href="profile.php" class="btn btn-secondary">Cancelar</a>
-        </div>
-
         <h3>Etiquetes</h3>
         <div class="user-tags-section">
             <div class="tags-list" id="tags-list">
@@ -102,6 +97,11 @@ if (!$project) {
                 </div>
                 <button type="button" id="add-tag-btn" class="btn btn-secondary">+ Afegir</button>
             </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            <a href="profile.php" class="btn btn-secondary">Cancelar</a>
         </div>
     </form>
 </body>
