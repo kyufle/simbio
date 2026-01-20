@@ -27,7 +27,7 @@ if (!$project_id) {
 // 🔒 Seguridad: solo proyectos del usuario
 $project = getProjectByIdAndUser($project_id, $user_id);
 
-$tags = getUserTagsByEmail($email);
+$tags = getProjectTags($project_id);
 $save_message = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title       = trim($_POST['title'] ?? '');
@@ -35,12 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $selected_tags = $_POST['tags'] ?? [];
 
     if (updateProject($project_id, $user_id, $title, $description)) {
-        // 1️⃣ ELIMINAR solo las que se han quitado con ❌
-        removeUserTags($email, $selected_tags);
-        // 2️⃣ AÑADIR las nuevas sin borrar las existentes
-        updateUserTags($email, $selected_tags);
-        $save_message = 'Perfil actualizado correctamente';
-        $tags    = getUserTagsByEmail($email);
+        // Actualizar los tags del proyecto
+        updateProjectTags($project_id, $selected_tags);
+        $save_message = 'Proyecto actualizado correctamente';
+        $tags = getProjectTags($project_id);
         // Recargar datos
         $project = getProjectByIdAndUser($project_id, $user_id);
     } else {
