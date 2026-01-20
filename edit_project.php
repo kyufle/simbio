@@ -124,6 +124,9 @@ if (!$project) {
             </form>
         </section>
     </main>
+    <script>
+        const allAvailableTags = <?php echo json_encode(getAllAvailableTags()); ?>;
+    </script>
     <script src="js/edit_project.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>
