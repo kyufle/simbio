@@ -67,6 +67,7 @@ if (!$project) {
             <nav class="edit-project-nav">
                 <a href="chat.php" class="nav-link">Converses</a>
                 <a href="discover.php" class="nav-link">Descobrir</a>
+                <a href="profile.php" class="nav-link">Perfil</a>
             </nav>
             <h1>Edit Project <?php echo htmlspecialchars($project['title']); ?></h1>
             <div class="session-info">
