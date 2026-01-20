@@ -119,7 +119,7 @@ if (!$project) {
 
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                    <a href="profile.php" class="btn btn-secondary">Cancelar</a>
+                    <button type="reset" class="btn btn-secondary">↺ Cancelar</button>
                 </div>
             </form>
         </section>
