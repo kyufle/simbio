@@ -1240,7 +1240,7 @@ body.login-page .back-btn:hover {
 } */
 .profile-page .user-projects .project {
     margin-bottom: 25px;
-    text-align: center;
+    text-align: start;
 }
 .profile-page .user-projects .project-title-link {
     font-family: 'Fjalla One', sans-serif;
