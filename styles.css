@@ -1194,7 +1194,6 @@ body.login-page .back-btn:hover {
     background-color: #E8E8E8;
     padding: 10px 16px;
     border-radius: 8px;
-    display: inline-block;
     margin-bottom: 15px;
     transition: all 0.3s;
 }
