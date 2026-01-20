@@ -75,11 +75,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Crear nuevo proyecto</title>
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
 </head>
-<body>
-<div class="container">
+<body class="new-project-page">
     <main>
-        <header>
-            <nav>
+        <header class="new-project-header">
+            <nav class="new-project-nav">
                 <a href="chat.php">Conversaciones</a>
                 <a href="discover.php">Descubrir</a>
                 <a href="profile.php">Perfil</a>
@@ -149,6 +148,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const allAvailableTags = <?php echo json_encode(getAllAvailableTags()); ?>;
     </script>
     <script src="js/profile.js?v=<?php echo time(); ?>"></script>
-</div>
 </body>
 </html>
