@@ -1439,3 +1439,46 @@ body.page-error a.button:hover {
     box-shadow: 0 8px 25px rgba(255, 170, 167, 0.6);
     transform: translateY(-2px) scale(1.03);
 }
+
+
+/* ===============================
+   ESTILOS EDIT_PROJECT.PHP
+   =============================== */
+.edit-project-page {
+    font-family: 'Josefin Sans', sans-serif;
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* -------- HEADER -------- */
+.edit-project-page .profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #A3D2CA, #B5EAEA);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 12px 12px;
+    margin-bottom: 20px;
+}
+
+/* -------- NAV -------- */
+.edit-project-nav {
+    margin-top: 15px;
+    display: flex;
+    gap: 25px;
+}
+
+.edit-project-nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.edit-project-nav a:hover {
+    color: #FFAAA7;
+}

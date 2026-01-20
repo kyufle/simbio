@@ -61,48 +61,67 @@ if (!$project) {
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
 </head>
 <body class="edit-project-page">
-    <h2>Editar proyecto</h2>
-    <?php if ($save_message): ?>
-        <div class="save-message success">
-            <?= htmlspecialchars($save_message) ?>
-        </div>
-    <?php endif; ?>
-    <form method="POST" class="profile-form">
-        <div class="form-group">
-            <label>Título</label>
-            <input type="text" name="title" value="<?= htmlspecialchars($project['title']) ?>" required>
-        </div>
-
-        <div class="form-group">
-            <label>Descripción</label>
-            <textarea name="description"><?= htmlspecialchars($project['description']) ?></textarea>
-        </div>
-
-        <h3>Etiquetes</h3>
-        <div class="user-tags-section">
-            <div class="tags-list" id="tags-list">
-                <?php foreach ($tags as $tag): ?>
-                    <div class="tag-item">
-                        <span><?php echo htmlspecialchars($tag); ?></span>
-                        <button type="button" class="remove-tag-btn" data-tag="<?php echo htmlspecialchars($tag); ?>">×</button>
-                        <input type="hidden" name="tags[]" value="<?php echo htmlspecialchars($tag); ?>">
+    <main>
+        <header class="edit-project-header">
+            <nav class="edit-project--nav">
+                <a href="chat.php" class="nav-link">Converses</a>
+                <a href="discover.php" class="nav-link">Descobrir</a>
+            </nav>
+            <h1>Edit Project <?php echo htmlspecialchars($project['title']); ?></h1>
+            <div class="session-info">
+                <?php if (isLogged()): ?>
+                <span><?= htmlspecialchars($_SESSION['user']['name']) ?></span>
+                    <a href="logout.php">Tancar sessió</a>
+                <?php else: ?>
+                    <a href="login.php">Iniciar sessió</a>
+                <?php endif; ?>
+            </div>
+        </header>
+        <section>
+            <form method="POST" class="profile-form">
+                <?php if ($save_message): ?>
+                    <div class="save-message success">
+                        <?= htmlspecialchars($save_message) ?>
                     </div>
-                <?php endforeach; ?>
-            </div>
-            
-            <div class="add-tag-container">
-                <div class="tag-search-wrapper">
-                    <input type="text" id="tag-search" class="tag-search-input" placeholder="Escriu una etiqueta...">
-                    <div class="tag-suggestions" id="tag-suggestions"></div>
+                <?php endif; ?>
+                <div class="form-group">
+                    <label>Título</label>
+                    <input type="text" name="title" value="<?= htmlspecialchars($project['title']) ?>" required>
                 </div>
-                <button type="button" id="add-tag-btn" class="btn btn-secondary">+ Afegir</button>
-            </div>
-        </div>
 
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Guardar cambios</button>
-            <a href="profile.php" class="btn btn-secondary">Cancelar</a>
-        </div>
-    </form>
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea name="description"><?= htmlspecialchars($project['description']) ?></textarea>
+                </div>
+
+                <h3>Etiquetes</h3>
+                <div class="user-tags-section">
+                    <div class="tags-list" id="tags-list">
+                        <?php foreach ($tags as $tag): ?>
+                            <div class="tag-item">
+                                <span><?php echo htmlspecialchars($tag); ?></span>
+                                <button type="button" class="remove-tag-btn" data-tag="<?php echo htmlspecialchars($tag); ?>">×</button>
+                                <input type="hidden" name="tags[]" value="<?php echo htmlspecialchars($tag); ?>">
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    
+                    <div class="add-tag-container">
+                        <div class="tag-search-wrapper">
+                            <input type="text" id="tag-search" class="tag-search-input" placeholder="Escriu una etiqueta...">
+                            <div class="tag-suggestions" id="tag-suggestions"></div>
+                        </div>
+                        <button type="button" id="add-tag-btn" class="btn btn-secondary">+ Afegir</button>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    <a href="profile.php" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </section>
+    </main>
+    <script src="js/edit_project.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>
