@@ -1204,41 +1204,67 @@ body.login-page .back-btn:hover {
     background-color: #D0D0D0;
 }
 
-.profile-page #user-projects {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+/* async function displayUserProjects(userEmail) {
+    const projectsContainer = document.getElementById('user-projects');
+    projectsContainer.innerHTML = '';
 
-.profile-page .project {
-    padding: 15px;
+    const projects = await fetchUserProjects(userEmail);
+
+    projects.forEach(project => {
+        const projectElement = document.createElement('div');
+        projectElement.classList.add('project');
+
+        // Enlace que contiene el título
+        const projectLink = document.createElement('a');
+        projectLink.href = `preview_video.php?video=${encodeURIComponent(project.video)}`;
+        projectLink.textContent = project.title; // ✅ solo aquí va el título
+        projectLink.classList.add('project-title-link');
+
+        // Imagen de preview
+        const projectImage = document.createElement('img');
+        const enlaceEdit = document.createElement('a');
+        enlaceEdit.href = `edit_project.php?id=${encodeURIComponent(project.id)}`;
+        projectImage.src = project.image;
+        projectImage.alt = project.title;
+        enlaceEdit.appendChild(projectImage);
+        projectImage.classList.add('project-preview');
+
+        // Agregar elementos al contenedor
+        projectElement.appendChild(projectLink);
+        projectElement.appendChild(document.createElement('br')); // Salto de línea entre título e imagen
+        projectElement.appendChild(enlaceEdit);
+        projectsContainer.appendChild(projectElement);
+    });
+
+    console.log(projects);
+} */
+.profile-page .user-projects .project {
+    margin-bottom: 25px;
+    text-align: center;
+}
+.profile-page .user-projects .project-title-link {
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 1.2rem;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.profile-page .user-projects .project-title-link:hover {
+    color: #FFAAA7;
+    text-decoration: underline;
+}
+.profile-page .user-projects .project-preview {
+    width: 250px;
+    height: auto;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
 }
-
-.profile-page.project h3 {
-    margin-bottom: 8px;
-    font-family: 'Fjalla One', sans-serif;
-    color: #333;
-}
-
-.profile-page .project a {
-    background: linear-gradient(40deg, #aab3e7, #9ea1d1);
-    color: #fff;
-    padding: 8px 14px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(181, 234, 234, 0.4);
-}
-
-.profile-page .project a:hover {
-    box-shadow: 0 6px 20px rgba(181, 234, 234, 0.5);
-}
-
-.profile-page .project img {
-    width: 40%;
-    height: auto;
-    border-radius: 10px;
-    margin-top: 10px;
+.profile-page .user-projects .project-preview:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 
