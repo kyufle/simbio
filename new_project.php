@@ -2,7 +2,6 @@
 require_once 'includes/auth.php';
 require_once 'includes/project_service.php';
 require_once 'includes/bd_profile.php';
-require_once 'includes/tag_service.php'; // función para obtener tags disponibles
 
 if (!isLogged()) {
     header('Location: login.php');
