@@ -1482,3 +1482,28 @@ body.page-error a.button:hover {
 .edit-project-nav a:hover {
     color: #FFAAA7;
 }
+
+/* -------- SESSION INFO -------- */
+.edit-project-page .edit-project-header .session-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.edit-project-page .edit-project-header .session-info a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    background-color: #E8E8E8;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.edit-project-page .edit-project-header .session-info a:hover {
+    color: #FF8A82;
+    background-color: #FFEAEA;
+}
