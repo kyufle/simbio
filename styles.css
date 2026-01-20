@@ -1223,7 +1223,6 @@ body.login-page .back-btn:hover {
 }
 
 .project a {
-    background: linear-gradient(40deg, #B5EAEA, #A3D2CA);
     color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(181, 234, 234, 0.4);
