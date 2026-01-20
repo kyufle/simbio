@@ -1,47 +1,46 @@
 <?php
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/logger.php';
 
-function sendRegistrationEmail($userEmail, $userName, $validationToken) {
+/**
+ * Envia el correu de validació de registre
+ */
+function sendRegistrationEmail(string $userEmail, string $userName, string $validationToken): bool
+{
+    $validateLink = "http://localhost/register.php?validate=" . urlencode($validationToken);
 
-    $mail = new PHPMailer(true);
+    $subject = "Valida el teu correu - Simbio";
 
-    try {
-        // CONFIG SMTP
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'TU_CORREO@gmail.com';
-        $mail->Password   = 'APP_PASSWORD_DE_GMAIL';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
+    // Boundary
+    $boundary = md5(uniqid(time()));
 
-        // REMITENTE Y DESTINO
-        $mail->setFrom('no-reply@simbio.cat', 'Simbio');
-        $mail->addAddress($userEmail, $userName);
+    // Headers
+    $headers  = "From: Simbio <no-reply@simbio.cat>\r\n";
+    $headers .= "Reply-To: no-reply@simbio.cat\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: multipart/alternative; boundary=\"{$boundary}\"\r\n";
 
-        // CONTENIDO
-        $link = "http://localhost/register.php?validate=" . urlencode($validationToken);
+    // Message
+    $message  = "--{$boundary}\r\n";
+    $message .= "Content-Type: text/plain; charset=UTF-8\r\n\r\n";
+    $message .= "Hola {$userName},\n\n";
+    $message .= "Per activar el teu compte visita:\n";
+    $message .= $validateLink . "\n\n";
+    $message .= "Aquest enllaç caduca en 48 hores.\n\n";
+    $message .= "--{$boundary}\r\n";
+    $message .= "Content-Type: text/html; charset=UTF-8\r\n\r\n";
+    $message .= "
+        <p>Hola <strong>{$userName}</strong>,</p>
+        <p>Per activar el teu compte fes clic aquí:</p>
+        <p><a href='{$validateLink}'>Activar compte</a></p>
+        <p><small>L'enllaç caduca en 48 hores.</small></p>
+    ";
+    $message .= "\r\n--{$boundary}--";
 
-        $mail->isHTML(true);
-        $mail->Subject = 'Valida el teu correu - Simbio';
-        $mail->Body = "
-            <p>Hola <strong>{$userName}</strong>,</p>
-            <p>Per activar el teu compte fes clic aquí:</p>
-            <p><a href='{$link}'>Activar compte</a></p>
-            <p>L'enllaç caduca en 48 hores.</p>
-        ";
-
-        $mail->send();
+    if (mail($userEmail, $subject, $message, $headers)) {
         log_info("Email de validació enviat a {$userEmail}");
         return true;
-
-    } catch (Exception $e) {
-        log_error("Error enviant correu: {$mail->ErrorInfo}");
+    } else {
+        log_error("Error enviant email de validació a {$userEmail}");
         return false;
     }
 }
