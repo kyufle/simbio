@@ -1,6 +1,6 @@
 <?php
-require_once 'auth.php';
-require_once 'project_service.php';
+require_once 'includes/auth.php';
+require_once 'includes/project_service.php';
 
 if (!isLogged()) {
     header('Location: login.php');
