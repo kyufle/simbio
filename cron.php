@@ -20,13 +20,21 @@ function isWebQuality($file) {
 
 function convertToWebQuality($src, $dest, &$ffmpegOutput = null) {
     // Limita el ancho a 1280px solo si es mayor, manteniendo la proporción
-        $cmd = "ffmpeg -i " . escapeshellarg($src) .
-            " -vf scale=iw:-2 -c:v libx264 -preset fast -crf 28 -c:a aac -b:a 96k " . escapeshellarg($dest) .
-            " -y 2>&1";
+        // Elimina el archivo de destino si ya existe para evitar bloqueos
+        if (file_exists($dest)) {
+            unlink($dest);
+        }
+        // Limita el tiempo de ejecución de ffmpeg a 120 segundos
+        $cmd = "timeout 120 ffmpeg -i " . escapeshellarg($src) .
+               " -vf scale=iw:-2 -c:v libx264 -preset fast -crf 28 -c:a aac -b:a 96k " . escapeshellarg($dest) .
+               " -y 2>&1";
     $output = [];
     $ret = 0;
     exec($cmd, $output, $ret);
     $ffmpegOutput = implode("\n", $output);
+        if ($ret == 124) {
+            $ffmpegOutput .= "\nERROR: ffmpeg superó el tiempo máximo de ejecución (timeout).";
+        }
     return $ret === 0;
 }
 
