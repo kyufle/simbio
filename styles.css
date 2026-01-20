@@ -1032,18 +1032,6 @@ body.login-page .back-btn:hover {
 }
 
 /* -------- TAGS -------- */
-.profile-page .user-tags {
-    margin-top: 10px;
-    text-align: center;
-}
-
-.profile-page .user-tags h2 {
-    font-family: 'Fjalla One', sans-serif;
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 8px;
-}
-
 .profile-page .tags-list,
 .tag-item {
     display: inline-flex;
