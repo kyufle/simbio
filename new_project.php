@@ -67,10 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
-
-// Obtener tags disponibles
-$all_tags = getAllAvailableTags();
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -119,6 +115,10 @@ $all_tags = getAllAvailableTags();
 
         <button type="submit">Crear Proyecto</button>
     </form>
+    <script>
+        const allAvailableTags = <?php echo json_encode(getAllAvailableTags()); ?>;
+    </script>
+    <script src="js/edit_project.js?v=<?php echo time(); ?>"></script>
 </div>
 </body>
 </html>
