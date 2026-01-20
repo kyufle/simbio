@@ -1227,7 +1227,6 @@ body.login-page .back-btn:hover {
     color: #fff;
     padding: 8px 14px;
     border-radius: 8px;
-    font-weight: 600;
     box-shadow: 0 4px 15px rgba(181, 234, 234, 0.4);
 }
 
@@ -1236,7 +1235,7 @@ body.login-page .back-btn:hover {
 }
 
 .project img {
-    width: 20%;
+    width: 40%;
     border-radius: 10px;
     margin-top: 10px;
 }
