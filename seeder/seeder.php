@@ -18,6 +18,9 @@ try {
     echo "Conectado a la base de datos...\n";
 
     $sql = <<<SQL
+    SET FOREIGN_KEY_CHECKS=0;
+    TRUNCATE TABLE user;
+    SET FOREIGN_KEY_CHECKS=1;
     INSERT INTO user (email, password_hash, name, surnames, city, phone_number,entity, type, image_path) VALUES
     ('alejandro.garcia@unican.es', '{$env['seeder_password']}', 'Alejandro', 'García Ruiz', 'Santander', '+34 942 201 000', 'CIFP César Manrique', 'Centre', 'imageproject1.jpeg'),
     ('marta.lopez@uab.cat', '{$env['seeder_password']}', 'Marta', 'López Sala', 'Barcelona', '+34 935 811 000', 'IES La Mercè', 'Centre', NULL),
