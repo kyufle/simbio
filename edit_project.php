@@ -25,9 +25,9 @@ if (!$project) {
 
 // Guardado del formulario
 $save_message = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title       = trim($_POST['title'] ?? '');
-    $description = trim($_POST['description'] ?? '');
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $title       = trim($_GET['title'] ?? '');
+    $description = trim($_GET['description'] ?? '');
 
     if (updateProject($project_id, $user_id, $title, $description)) {
         $save_message = 'Proyecto actualizado correctamente';
