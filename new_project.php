@@ -79,8 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main>
         <header class="new-project-header">
             <nav class="new-project-nav">
-                <a href="chat.php">Conversaciones</a>
-                <a href="discover.php">Descubrir</a>
+                <a href="chat.php">Converses</a>
+                <a href="discover.php">Descobrir</a>
                 <a href="profile.php">Perfil</a>
             </nav>
             <h1>Crear nuevo proyecto</h1>
@@ -106,22 +106,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endif; ?>
 
                 <div class="form-group">
-                    <label for="title">Título</label>
+                    <label for="title">Titol</label>
                     <input type="text" name="title" id="title" value="<?php echo htmlspecialchars($_POST['title'] ?? ''); ?>" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="description">Descripción</label>
+                    <label for="description">Descripció</label>
                     <textarea name="description" id="description" required><?php echo htmlspecialchars($_POST['description'] ?? ''); ?></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="image">Imagen</label>
+                    <label for="image">Imatge</label>
                     <input type="file" name="image" id="image" accept="image/*">
                 </div>
 
                 <div class="form-group">
-                    <label for="video">Vídeo</label>
+                    <label for="video">Video</label>
                     <input type="file" name="video" id="video" accept="video/*">
                 </div>
                 <div class="form-section-separator"></div>

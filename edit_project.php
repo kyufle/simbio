@@ -85,12 +85,12 @@ if (!$project) {
                     </div>
                 <?php endif; ?>
                 <div class="form-group">
-                    <label>Título</label>
+                    <label>Titol</label>
                     <input type="text" name="title" value="<?= htmlspecialchars($project['title']) ?>" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Descripción</label>
+                    <label>Descripció</label>
                     <textarea name="description"><?= htmlspecialchars($project['description']) ?></textarea>
                 </div>
 
@@ -116,7 +116,7 @@ if (!$project) {
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    <button type="submit" class="btn btn-primary">Guardar canvis</button>
                     <button type="reset" class="btn btn-secondary">↺ Cancelar</button>
                 </div>
             </form>
