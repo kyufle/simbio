@@ -19,8 +19,9 @@ function isWebQuality($file) {
 }
 
 function convertToWebQuality($src, $dest, &$ffmpegOutput = null) {
+    // Limita el ancho a 1280px solo si es mayor, manteniendo la proporción
     $cmd = "ffmpeg -i " . escapeshellarg($src) .
-           " -vf scale='min(1280,iw)':-2 -c:v libx264 -preset fast -crf 28 -c:a aac -b:a 96k " . escapeshellarg($dest) .
+           " -vf scale='if(gt(iw,1280),1280,iw)':-2 -c:v libx264 -preset fast -crf 28 -c:a aac -b:a 96k " . escapeshellarg($dest) .
            " -y 2>&1";
     $output = [];
     $ret = 0;
