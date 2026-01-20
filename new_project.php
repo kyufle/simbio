@@ -68,52 +68,83 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
-<meta charset="UTF-8">
-<title>Crear nuevo proyecto</title>
-<link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear nuevo proyecto</title>
+    <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
 </head>
 <body>
 <div class="container">
-    <h1>Crear nuevo proyecto</h1>
+    <main>
+        <header>
+            <nav>
+                <a href="chat.php">Conversaciones</a>
+                <a href="discover.php">Descubrir</a>
+                <a href="profile.php">Perfil</a>
+            </nav>
+            <h1>Crear nuevo proyecto</h1>
+            <div class="session-info">
+                <?php if (isLogged()): ?>
+                    <span><?php echo htmlspecialchars($_SESSION['user']['name']); ?></span>
+                    <a href="logout.php">Cerrar sesión</a>
+                <?php else: ?>
+                    <a href="login.php">Iniciar sesión</a>
+                <?php endif; ?>
+            </div>
+        </header>
+        <section>
+            <form method="POST" enctype="multipart/form-data">
+                <?php if ($save_message): ?>
+                    <div class="alert alert-success"><?php echo htmlspecialchars($save_message); ?></div>
+                <?php endif; ?>
 
-    <?php if ($save_message): ?>
-        <div class="alert alert-success"><?php echo htmlspecialchars($save_message); ?></div>
-    <?php endif; ?>
+                <?php if (!empty($errors)): ?>
+                    <div class="alert alert-danger">
+                        <?php foreach ($errors as $err) echo "<p>" . htmlspecialchars($err) . "</p>"; ?>
+                    </div>
+                <?php endif; ?>
+                <label for="title">Título</label>
+                <input type="text" name="title" id="title" value="<?php echo htmlspecialchars($_POST['title'] ?? ''); ?>" required>
 
-    <?php if (!empty($errors)): ?>
-        <div class="alert alert-danger">
-            <?php foreach ($errors as $err) echo "<p>" . htmlspecialchars($err) . "</p>"; ?>
-        </div>
-    <?php endif; ?>
+                <label for="description">Descripción</label>
+                <textarea name="description" id="description" required><?php echo htmlspecialchars($_POST['description'] ?? ''); ?></textarea>
 
-    <form method="POST" enctype="multipart/form-data">
-        <label for="title">Título</label>
-        <input type="text" name="title" id="title" value="<?php echo htmlspecialchars($_POST['title'] ?? ''); ?>" required>
+                <label for="image">Imagen</label>
+                <input type="file" name="image" id="image" accept="image/*">
 
-        <label for="description">Descripción</label>
-        <textarea name="description" id="description" required><?php echo htmlspecialchars($_POST['description'] ?? ''); ?></textarea>
+                <label for="video">Vídeo</label>
+                <input type="file" name="video" id="video" accept="video/*">
 
-        <label for="image">Imagen</label>
-        <input type="file" name="image" id="image" accept="image/*">
+                <h3>Etiquetes</h3>
+                <div class="user-tags-section">
+                    <div class="tags-list" id="tags-list">
+                        <?php foreach ($tags as $tag): ?>
+                            <div class="tag-item">
+                                <span><?php echo htmlspecialchars($tag); ?></span>
+                                <button type="button" class="remove-tag-btn" data-tag="<?php echo htmlspecialchars($tag); ?>">×</button>
+                                <input type="hidden" name="tags[]" value="<?php echo htmlspecialchars($tag); ?>">
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <br>
+                    <div class="add-tag-container">
+                        <div class="tag-search-wrapper">
+                            <input type="text" id="tag-search" class="tag-search-input" placeholder="Escriu una etiqueta...">
+                            <div class="tag-suggestions" id="tag-suggestions"></div>
+                        </div>
+                        <button type="button" id="add-tag-btn" class="btn btn-secondary">+ Afegir</button>
+                    </div>
+                </div>
 
-        <label for="video">Vídeo</label>
-        <input type="file" name="video" id="video" accept="video/*">
-
-        <label>Etiquetas</label>
-        <div class="tags-list">
-            <?php foreach ($all_tags as $tag): ?>
-                <label>
-                    <input type="checkbox" name="tags[]" value="<?php echo htmlspecialchars($tag); ?>" 
-                        <?php echo (in_array($tag, $_POST['tags'] ?? [])) ? 'checked' : ''; ?>>
-                    <?php echo htmlspecialchars($tag); ?>
-                </label>
-            <?php endforeach; ?>
-        </div>
-
-        <button type="submit">Crear Proyecto</button>
-    </form>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Crear Proyecto</button>
+                    <button type="reset" class="btn btn-secondary">↺ Cancelar</button>
+                </div>
+            </form>
+        </section>
+    </main>
     <script>
         const allAvailableTags = <?php echo json_encode(getAllAvailableTags()); ?>;
     </script>
