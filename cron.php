@@ -18,11 +18,14 @@ function isWebQuality($file) {
     return $sizeOK && $resOK;
 }
 
-function convertToWebQuality($src, $dest) {
+function convertToWebQuality($src, $dest, &$ffmpegOutput = null) {
     $cmd = "ffmpeg -i " . escapeshellarg($src) .
            " -vf scale='min(1280,iw)':-2 -c:v libx264 -preset fast -crf 28 -c:a aac -b:a 96k " . escapeshellarg($dest) .
            " -y 2>&1";
+    $output = [];
+    $ret = 0;
     exec($cmd, $output, $ret);
+    $ffmpegOutput = implode("\n", $output);
     return $ret === 0;
 }
 
@@ -40,7 +43,10 @@ if (empty($videoFiles)) {
         $tmpDest = $file . '.web.mp4';
         log_info("CRON: Convirtiendo $file ...");
         echo "Convirtiendo $file ... ";
-        if (convertToWebQuality($file, $tmpDest) && isWebQuality($tmpDest)) {
+        $ffmpegOutput = '';
+        $success = convertToWebQuality($file, $tmpDest, $ffmpegOutput);
+        $conversionOK = $success && file_exists($tmpDest) && isWebQuality($tmpDest);
+        if ($conversionOK) {
             unlink($file); // Esborra l'original
             rename($tmpDest, $file); // Deixa el nou amb el mateix nom
             log_info("CRON: OK: $file convertido correctamente.");
@@ -48,8 +54,9 @@ if (empty($videoFiles)) {
             $converted++;
         } else {
             if (file_exists($tmpDest)) unlink($tmpDest);
-            log_error("CRON: ERROR: Fallo al convertir $file.");
-            echo "ERROR\n";
+            log_error("CRON: ERROR: Fallo al convertir $file.\nFFmpeg output:\n$ffmpegOutput");
+            echo "ERROR: Fallo al convertir $file.\n";
+            echo "FFmpeg output:\n$ffmpegOutput\n";
         }
     }
     if ($converted === 0) {
