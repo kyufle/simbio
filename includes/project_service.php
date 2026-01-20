@@ -45,7 +45,9 @@ function updateProject(
     $stmt = $conn->prepare("
         UPDATE project
         SET title = :title,
-            description = :description
+            description = :description,
+            image_path = :image_path,
+            video_path = :video_path
         WHERE project_id = :id
           AND user_id = :user_id
     ");
@@ -53,6 +55,8 @@ function updateProject(
     return $stmt->execute([
         ':title'      => $title,
         ':description'=> $description,
+        ':image_path' => $image_path,
+        ':video_path' => $video_path,
         ':id' => $project_id,
         ':user_id'    => $user_id
     ]);

@@ -96,6 +96,16 @@ if (!$project) {
                     <textarea name="description"><?= htmlspecialchars($project['description']) ?></textarea>
                 </div>
 
+                <div class="form-group">
+                    <label>Imagen</label>
+                    <input type="text" name="image_path" value="<?= htmlspecialchars($project['image_path']) ?>">
+                </div>
+
+                <div class="form-group">
+                    <label>Video</label>
+                    <input type="text" name="video_path" value="<?= htmlspecialchars($project['video_path']) ?>">
+                </div>
+
                 <h3>Etiquetes</h3>
                 <div class="user-tags-section">
                     <div class="tags-list" id="tags-list">
