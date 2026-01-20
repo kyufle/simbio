@@ -25,7 +25,7 @@ try {
         $mappedProject['image'] = "/uploads/".$project['image_path'];
         $mappedProject['video'] = "/uploads/".$project['video_path'];
 
-        $statementTag = $conn->prepare("select name from project_tags join tag on project_tags.tag_id = tag.tag_id where project_id = :project_id;");
+        $statementTag = $conn->prepare("SELECT name FROM project_tags join tag on project_tags.tag_id = tag.tag_id where project_id = :project_id;");
         $statementTag->bindParam(':project_id', $mappedProject['id'] , PDO::PARAM_STR);
         $statementTag->execute();
         $tags = $statementTag->fetchAll(PDO::FETCH_COLUMN);
