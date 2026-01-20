@@ -108,8 +108,6 @@ if (!$project) {
                         <?php endforeach; ?>
                     </div>
                     <br>
-                    <br>
-                    
                     <div class="add-tag-container">
                         <div class="tag-search-wrapper">
                             <input type="text" id="tag-search" class="tag-search-input" placeholder="Escriu una etiqueta...">

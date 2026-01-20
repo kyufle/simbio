@@ -1507,3 +1507,9 @@ body.page-error a.button:hover {
     color: #FF8A82;
     background-color: #FFEAEA;
 }
+
+.save-message.success {
+    color: green;
+    text-align: center;
+    margin-bottom: 15px;
+}
