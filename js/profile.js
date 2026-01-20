@@ -37,15 +37,17 @@ async function displayUserProjects(userEmail) {
 
         // Imagen de preview
         const projectImage = document.createElement('img');
+        const enlaceEdit = document.createElement('a');
+        enlaceEdit.href = `edit_project.php?project_id=${encodeURIComponent(project.project_id)}`;
         projectImage.src = project.image;
         projectImage.alt = project.title;
+        enlaceEdit.appendChild(projectImage);
         projectImage.classList.add('project-preview');
 
         // Agregar elementos al contenedor
         projectElement.appendChild(projectLink);
         projectElement.appendChild(document.createElement('br')); // Salto de línea entre título e imagen
-        projectElement.appendChild(projectImage);
-
+        projectElement.appendChild(enlaceEdit);
         projectsContainer.appendChild(projectElement);
     });
 
