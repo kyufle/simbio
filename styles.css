@@ -1590,3 +1590,12 @@ body.page-error a.button:hover {
     text-align: center;
     margin-bottom: 15px;
 }
+
+.new-project-page .form-group input[type="file"] {
+    padding: 6px;
+    border: 2px solid #E0E0E0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: 'Josefin Sans', sans-serif;
+    transition: all 0.3s ease;
+}
