@@ -1453,7 +1453,7 @@ body.page-error a.button:hover {
 }
 
 /* -------- HEADER -------- */
-.edit-project-page .profile-header {
+.edit-project-page .edit-project-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
