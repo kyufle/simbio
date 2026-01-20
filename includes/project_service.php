@@ -16,13 +16,13 @@ function getProjectByIdAndUser(int $project_id, int $user_id): ?array {
             image_path,
             video_path
         FROM project
-        WHERE project_id = :project_id
+        WHERE project_id = :id
           AND user_id = :user_id
         LIMIT 1
     ");
 
     $stmt->execute([
-        ':project_id' => $project_id,
+        ':id' => $project_id,
         ':user_id'    => $user_id
     ]);
 
@@ -51,14 +51,14 @@ function updateProject(
         UPDATE project
         SET title = :title,
             description = :description
-        WHERE project_id = :project_id
+        WHERE project_id = :id
           AND user_id = :user_id
     ");
 
     return $stmt->execute([
         ':title'      => $title,
         ':description'=> $description,
-        ':project_id' => $project_id,
+        ':id' => $project_id,
         ':user_id'    => $user_id
     ]);
 }
