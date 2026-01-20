@@ -19,23 +19,46 @@ function isWebQuality($file) {
 }
 
 function convertToWebQuality($src, $dest, &$ffmpegOutput = null) {
-    // Limita el ancho a 1280px solo si es mayor, manteniendo la proporción
-        // Elimina el archivo de destino si ya existe para evitar bloqueos
-        if (file_exists($dest)) {
-            unlink($dest);
+    // Elimina el archivo de destino si ya existe para evitar bloqueos
+    if (file_exists($dest)) {
+        unlink($dest);
+    }
+    $cmd = "ffmpeg -i " . escapeshellarg($src) .
+           " -vf scale=iw:-2 -c:v libx264 -preset fast -crf 28 -c:a aac -b:a 96k " . escapeshellarg($dest) .
+           " -y";
+    $descriptorspec = [
+        1 => ['pipe', 'w'], // stdout
+        2 => ['pipe', 'w']  // stderr
+    ];
+    $process = proc_open($cmd, $descriptorspec, $pipes);
+    $output = '';
+    $timeout = 120; // segundos
+    $start = time();
+    if (is_resource($process)) {
+        stream_set_blocking($pipes[1], false);
+        stream_set_blocking($pipes[2], false);
+        while (true) {
+            $out = stream_get_contents($pipes[1]);
+            $err = stream_get_contents($pipes[2]);
+            if ($out !== false) $output .= $out;
+            if ($err !== false) $output .= $err;
+            $status = proc_get_status($process);
+            if (!$status['running']) break;
+            if ((time() - $start) > $timeout) {
+                proc_terminate($process, 9);
+                $output .= "\nERROR: ffmpeg superó el tiempo máximo de ejecución (timeout).";
+                break;
+            }
+            usleep(200000); // 0.2s
         }
-        // Limita el tiempo de ejecución de ffmpeg a 120 segundos
-        $cmd = "timeout 120 ffmpeg -i " . escapeshellarg($src) .
-               " -vf scale=iw:-2 -c:v libx264 -preset fast -crf 28 -c:a aac -b:a 96k " . escapeshellarg($dest) .
-               " -y 2>&1";
-    $output = [];
-    $ret = 0;
-    exec($cmd, $output, $ret);
-    $ffmpegOutput = implode("\n", $output);
-        if ($ret == 124) {
-            $ffmpegOutput .= "\nERROR: ffmpeg superó el tiempo máximo de ejecución (timeout).";
-        }
-    return $ret === 0;
+        fclose($pipes[1]);
+        fclose($pipes[2]);
+        proc_close($process);
+    } else {
+        $output .= "No se pudo iniciar ffmpeg.";
+    }
+    $ffmpegOutput = $output;
+    return (strpos($output, 'ERROR') === false && strpos($output, 'Conversion failed') === false);
 }
 
 $videoFiles = glob($uploadsDir . '/*.mp4');
