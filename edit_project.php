@@ -96,11 +96,6 @@ if (!$project) {
                     <textarea name="description"><?= htmlspecialchars($project['description']) ?></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label>Descripción</label>
-                    <textarea name="description"><?= htmlspecialchars($project['description']) ?></textarea>
-                </div>
-
                 <h3>Etiquetes</h3>
                 <div class="user-tags-section">
                     <div class="tags-list" id="tags-list">
