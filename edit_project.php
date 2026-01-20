@@ -27,6 +27,26 @@ if (!$project_id) {
 // 🔒 Seguridad: solo proyectos del usuario
 $project = getProjectByIdAndUser($project_id, $user_id);
 
+$tags = getUserTagsByEmail($email);
+$save_message = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $title       = trim($_POST['title'] ?? '');
+    $description = trim($_POST['description'] ?? '');
+
+    if (updateProject($project_id, $user_id, $title, $description)) {
+        // 1️⃣ ELIMINAR solo las que se han quitado con ❌
+        removeUserTags($email, $selected_tags);
+        // 2️⃣ AÑADIR las nuevas sin borrar las existentes
+        updateUserTags($email, $selected_tags);
+        $save_message = 'Perfil actualizado correctamente';
+        $tags    = getUserTagsByEmail($email);
+        // Recargar datos
+        $project = getProjectByIdAndUser($project_id, $user_id);
+    } else {
+        $save_message = 'Error al actualizar el proyecto';
+    }
+}
+
 if (!$project) {
     http_response_code(403);
     exit('No tienes permiso para editar este proyecto');
@@ -40,7 +60,7 @@ if (!$project) {
     <title>Perfil d'Usuari</title>
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
 </head>
-<body>
+<body class="edit-project-page">
     <h2>Editar proyecto</h2>
     <?php if ($save_message): ?>
         <div class="save-message success">
@@ -58,19 +78,30 @@ if (!$project) {
             <textarea name="description"><?= htmlspecialchars($project['description']) ?></textarea>
         </div>
 
-        <div class="form-group">
-            <label>Entidad</label>
-            <input type="text" name="entity" value="<?= htmlspecialchars($project['entity']) ?>">
-        </div>
-
-        <div class="form-group">
-            <label>Tipo</label>
-            <input type="text" name="type" value="<?= htmlspecialchars($project['type']) ?>">
-        </div>
-
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Guardar cambios</button>
             <a href="profile.php" class="btn btn-secondary">Cancelar</a>
+        </div>
+
+        <h3>Etiquetes</h3>
+        <div class="user-tags-section">
+            <div class="tags-list" id="tags-list">
+                <?php foreach ($tags as $tag): ?>
+                    <div class="tag-item">
+                        <span><?php echo htmlspecialchars($tag); ?></span>
+                        <button type="button" class="remove-tag-btn" data-tag="<?php echo htmlspecialchars($tag); ?>">×</button>
+                        <input type="hidden" name="tags[]" value="<?php echo htmlspecialchars($tag); ?>">
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <div class="add-tag-container">
+                <div class="tag-search-wrapper">
+                    <input type="text" id="tag-search" class="tag-search-input" placeholder="Escriu una etiqueta...">
+                    <div class="tag-suggestions" id="tag-suggestions"></div>
+                </div>
+                <button type="button" id="add-tag-btn" class="btn btn-secondary">+ Afegir</button>
+            </div>
         </div>
     </form>
 </body>
