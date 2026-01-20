@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </header>
         <section>
-            <form method="POST" enctype="multipart/form-data">
+            <form id="profile-form" method="POST" enctype="multipart/form-data" class="profile-form">
                 <?php if ($save_message): ?>
                     <div class="alert alert-success"><?php echo htmlspecialchars($save_message); ?></div>
                 <?php endif; ?>
@@ -104,18 +104,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php foreach ($errors as $err) echo "<p>" . htmlspecialchars($err) . "</p>"; ?>
                     </div>
                 <?php endif; ?>
-                <label for="title">Título</label>
-                <input type="text" name="title" id="title" value="<?php echo htmlspecialchars($_POST['title'] ?? ''); ?>" required>
 
-                <label for="description">Descripción</label>
-                <textarea name="description" id="description" required><?php echo htmlspecialchars($_POST['description'] ?? ''); ?></textarea>
+                <div class="form-group">
+                    <label for="title">Título</label>
+                    <input type="text" name="title" id="title" value="<?php echo htmlspecialchars($_POST['title'] ?? ''); ?>" required>
+                </div>
 
-                <label for="image">Imagen</label>
-                <input type="file" name="image" id="image" accept="image/*">
+                <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <textarea name="description" id="description" required><?php echo htmlspecialchars($_POST['description'] ?? ''); ?></textarea>
+                </div>
 
-                <label for="video">Vídeo</label>
-                <input type="file" name="video" id="video" accept="video/*">
+                <div class="form-group">
+                    <label for="image">Imagen</label>
+                    <input type="file" name="image" id="image" accept="image/*">
+                </div>
 
+                <div class="form-group">
+                    <label for="video">Vídeo</label>
+                    <input type="file" name="video" id="video" accept="video/*">
+                </div>
+                <div class="form-section-separator"></div>
                 <h3>Etiquetes</h3>
                 <div class="user-tags-section">
                     <div class="tags-list" id="tags-list">
