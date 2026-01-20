@@ -1207,7 +1207,7 @@ body.login-page .back-btn:hover {
 #user-projects {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    
 }
 
 .project {
