@@ -9,12 +9,7 @@ function getProjectByIdAndUser(int $project_id, int $user_id): ?array {
     global $conn;
 
     $stmt = $conn->prepare("
-        SELECT 
-            project_id,
-            title,
-            description,
-            image_path,
-            video_path
+        SELECT *
         FROM project
         WHERE project_id = :id
           AND user_id = :user_id
