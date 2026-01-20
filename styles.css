@@ -1223,17 +1223,7 @@ body.login-page .back-btn:hover {
 }
 
 .project a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
-    background: linear-gradient(135deg, #B5EAEA, #A3D2CA);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(181, 234, 234, 0.3);
-    transition: all 0.3s;
+    
 }
 
 .project a:hover {
