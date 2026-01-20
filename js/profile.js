@@ -38,7 +38,7 @@ async function displayUserProjects(userEmail) {
         // Imagen de preview
         const projectImage = document.createElement('img');
         const enlaceEdit = document.createElement('a');
-        enlaceEdit.href = `edit_project.php?project_id=${encodeURIComponent(project.project_id)}`;
+        enlaceEdit.href = `edit_project.php?id=${encodeURIComponent(project.id)}`;
         projectImage.src = project.image;
         projectImage.alt = project.title;
         enlaceEdit.appendChild(projectImage);
