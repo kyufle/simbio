@@ -37,12 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<h2>Editar proyecto</h2>
-<?php if ($save_message): ?>
-    <div class="save-message success">
-        <?= htmlspecialchars($save_message) ?>
-    </div>
-<?php endif; ?>
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -52,6 +46,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
 </head>
 <body>
+    <h2>Editar proyecto</h2>
+    <?php if ($save_message): ?>
+        <div class="save-message success">
+            <?= htmlspecialchars($save_message) ?>
+        </div>
+    <?php endif; ?>
     <form method="POST" class="profile-form">
         <div class="form-group">
             <label>Título</label>
