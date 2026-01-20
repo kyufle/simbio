@@ -1,6 +1,6 @@
 <?php
 /***********************
- * DEBUG (IMPORTANTE)
+ * DEBUG
  ***********************/
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -10,144 +10,125 @@ require_once 'includes/db.php';
 require_once 'includes/logger.php';
 require_once 'includes/mail.php';
 
-// Función para generar un token único de validación
-function generateValidationToken() {
+/**
+ * Genera token seguro
+ */
+function generateValidationToken(): string {
     return bin2hex(random_bytes(16));
 }
 
-// Si viene ?validate=XXXX
+/**
+ * VALIDAR CUENTA (?validate=XXXX)
+ */
 if (isset($_GET['validate'])) {
     $token = $_GET['validate'];
-    $stmt = $conn->prepare("SELECT user_id, email, name, validation_expires FROM user WHERE validation_token = :token AND is_active = 0");
-    $stmt->bindParam(':token', $token);
-    $stmt->execute();
+
+    $stmt = $conn->prepare("
+        SELECT user_id, validation_expires
+        FROM user
+        WHERE validation_token = :token
+          AND is_active = 0
+    ");
+    $stmt->execute([':token' => $token]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
     if (!$user) {
-        die("Token inválido o caducado.");
+        die("Token inválido o ja utilitzat.");
     }
-    // Comprobar caducidad (30 minutos)
-    $now = new DateTime();
-    $expires = new DateTime($user['validation_expires']);
-    if ($now > $expires) {
-        die("El enlace ha caducado.");
+
+    if (new DateTime() > new DateTime($user['validation_expires'])) {
+        die("L'enllaç ha caducat.");
     }
-    // Activar usuario
-    $stmt = $conn->prepare("UPDATE user SET is_active = 1, validation_token = NULL, validation_expires = NULL WHERE user_id = :id");
-    $stmt->bindParam(':id', $user['user_id']);
-    $stmt->execute();
-    echo "Compte validada correctament. Ara ja pots iniciar sessió.";
+
+    $stmt = $conn->prepare("
+        UPDATE user
+        SET is_active = 1,
+            validation_token = NULL,
+            validation_expires = NULL
+        WHERE user_id = :id
+    ");
+    $stmt->execute([':id' => $user['user_id']]);
+
+    echo "Compte validat correctament. Ja pots iniciar sessió.";
     exit;
 }
 
-// Manejar envío de formulario
+/**
+ * REGISTRO
+ */
 $errors = [];
 $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = trim($_POST['name'] ?? '');
-    $email = trim($_POST['email'] ?? '');
+
+    $name     = trim($_POST['name'] ?? '');
+    $email    = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
-    $surnames = trim($_POST['surnames'] ?? '');
-    $entity = trim($_POST['entity'] ?? '');
-    $city = trim($_POST['city'] ?? '');
-    $phone = trim($_POST['phone_number'] ?? '');
 
     if (!$name || !$email || !$password) {
-        $errors[] = "Nombre, email y contraseña son obligatorios.";
+        $errors[] = "Nom, correu i contrasenya són obligatoris.";
     }
 
-    // Comprobar si ya existe
-    $stmt = $conn->prepare("SELECT COUNT(*) FROM user WHERE email = :email");
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
+    $stmt = $conn->prepare("SELECT COUNT(*) FROM user WHERE email = ?");
+    $stmt->execute([$email]);
     if ($stmt->fetchColumn() > 0) {
-        $errors[] = "Ja existeix un usuari amb aquest correu.";
+        $errors[] = "Aquest correu ja està registrat.";
     }
 
-    if (empty($errors)) {
+    if (!$errors) {
         $token = generateValidationToken();
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $validationExpires = (new DateTime('+30 minutes'))->format('Y-m-d H:i:s');
+
         $stmt = $conn->prepare("
-            INSERT INTO user (name, surnames, email, password_hash, entity, city, phone_number, is_active, validation_token, validation_expires)
-            VALUES (:name, :surnames, :email, :password_hash, :entity, :city, :phone_number, 0, :token, :validation_expires)
+            INSERT INTO user (
+                name, email, password_hash,
+                is_active, validation_token, validation_expires
+            ) VALUES (
+                :name, :email, :pass,
+                0, :token, :expires
+            )
         ");
+
         $stmt->execute([
-            ':name' => $name,
-            ':surnames' => $surnames,
-            ':email' => $email,
-            ':password_hash' => $passwordHash,
-            ':entity' => $entity,
-            ':city' => $city,
-            ':phone_number' => $phone,
-            ':token' => $token,
-            ':validation_expires' => $validationExpires
+            ':name'    => $name,
+            ':email'   => $email,
+            ':pass'    => password_hash($password, PASSWORD_DEFAULT),
+            ':token'   => $token,
+            ':expires' => (new DateTime('+30 minutes'))->format('Y-m-d H:i:s')
         ]);
-        // Enviar correo
+
         if (sendRegistrationEmail($email, $name, $token)) {
-            $success = "Registre completat. Revisa el teu correu per validar el teu compte.";
+            $success = "Registre completat. Revisa el correu.";
         } else {
-            $errors[] = "Error enviant el correu de validació.";
+            $errors[] = "No s'ha pogut enviar el correu.";
         }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registre d'Usuari</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Registre</title>
 </head>
 <body>
-<main class="register-page">
-    <h1>Registre d'Usuari</h1>
 
-    <?php if ($errors): ?>
-        <div class="error">
-            <?php foreach ($errors as $e) echo "<p>" . htmlspecialchars($e) . "</p>"; ?>
-        </div>
-    <?php endif; ?>
+<h1>Registre</h1>
 
-    <?php if ($success): ?>
-        <div class="success"><?php echo htmlspecialchars($success); ?></div>
-    <?php endif; ?>
+<?php foreach ($errors as $e): ?>
+    <p style="color:red"><?= htmlspecialchars($e) ?></p>
+<?php endforeach; ?>
 
-    <form method="POST" class="register-form">
-        <div class="form-group">
-            <label for="name">Nom</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        <div class="form-group">
-            <label for="surnames">Cognoms</label>
-            <input type="text" id="surnames" name="surnames">
-        </div>
-        <div class="form-group">
-            <label for="entity">Entitat</label>
-            <input type="text" id="entity" name="entity">
-        </div>
-        <div class="form-group">
-            <label for="city">Població</label>
-            <input type="text" id="city" name="city">
-        </div>
-        <div class="form-group">
-            <label for="phone_number">Telèfon</label>
-            <input type="tel" id="phone_number" name="phone_number">
-        </div>
-        <div class="form-group">
-            <label for="email">Correu electrònic</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Contrasenya</label>
-            <input type="password" id="password" name="password" required>
-        </div>
+<?php if ($success): ?>
+    <p style="color:green"><?= htmlspecialchars($success) ?></p>
+<?php endif; ?>
 
-        <button type="submit">Registrar-se</button>
-    </form>
-</main>
+<form method="post">
+    <input name="name" placeholder="Nom" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
+    <input type="password" name="password" placeholder="Contrasenya" required><br>
+    <button type="submit">Registrar</button>
+</form>
+
 </body>
 </html>
