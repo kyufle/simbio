@@ -137,16 +137,42 @@ body.login-page .back-btn:hover {
     border-radius: 10px;
     margin-bottom: 1rem;
     font-size: 0.9rem;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 .notification.error {
-    background-color: #FFAAA7;
-    color: white;
+    background: linear-gradient(90deg, #FFF2F2 16px 100%);
+    color: #B41F1F;
+    border-left: 8px solid #FF1818;
+    border-top: 1px solid #FFAEB0;
+    border-bottom: 1px solid #FFAEB0;
+    border-right: 1px solid #FFD3D2;
+    box-shadow: 0 4px 16px 0 rgba(255, 92, 92, 0.15), 0 0 0 2px #FFB8B6 inset;
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 4px #ffeaea;
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 .notification.warning {
-    background-color: #FFF3B0;
-    color: #333333;
+    background: linear-gradient(90deg, #FFFCE6 16px 100%);
+    color: #9E7700;
+    border-left: 8px solid #FFD600;
+    border-top: 1px solid #FFE082;
+    border-bottom: 1px solid #FFE082;
+    border-right: 1px solid #FFF9D6;
+    box-shadow: 0 4px 14px 0 rgba(255, 215, 0, 0.10), 0 0 0 2px #FFF7B0 inset;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 /* ========================================
@@ -419,6 +445,17 @@ body.login-page .back-btn:hover {
     font-size: 0.9rem;
     line-height: 1.5;
     font-weight: 500;
+}
+
+.discover-page .project-card .details .tags .tag {
+    background-color: #FFF3B0;
+    display: inline-block;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin: 5px 8px 5px 0;
+    font-size: 0.85rem;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 .discover-page .close-details {
@@ -723,14 +760,10 @@ body.login-page .back-btn:hover {
    VARIABLES CSS PARA TOASTS
    ======================================== */
 :root {
-    --exito: #B5EAEA;
-    /* Verde menta - éxito */
-    --error: #FFAAA7;
-    /* Coral suave - error */
-    --info: #A3D2CA;
-    /* Azul cielo - info */
-    --warning: #FFF3B0;
-    /* Amarillo pálido - advertencia */
+    --exito: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);    /* Verde menta intenso - éxito */
+    --error: linear-gradient(135deg, #ff5858 0%, #f98a77 100%);    /* Rojo coral brillante - error */
+    --info: linear-gradient(135deg, #2d8cf0 0%, #6fd6ff 100%);     /* Azul vibrante - info */
+    --warning: linear-gradient(135deg, #ffe259 0%, #ffa751 100%);  /* Amarillo/naranja fuerte - advertencia */
 }
 
 
@@ -1349,4 +1382,60 @@ input[disabled] {
     .form-actions .btn {
         width: 100%;
     }
+}
+
+/* ========== PÁGINAS ERROR ========== */
+body.page-error {
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body.page-error .contenedor {
+    background-color: #FFF2F2;
+    box-shadow: 0 6px 32px 0 rgba(0, 0, 0, 0.10), 0 1.5px 5px 0 rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body.page-error h1 {
+    font-size: 50px;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+body.page-error p {
+    text-align: center;
+    font-size: 20px;
+    padding-top: 10%;
+}
+
+body.page-error a.button {
+    display: inline-block;
+    padding: 0.7em 2em;
+    background: linear-gradient(135deg, #FFAAA7, #FFAAA7);
+    color: #fff;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(181, 234, 234, 0.2);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+    margin-top: 2rem;
+}
+body.page-error a.button:hover {
+    box-shadow: 0 8px 25px rgba(255, 170, 167, 0.6);
+    transform: translateY(-2px) scale(1.03);
 }
