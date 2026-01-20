@@ -107,6 +107,8 @@ if (!$project) {
                             </div>
                         <?php endforeach; ?>
                     </div>
+                    <br>
+                    <br>
                     
                     <div class="add-tag-container">
                         <div class="tag-search-wrapper">
