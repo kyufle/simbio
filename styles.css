@@ -1175,6 +1175,40 @@ body.login-page .back-btn:hover {
     box-shadow: 0 6px 20px rgba(255, 170, 167, 0.5);
 }
 
+/* -------- PROJECTS -------- */
+.profile-page .user-projects {
+    margin: 20px;
+}
+
+.profile-page .user-projects h2 {
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.profile-page .user-projects a {
+    text-decoration: none;
+    color: #333;
+    background-color: #E8E8E8;
+    padding: 10px 16px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+}
+
+.profile-page .user-projects a:hover {
+    background-color: #D0D0D0;
+}
+
+#user-projects {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 /* Contenedor del proyecto */
 .project {
     padding: 15px;
