@@ -32,6 +32,7 @@ $save_message = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title       = trim($_POST['title'] ?? '');
     $description = trim($_POST['description'] ?? '');
+    $selected_tags = $_POST['tags'] ?? [];
 
     if (updateProject($project_id, $user_id, $title, $description)) {
         // 1️⃣ ELIMINAR solo las que se han quitado con ❌
@@ -63,7 +64,7 @@ if (!$project) {
 <body class="edit-project-page">
     <main>
         <header class="edit-project-header">
-            <nav class="edit-project--nav">
+            <nav class="edit-project-nav">
                 <a href="chat.php" class="nav-link">Converses</a>
                 <a href="discover.php" class="nav-link">Descobrir</a>
             </nav>
