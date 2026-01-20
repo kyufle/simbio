@@ -9,7 +9,7 @@ if (!isLogged()) {
 
 $user_id = $_SESSION['user']['user_id'];
 
-$project_id = filter_input(INPUT_GET, 'project_id', FILTER_VALIDATE_INT);
+$project_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 if (!$project_id) {
     http_response_code(400);
     die('Proyecto inválido');
