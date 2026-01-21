@@ -122,8 +122,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($profile['email']); ?>" disabled readonly>
                 </div>
 
-                <div class="form-section-separator"></div>
-
                 <h3>Etiquetes</h3>
                 <div class="user-tags-section">
                     <div class="tags-list" id="tags-list">
