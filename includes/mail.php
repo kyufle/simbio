@@ -47,15 +47,13 @@ function enviarCorreoValidacion($email, $token, $nombre = "") {
 		$mail->Body    = $mensaje;
 		$mail->AltBody = 'Hola ' . $nombre . ", para activar tu cuenta visita: $enlace";
 
-		$mail->SMTPDebug = 2; // Muestra información detallada de la conexión SMTP
-		$mail->Debugoutput = function($str, $level) { echo "><br>" . htmlspecialchars($str) . "<br>\n"; };
-		$mail->send();
-		return true;
-	} catch (Exception $e) {
-		// Mostrar el error en pantalla para depuración
-		die('<div style="color:red;font-family:monospace;font-size:1.2em;">Mailer Error: ' . htmlspecialchars($mail->ErrorInfo) . '</div>');
-		// También lo dejamos en el log
-		error_log('Mailer Error: ' . $mail->ErrorInfo);
-		return false;
+		$mail->SMTPDebug = 0; // No mostrar información de depuración en producción
+		// $mail->Debugoutput = function($str, $level) { echo "><br>" . htmlspecialchars($str) . "<br>\n"; };
+		   $mail->send();
+		   return true;
+	   } catch (Exception $e) {
+		   // Solo registrar el error en el log, no mostrarlo al usuario
+		   error_log('Mailer Error: ' . $mail->ErrorInfo);
+		   return false;
 	}
 }

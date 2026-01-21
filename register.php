@@ -93,41 +93,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
             ?>
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" id="nombre" required>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellidos">Apellidos</label>
+                    <input type="text" name="apellidos" id="apellidos" required>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="apellidos">Apellidos</label>
-                <input type="text" name="apellidos" id="apellidos" required>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" name="password" id="password" required>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" required>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="ciudad">Ciudad</label>
+                    <input type="text" name="ciudad" id="ciudad" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" name="telefono" id="telefono" required>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="password">Contraseña</label>
-                <input type="password" name="password" id="password" required>
-            </div>
-            <div class="form-group">
-                <label for="ciudad">Ciudad</label>
-                <input type="text" name="ciudad" id="ciudad" required>
-            </div>
-            <div class="form-group">
-                <label for="telefono">Teléfono</label>
-                <input type="text" name="telefono" id="telefono" required>
-            </div>
-            <div class="form-group">
-                <label for="entidad">Entidad</label>
-                <input type="text" name="entidad" id="entidad" required>
-            </div>
-            <div class="form-group">
-                <label for="tipo">Tipo</label>
-                <select name="tipo" id="tipo" required>
-                    <option value="">Selecciona...</option>
-                    <option value="Empresa">Empresa</option>
-                    <option value="Centre">Centre</option>
-                </select>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="entidad">Entidad</label>
+                    <input type="text" name="entidad" id="entidad" required>
+                </div>
+                <div class="form-group">
+                    <label for="tipo">Tipo</label>
+                    <select name="tipo" id="tipo" required>
+                        <option value="">Selecciona...</option>
+                        <option value="Empresa">Empresa</option>
+                        <option value="Centre">Centre</option>
+                    </select>
+                </div>
             </div>
             <!-- Si quieres añadir imagen, descomenta esto
             <div class="form-group">
