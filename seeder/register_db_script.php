@@ -4,8 +4,8 @@
 
 $host = 'localhost';
 $db   = 'simbio';
-$user = 'TU_USUARIO';  // <- Cambia esto
-$pass = 'TU_PASSWORD';  // <- Cambia esto
+$user = 'admin';  // <- Cambia esto
+$pass = 'Ko8^Xg1Xr';  // <- Cambia esto
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
