@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$to = 'destinatario@ejemplo.com'; // Cambia esto por tu email real de prueba
+$to = 'davidperera2006@gmail.com'; // Correo de prueba
 $subject = 'Prueba PHPMailer Gmail';
 $body = 'Este es un correo de prueba enviado desde PHPMailer con Gmail SMTP.';
 
