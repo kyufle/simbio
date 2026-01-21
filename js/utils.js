@@ -12,7 +12,7 @@ const agregarToast = function(tipo, titulo, descripcion) {
     const nuevoToast = document.createElement('div');
     nuevoToast.classList.add('toast', tipo);
 
-    const toastId = Date.now() + Math.floor(Math.random() * 100);
+    const toastId = 'toast-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
     nuevoToast.id = toastId;
 
     const iconos = {
@@ -39,7 +39,7 @@ const agregarToast = function(tipo, titulo, descripcion) {
                 <p class="descripcion">${descripcion}</p>
             </div>
         </div>
-        <button class="btn-cerrar">
+        <button class="btn-cerrar" aria-label="Cerrar notificación">
             <div class="icono">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                     <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
@@ -51,9 +51,19 @@ const agregarToast = function(tipo, titulo, descripcion) {
     // Agregar al contenedor
     contenedorToast.appendChild(nuevoToast);
 
-    // Listener para eliminar el toast cuando termine la animación de cierre
+    // Scroll suave hacia el nuevo toast
+    setTimeout(() => {
+        if (contenedorToast.scrollHeight > contenedorToast.clientHeight) {
+            contenedorToast.scrollTo({
+                top: contenedorToast.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+    }, 100);
+
+    // Listener para eliminar el toast cuando termine la animación
     nuevoToast.addEventListener('animationend', function(e) {
-        if (e.animationName === 'cierre') {
+        if (e.animationName === 'slideOut') {
             nuevoToast.remove();
         }
     });
@@ -70,26 +80,26 @@ if (contenedorToast) {
 }
 
 // FUNCIONES GLOBALES - Usar en toda la app
+
 /* Muestra un toast de éxito */
 window.mostrarExito = function(titulo, descripcion) {
     agregarToast('exito', titulo, descripcion);
 };
 
-/* Muestra un toast de error*/
+/* Muestra un toast de error */
 window.mostrarError = function(titulo, descripcion) {
     agregarToast('error', titulo, descripcion);
 };
 
-/* Muestra un toast de información*/
+/* Muestra un toast de información */
 window.mostrarInfo = function(titulo, descripcion) {
     agregarToast('info', titulo, descripcion);
 };
 
-/* Muestra un toast de advertencia*/
+/* Muestra un toast de advertencia */
 window.mostrarAdvertencia = function(titulo, descripcion) {
     agregarToast('warning', titulo, descripcion);
 };
-
 
 // MANEJADOR GLOBAL DE ERRORES 
 

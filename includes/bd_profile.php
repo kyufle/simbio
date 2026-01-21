@@ -30,6 +30,7 @@ function getUserProfileByEmail($email) {
 
         // Mapear datos del usuario
         $profile = array(
+            'user_id'      => $user['user_id'],
             'name'         => $user['name'],
             'surnames'     => $user['surnames'],
             'email'        => $user['email'],
@@ -54,9 +55,8 @@ function getUserTagsByEmail(string $email): array {
     $stmt = $conn->prepare("
         SELECT DISTINCT t.name
         FROM user u
-        INNER JOIN project p       ON p.user_id = u.user_id
-        INNER JOIN project_tags pt ON pt.project_id = p.project_id
-        INNER JOIN tag t           ON t.tag_id = pt.tag_id
+        INNER JOIN user_tags ut ON ut.user_id = u.user_id
+        INNER JOIN tag t ON t.tag_id = ut.tag_id
         WHERE u.email = ?
     ");
     $stmt->execute([$email]);
@@ -137,7 +137,7 @@ function updateUserTags($email, $new_tags): bool {
         // Preparar consultas UNA sola vez (mejor rendimiento)
         $stmtTag = $conn->prepare("SELECT tag_id FROM tag WHERE name = ?");
         $stmtInsert = $conn->prepare("
-            INSERT INTO project_tags (project_id, tag_id)
+            INSERT INTO user_tags (user_id, tag_id)
             VALUES (?, ?)
             ON DUPLICATE KEY UPDATE tag_id = tag_id
         ");
@@ -184,15 +184,15 @@ function removeUserTags($email, $tags): bool {
             $params = array_merge($params, $tags);
 
             $sql = "
-                DELETE pt FROM project_tags pt
-                JOIN tag t ON t.tag_id = pt.tag_id
-                WHERE pt.project_id IN ($placeholdersProjects)
+                DELETE ut FROM user_tags ut
+                JOIN tag t ON t.tag_id = ut.tag_id
+                WHERE ut.user_id IN ($placeholdersProjects)
                 AND t.name NOT IN ($placeholdersTags)
             ";
         } else {
             $sql = "
-                DELETE FROM project_tags
-                WHERE project_id IN ($placeholdersProjects)
+                DELETE FROM user_tags
+                WHERE user_id IN ($placeholdersProjects)
             ";
         }
 
