@@ -122,8 +122,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($profile['email']); ?>" disabled readonly>
                 </div>
 
-                <div class="form-section-separator"></div>
-
                 <h3>Etiquetes</h3>
                 <div class="user-tags-section">
                     <div class="tags-list" id="tags-list">
@@ -135,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    
+                    <br>
                     <div class="add-tag-container">
                         <div class="tag-search-wrapper">
                             <input type="text" id="tag-search" class="tag-search-input" placeholder="Escriu una etiqueta...">
@@ -161,6 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     const allAvailableTags = <?php echo json_encode(getAllAvailableTags()); ?>;
                 </script>
                 <script src="js/profile.js?v=<?php echo time(); ?>"></script>
+                <script src="js/etiquetas.js?v=<?php echo time(); ?>"></script>
             </div>
         </section>
     </main>

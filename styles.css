@@ -1188,58 +1188,53 @@ body.login-page .back-btn:hover {
     text-align: center;
 }
 
-.profile-page .user-projects a {
+.profile-page .user-projects a.btn.btn-primary {
     text-decoration: none;
     color: #333;
-    font-weight: 600;
     background-color: #E8E8E8;
     padding: 10px 16px;
     border-radius: 8px;
     display: inline-block;
     margin-bottom: 15px;
     transition: all 0.3s;
+    text-decoration: none;
 }
 
-.profile-page .user-projects a:hover {
+.profile-page .user-projects a.btn.btn-primary:hover {
     background-color: #D0D0D0;
 }
-
-#user-projects {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.profile-page .user-projects h2 {
+    text-align: start;
 }
-
-.project {
-    padding: 15px;
+.profile-page .user-projects .project {
+    margin-bottom: 25px;
+    text-align: start;
+}
+.profile-page .user-projects .project-title-link {
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 1.2rem;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.profile-page .user-projects .project-title-link:hover {
+    color: #FFAAA7;
+    text-decoration: underline;
+}
+.profile-page .user-projects .project-preview {
+    width: 250px;
+    height: auto;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+.profile-page .user-projects .project-preview:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
-.project h3 {
-    margin-bottom: 8px;
-    font-family: 'Fjalla One', sans-serif;
-    color: #333;
-}
-
-.project a {
-    background: linear-gradient(135deg, #B5EAEA, #A3D2CA);
-    color: #fff;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-weight: 600;
-    box-shadow: 0 4px 15px rgba(181, 234, 234, 0.4);
-}
-
-.project a:hover {
-    box-shadow: 0 6px 20px rgba(181, 234, 234, 0.5);
-}
-
-.project img {
-    width: 20%;
-    border-radius: 10px;
-    margin-top: 10px;
-}
 
 /* -------- NAV -------- */
 .profile-nav {
@@ -1438,4 +1433,164 @@ body.page-error a.button {
 body.page-error a.button:hover {
     box-shadow: 0 8px 25px rgba(255, 170, 167, 0.6);
     transform: translateY(-2px) scale(1.03);
+}
+
+
+/* ===============================
+   ESTILOS EDIT_PROJECT.PHP
+   =============================== */
+.edit-project-page {
+    font-family: 'Josefin Sans', sans-serif;
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* -------- HEADER -------- */
+.edit-project-page .edit-project-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #A3D2CA, #B5EAEA);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 12px 12px;
+    margin-bottom: 20px;
+}
+
+/* -------- NAV -------- */
+.edit-project-nav {
+    margin-top: 15px;
+    display: flex;
+    gap: 25px;
+}
+
+.edit-project-nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.edit-project-nav a:hover {
+    color: #FFAAA7;
+}
+
+/* -------- SESSION INFO -------- */
+.edit-project-page .edit-project-header .session-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.edit-project-page .edit-project-header .session-info a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    background-color: #E8E8E8;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.edit-project-page .edit-project-header .session-info a:hover {
+    color: #FF8A82;
+    background-color: #FFEAEA;
+}
+
+.save-message.success {
+    color: green;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* ===============================
+   ESTILOS NEW_PROJECT.PHP
+   =============================== */
+.new-project-page {
+    font-family: 'Josefin Sans', sans-serif;
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+/* -------- HEADER -------- */
+.new-project-page .new-project-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #A3D2CA, #B5EAEA);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 12px 12px;
+    margin-bottom: 20px;
+}
+
+/* -------- NAV -------- */
+.new-project-nav {
+    margin-top: 15px;
+    display: flex;
+    gap: 25px;
+}
+
+.new-project-nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.new-project-nav a:hover {
+    color: #FFAAA7;
+}
+
+/* -------- SESSION INFO -------- */
+.new-project-page .new-project-header .session-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.new-project-page .new-project-header .session-info a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    background-color: #E8E8E8;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.new-project-page .new-project-header .session-info a:hover {
+    color: #FF8A82;
+    background-color: #FFEAEA;
+}
+
+.alert.alert-success {
+    color: green;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.alert.alert-error {
+    color: red;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.new-project-page .form-group input[type="file"] {
+    padding: 6px;
+    border: 2px solid #E0E0E0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: 'Josefin Sans', sans-serif;
+    transition: all 0.3s ease;
 }
