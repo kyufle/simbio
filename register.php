@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mensaje = '<div class="error">El email ya está registrado.</div>';
         } else {
             // Crear usuario inactivo
-            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+            $password_hash = hash('sha256', $password);
             $token = hash('sha256', $email . 'simbio1');
             $expires = date('Y-m-d H:i:s', time() + 1800); // 30 minutos
             $stmt = $conn->prepare("INSERT INTO user (email, password_hash, name, surnames, city, phone_number, entity, type, image_path, is_active, validation_token, validation_expires) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL, 0, ?, ?)");
