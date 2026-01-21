@@ -7,7 +7,7 @@ function login($email, $password)
 {
     global $conn;
     try {
-        $stmt = $conn->prepare("SELECT user_id, email, name, password_hash FROM user WHERE email = :email LIMIT 1");
+        $stmt = $conn->prepare("SELECT user_id, email, name, password_hash, is_active FROM user WHERE email = :email LIMIT 1");
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -18,6 +18,15 @@ function login($email, $password)
                 'success' => false,
                 'error' => 'Correu electrònic no registrat',
                 'errors' => ['email' => 'No existeix cap compte amb aquest correu electrònic']
+            ];
+        }
+
+        if (!$user['is_active']) {
+            log_warning("Intento de login con cuenta inactiva: {$email}");
+            return [
+                'success' => false,
+                'error' => 'Compte pendent de validació',
+                'errors' => ['general' => 'La teva compte està pendent de validació. Revisa el teu correu per activar-la.']
             ];
         }
 

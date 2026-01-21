@@ -1,0 +1,59 @@
+const PROJECTS_API_URL = 'includes/user_projects.php';
+
+// Función para obtener los proyectos del usuario por email
+async function fetchUserProjects(userEmail) {
+    try {
+        const response = await fetch(
+            `${PROJECTS_API_URL}?email=${encodeURIComponent(userEmail)}`
+        );
+
+        if (!response.ok) {
+            throw new Error('Error en la respuesta del servidor');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching user projects:', error);
+        return [];
+    }
+}
+
+// Función para mostrar los proyectos en el perfil del usuario
+async function displayUserProjects(userEmail) {
+    const projectsContainer = document.getElementById('user-projects');
+    projectsContainer.innerHTML = '';
+
+    const projects = await fetchUserProjects(userEmail);
+
+    projects.forEach(project => {
+        const projectElement = document.createElement('div');
+        projectElement.classList.add('project');
+
+        // Enlace que contiene el título
+        const projectLink = document.createElement('a');
+        projectLink.href = `preview_video.php?video=${encodeURIComponent(project.video)}`;
+        projectLink.textContent = project.title; // ✅ solo aquí va el título
+        projectLink.classList.add('project-title-link');
+
+        // Imagen de preview
+        const projectImage = document.createElement('img');
+        const enlaceEdit = document.createElement('a');
+        enlaceEdit.href = `edit_project.php?id=${encodeURIComponent(project.id)}`;
+        projectImage.src = project.image;
+        projectImage.alt = project.title;
+        enlaceEdit.appendChild(projectImage);
+        projectImage.classList.add('project-preview');
+
+        // Agregar elementos al contenedor
+        projectElement.appendChild(projectLink);
+        projectElement.appendChild(document.createElement('br')); // Salto de línea entre título e imagen
+        projectElement.appendChild(enlaceEdit);
+        projectsContainer.appendChild(projectElement);
+    });
+
+    console.log(projects);
+}
+
+
+// Suponiendo que ya tienes el email del usuario autenticado
+displayUserProjects(userEmail);
