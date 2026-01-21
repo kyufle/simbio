@@ -686,7 +686,6 @@ body.login-page .back-btn:hover {
 .toast.info .descripcion  { color: #3d6a60; font-family: 'Josefin Sans', sans-serif;}
 .toast.warning .titulo    { color: #7a6c1f; font-family: 'Fjalla One', sans-serif;}
 .toast.warning .descripcion { color: #8a7c2f; font-family: 'Josefin Sans', sans-serif;}
-
 /* ========== PÁGINAS ERROR ========== */
 body.page-error {
     background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
@@ -714,12 +713,25 @@ body.page-error .contenedor {
 body.page-error h1 {
     font-size: 50px;
     font-family: 'Fjalla One', sans-serif;
+    margin-top: 0;
+    margin-bottom: 1.2em;
+    text-align: center;
+    color: #8b3432;
 }
 
 body.page-error p {
     text-align: center;
     font-size: 20px;
-    padding-top: 10%;
+    margin: 1.5em 0 1em 0;
+    color: #3d6a60;
+    padding-top: 0;
+}
+
+body.page-error p.spacer {
+    margin: 2em 0;
+    height: 1.2em;
+    background: transparent;
+    border: none;
 }
 
 body.page-error a.button {
@@ -741,6 +753,68 @@ body.page-error a.button {
 body.page-error a.button:hover {
     box-shadow: 0 8px 25px rgba(255, 170, 167, 0.6);
     transform: translateY(-2px) scale(1.03);
+    background: linear-gradient(135deg, #FFAAA7 70%, #FFC3BD 100%);
+}
+
+body.page-error h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Fjalla One', sans-serif;
+    color: #8b3432;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    letter-spacing: 0.02em;
+}
+
+body.page-error address {
+    text-align: center;
+    font-style: normal;
+    color: #555;
+    margin-top: 2em;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body.page-error address a {
+    color: #8b3432;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+body.page-error address a:hover {
+    text-decoration: underline;
+}
+
+body.page-error address span {
+    color: #9e9e9e;
+    font-size: 0.94em;
+}
+
+@media (max-width: 540px) {
+    body.page-error .contenedor {
+        width: 100%;
+        max-width: 98vw;
+        padding: 1.3rem 0.5rem;
+    }
+    body.page-error h1 {
+        font-size: 2.2rem;
+    }
+    body.page-error h2 {
+        font-size: 1.3rem;
+    }
+    body.page-error p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 350px) {
+    body.page-error h1 {
+        font-size: 1.5rem;
+    }
+    body.page-error .contenedor {
+        padding: 0.7rem 0.1rem;
+    }
 }
 
 
