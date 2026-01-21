@@ -554,8 +554,7 @@ body.login-page .back-btn:hover {
    ======================================== */
 @media (max-width: 767px) {
 
-    body.discover-page,
-    html {
+    body.discover-page {
         height: 100vh;
         width: 100vw;
         overflow: hidden;
@@ -693,9 +692,7 @@ body.login-page .back-btn:hover {
    ======================================== */
 @media (min-width: 768px) {
 
-    /* Desktop puede tener scroll */
-    body.discover-page,
-    html {
+    body.discover-page {
         overflow: auto;
     }
 
@@ -1460,6 +1457,7 @@ body.register-page{
     justify-content: center;
     align-items: center;
     padding: 1rem;
+    overflow-y: auto; /* por si el contenido supera el viewport */
 }
 
 /* Tarjeta centrada (equivalente a login main) */
@@ -1591,10 +1589,18 @@ body.register-page .register-form button[type="submit"]:hover{
 
 /* Responsive */
 @media (max-width: 767px){
+    body.register-page{
+        align-items: flex-start; /* si no cabe, que empiece arriba y puedas scrollear */
+        padding-bottom: 2rem;
+    }
+
     body.register-page .register-shell{
         padding: 1.6rem 1.2rem;
         border-radius: 16px;
         max-width: 420px; /* como login en móvil */
+        max-height: calc(100vh - 2rem);
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     body.register-page .register-form .form-row{
