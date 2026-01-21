@@ -1959,20 +1959,75 @@ input[disabled] {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* -------- RESPONSIVE -------- */
-@media (max-width: 768px) {
-    .profile-form {
-        padding: 20px;
-        margin: 0 15px 20px;
+/* ========================================
+   PROFILE.PHP - MOBILE
+   ======================================== */
+@media (max-width: 767px) {
+
+    body.profile-page {
+        overflow-x: hidden;
     }
 
-    .add-tag-container {
+    /* Header */
+    .profile-page .profile-header {
         flex-direction: column;
+        gap: 10px;
+        padding: 12px 15px;
+        text-align: center;
     }
 
-    .tag-search-wrapper,
-    #add-tag-btn {
+    .profile-page .profile-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .profile-page .profile-header .session-info {
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    /* User info */
+    .profile-page .user-info {
+        font-size: 0.95rem;
+        margin: 10px 15px;
+    }
+
+    /* Nav */
+    .profile-nav {
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .profile-nav a {
+        font-size: 0.9rem;
+    }
+
+    /* Projects */
+    .profile-page .user-projects {
+        margin: 15px;
+    }
+
+    .profile-page .user-projects h2 {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+    .profile-page .user-projects .project-preview {
         width: 100%;
+        max-width: 100%;
+    }
+
+    /* Tags */
+    .tag-item {
+        font-size: 0.85rem;
+        padding: 5px 8px;
+    }
+
+    /* Forms */
+    .profile-form {
+        margin: 0 15px 25px;
+        padding: 20px;
     }
 
     .form-actions {
@@ -1993,7 +2048,10 @@ input[disabled] {
 .toast.info .descripcion  { color: #3d6a60; font-family: 'Josefin Sans', sans-serif;}
 .toast.warning .titulo    { color: #7a6c1f; font-family: 'Fjalla One', sans-serif;}
 .toast.warning .descripcion { color: #8a7c2f; font-family: 'Josefin Sans', sans-serif;}
-/* ========== PÁGINAS ERROR ========== */
+
+/* ========================================
+   ESTILOS PARA PÁGINAS DE ERROR
+   ======================================== */
 body.page-error {
     background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
     min-height: 100vh;
@@ -2565,6 +2623,60 @@ body.page-error address span {
     margin-bottom: 15px;
 }
 
+/* ========================================
+   EDIT_PROJECT.PHP - MOBILE
+   ======================================== */
+@media (max-width: 767px) {
+
+    body.edit-project-page {
+        overflow-x: hidden;
+    }
+
+    /* Header */
+    .edit-project-page .edit-project-header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px 15px;
+        text-align: center;
+    }
+
+    .edit-project-page .edit-project-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .edit-project-page .edit-project-header .session-info {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    /* Nav */
+    .edit-project-nav {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .edit-project-nav a {
+        font-size: 0.9rem;
+    }
+
+    /* Form */
+    .edit-project-page .profile-form {
+        margin: 0 15px 25px;
+        padding: 20px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+}
+
 /* ===============================
    ESTILOS NEW_PROJECT.PHP
    =============================== */
@@ -2648,4 +2760,62 @@ body.page-error address span {
     font-size: 0.95rem;
     font-family: 'Josefin Sans', sans-serif;
     transition: all 0.3s ease;
+}
+
+/* ========================================
+   NEW_PROJECT.PHP - MOBILE
+   ======================================== */
+@media (max-width: 767px) {
+
+    body.new-project-page {
+        overflow-x: hidden;
+    }
+
+    /* Header */
+    .new-project-page .new-project-header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px 15px;
+        text-align: center;
+    }
+
+    .new-project-page .new-project-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .new-project-page .new-project-header .session-info {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    /* Nav */
+    .new-project-nav {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .new-project-nav a {
+        font-size: 0.9rem;
+    }
+
+    /* Form */
+    .new-project-page .profile-form {
+        margin: 0 15px 25px;
+        padding: 20px;
+    }
+
+    .new-project-page input[type="file"] {
+        font-size: 0.85rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
 }
