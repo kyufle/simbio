@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Crear usuario inactivo
             $password_hash = hash('sha256', $password);
             $token = hash('sha256', $email . 'simbio1');
-            $expires = date('Y-m-d H:i:s', time() + 1800); // 30 minutos
+            $expires = date('Y-m-d H:i:s', time() + 48 * 60 * 60); // 48 horas
             $stmt = $conn->prepare("INSERT INTO user (email, password_hash, name, surnames, city, phone_number, entity, type, image_path, is_active, validation_token, validation_expires) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL, 0, ?, ?)");
             $stmt->execute([$email, $password_hash, $nombre, $apellidos, $ciudad, $telefono, $entidad, $tipo, $token, $expires]);
             // Enviar email de validación

@@ -24,7 +24,7 @@ function enviarCorreoValidacion($email, $token, $nombre = "") {
 	<p style="text-align: center; margin: 32px 0;">
 	<a href="' . $enlace . '" style="background: #2a7ae4; color: #fff; text-decoration: none; padding: 14px 32px; border-radius: 6px; font-size: 18px; display: inline-block;">Verificar cuenta</a>
 	</p>
-	<p style="font-size: 14px; color: #888;">Este enlace caduca en 30 minutos.</p>
+	<p style="font-size: 14px; color: #888;">Este enlace caduca en 48 horas.</p>
 	<hr style="margin: 32px 0; border: none; border-top: 1px solid #eee;">
 	<p style="font-size: 13px; color: #aaa;">Si no has solicitado este registro, ignora este mensaje.</p>
 	</div></body></html>';
