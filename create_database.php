@@ -65,6 +65,14 @@ try {
         FOREIGN KEY (user_to_id) REFERENCES user(user_id)
     );
 
+    CREATE TABLE user_tags (
+        user_id INT NOT NULL,
+        tag_id INT NOT NULL,
+        PRIMARY KEY (user_id, tag_id),
+        FOREIGN KEY (user_id) REFERENCES user(user_id),
+        FOREIGN KEY (tag_id) REFERENCES tag(tag_id)
+    );
+
     CREATE TABLE project_tags (
         project_id INT NOT NULL,
         tag_id INT NOT NULL,
