@@ -1,4 +1,3 @@
-
 <?php
 require_once 'includes/mail.php';
 require_once 'includes/db.php'; // Incluye tu conexión a la base de datos aquí
@@ -78,8 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <div class="register-page">
+<body class="register-page">
+    <div class="register-shell">
         <form class="register-form" method="POST" autocomplete="off">
             <h1>Registro de usuario</h1>
             <?php
