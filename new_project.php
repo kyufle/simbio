@@ -87,9 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="session-info">
                 <?php if (isLogged()): ?>
                     <span><?php echo htmlspecialchars($_SESSION['user']['name']); ?></span>
-                    <a href="logout.php">Cerrar sesión</a>
+                    <a href="logout.php">Tancar sessió</a>
                 <?php else: ?>
-                    <a href="login.php">Iniciar sesión</a>
+                    <a href="login.php">Iniciar sessió</a>
                 <?php endif; ?>
             </div>
         </header>
