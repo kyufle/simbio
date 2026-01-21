@@ -1,0 +1,34 @@
+[2026-01-21 19:32:30] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /profile.php] Conexión a BD establecida exitosamente
+[2026-01-21 19:32:30] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /profile.php] Perfil de usuario obtenido por email: alejandro.garcia@unican.es
+[2026-01-21 19:32:30] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /profile.php] Usuario accedió a profile.php - Email: alejandro.garcia@unican.es
+[2026-01-21 19:32:30] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /includes/user_projects.php?email=alejandro.garcia%40unican.es] Conexión a BD establecida exitosamente
+[2026-01-21 19:33:06] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /profile.php] Conexión a BD establecida exitosamente
+[2026-01-21 19:33:06] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /profile.php] Perfil de usuario obtenido por email: alejandro.garcia@unican.es
+[2026-01-21 19:33:06] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /profile.php] Usuario accedió a profile.php - Email: alejandro.garcia@unican.es
+[2026-01-21 19:33:06] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /includes/user_projects.php?email=alejandro.garcia%40unican.es] Conexión a BD establecida exitosamente
+[2026-01-21 19:33:08] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /discover.php] Conexión a BD establecida exitosamente
+[2026-01-21 19:33:08] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /discover.php] Usuario accedió a discover.php
+[2026-01-21 19:33:09] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /includes/projects.php] Conexión a BD establecida exitosamente
+[2026-01-21 19:33:14] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [POST /log_action.php] Conexión a BD establecida exitosamente
+[2026-01-21 19:33:14] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [POST /log_action.php] Acción usuario: dislike | {"project_id":"1"}
+[2026-01-21 19:33:19] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [POST /log_action.php] Conexión a BD establecida exitosamente
+[2026-01-21 19:33:19] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [POST /log_action.php] Acción usuario: like | {"project_id":"2"}
+[2026-01-21 19:33:21] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [POST /log_action.php] Conexión a BD establecida exitosamente
+[2026-01-21 19:33:21] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [POST /log_action.php] Acción usuario: like | {"project_id":"3"}
+[2026-01-21 19:33:22] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [POST /log_action.php] Conexión a BD establecida exitosamente
+[2026-01-21 19:33:22] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [POST /log_action.php] Acción usuario: like | {"project_id":"4"}
+[2026-01-21 19:33:24] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [POST /log_action.php] Conexión a BD establecida exitosamente
+[2026-01-21 19:33:24] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [POST /log_action.php] Acción usuario: like | {"project_id":"5"}
+[2026-01-21 19:33:27] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [POST /log_action.php] Conexión a BD establecida exitosamente
+[2026-01-21 19:33:27] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [POST /log_action.php] Acción usuario: like | {"project_id":"6"}
+[2026-01-21 19:33:36] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /profile.php] Conexión a BD establecida exitosamente
+[2026-01-21 19:33:36] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /profile.php] Perfil de usuario obtenido por email: alejandro.garcia@unican.es
+[2026-01-21 19:33:36] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /profile.php] Usuario accedió a profile.php - Email: alejandro.garcia@unican.es
+[2026-01-21 19:33:36] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /includes/user_projects.php?email=alejandro.garcia%40unican.es] Conexión a BD establecida exitosamente
+[2026-01-21 19:34:07] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /profile.php] Conexión a BD establecida exitosamente
+[2026-01-21 19:34:07] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /profile.php] Perfil de usuario obtenido por email: alejandro.garcia@unican.es
+[2026-01-21 19:34:07] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /profile.php] Usuario accedió a profile.php - Email: alejandro.garcia@unican.es
+[2026-01-21 19:34:08] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /includes/user_projects.php?email=alejandro.garcia%40unican.es] Conexión a BD establecida exitosamente
+[2026-01-21 19:34:09] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /discover.php] Conexión a BD establecida exitosamente
+[2026-01-21 19:34:09] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /discover.php] Usuario accedió a discover.php
+[2026-01-21 19:34:10] [INFO] [IP: 85.192.71.235] [Usuario: alejandro.garcia@unican.es] [GET /includes/projects.php] Conexión a BD establecida exitosamente
