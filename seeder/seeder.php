@@ -18,48 +18,53 @@ try {
     echo "Conectado a la base de datos...\n";
 
     $sql = <<<SQL
-    INSERT INTO user (email, password_hash, name, surnames, city, phone_number,entity, type, image_path) VALUES
-    ('alejandro.garcia@unican.es', '{$env['seeder_password']}', 'Alejandro', 'García Ruiz', 'Santander', '+34 942 201 000', 'CIFP César Manrique', 'Centre', 'imageproject1.jpeg'),
-    ('marta.lopez@uab.cat', '{$env['seeder_password']}', 'Marta', 'López Sala', 'Barcelona', '+34 935 811 000', 'IES La Mercè', 'Centre', NULL),
-    ('jorge.ramirez@itesm.mx', '{$env['seeder_password']}', 'Jorge', 'Ramírez Ortiz', 'Monterrey', '+52 81 8358 2000', 'CIFP Juan de Herrera', 'Centre', NULL),
-    ('elena.vazquez@usal.es', '{$env['seeder_password']}', 'Elena', 'Vázquez Mota', 'Salamanca', '+34 923 294 400', 'IES Mare de Déu de la Mercè', 'Centre', NULL),
-    ('diego.torres@uchile.cl', '{$env['seeder_password']}', 'Diego', 'Torres Silva', 'Santiago', '+56 2 2978 2000', 'IES Esteve Terradas I Illa', 'Centre', 'imageproject3.jpg'),
-    ('sofia.mendez@upv.es', '{$env['seeder_password']}', 'Sofía', 'Méndez Castro', 'Valencia', '+34 963 877 000', 'CIFP Escuela de Hostelería', 'Centre', 'imageproject5.jpg'),
-    ('raul.jimenez@uniandes.edu.co', '{$env['seeder_password']}', 'Raúl', 'Jiménez Peña', 'Bogotá', '+57 1 339 4949', 'Universidad de los Andes', 'Centre', NULL),
-    ('lucia.ferrer@uam.es', '{$env['seeder_password']}', 'Lucía', 'Ferrer Vidal', 'Madrid', '+34 914 975 000', 'Universidad Autónoma de Madrid', 'Centre', NULL),
-    ('pablo.duarte@uba.ar', '{$env['seeder_password']}', 'Pablo', 'Duarte Sosa', 'Buenos Aires', '+54 11 4508 3500', 'Universidad de Buenos Aires', 'Centre', NULL),
-    ('isabel.roca@upc.edu', '{$env['seeder_password']}', 'Isabel', 'Roca Mora', 'Barcelona', '+34 934 000 000', 'Universidad Politécnica de Cataluña', 'Centre', 'imageproject6.jpg'),
-    ('carlos.sanz@ucm.es', '{$env['seeder_password']}', 'Carlos', 'Sanz Guerrero', 'Madrid', '+34 913 941 000', 'Universidad Complutense de Madrid', 'Centre', NULL),
-    ('ana.belen@us.es', '{$env['seeder_password']}', 'Ana Belén', 'Heredia Pozos', 'Sevilla', '+34 954 551 000', 'Universidad de Sevilla', 'Centre', NULL),
-    ('javier.solis@pucp.edu.pe', '{$env['seeder_password']}', 'Javier', 'Solís Vargas', 'Lima', '+51 1 626 2000', 'Pontificia Universidad Católica del Perú', 'Centre', NULL),
-    ('beatriz.luna@unizar.es', '{$env['seeder_password']}', 'Beatriz', 'Luna Crespo', 'Zaragoza', '+34 976 761 000', 'Universidad de Zaragoza', 'Centre', NULL),
-    ('fernando.rios@ehu.eus', '{$env['seeder_password']}', 'Fernando', 'Ríos Ibarretxe', 'Bilbao', '+34 946 012 000', 'Universidad del País Vasco', 'Centre', NULL),
-    ('clara.poveda@uma.es', '{$env['seeder_password']}', 'Clara', 'Poveda Marín', 'Málaga', '+34 952 131 000', 'Universidad de Málaga', 'Centre', NULL),
-    ('hugo.paredes@unam.mx', '{$env['seeder_password']}', 'Hugo', 'Paredes Meza', 'CDMX', '+52 55 5622 1332', 'Universidad Nacional Autónoma de México', 'Centre', NULL),
-    ('valeria.gil@unlp.edu.ar', '{$env['seeder_password']}', 'Valeria', 'Gil Ortega', 'La Plata', '+54 221 423 6701', 'Universidad Nacional de La Plata', 'Centre', NULL),
-    ('sergio.nieto@uclm.es', '{$env['seeder_password']}', 'Sergio', 'Nieto Gallego', 'Ciudad Real', '+34 926 295 300', 'Universidad de Castilla-La Mancha', 'Centre', NULL),
-    ('adriana.vega@ucl.ac.uk', '{$env['seeder_password']}', 'Adriana', 'Vega Campos', 'Londres', '+44 20 7679 2000', 'University College London', 'Centre', NULL),
+    SET FOREIGN_KEY_CHECKS=0;
+    TRUNCATE TABLE user;
+    TRUNCATE TABLE project_tags;
+    TRUNCATE TABLE project;
+    SET FOREIGN_KEY_CHECKS=1;
+    INSERT INTO user (email, password_hash, name, surnames, city, phone_number, entity, type, image_path, is_active, validation_token, validation_expires) VALUES
+    ('alejandro.garcia@unican.es', '{$env['seeder_password']}', 'Alejandro', 'García Ruiz', 'Santander', '+34 942 201 000', 'CIFP César Manrique', 'Centre', 'imageproject1.jpeg', 1, NULL, NULL),
+    ('marta.lopez@uab.cat', '{$env['seeder_password']}', 'Marta', 'López Sala', 'Barcelona', '+34 935 811 000', 'IES La Mercè', 'Centre', NULL, 1, NULL, NULL),
+    ('jorge.ramirez@itesm.mx', '{$env['seeder_password']}', 'Jorge', 'Ramírez Ortiz', 'Monterrey', '+52 81 8358 2000', 'CIFP Juan de Herrera', 'Centre', NULL, 1, NULL, NULL),
+    ('elena.vazquez@usal.es', '{$env['seeder_password']}', 'Elena', 'Vázquez Mota', 'Salamanca', '+34 923 294 400', 'IES Mare de Déu de la Mercè', 'Centre', NULL, 1, NULL, NULL),
+    ('diego.torres@uchile.cl', '{$env['seeder_password']}', 'Diego', 'Torres Silva', 'Santiago', '+56 2 2978 2000', 'IES Esteve Terradas I Illa', 'Centre', 'imageproject3.jpg', 1, NULL, NULL),
+    ('sofia.mendez@upv.es', '{$env['seeder_password']}', 'Sofía', 'Méndez Castro', 'Valencia', '+34 963 877 000', 'CIFP Escuela de Hostelería', 'Centre', 'imageproject5.jpg', 1, NULL, NULL),
+    ('raul.jimenez@uniandes.edu.co', '{$env['seeder_password']}', 'Raúl', 'Jiménez Peña', 'Bogotá', '+57 1 339 4949', 'Universidad de los Andes', 'Centre', NULL, 1, NULL, NULL),
+    ('lucia.ferrer@uam.es', '{$env['seeder_password']}', 'Lucía', 'Ferrer Vidal', 'Madrid', '+34 914 975 000', 'Universidad Autónoma de Madrid', 'Centre', NULL, 1, NULL, NULL),
+    ('pablo.duarte@uba.ar', '{$env['seeder_password']}', 'Pablo', 'Duarte Sosa', 'Buenos Aires', '+54 11 4508 3500', 'Universidad de Buenos Aires', 'Centre', NULL, 1, NULL, NULL),
+    ('isabel.roca@upc.edu', '{$env['seeder_password']}', 'Isabel', 'Roca Mora', 'Barcelona', '+34 934 000 000', 'Universidad Politécnica de Cataluña', 'Centre', 'imageproject6.jpg', 1, NULL, NULL),
+    ('carlos.sanz@ucm.es', '{$env['seeder_password']}', 'Carlos', 'Sanz Guerrero', 'Madrid', '+34 913 941 000', 'Universidad Complutense de Madrid', 'Centre', NULL, 1, NULL, NULL),
+    ('ana.belen@us.es', '{$env['seeder_password']}', 'Ana Belén', 'Heredia Pozos', 'Sevilla', '+34 954 551 000', 'Universidad de Sevilla', 'Centre', NULL, 1, NULL, NULL),
+    ('javier.solis@pucp.edu.pe', '{$env['seeder_password']}', 'Javier', 'Solís Vargas', 'Lima', '+51 1 626 2000', 'Pontificia Universidad Católica del Perú', 'Centre', NULL, 1, NULL, NULL),
+    ('beatriz.luna@unizar.es', '{$env['seeder_password']}', 'Beatriz', 'Luna Crespo', 'Zaragoza', '+34 976 761 000', 'Universidad de Zaragoza', 'Centre', NULL, 1, NULL, NULL),
+    ('fernando.rios@ehu.eus', '{$env['seeder_password']}', 'Fernando', 'Ríos Ibarretxe', 'Bilbao', '+34 946 012 000', 'Universidad del País Vasco', 'Centre', NULL, 1, NULL, NULL),
+    ('clara.poveda@uma.es', '{$env['seeder_password']}', 'Clara', 'Poveda Marín', 'Málaga', '+34 952 131 000', 'Universidad de Málaga', 'Centre', NULL, 1, NULL, NULL),
+    ('hugo.paredes@unam.mx', '{$env['seeder_password']}', 'Hugo', 'Paredes Meza', 'CDMX', '+52 55 5622 1332', 'Universidad Nacional Autónoma de México', 'Centre', NULL, 1, NULL, NULL),
+    ('valeria.gil@unlp.edu.ar', '{$env['seeder_password']}', 'Valeria', 'Gil Ortega', 'La Plata', '+54 221 423 6701', 'Universidad Nacional de La Plata', 'Centre', NULL, 1, NULL, NULL),
+    ('sergio.nieto@uclm.es', '{$env['seeder_password']}', 'Sergio', 'Nieto Gallego', 'Ciudad Real', '+34 926 295 300', 'Universidad de Castilla-La Mancha', 'Centre', NULL, 1, NULL, NULL),
+    ('adriana.vega@ucl.ac.uk', '{$env['seeder_password']}', 'Adriana', 'Vega Campos', 'Londres', '+44 20 7679 2000', 'University College London', 'Centre', NULL, 1, NULL, NULL),
     /*empresa*/
-    ('m.gonzalez@inditex.com', '{$env['seeder_password']}', 'Marcos', 'González Pardo', 'Arteixo', '+34 981 185 400', 'Inditex', 'Empresa', 'imageproject2.jpg'),
-    ('laura.rivas@telefonica.com', '{$env['seeder_password']}', 'Laura', 'Rivas Castro', 'Madrid', '+34 914 823 800', 'Telefónica', 'Empresa', NULL),
-    ('r.moreno@santander.com', '{$env['seeder_password']}', 'Roberto', 'Moreno Laza', 'Boadilla del Monte', '+34 912 572 020', 'Banco Santander', 'Empresa', NULL),
-    ('carmen.suarez@repsol.com', '{$env['seeder_password']}', 'Carmen', 'Suárez Fito', 'Madrid', '+34 917 538 000', 'Repsol', 'Empresa', NULL),
-    ('oscar.leon@bbva.com', '{$env['seeder_password']}', 'Óscar', 'León Domínguez', 'Bilbao', '+34 913 746 000', 'BBVA', 'Empresa', NULL),
-    ('patricia.oro@mercadona.es', '{$env['seeder_password']}', 'Patricia', 'Oro Blanco', 'Valencia', '+34 800 500 220', 'Mercadona', 'Empresa', NULL),
-    ('ignacio.bravo@iberdrola.es', '{$env['seeder_password']}', 'Ignacio', 'Bravo Santos', 'Bilbao', '+34 944 151 411', 'Iberdrola', 'Empresa', NULL),
-    ('sandra.milla@acciona.com', '{$env['seeder_password']}', 'Sandra', 'Milla Vicens', 'Alcobendas', '+34 916 632 850', 'Acciona', 'Empresa', NULL),
-    ('f.blanco@ferrovial.com', '{$env['seeder_password']}', 'Francisco', 'Blanco Urquijo', 'Madrid', '+34 915 862 500', 'Ferrovial', 'Empresa', NULL),
-    ('julia.diez@caixabank.com', '{$env['seeder_password']}', 'Julia', 'Diez Reverte', 'Valencia', '+34 934 046 000', 'CaixaBank', 'Empresa', NULL),
-    ('alberto.noya@globant.com', '{$env['seeder_password']}', 'Alberto', 'Noya Ruiz', 'Buenos Aires', '+54 11 4109 1700', 'Globant', 'Empresa', NULL),
-    ('monica.luz@bimbo.com', '{$env['seeder_password']}', 'Mónica', 'Luz Valiente', 'CDMX', '+52 55 5268 6600', 'Grupo Bimbo', 'Empresa', 'imageproject4.jpg'),
-    ('esteban.perez@mercadolibre.com', '{$env['seeder_password']}', 'Esteban', 'Pérez Galán', 'Buenos Aires', '+54 11 4640 8000', 'Mercado Libre', 'Empresa', NULL),
-    ('rosa.maria@petrobras.com', '{$env['seeder_password']}', 'Rosa María', 'Almeida Santos', 'Río de Janeiro', '+55 21 3224 4477', 'Petrobras', 'Empresa', NULL),
-    ('victor.gomez@cemex.com', '{$env['seeder_password']}', 'Víctor', 'Gómez Herrera', 'Monterrey', '+52 81 8328 3000', 'Cemex', 'Empresa', NULL),
-    ('antonio.vera@grifols.com', '{$env['seeder_password']}', 'Antonio', 'Vera Ramos', 'Sant Cugat', '+34 935 710 500', 'Grifols', 'Empresa', NULL),
-    ('pilar.ortiz@seat.es', '{$env['seeder_password']}', 'Pilar', 'Ortiz Mesas', 'Martorell', '+34 937 085 000', 'SEAT' , 'Empresa', NULL),
-    ('manuel.cid@naturgy.com' , '{$env['seeder_password']}', 'Manuel', 'Cid Varela', 'Madrid', '+34 900 100 251', 'Naturgy', 'Empresa', NULL),
-    ('daniela.mar@latam.com' , '{$env['seeder_password']}', 'Daniela', 'Mar Adentro', 'Santiago', '+56 2 2677 4000', 'LATAM Airlines', 'Empresa' , NULL),
-    ('josep.orpi@vueling.com' , '{$env['seeder_password']}', 'Josep', 'Orpi', 'Mesas', '+34 741 103 152', 'Vueling', 'Empresa' , NULL);
+    ('m.gonzalez@inditex.com', '{$env['seeder_password']}', 'Marcos', 'González Pardo', 'Arteixo', '+34 981 185 400', 'Inditex', 'Empresa', 'imageproject2.jpg', 1, NULL, NULL),
+    ('laura.rivas@telefonica.com', '{$env['seeder_password']}', 'Laura', 'Rivas Castro', 'Madrid', '+34 914 823 800', 'Telefónica', 'Empresa', NULL, 1, NULL, NULL),
+    ('r.moreno@santander.com', '{$env['seeder_password']}', 'Roberto', 'Moreno Laza', 'Boadilla del Monte', '+34 912 572 020', 'Banco Santander', 'Empresa', NULL, 1, NULL, NULL),
+    ('carmen.suarez@repsol.com', '{$env['seeder_password']}', 'Carmen', 'Suárez Fito', 'Madrid', '+34 917 538 000', 'Repsol', 'Empresa', NULL, 1, NULL, NULL),
+    ('oscar.leon@bbva.com', '{$env['seeder_password']}', 'Óscar', 'León Domínguez', 'Bilbao', '+34 913 746 000', 'BBVA', 'Empresa', NULL, 1, NULL, NULL),
+    ('patricia.oro@mercadona.es', '{$env['seeder_password']}', 'Patricia', 'Oro Blanco', 'Valencia', '+34 800 500 220', 'Mercadona', 'Empresa', NULL, 1, NULL, NULL),
+    ('ignacio.bravo@iberdrola.es', '{$env['seeder_password']}', 'Ignacio', 'Bravo Santos', 'Bilbao', '+34 944 151 411', 'Iberdrola', 'Empresa', NULL, 1, NULL, NULL),
+    ('sandra.milla@acciona.com', '{$env['seeder_password']}', 'Sandra', 'Milla Vicens', 'Alcobendas', '+34 916 632 850', 'Acciona', 'Empresa', NULL, 1, NULL, NULL),
+    ('f.blanco@ferrovial.com', '{$env['seeder_password']}', 'Francisco', 'Blanco Urquijo', 'Madrid', '+34 915 862 500', 'Ferrovial', 'Empresa', NULL, 1, NULL, NULL),
+    ('julia.diez@caixabank.com', '{$env['seeder_password']}', 'Julia', 'Diez Reverte', 'Valencia', '+34 934 046 000', 'CaixaBank', 'Empresa', NULL, 1, NULL, NULL),
+    ('alberto.noya@globant.com', '{$env['seeder_password']}', 'Alberto', 'Noya Ruiz', 'Buenos Aires', '+54 11 4109 1700', 'Globant', 'Empresa', NULL, 1, NULL, NULL),
+    ('monica.luz@bimbo.com', '{$env['seeder_password']}', 'Mónica', 'Luz Valiente', 'CDMX', '+52 55 5268 6600', 'Grupo Bimbo', 'Empresa', 'imageproject4.jpg', 1, NULL, NULL),
+    ('esteban.perez@mercadolibre.com', '{$env['seeder_password']}', 'Esteban', 'Pérez Galán', 'Buenos Aires', '+54 11 4640 8000', 'Mercado Libre', 'Empresa', NULL, 1, NULL, NULL),
+    ('rosa.maria@petrobras.com', '{$env['seeder_password']}', 'Rosa María', 'Almeida Santos', 'Río de Janeiro', '+55 21 3224 4477', 'Petrobras', 'Empresa', NULL, 1, NULL, NULL),
+    ('victor.gomez@cemex.com', '{$env['seeder_password']}', 'Víctor', 'Gómez Herrera', 'Monterrey', '+52 81 8328 3000', 'Cemex', 'Empresa', NULL, 1, NULL, NULL),
+    ('antonio.vera@grifols.com', '{$env['seeder_password']}', 'Antonio', 'Vera Ramos', 'Sant Cugat', '+34 935 710 500', 'Grifols', 'Empresa', NULL, 1, NULL, NULL),
+    ('pilar.ortiz@seat.es', '{$env['seeder_password']}', 'Pilar', 'Ortiz Mesas', 'Martorell', '+34 937 085 000', 'SEAT' , 'Empresa', NULL, 1, NULL, NULL),
+    ('manuel.cid@naturgy.com' , '{$env['seeder_password']}', 'Manuel', 'Cid Varela', 'Madrid', '+34 900 100 251', 'Naturgy', 'Empresa', NULL, 1, NULL, NULL),
+    ('daniela.mar@latam.com' , '{$env['seeder_password']}', 'Daniela', 'Mar Adentro', 'Santiago', '+56 2 2677 4000', 'LATAM Airlines', 'Empresa' , NULL, 1, NULL, NULL),
+    ('josep.orpi@vueling.com' , '{$env['seeder_password']}', 'Josep', 'Orpi', 'Mesas', '+34 741 103 152', 'Vueling', 'Empresa' , NULL, 1, NULL, NULL);
 
     /*insertar proyectos*/
     INSERT INTO project (project_id, user_id, title, description, image_path, video_path) VALUES
@@ -79,6 +84,28 @@ try {
     (4, 146),
     (5, 81),
     (6, 67);
+
+
+    -- NUEVOS TAGS PARA MATCHES REALES
+    -- Proyecto 1 (Alejandro) hace match con Proyecto 6 (Rehabilitación) por tag 92
+    INSERT INTO project_tags (project_id, tag_id) VALUES (6, 92);
+
+    -- Proyecto 2 (Inditex) hace match con Proyecto 5 (Menú Gastronómico) por tag 126
+    INSERT INTO project_tags (project_id, tag_id) VALUES (5, 126);
+
+    -- Proyecto 3 (Seat 600) hace match con Proyecto 2 (Eco-Packaging) por tag 155
+    INSERT INTO project_tags (project_id, tag_id) VALUES (2, 155);
+
+    -- Proyecto 4 (Fleca Saludable) hace match con Proyecto 1 (Residus) por tag 91
+    INSERT INTO project_tags (project_id, tag_id) VALUES (4, 91);
+
+    -- Proyecto 5 (Menú Gastronómico) también hace match con Proyecto 1 (Residus) por tag 81
+    INSERT INTO project_tags (project_id, tag_id) VALUES (1, 81);
+
+    -- Proyecto 6 (Rehabilitación) hace match con Proyecto 3 (Seat 600) por tag 67
+    INSERT INTO project_tags (project_id, tag_id) VALUES (3, 67);
+
+
 SQL;
 
         // Ejecutamos el SQL
