@@ -50,6 +50,9 @@ function enviarCorreoValidacion($email, $token, $nombre = "") {
 		$mail->send();
 		return true;
 	} catch (Exception $e) {
+		// Mostrar el error en pantalla para depuración
+		die('<div style="color:red;font-family:monospace;font-size:1.2em;">Mailer Error: ' . htmlspecialchars($mail->ErrorInfo) . '</div>');
+		// También lo dejamos en el log
 		error_log('Mailer Error: ' . $mail->ErrorInfo);
 		return false;
 	}
