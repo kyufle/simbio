@@ -1,5 +1,3 @@
-// js/discover.js - TikTok vertical optimizado con algoritmo de prioridad y memoria de sesión
-
 const PROJECTS_JSON = 'includes/projects.php';
 const BUFFER_SIZE = 5;
 
@@ -19,17 +17,13 @@ const container = document.getElementById('discover-container');
 function createProjectCard(project) {
     const card = document.createElement('div');
     card.classList.add('project-card');
-<<<<<<< HEAD
     // Guardar el id del proyecto en el DOM para fácil acceso
     card.dataset.projectId = project.id;
-=======
-    card.dataset.projectId = project.id;
 
-    // 1. Estado Like
-    // Usamos parseInt por seguridad, a veces los IDs vienen como string
+    // Estado Like
     const alreadyLiked = project.liked || userLikedSession.has(parseInt(project.id));
 
-    // 2. Generación HTML Botones
+    // Generación HTML Botones
     const buttonsHTML = alreadyLiked 
         ? `
             <div class="liked-indicator">❤️ Ja t'ha agradat aquest projecte</div>
@@ -47,7 +41,7 @@ function createProjectCard(project) {
             </div>
           `;
 
-    // 3. 🔴 Lógica Dinámica: ¿Es Video o Imagen?
+    // Lógica Dinámica: ¿Es Video o Imagen?
     let mediaHTML = '';
     if (project.video) {
         // Es un video
@@ -62,7 +56,6 @@ function createProjectCard(project) {
             <img src="${project.image}" alt="${project.title}" style="width:100%; height:100%; object-fit:cover;">
         `;
     }
->>>>>>> spec13_AlgoritmoFeeds
 
     card.innerHTML = `
         <header>
@@ -88,16 +81,13 @@ function createProjectCard(project) {
             <h3>Descripció</h3>
             <p class="description">${project.description}</p>
             <h3>Etiquetes</h3>
-<<<<<<< HEAD
             <div class="tags">
-            ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-=======
-            <p class="tags">${project.tags ? project.tags.join(', ') : ''}</p>
->>>>>>> spec13_AlgoritmoFeeds
+            ${project.tags && Array.isArray(project.tags) ? project.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
+            </div>
         </aside>
     `;
 
-    // 4. Icono de Match
+    // Icono de Match
     if (project.match) {
         const matchIcon = document.createElement('div');
         matchIcon.className = 'match-icon';
@@ -105,21 +95,23 @@ function createProjectCard(project) {
         card.appendChild(matchIcon);
     }
 
-    // 5. Event Listeners
+    // Event Listeners
     const openDetailsBtn = card.querySelector('.toggle-details');
     const closeDetailsBtn = card.querySelector('.close-details');
     const detailsDiv = card.querySelector('.details');
     const video = card.querySelector('video');
 
-    openDetailsBtn.addEventListener('click', () => {
-        detailsDiv.classList.remove('hidden');
-        if(video) video.pause();
-    });
+    if (openDetailsBtn && closeDetailsBtn && detailsDiv) {
+        openDetailsBtn.addEventListener('click', () => {
+            detailsDiv.classList.remove('hidden');
+            if(video) video.pause();
+        });
 
-    closeDetailsBtn.addEventListener('click', () => {
-        detailsDiv.classList.add('hidden');
-        if(video) video.play();
-    });
+        closeDetailsBtn.addEventListener('click', () => {
+            detailsDiv.classList.add('hidden');
+            if(video) video.play();
+        });
+    }
 
     return card;
 }
@@ -145,10 +137,13 @@ function animateSwipe(card, direction) {
 function handleLikeAction(card) {
     const projectId = card.dataset.projectId;
     
-    // 1. Guardar en sesión
-    userLikedSession.add(parseInt(projectId)); // Asegurar tipo entero por si acaso
+    // Obtener el nombre del proyecto desde el header
+    const projectTitle = card.querySelector('header h2')?.textContent || 'aquest projecte';
+    
+    // Guardar en sesión
+    userLikedSession.add(parseInt(projectId));
 
-    // 2. Feedback visual inmediato (Transformar botones)
+    // Feedback visual inmediato (Transformar botones)
     const buttonsContainer = card.querySelector('.buttons');
     const actionsContainer = card.querySelector('.actions');
     
@@ -171,13 +166,13 @@ function handleLikeAction(card) {
         if(nextBtn) nextBtn.classList.remove('hidden');
     }
 
-    // 3. Animar salida
-    animateSwipe(card, "like");
-
-    // 4. Toast opcional
+    // ⭐ ÚNICO TOAST - Con nombre del proyecto
     if (typeof window.mostrarExito === 'function') {
-        window.mostrarExito("❤️ M'agrada!", "Has guardat aquest projecte.");
+        window.mostrarExito("❤️ M'agrada!", `T'ha agradat "${projectTitle}"`);
     }
+
+    // Animar salida
+    animateSwipe(card, "like");
 }
 
 /* ============================================================
@@ -200,7 +195,6 @@ function restartFeed() {
 document.addEventListener("click", (e) => {
     if (!currentVisible) return;
 
-<<<<<<< HEAD
     // Helper para loguear acción en el servidor
     function logUserAction(accion, projectId) {
         fetch('log_action.php', {
@@ -227,35 +221,26 @@ document.addEventListener("click", (e) => {
     // Obtener id de proyecto actual
     const cardProjectId = currentVisible && currentVisible.dataset && currentVisible.dataset.projectId ? currentVisible.dataset.projectId : null;
 
-    if (e.target.classList.contains("like-btn")) {
-        if (cardProjectId) logUserAction("like", cardProjectId);
-        // Notificación visual de éxito al dar like
-        if (typeof window.mostrarExito === 'function') {
-            window.mostrarExito('Like registrat', 'Has indicat que t\'interessa aquest projecte!');
-        }
-        animateSwipe(currentVisible, "like");
-    }
-
-    if (e.target.classList.contains("nope-btn")) {
-        if (cardProjectId) logUserAction("dislike", cardProjectId);
-=======
-    // Botón Like
-    if (e.target.closest(".like-btn")) {
+    // ⭐ BOTÓN LIKE - SIN TOAST AQUÍ (ya lo muestra handleLikeAction)
+    if (e.target.classList.contains("like-btn") || e.target.closest(".like-btn")) {
         handleLikeAction(currentVisible);
+        return;
     }
 
-    // Botón Nope
-    if (e.target.closest(".nope-btn")) {
->>>>>>> spec13_AlgoritmoFeeds
+    // BOTÓN NOPE
+    if (e.target.classList.contains("nope-btn") || e.target.closest(".nope-btn")) {
+        if (cardProjectId) logUserAction("dislike", cardProjectId);
         animateSwipe(currentVisible, "nope");
+        return;
     }
 
-    // Botón Següent (Aparece en 2nda ronda o tras dar like)
+    // BOTÓN SIGUIENTE
     if (e.target.closest(".next-btn")) {
-        // Simplemente pasamos al siguiente, animando hacia la derecha como feedback positivo
         animateSwipe(currentVisible, "like");
+        return;
     }
 });
+
 // Bloquear recarga de página (F5, Ctrl+R, etc.)
 window.addEventListener('beforeunload', function(e) {
     e.preventDefault();
@@ -308,9 +293,11 @@ function showNextProject() {
     if (allProjects.length > 0) {
         const nextProject = allProjects.shift();
         buffer.push(nextProject);
-        const preload = document.createElement('video');
-        preload.src = nextProject.video;
-        preload.preload = 'metadata';
+        if (nextProject && nextProject.video) {
+            const preload = document.createElement('video');
+            preload.src = nextProject.video;
+            preload.preload = 'metadata';
+        }
     }
 
     // Reproducir video
@@ -394,7 +381,6 @@ function initDiscover() {
             
             // ✅ ALGORITMO FEEDS: 
             // Forzamos el orden en JS para asegurar que MATCHES salgan primero.
-            // true - true = 0, true - false = -1 (primero), false - true = 1
             allProjects = data.sort((a, b) => {
                 if (a.match && !b.match) return -1;
                 if (!a.match && b.match) return 1;
