@@ -16,12 +16,12 @@ try {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'dpereragonzalez2.eb@iesesteveterradas.cat';
-    $mail->Password = 'vsgs cqdt mzth pzjk';
+    $mail->Username = 'davidperera2006@gmail.com';
+    $mail->Password = 'ifce dvsr tkws iytv';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port = 465;
 
-    $mail->setFrom('dpereragonzalez2.eb@iesesteveterradas.cat', 'Prueba Simbio');
+    $mail->setFrom('davidperera2006@gmail.com', 'Prueba Simbio');
     $mail->addAddress($to);
     $mail->isHTML(false);
     $mail->Subject = $subject;
