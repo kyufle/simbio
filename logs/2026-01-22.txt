@@ -1,0 +1,6 @@
+[2026-01-22 00:37:44] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
+[2026-01-22 00:37:44] [ERROR] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: ffmpeg no executable | {"path":"\/usr\/bin\/ffmpeg"}
+[2026-01-22 00:41:46] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
+[2026-01-22 00:41:46] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":6,"errors":0}
+[2026-01-22 00:43:03] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
+[2026-01-22 00:43:03] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":6,"errors":0}
