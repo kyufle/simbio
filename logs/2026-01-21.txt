@@ -163,3 +163,5 @@
 [2026-01-21 21:32:29] [INFO] [IP: 127.0.0.1] [Usuario: alejandro.garcia@unican.es] [GET /discover.php] Usuario accedió a discover.php
 [2026-01-21 21:32:30] [INFO] [IP: 127.0.0.1] [Usuario: alejandro.garcia@unican.es] [GET /includes/projects.php] Conexión a BD establecida exitosamente
 [2026-01-21 21:32:40] [INFO] [IP: 127.0.0.1] [Usuario: alejandro.garcia@unican.es] [GET /includes/projects.php] Conexión a BD establecida exitosamente
+[2026-01-21 21:55:21] [ERROR] [IP: ::1] [Usuario: ANONIMO] [GET /register.php] Error de conexión a BD | {"servidor":"localhost","base_datos":"simbio","error":"could not find driver"}
+[2026-01-21 21:55:22] [ERROR] [IP: ::1] [Usuario: ANONIMO] [GET /discover.php] Error de conexión a BD | {"servidor":"localhost","base_datos":"simbio","error":"could not find driver"}

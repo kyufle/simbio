@@ -134,12 +134,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Iniciar sessió</button>
         </form>
         
-        <!--
+        
         <div class="button-group">
-            <button href="register.php" class="registre-btn">Registrar-se</button>
-            <button href="index.php" class="back-btn">Anar al inici</button>
+            <button onclick="window.location.href='register.php'" class="registre-btn">Registrar-se</button>
+            <button onclick="window.location.href='index.php'" class="back-btn">Anar al inici</button>
         </div>
-        -->
+        
     </main>
     
     <script src="js/utils.js?v=<?php echo time(); ?>"></script>
