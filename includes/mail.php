@@ -36,9 +36,19 @@ function enviarCorreoValidacion($email, $token, $nombre = "") {
 		$mail->Host = 'smtp.gmail.com';
 		$mail->SMTPAuth = true;
 		$mail->Username = 'dpereragonzalez2.eb@iesesteveterradas.cat';
-		$mail->Password = 'vsgs cqdt mzth pzjk';
-		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-		$mail->Port = 587;
+		$mail->Password = 'vsgs cqdt mzth pzjkOpció 2: PHPMailer lib
+Amb la biblioteca de codi PHPMailer podem enviar mitjançant un servidor extern (caldran credencials).
+
+Utilitza les «contrasenyes d'aplicació» de Gmail: no es pot fer servir la contrasenya «normal» del compte Gmail per enviar emails via SMTP des d'una app com la nostra en PHP. Cal crear una «App Password».
+Entrar al compte de Gmail, «configuració del compte» → secció «Seguretat».
+Activar el doble factor d'autenticació (2FA).
+Anar a la secció «Contrasenyes d'Aplicació» (o similar) i crear-ne una. Fes servir la casella de cerca si no veus la opció.
+Instal·lar el gestor de paquets composer per a PHP.
+Si estàs en GNU/Linux es recomana instal·lar l'arxiu composer a la carpeta ~/bin.
+Seguir la documentació de PHPMailer per enviar un email (secció «A Simple Example»).
+';
+		$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+		$mail->Port = 465;
 
 		$mail->setFrom('dpereragonzalez2.eb@iesesteveterradas.cat', 'Simbio');
 		$mail->addAddress($email, $nombre);
@@ -47,6 +57,8 @@ function enviarCorreoValidacion($email, $token, $nombre = "") {
 		$mail->Body    = $mensaje;
 		$mail->AltBody = 'Hola ' . $nombre . ", para activar tu cuenta visita: $enlace";
 
+		$mail->SMTPDebug = 2; // Muestra información detallada de la conexión SMTP
+		$mail->Debugoutput = function($str, $level) { echo "><br>" . htmlspecialchars($str) . "<br>\n"; };
 		$mail->send();
 		return true;
 	} catch (Exception $e) {
