@@ -345,7 +345,7 @@ body.login-page .back-btn:hover {
 }
 
 .discover-page .project-card .nope-btn {
-    background: linear-gradient(135deg, #FFAAA7, #FF9593);
+    background: linear-gradient(135deg, #b7a7ff, #baa7ff);
     color: #fff;
 }
 
@@ -1329,13 +1329,13 @@ input[disabled] {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #FFAAA7, #FF9593);
+    background: linear-gradient(135deg, #b7a7ff, #baa7ff);
     color: #fff;
-    box-shadow: 0 4px 15px rgba(255, 170, 167, 0.4);
+    box-shadow: 0 4px 15px rgba(205, 167, 255, 0.4);
 }
 
 .btn-primary:hover {
-    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.6);
+    box-shadow: 0 4px 15px rgba(205, 167, 255, 0.6);
     transform: translateY(-2px);
 }
 
