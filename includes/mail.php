@@ -33,14 +33,14 @@ function enviarCorreoValidacion($email, $token, $nombre = "") {
 	try {
 		// Configuración SMTP (ajusta estos valores)
 		$mail->isSMTP();
-		$mail->Host = 'smtp.tuservidor.com'; // Cambia por tu servidor SMTP
+		$mail->Host = 'smtp.gmail.com';
 		$mail->SMTPAuth = true;
-		$mail->Username = 'usuario@tuservidor.com'; // Cambia por tu usuario SMTP
-		$mail->Password = 'tu_contraseña'; // Cambia por tu contraseña SMTP
-		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // O PHPMailer::ENCRYPTION_SMTPS
-		$mail->Port = 587; // O 465 si usas SMTPS
+		$mail->Username = 'dpereragonzalez2.eb@iesesteveterradas.cat';
+		$mail->Password = 'vsgs cqdt mzth pzjk';
+		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+		$mail->Port = 587;
 
-		$mail->setFrom('no-reply@simbio.com', 'Simbio');
+		$mail->setFrom('dpereragonzalez2.eb@iesesteveterradas.cat', 'Simbio');
 		$mail->addAddress($email, $nombre);
 		$mail->isHTML(true);
 		$mail->Subject = $asunto;
