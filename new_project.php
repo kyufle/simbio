@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear nuevo proyecto</title>
+    <title>Crear nou projecte</title>
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
 </head>
 <body class="new-project-page">
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <a href="discover.php">Descobrir</a>
                 <a href="profile.php">Perfil</a>
             </nav>
-            <h1>Crear nuevo proyecto</h1>
+            <h1>Crear nou projecte</h1>
             <div class="session-info">
                 <?php if (isLogged()): ?>
                     <span><?php echo htmlspecialchars($_SESSION['user']['name']); ?></span>
@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Crear Proyecto</button>
+                    <button type="submit" class="btn btn-primary">Crear Projecte</button>
                     <button type="reset" class="btn btn-secondary">↺ Cancelar</button>
                 </div>
             </form>
