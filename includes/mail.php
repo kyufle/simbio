@@ -35,12 +35,12 @@ function enviarCorreoValidacion($email, $token, $nombre = "") {
 		$mail->isSMTP();
 		$mail->Host = 'smtp.gmail.com';
 		$mail->SMTPAuth = true;
-		$mail->Username = 'dpereragonzalez2.eb@iesesteveterradas.cat';
+		$mail->Username = 'davidperera2006@gmail.com';
 		$mail->Password = 'ifce dvsr tkws iytv';
 		$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 		$mail->Port = 465;
 
-		$mail->setFrom('dpereragonzalez2.eb@iesesteveterradas.cat', 'Simbio');
+		$mail->setFrom('davidperera2006@gmail.com', 'Simbio');
 		$mail->addAddress($email, $nombre);
 		$mail->isHTML(true);
 		$mail->Subject = $asunto;
