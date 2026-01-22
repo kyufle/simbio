@@ -4921,6 +4921,178 @@ body.page-error address span {
         padding: 0.7rem 0.1rem;
     }
 }
+
+/* ========================================
+   ESTILOS Register (centrado como login + responsive)
+   ======================================== */
+
+/* Nota: variables solo para register (sin tocar :root global de toasts) */
+body.register-page{
+    --r-sky: #A3D2CA;   /* Azul cielo suave */
+    --r-mint: #B5EAEA;  /* Verde menta */
+    --r-pale: #FFF3B0;  /* Amarillo pálido */
+    --r-coral: #FFAAA7; /* Coral suave */
+    --r-gray: #E8E8E8;  /* Gris claro */
+    --r-ink: #333333;
+    --r-muted: #555555;
+
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--r-sky) 0%, var(--r-mint) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    overflow-y: auto; /* por si el contenido supera el viewport */
+}
+
+/* Tarjeta centrada (equivalente a login main) */
+body.register-page .register-shell{
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 720px; /* “horizontal” por ancho, sin moverlo a la derecha */
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.10);
+    padding: 2.4rem 2.2rem;
+}
+
+/* El form ya no es “otra tarjeta” */
+body.register-page .register-form{
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    overflow: visible;
+    max-height: none;
+}
+
+body.register-page .register-form h1{
+    text-align: center;
+    margin-bottom: 0.3rem;
+    color: var(--r-ink);
+    font-size: 1.8rem;
+    font-weight: 400;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+/* Mensajes (consistentes y “limpios”) */
+body.register-page .register-form .success,
+body.register-page .register-form .error,
+body.register-page .register-form .info{
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #ffffff;
+}
+
+body.register-page .register-form .error{
+    background: #FFF2F2;
+    color: #8b3432;
+    border-left: 8px solid var(--r-coral);
+}
+
+body.register-page .register-form .success{
+    background: #F2FFFB;
+    color: #1f4b44;
+    border-left: 8px solid var(--r-mint);
+}
+
+body.register-page .register-form .info{
+    background: #FFFCE6;
+    color: #7a6c1f;
+    border-left: 8px solid var(--r-pale);
+}
+
+body.register-page .register-form .error ul{
+    margin-left: 1.1rem;
+}
+
+/* Inputs (alineados al estilo login) */
+body.register-page .register-form label{
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    color: var(--r-muted);
+    font-weight: 500;
+}
+
+body.register-page .register-form input,
+body.register-page .register-form select{
+    margin-top: 0.5rem;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    border: 2px solid var(--r-gray);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+}
+
+body.register-page .register-form input:focus,
+body.register-page .register-form select:focus{
+    outline: none;
+    border-color: var(--r-sky);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(163, 210, 202, 0.15);
+}
+
+/* Filas “horizontales” (2 columnas) */
+body.register-page .register-form .form-row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+body.register-page .register-form .form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Botón (paleta coral) */
+body.register-page .register-form button[type="submit"]{
+    margin-top: 0.8rem;
+    padding: 0.95rem;
+    background: linear-gradient(135deg, var(--r-coral), var(--r-coral));
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.5);
+}
+
+body.register-page .register-form button[type="submit"]:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 170, 167, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 767px){
+    body.register-page{
+        align-items: flex-start; /* si no cabe, que empiece arriba y puedas scrollear */
+        padding-bottom: 2rem;
+    }
+
+    body.register-page .register-shell{
+        padding: 1.6rem 1.2rem;
+        border-radius: 16px;
+        max-width: 420px; /* como login en móvil */
+        max-height: calc(100vh - 2rem);
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    body.register-page .register-form .form-row{
+        grid-template-columns: 1fr;
+    }
+}
+
 .matches-page .sidebar {
     position: sticky;
     top: 0;
