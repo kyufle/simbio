@@ -37,12 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (updateProject($project_id, $user_id, $title, $description)) {
         // Actualizar los tags del proyecto
         updateProjectTags($project_id, $selected_tags);
-        $save_message = 'Proyecto actualizado correctamente';
+        $save_message = 'Projecte actualitzat correctament';
         $tags = getProjectTags($project_id);
         // Recargar datos
         $project = getProjectByIdAndUser($project_id, $user_id);
     } else {
-        $save_message = 'Error al actualizar el proyecto';
+        $save_message = 'Error al actualitzar el projecte';
     }
 }
 

@@ -58,11 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 updateProjectTags($new_project_id, $tags);
             }
 
-            $save_message = "Proyecto creado correctamente";
+            $save_message = "Projecte creat correctament";
             // Limpiar formulario
             $_POST = [];
         } else {
-            $errors[] = "Error al crear el proyecto";
+            $errors[] = "Error al crear el projecte";
         }
     }
 }
