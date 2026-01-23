@@ -110,14 +110,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $tags = $_POST['tags'] ?? [];
             assignTagsToUserByEmail($email, $tags);
 
-            
+
             $mensaje = '<div class="success">Registro exitoso. Revisa tu correo para validar la cuenta.</div>';
         }
     }
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
