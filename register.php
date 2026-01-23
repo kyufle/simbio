@@ -175,17 +175,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-row">
                 <div class="form-group <?php echo isset($campos_error['nombre']) ? 'form-group-error' : ''; ?>">
                     <label for="nombre">Nom</label>
-                    <input type="text" name="nombre" id="nombre" value="<?php echo htmlspecialchars($nombre ?? ''); ?>" required>
+                    <input type="text" name="nombre" id="nombre" value="<?php echo htmlspecialchars($nombre ?? ''); ?>">
                 </div>
                 <div class="form-group <?php echo isset($campos_error['apellidos']) ? 'form-group-error' : ''; ?>">
                     <label for="apellidos">Cognoms</label>
-                    <input type="text" name="apellidos" id="apellidos" value="<?php echo htmlspecialchars($apellidos ?? ''); ?>" required>
+                    <input type="text" name="apellidos" id="apellidos" value="<?php echo htmlspecialchars($apellidos ?? ''); ?>">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group <?php echo isset($campos_error['email']) ? 'form-group-error' : ''; ?>">
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($email ?? ''); ?>" required>
+                    <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($email ?? ''); ?>">
                 </div>
                 <div class="form-group <?php echo isset($campos_error['password']) ? 'form-group-error' : ''; ?>">
                     <label for="password">Contrasenya</label>
@@ -195,17 +195,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-row">
                 <div class="form-group <?php echo isset($campos_error['ciudad']) ? 'form-group-error' : ''; ?>">
                     <label for="ciudad">Ciutat</label>
-                    <input type="text" name="ciudad" id="ciudad" value="<?php echo htmlspecialchars($ciudad ?? ''); ?>" required>
+                    <input type="text" name="ciudad" id="ciudad" value="<?php echo htmlspecialchars($ciudad ?? ''); ?>">
                 </div>
                 <div class="form-group <?php echo isset($campos_error['telefono']) ? 'form-group-error' : ''; ?>">
                     <label for="telefono">Telèfon</label>
-                    <input type="text" name="telefono" id="telefono" value="<?php echo htmlspecialchars($telefono ?? ''); ?>" required>
+                    <input type="text" name="telefono" id="telefono" value="<?php echo htmlspecialchars($telefono ?? ''); ?>">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group <?php echo isset($campos_error['entidad']) ? 'form-group-error' : ''; ?>">
                     <label for="entidad">Entitat</label>
-                    <input type="text" name="entidad" id="entidad" value="<?php echo htmlspecialchars($entidad ?? ''); ?>" required>
+                    <input type="text" name="entidad" id="entidad" value="<?php echo htmlspecialchars($entidad ?? ''); ?>">
                 </div>
                 <div class="form-group <?php echo isset($campos_error['tipo']) ? 'form-group-error' : ''; ?>">
                     <label for="tipo">Tipus</label>
