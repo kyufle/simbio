@@ -1,6 +1,7 @@
 <?php
 require_once 'includes/mail.php';
 require_once 'includes/bd_register.php';
+require_once 'includes/auth.php';
 
 $mensaje = "";
 
@@ -97,10 +98,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <title>Registro de usuario</title>
+    <title>Registre D'Usuari</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
 </head>
@@ -169,6 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="file" name="imagen" id="imagen" accept="image/*">
             </div>
             -->
+            <div class="form-section-separator"></div>
             <h3>Etiquetes</h3>
             <div class="user-tags-section">
                 <div class="tags-list" id="tags-list">
@@ -188,11 +190,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <button type="button" id="add-tag-btn" class="btn btn-secondary">+ Afegir</button>
                 </div>
-            </div>
-
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Guardar canvis</button>
-                <button type="reset" class="btn btn-secondary">↺ Cancelar</button>
             </div>
             <button type="submit">Registrarse</button>
         </form>
