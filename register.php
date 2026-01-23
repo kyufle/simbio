@@ -1,7 +1,7 @@
 <?php
 require_once 'includes/mail.php';
 require_once 'includes/bd_register.php';
-require_once 'includes/auth.php';
+require_once 'includes/bd_profile.php';
 
 $mensaje = "";
 
@@ -170,7 +170,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="file" name="imagen" id="imagen" accept="image/*">
             </div>
             -->
-            <div class="form-section-separator"></div>
             <h3>Etiquetes</h3>
             <div class="user-tags-section">
                 <div class="tags-list" id="tags-list">
