@@ -46,6 +46,7 @@ function assignTagsToUserByEmail(string $email, array $tags): bool
 }
 
 $mensaje = "";
+$campos_error = array();
 
 if (isset($_GET['validate'])) {
     $token = $_GET['validate'];
@@ -77,16 +78,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // $imagen = $_FILES['imagen'] ?? null; // Si quieres añadir imagen
 
     $errores = array();
-    if (!$nombre) $errores[] = "El nombre es obligatorio.";
-    if (!$apellidos) $errores[] = "Los apellidos son obligatorios.";
-    if (!$email) $errores[] = "El email es obligatorio.";
-    if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) $errores[] = "El email no es válido.";
-    if (!$password) $errores[] = "La contraseña es obligatoria.";
-    if ($password && strlen($password) < 8) $errores[] = "La contraseña debe tener al menos 8 caracteres.";
-    if (!$ciudad) $errores[] = "La ciudad es obligatoria.";
-    if (!$telefono) $errores[] = "El teléfono es obligatorio.";
-    if (!$entidad) $errores[] = "La entidad es obligatoria.";
-    if (!$tipo) $errores[] = "El tipo es obligatorio.";
+    $campos_error = array();
+    
+    if (!$nombre) {
+        $errores[] = "El nombre es obligatorio.";
+        $campos_error['nombre'] = true;
+    }
+    if (!$apellidos) {
+        $errores[] = "Los apellidos son obligatorios.";
+        $campos_error['apellidos'] = true;
+    }
+    if (!$email) {
+        $errores[] = "El email es obligatorio.";
+        $campos_error['email'] = true;
+    }
+    if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errores[] = "El email no es válido.";
+        $campos_error['email'] = true;
+    }
+    if (!$password) {
+        $errores[] = "La contraseña es obligatoria.";
+        $campos_error['password'] = true;
+    }
+    if ($password && strlen($password) < 8) {
+        $errores[] = "La contraseña debe tener al menos 8 caracteres.";
+        $campos_error['password'] = true;
+    }
+    if (!$ciudad) {
+        $errores[] = "La ciudad es obligatoria.";
+        $campos_error['ciudad'] = true;
+    }
+    if (!$telefono) {
+        $errores[] = "El teléfono es obligatorio.";
+        $campos_error['telefono'] = true;
+    }
+    if (!$entidad) {
+        $errores[] = "La entidad es obligatoria.";
+        $campos_error['entidad'] = true;
+    }
+    if (!$tipo) {
+        $errores[] = "El tipo es obligatorio.";
+        $campos_error['tipo'] = true;
+    }
 
     if (count($errores) > 0) {
         $mensaje = '<div class="error"><ul><li>' . implode('</li><li>', $errores) . '</li></ul></div>';
@@ -140,46 +173,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             ?>
             <div class="form-row">
-                <div class="form-group">
+                <div class="form-group <?php echo isset($campos_error['nombre']) ? 'form-group-error' : ''; ?>">
                     <label for="nombre">Nom</label>
-                    <input type="text" name="nombre" id="nombre" required>
+                    <input type="text" name="nombre" id="nombre" value="<?php echo htmlspecialchars($nombre ?? ''); ?>" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group <?php echo isset($campos_error['apellidos']) ? 'form-group-error' : ''; ?>">
                     <label for="apellidos">Cognoms</label>
-                    <input type="text" name="apellidos" id="apellidos" required>
+                    <input type="text" name="apellidos" id="apellidos" value="<?php echo htmlspecialchars($apellidos ?? ''); ?>" required>
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group">
+                <div class="form-group <?php echo isset($campos_error['email']) ? 'form-group-error' : ''; ?>">
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" required>
+                    <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($email ?? ''); ?>" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group <?php echo isset($campos_error['password']) ? 'form-group-error' : ''; ?>">
                     <label for="password">Contrasenya</label>
                     <input type="password" name="password" id="password" required>
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group">
+                <div class="form-group <?php echo isset($campos_error['ciudad']) ? 'form-group-error' : ''; ?>">
                     <label for="ciudad">Ciutat</label>
-                    <input type="text" name="ciudad" id="ciudad" required>
+                    <input type="text" name="ciudad" id="ciudad" value="<?php echo htmlspecialchars($ciudad ?? ''); ?>" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group <?php echo isset($campos_error['telefono']) ? 'form-group-error' : ''; ?>">
                     <label for="telefono">Telèfon</label>
-                    <input type="text" name="telefono" id="telefono" required>
+                    <input type="text" name="telefono" id="telefono" value="<?php echo htmlspecialchars($telefono ?? ''); ?>" required>
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group">
+                <div class="form-group <?php echo isset($campos_error['entidad']) ? 'form-group-error' : ''; ?>">
                     <label for="entidad">Entitat</label>
-                    <input type="text" name="entidad" id="entidad" required>
+                    <input type="text" name="entidad" id="entidad" value="<?php echo htmlspecialchars($entidad ?? ''); ?>" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group <?php echo isset($campos_error['tipo']) ? 'form-group-error' : ''; ?>">
                     <label for="tipo">Tipus</label>
                     <select name="tipo" id="tipo" required>
                         <option value="">Selecciona...</option>
-                        <option value="Empresa">Empresa</option>
-                        <option value="Centre">Centre</option>
+                        <option value="Empresa" <?php echo ($tipo === 'Empresa') ? 'selected' : ''; ?>>Empresa</option>
+                        <option value="Centre" <?php echo ($tipo === 'Centre') ? 'selected' : ''; ?>>Centre</option>
                     </select>
                 </div>
             </div>
@@ -214,6 +247,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     <script>
         const allAvailableTags = <?php echo json_encode(getAllAvailableTags()); ?>;
+        
+        // Limpiar campos con error cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const camposError = document.querySelectorAll('.form-group-error');
+            camposError.forEach(function(grupo) {
+                const input = grupo.querySelector('input, textarea, select');
+                if (input) {
+                    input.value = '';
+                    // Remover la clase de error después de que el usuario empiece a escribir
+                    input.addEventListener('input', function() {
+                        grupo.classList.remove('form-group-error');
+                    });
+                    input.addEventListener('change', function() {
+                        grupo.classList.remove('form-group-error');
+                    });
+                }
+            });
+        });
     </script>
     <script src="js/etiquetas.js?v=<?php echo time(); ?>"></script>
 </body>
