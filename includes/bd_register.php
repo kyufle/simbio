@@ -152,3 +152,25 @@ function assignTagsToUserByEmail(string $email, array $tags): bool
         return false;
     }
 }
+
+function enviarCorreoValidacion(string $email, string $token, string $nombre): bool
+{
+    $urlValidacion = "https://tudominio.com/register.php?validate=" . urlencode($token);
+
+    $asunto = "Valida tu cuenta";
+    $mensaje = "
+        <p>Hola <strong>{$nombre}</strong>,</p>
+        <p>Gracias por registrarte. Para activar tu cuenta, haz clic en el siguiente enlace:</p>
+        <p>
+            <a href='{$urlValidacion}'>Validar cuenta</a>
+        </p>
+        <p>Este enlace caduca en 48 horas.</p>
+    ";
+
+    try {
+        return enviarCorreo($email, $asunto, $mensaje);
+    } catch (Throwable $e) {
+        error_log('enviarCorreoValidacion ERROR: ' . $e->getMessage());
+        return false;
+    }
+}
