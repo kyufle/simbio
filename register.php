@@ -1,114 +1,135 @@
 <?php
 require_once 'includes/mail.php';
-require_once 'includes/bd_register.php';
+require_once 'includes/db.php'; // Incluye tu conexión a la base de datos aquí
 require_once 'includes/bd_profile.php';
+function assignTagsToUserByEmail(string $email, array $tags): bool
+{
+    global $conn;
+
+    if (empty($tags)) {
+        return true;
+    }
+
+    try {
+        // Obtener user_id
+        $stmtUser = $conn->prepare("SELECT user_id FROM user WHERE email = ? LIMIT 1");
+        $stmtUser->execute([$email]);
+        $user_id = $stmtUser->fetchColumn();
+
+        if (!$user_id) {
+            throw new Exception("Usuario no encontrado para el email: $email");
+        }
+
+        // Preparar consultas
+        $stmtTag = $conn->prepare("SELECT tag_id FROM tag WHERE name = ?");
+        $stmtInsert = $conn->prepare(
+            "INSERT INTO user_tags (user_id, tag_id)
+             VALUES (?, ?)
+             ON DUPLICATE KEY UPDATE tag_id = tag_id"
+        );
+
+        foreach ($tags as $tag_name) {
+            $stmtTag->execute([$tag_name]);
+            $tag_id = $stmtTag->fetchColumn();
+
+            if ($tag_id) {
+                $stmtInsert->execute([$user_id, $tag_id]);
+            }
+        }
+
+        return true;
+
+    } catch (Throwable $e) {
+        error_log('assignTagsToUserByEmail ERROR: ' . $e->getMessage());
+        return false;
+    }
+}
 
 $mensaje = "";
 
-/* =========================
-   VALIDACIÓN POR TOKEN
-========================= */
 if (isset($_GET['validate'])) {
     $token = $_GET['validate'];
-
-    $usuario = getUserByValidationToken($token);
-
-    if (
-        $usuario &&
-        !$usuario['is_active'] &&
-        $usuario['validation_expires'] > date('Y-m-d H:i:s')
-    ) {
-        activateUser((int)$usuario['user_id']);
-        $mensaje = '¡Cuenta verificada correctamente! Ya puedes iniciar sesión.';
+    $stmt = $conn->prepare("SELECT user_id, validation_expires, is_active FROM user WHERE validation_token = ? LIMIT 1");
+    $stmt->execute([$token]);
+    $usuario = $stmt->fetch();
+    if ($usuario && !$usuario['is_active'] && $usuario['validation_expires'] > date('Y-m-d H:i:s')) {
+        // Activar usuario y eliminar token
+        $stmt = $conn->prepare("UPDATE user SET is_active = 1, validation_token = NULL, validation_expires = NULL WHERE user_id = ?");
+        $stmt->execute([$usuario['user_id']]);
+        $mensaje = '<div class="success">¡Cuenta verificada correctamente! Ya puedes iniciar sesión.</div>';
     } else {
+        // Provocar error 403 real para que Apache lo gestione
         http_response_code(403);
         exit;
     }
 }
 
-/* =========================
-   REGISTRO DE USUARIO
-========================= */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    // Datos del formulario
-    $nombre    = trim($_POST['nombre'] ?? '');
+    // Recoger datos del formulario
+    $nombre = trim($_POST['nombre'] ?? '');
     $apellidos = trim($_POST['apellidos'] ?? '');
-    $email     = trim($_POST['email'] ?? '');
-    $password  = $_POST['password'] ?? '';
-    $ciudad    = trim($_POST['ciudad'] ?? '');
-    $telefono  = trim($_POST['telefono'] ?? '');
-    $entidad   = trim($_POST['entidad'] ?? '');
-    $tipo      = $_POST['tipo'] ?? '';
-    $tags     = $_POST['tags'] ?? [];
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+    $ciudad = trim($_POST['ciudad'] ?? '');
+    $telefono = trim($_POST['telefono'] ?? '');
+    $entidad = trim($_POST['entidad'] ?? '');
+    $tipo = $_POST['tipo'] ?? '';
+    // $imagen = $_FILES['imagen'] ?? null; // Si quieres añadir imagen
 
-    // Validaciones
-    $errores = [];
-
-    if (!$nombre)    $errores[] = "El nombre es obligatorio.";
+    $errores = array();
+    if (!$nombre) $errores[] = "El nombre es obligatorio.";
     if (!$apellidos) $errores[] = "Los apellidos son obligatorios.";
-    if (!$email)     $errores[] = "El email es obligatorio.";
-    if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL))
-        $errores[] = "El email no es válido.";
-    if (!$password)  $errores[] = "La contraseña es obligatoria.";
-    if (strlen($password) < 8)
-        $errores[] = "La contraseña debe tener al menos 8 caracteres.";
-    if (!$ciudad)    $errores[] = "La ciudad es obligatoria.";
-    if (!$telefono)  $errores[] = "El teléfono es obligatorio.";
-    if (!$entidad)   $errores[] = "La entidad es obligatoria.";
-    if (!$tipo)      $errores[] = "El tipo es obligatorio.";
+    if (!$email) $errores[] = "El email es obligatorio.";
+    if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) $errores[] = "El email no es válido.";
+    if (!$password) $errores[] = "La contraseña es obligatoria.";
+    if ($password && strlen($password) < 8) $errores[] = "La contraseña debe tener al menos 8 caracteres.";
+    if (!$ciudad) $errores[] = "La ciudad es obligatoria.";
+    if (!$telefono) $errores[] = "El teléfono es obligatorio.";
+    if (!$entidad) $errores[] = "La entidad es obligatoria.";
+    if (!$tipo) $errores[] = "El tipo es obligatorio.";
 
-    if ($errores) {
-        $mensaje = implode('<br>', $errores);
+    if (count($errores) > 0) {
+        $mensaje = '<div class="error"><ul><li>' . implode('</li><li>', $errores) . '</li></ul></div>';
     } else {
-
-        // Comprobar email
-        if (emailExists($email)) {
-            $mensaje = "El email ya está registrado.";
+        // Comprobar si el email ya existe
+        $stmt = $conn->prepare("SELECT user_id FROM user WHERE email = ? LIMIT 1");
+        $stmt->execute([$email]);
+        if ($stmt->fetch()) {
+            $mensaje = '<div class="error">El email ya está registrado.</div>';
         } else {
-
-            // Crear usuario
-            $passwordHash = hash('sha256', $password);
-            $token   = hash('sha256', $email . 'simbio1');
-            $expires = date('Y-m-d H:i:s', time() + 48 * 60 * 60);
-
-            createInactiveUser(
-                $email,
-                $passwordHash,
-                $nombre,
-                $apellidos,
-                $ciudad,
-                $telefono,
-                $entidad,
-                $tipo,
-                $token,
-                $expires
-            );
-
-            // Asignar etiquetas
-            if (!empty($tags)) {
-                assignTagsToUser($email, $tags);
-            }
-
+            // Crear usuario inactivo
+            $password_hash = hash('sha256', $password);
+            $token = hash('sha256', $email . 'simbio1');
+            $expires = date('Y-m-d H:i:s', time() + 48 * 60 * 60); // 48 horas
+            $stmt = $conn->prepare("INSERT INTO user (email, password_hash, name, surnames, city, phone_number, entity, type, image_path, is_active, validation_token, validation_expires) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL, 0, ?, ?)");
+            $stmt->execute([$email, $password_hash, $nombre, $apellidos, $ciudad, $telefono, $entidad, $tipo, $token, $expires]);
+            // Enviar email de validación
             enviarCorreoValidacion($email, $token, $nombre);
 
-            $mensaje = "Registro exitoso. Revisa tu correo para validar la cuenta.";
+            // Asignar etiquetas al usuario usando su email
+            $tags = $_POST['tags'] ?? [];
+            assignTagsToUserByEmail($email, $tags);
+
+            
+            $mensaje = '<div class="success">Registro exitoso. Revisa tu correo para validar la cuenta.</div>';
         }
     }
 }
+
 ?>
+
 <!DOCTYPE html>
-<html lang="ca">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registre D'Usuari</title>
+    <title>Registre d'usuari</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
 </head>
 <body class="register-page">
     <div class="register-shell">
         <form class="register-form" method="POST" autocomplete="off">
-            <h1>Registro de usuario</h1>
+            <h1>Registre d'usuari</h1>
             <?php
             if ($mensaje) {
                 if (strpos($mensaje, 'success') !== false) {
