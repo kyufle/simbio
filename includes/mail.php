@@ -12,7 +12,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 function enviarCorreoValidacion($email, $token, $nombre = "") {
 	$asunto = "Verifica tu cuenta en Simbio";
 	$dominio = $_SERVER['HTTP_HOST'] ?? 'localhost';
-	$enlace = "https://$dominio/register.php?validate=" . urlencode($token);
+	$enlace = "https://$dominio/confirm_email.php?validate=" . urlencode($token);
 	$mensaje = '<!DOCTYPE html>
 	<html lang="es">
 	<head><meta charset="UTF-8"><title>Verifica tu cuenta</title></head>
