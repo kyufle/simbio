@@ -1,6 +1,7 @@
-<!-- Quiero hacer que esta pagina sea accesible cuando el usuario hace clic en el enlace de confirmación en su correo electrónico. -->
-<!-- Lo que debe llevar esta pagina es un cuadrado en el medio de la pagina que diga "Tu correo ha sido confirmado exitosamente. Ya puedes iniciar sesión." junto a un botón que lleve al inicio de sesión -->
 <?php
+require_once 'includes/mail.php';
+require_once 'includes/db.php'; // Incluye tu conexión a la base de datos aquí
+require_once 'includes/bd_profile.php';
     if (isset($_GET['validate'])) {
         $token = $_GET['validate'];
         $stmt = $conn->prepare("SELECT user_id, validation_expires, is_active FROM user WHERE validation_token = ? LIMIT 1");
