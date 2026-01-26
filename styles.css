@@ -4541,7 +4541,7 @@ body.login-page .back-btn:hover {
     text-align: center;
 }
 
-.profile-page .user-projects a.btn.btn-primary {
+.profile-page #user-projects a.btn.btn-primary {
     text-decoration: none;
     color: #333;
     background-color: #E8E8E8;
@@ -4554,29 +4554,17 @@ body.login-page .back-btn:hover {
     align-items: center;
 }
 
-.profile-page .user-projects a.btn.btn-primary:hover {
+.profile-page #user-projects a.btn.btn-primary:hover {
     background-color: #D0D0D0;
 }
-.profile-page .user-projects h2 {
+.profile-page #user-projects h2 {
     text-align: start;
 }
-.profile-page .user-projects .project {
+.profile-page #user-projects .project {
     margin-bottom: 25px;
     text-align: start;
 }
-.profile-page .user-projects .project-title-link {
-    font-family: 'Fjalla One', sans-serif;
-    font-size: 1.2rem;
-    color: #333;
-    text-decoration: none;
-    margin-bottom: 10px;
-    display: inline-block;
-}
-.profile-page .user-projects .project-title-link:hover {
-    color: #FFAAA7;
-    text-decoration: underline;
-}
-.profile-page .user-projects .project-preview {
+.profile-page #user-projects .project-preview {
     width: 250px;
     height: auto;
     border-radius: 12px;
@@ -4584,7 +4572,7 @@ body.login-page .back-btn:hover {
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
 }
-.profile-page .user-projects .project-preview:hover {
+.profile-page #user-projects .project-preview:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
