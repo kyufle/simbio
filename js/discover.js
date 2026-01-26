@@ -167,20 +167,16 @@ function handleLikeAction(card) {
     }
 
     // ⭐ ÚNICO TOAST - Con nombre del proyecto
-    if (typeof window.mostrarExito === 'function') {
-        fetch('includes/like_project.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ project_id: projectId })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (!data.success) {
-                console.error('Error al dar like:', data.error);
-                return;
-            }
+    fetch('includes/like_project.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ project_id: projectId })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("Respuesta like_project.php:", data); // 👈 para debug
 
-            // Mostramos toast con opción de ir a la conversación
+        if (data.success) {
             if (typeof window.mostrarExito === 'function') {
                 window.mostrarExito(
                     `❤️ Has dado like a "${projectTitle}"`,
@@ -188,15 +184,16 @@ function handleLikeAction(card) {
                     {
                         actionText: "Ir a conversación",
                         actionCallback: () => {
-                            // Redirige a chat.php con el usuario propietario
                             window.location.href = `chat.php?user_id=${data.owner_id}`;
                         }
                     }
                 );
             }
-        })
-        .catch(err => console.error(err));
-    }
+        } else {
+            console.error('Error al dar like:', data.error || 'Unknown error');
+        }
+    })
+    .catch(err => console.error('Fallo en fetch like_project.php:', err));
 
     // Animar salida
     animateSwipe(card, "like");
