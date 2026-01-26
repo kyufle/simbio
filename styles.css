@@ -4542,18 +4542,16 @@ body.login-page .back-btn:hover {
 }
 
 .profile-page .user-projects a.btn.btn-primary {
+    display: block;              /* 🔑 clave */
+    width: fit-content;          /* para que no ocupe todo el ancho */
+    margin: 0 auto 15px auto;    /* centrado horizontal */
+    
     text-decoration: none;
     color: #333;
     background-color: #E8E8E8;
     padding: 10px 16px;
     border-radius: 8px;
-    display: inline-block;
-    margin-bottom: 15px;
     transition: all 0.3s;
-    text-decoration: none;
-    /* Alinear al centro */
-    margin-left: auto;
-    margin-right: auto;
     text-align: center;
     font-weight: 600;
 }
