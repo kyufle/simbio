@@ -1,11 +1,9 @@
-<<<<<<< HEAD
 [2026-01-22 00:37:44] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
 [2026-01-22 00:37:44] [ERROR] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: ffmpeg no executable | {"path":"\/usr\/bin\/ffmpeg"}
 [2026-01-22 00:41:46] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
 [2026-01-22 00:41:46] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":6,"errors":0}
 [2026-01-22 00:43:03] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
 [2026-01-22 00:43:03] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":6,"errors":0}
-=======
 [2026-01-22 00:11:29] [ERROR] [IP: 90.171.39.40] [Usuario: alejandro.garcia@unican.es] [GET /discover.php] Error de conexión a BD | {"servidor":"localhost","base_datos":"simbio","error":"SQLSTATE[HY000] [1045] Access denied for user ''@'localhost' (using password: NO)"}
 [2026-01-22 00:12:05] [INFO] [IP: 90.171.39.40] [Usuario: alejandro.garcia@unican.es] [GET /discover.php] Conexión a BD establecida exitosamente
 [2026-01-22 00:12:05] [INFO] [IP: 90.171.39.40] [Usuario: alejandro.garcia@unican.es] [GET /discover.php] Usuario accedió a discover.php
@@ -97,6 +95,15 @@
 [2026-01-22 00:27:54] [INFO] [IP: 90.171.39.40] [Usuario: bimargon2006@gmail.com] [POST /profile.php] Perfil actualizado para usuario: bimargon2006@gmail.com
 [2026-01-22 00:27:54] [INFO] [IP: 90.171.39.40] [Usuario: bimargon2006@gmail.com] [POST /profile.php] Perfil de usuario obtenido por email: bimargon2006@gmail.com
 [2026-01-22 00:27:55] [INFO] [IP: 90.171.39.40] [Usuario: bimargon2006@gmail.com] [GET /includes/user_projects.php?email=bimargon2006%40gmail.com] Conexión a BD establecida exitosamente
->>>>>>> 72f59566e57c479c3edd1a2807410cb201254908
+[2026-01-22 10:10:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
+[2026-01-22 10:10:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":6,"errors":0}
+[2026-01-22 10:20:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
+[2026-01-22 10:20:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":6,"errors":0}
+[2026-01-22 10:30:02] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
+[2026-01-22 10:30:02] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":6,"errors":0}
+[2026-01-22 10:40:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
+[2026-01-22 10:40:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":6,"errors":0}
+[2026-01-22 10:50:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
+[2026-01-22 10:50:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":6,"errors":0}
 [2026-01-22 09:30:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
 [2026-01-22 09:30:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":7,"errors":0}
