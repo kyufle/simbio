@@ -6200,7 +6200,8 @@ body.edit-project-page main {
     height: 100dvh;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
-    padding: 84px 12px calc(90px + env(safe-area-inset-bottom, 0px));
+    /* Header arriba + barra inferior: equilibrar espacios en móvil */
+    padding: 120px 12px calc(78px + env(safe-area-inset-bottom, 0px));
 }
 
 /* Profile: center section title + primary action on mobile */
