@@ -2062,7 +2062,7 @@ body.register-page .register-form button[type="submit"]:hover{
 }
 .profile-page .user-projects a.btn.btn-primary:hover {
     background: linear-gradient(135deg, #b7a7ff, #baa7ff);
-    color: black;
+    color: #FFF;
     box-shadow: 0 4px 15px rgba(205, 167, 255, 0.6);
 }
 
