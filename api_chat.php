@@ -135,5 +135,5 @@ try {
         'success' => false,
         'error' => 'Error de base de datos: ' . $e->getMessage() // mostrar el mensaje real
     ]);
-    error_log("Error en chat API: " . $e->getMessage());
+    log_error("Error en chat API: " . $e->getMessage());
 }
