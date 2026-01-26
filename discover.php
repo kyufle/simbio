@@ -31,7 +31,7 @@ $flash = $_SESSION['flash_message'] ?? null;
     <ul class="nav-links">
         <li><a href="discover.php">Descobrir</a></li>
         <li><a href="profile.php">Perfil</a></li>
-        <li><a href="messages.php">Converses</a></li>
+        <li><a href="conversations.php">Converses</a></li>
     </ul>
     <div class="session-info">
         <?php if (isLogged()): ?>
