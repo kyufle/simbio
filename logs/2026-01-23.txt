@@ -1,0 +1,39 @@
+[2026-01-23 16:02:58] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /discover.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:02:58] [WARNING] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /discover.php] Acceso denegado a discover.php - Usuario no autenticado
+[2026-01-23 16:02:58] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:03:02] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /register.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:03:39] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:09:21] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:09:22] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /register.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:11:07] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /register.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:13:04] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [POST /register.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:13:38] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /register.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:31:27] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /discover.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:31:27] [WARNING] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /discover.php] Acceso denegado a discover.php - Usuario no autenticado
+[2026-01-23 16:31:27] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:31:31] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /register.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:31:50] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /register.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:33:24] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [POST /register.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:33:56] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /register.php?validate=01fdd09fe9c8e8422383388b4faf3f93d58246ffebb3111ebad4390c19827576] Conexión a BD establecida exitosamente
+[2026-01-23 16:34:04] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /register.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:34:05] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:34:16] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [POST /login.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:34:16] [INFO] [IP: 85.192.71.100] [Usuario: bimargon2006@gmail.com] [POST /login.php] Usuario autenticado: bimargon2006@gmail.com
+[2026-01-23 16:34:16] [INFO] [IP: 85.192.71.100] [Usuario: bimargon2006@gmail.com] [POST /login.php] AUTH [LOGIN] - Email: bimargon2006@gmail.com
+[2026-01-23 16:34:16] [INFO] [IP: 85.192.71.100] [Usuario: bimargon2006@gmail.com] [GET /discover.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:34:16] [INFO] [IP: 85.192.71.100] [Usuario: bimargon2006@gmail.com] [GET /discover.php] Usuario accedió a discover.php
+[2026-01-23 16:34:17] [INFO] [IP: 85.192.71.100] [Usuario: bimargon2006@gmail.com] [GET /includes/projects.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:34:21] [INFO] [IP: 85.192.71.100] [Usuario: bimargon2006@gmail.com] [GET /profile.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:34:21] [INFO] [IP: 85.192.71.100] [Usuario: bimargon2006@gmail.com] [GET /profile.php] Perfil de usuario obtenido por email: bimargon2006@gmail.com
+[2026-01-23 16:34:21] [INFO] [IP: 85.192.71.100] [Usuario: bimargon2006@gmail.com] [GET /profile.php] Usuario accedió a profile.php - Email: bimargon2006@gmail.com
+[2026-01-23 16:34:21] [INFO] [IP: 85.192.71.100] [Usuario: bimargon2006@gmail.com] [GET /includes/user_projects.php?email=bimargon2006%40gmail.com] Conexión a BD establecida exitosamente
+[2026-01-23 16:34:24] [INFO] [IP: 85.192.71.100] [Usuario: bimargon2006@gmail.com] [GET /logout.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:34:24] [INFO] [IP: 85.192.71.100] [Usuario: bimargon2006@gmail.com] [GET /logout.php] Usuario desconectado: bimargon2006@gmail.com
+[2026-01-23 16:34:25] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /discover.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:34:25] [WARNING] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /discover.php] Acceso denegado a discover.php - Usuario no autenticado
+[2026-01-23 16:34:25] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:44:23] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:44:25] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /register.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:45:49] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [GET /register.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:46:25] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [POST /register.php] Conexión a BD establecida exitosamente
+[2026-01-23 16:46:49] [INFO] [IP: 85.192.71.100] [Usuario: ANONIMO] [POST /register.php] Conexión a BD establecida exitosamente

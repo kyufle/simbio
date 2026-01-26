@@ -29,7 +29,7 @@ function createProjectCard(project) {
             <div class="liked-indicator">❤️ Ja t'ha agradat aquest projecte</div>
             <div class="buttons">
                 <button class="next-btn">
-                    <span>➡️</span> Següent
+                    Següent
                 </button>
             </div>
           `
