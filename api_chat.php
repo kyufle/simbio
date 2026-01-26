@@ -1,6 +1,7 @@
 <?php
 require_once 'includes/auth.php';
 require_once 'includes/db.php';
+require_once 'includes/logger.php';
 
 header('Content-Type: application/json');
 
@@ -118,6 +119,6 @@ try {
 } catch (PDOException $e) {
     http_response_code(500);
     echo json_encode(['success' => false, 'error' => 'Error de base de datos']);
-    log_error("Error en chat API: " . $e->getMessage());
+    error_log("Error en chat API: " . $e->getMessage());
 }
 ?>
