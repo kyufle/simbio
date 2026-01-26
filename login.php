@@ -7,7 +7,9 @@ if (!isset($_SESSION['code_send_times'])) {
 }
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/logger.php';
+
 require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/mail.php';
 
 function isLoggedIn()
 {
@@ -42,10 +44,9 @@ function validateLoginForm($email, $password)
         }
     }
 
-    return empty($errors) ? null : $errors;
+    return $errors;
 }
 
-// Redirigir si ya está logueado
 if (isLoggedIn()) {
     header('Location: discover.php');
     exit;
@@ -56,9 +57,67 @@ $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
+    $errors = [];
 
-    // forgot=2: validar código temporal
-    if (isset($_GET['forgot']) && $_GET['forgot'] == '2') {
+    // --- forgot=2: lógica de reenvío de código ---
+    if (isset($_GET['forgot']) && $_GET['forgot'] == '2' && isset($_POST['resend_code'])) {
+        // Reenviar el código temporal directamente
+        $email = trim($_POST['email'] ?? ($_GET['email'] ?? ''));
+        $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+        $now = time();
+        $key = md5($email . '|' . $ip);
+        // Limpiar envíos antiguos
+        $_SESSION['code_send_times'] = array_filter(
+            $_SESSION['code_send_times'],
+            function($t) use ($now) { return $t > $now - 900; }
+        );
+        $send_count = 0;
+        foreach ($_SESSION['code_send_times'] as $k => $t) {
+            if ($k === $key) $send_count++;
+        }
+        if ($send_count >= 5) {
+            $errors['email'] = 'Has superat el límit d\'enviaments. Espera uns minuts.';
+        }
+        if (empty($errors)) {
+            require_once __DIR__ . '/includes/mail.php';
+            require_once __DIR__ . '/includes/db.php';
+            $stmt = $conn->prepare("SELECT user_id, name, is_active FROM user WHERE email = ? LIMIT 1");
+            $stmt->execute([$email]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (!$user) {
+                $errors['email'] = 'No existeix cap compte amb aquest correu electrònic';
+            } elseif (!$user['is_active']) {
+                $errors['email'] = 'El compte no està actiu.';
+            } else {
+                // Limpiar código anterior
+                $stmt2 = $conn->prepare("UPDATE user SET login_code = NULL, login_code_expires = NULL WHERE user_id = ?");
+                $stmt2->execute([$user['user_id']]);
+                // Generar código de 6 dígitos
+                $code = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+                $expires = date('Y-m-d H:i:s', $now + 15 * 60); // 15 minutos desde ahora
+                // Guardar código y expiración en BD
+                $stmt2 = $conn->prepare("UPDATE user SET login_code = ?, login_code_expires = ? WHERE user_id = ?");
+                $stmt2->execute([$code, $expires, $user['user_id']]);
+                // Enviar email
+                $ok = enviarCorreoCodigoTemporal($email, $code, $user['name']);
+                if ($ok) {
+                    $_SESSION['code_send_times'][$key] = $now;
+                    $_SESSION['flash_message'] = [
+                        'tipo' => 'info',
+                        'titulo' => 'Codi reenviat',
+                        'descripcion' => 'T\'hem tornat a enviar un codi temporal al teu correu.'
+                    ];
+                    // Mantener en forgot=2
+                    header('Location: login.php?forgot=2&email=' . urlencode($email));
+                    exit;
+                } else {
+                    $errors['email'] = 'No s\'ha pogut enviar el correu. Torna-ho a intentar.';
+                }
+            }
+        }
+        // IMPORTANTE: NO validar el código si se ha pulsado 'resend_code'
+    } elseif (isset($_GET['forgot']) && $_GET['forgot'] == '2') {
+        // Validar código temporal
         $code = trim($_POST['code'] ?? '');
         if ($email === '' || $code === '') {
             if ($email === '') $errors['email'] = 'El correu electrònic és obligatori';
@@ -81,7 +140,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 // Código correcto: iniciar sesión
                 unset($user['password_hash']); // No guardar hash en sesión
-                $_SESSION['user'] = $user;
+                $_SESSION['user'] = [
+                    'id' => $user['user_id'],
+                    'email' => $user['email'],
+                    'name' => $user['name']
+                ];
                 // Limpiar el código de la BD
                 $stmt2 = $conn->prepare("UPDATE user SET login_code = NULL, login_code_expires = NULL WHERE user_id = ?");
                 $stmt2->execute([$user['user_id']]);
@@ -94,18 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit;
             }
         }
-    }
-        }
-    // forgot=2: reenviar código
-    else if (isset($_GET['forgot']) && $_GET['forgot'] == '2' && isset($_POST['resend_code'])) {
-        // Redirigir a forgot=1 para reenviar el código
-        $email = trim($_POST['email'] ?? '');
-        header('Location: login.php?forgot=1&email=' . urlencode($email) . '&resend=1');
-        exit;
-        }
-    
-    // forgot=1: enviar código temporal
-    else if (isset($_GET['forgot']) && $_GET['forgot'] == '1') {
+    } elseif (isset($_GET['forgot']) && $_GET['forgot'] == '1') {
         // Validación simple de email
         if ($email === '') {
             $errors['email'] = 'El correu electrònic és obligatori';
@@ -133,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($send_count >= 5) {
             $errors['email'] = 'Has superat el límit d\'enviaments. Espera uns minuts.';
         }
-        if (!$errors) {
+        if (empty($errors)) {
             require_once __DIR__ . '/includes/mail.php';
             require_once __DIR__ . '/includes/db.php';
             // Comprobar si el usuario existe y está activo
@@ -155,9 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt2 = $conn->prepare("UPDATE user SET login_code = ?, login_code_expires = ? WHERE user_id = ?");
                 $stmt2->execute([$code, $expires, $user['user_id']]);
                 // Enviar email
-                $asunto = "Codi d'accés temporal a Simbio";
-                $mensaje = "<p>El teu codi d'accés és: <b>$code</b></p><p>Caduca en 15 minuts.</p>";
-                $ok = enviarCorreoValidacion($email, $code, $user['name']);
+                $ok = enviarCorreoCodigoTemporal($email, $code, $user['name']);
                 if ($ok) {
                     $_SESSION['code_send_times'][$key] = $now;
                     $_SESSION['flash_message'] = [
@@ -173,15 +223,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
         }
-        // Mostrar errores si existen
-        if (!empty($errors)) {
-            // Forzar renderizado de errores en el formulario
-        }
     } else {
         // Lógica de login normal
         $password = $_POST['password'] ?? '';
         $errors = validateLoginForm($email, $password);
-        if (!$errors) {
+        if (empty($errors)) {
             $result = login($email, $password);
             if ($result['success']) {
                 log_auth('LOGIN', $email, true);
@@ -194,15 +240,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit;
             } else {
                 log_auth('LOGIN', $email, false, $result['error']);
-                if (is_array($result['errors'])) {
+                if (isset($result['errors']) && is_array($result['errors'])) {
                     $errors = $result['errors'];
                 } else {
-                    $errors['auth'] = $result['error'];
+                    $errors['general'] = $result['error'];
                 }
             }
-    }
+        }
     }
 
+    // Fin del bloque principal de manejo de POST
+}
 ?>
 
 <!DOCTYPE html>
