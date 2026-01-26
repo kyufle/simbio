@@ -180,7 +180,7 @@ function handleLikeAction(card) {
             if (typeof window.mostrarExito === 'function') {
                 window.mostrarExito(
                     `❤️ Has dado like a "${projectTitle}"`,
-                    `Ahora puedes iniciar una conversación con ${data.owner_name}`,
+                    `Ahora puedes <a href="chat.php?user_id=${data.owner_id}">iniciar una conversación</a> con ${data.owner_name}`,
                     {
                         actionText: "Ir a conversación",
                         actionCallback: () => {
