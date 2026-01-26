@@ -29,20 +29,26 @@ try {
     $stmt->execute([':user_id'=>$currentUserId, ':project_id'=>$projectId]);
 
     // 2️⃣ Obtener propietario del proyecto
-    $stmt = $conn->prepare("SELECT user_id, title FROM project WHERE project_id = :pid LIMIT 1");
-    $stmt->execute([':pid'=>$projectId]);
+    $stmt = $conn->prepare("
+        SELECT u.user_id, u.name, u.surnames 
+        FROM project p
+        JOIN user u ON p.user_id = u.user_id
+        WHERE p.project_id = :pid
+        LIMIT 1
+    ");
+    $stmt->execute([':pid' => $projectId]);
     $owner = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if(!$owner){
-        echo json_encode(['success'=>false,'error'=>'Propietario no encontrado']);
+    if (!$owner) {
+        echo json_encode(['success' => false, 'error' => 'Propietario no encontrado']);
         exit;
     }
 
     // Retornamos info para el toast / redirección
     echo json_encode([
-        'success'=>true,
+        'success' => true,
         'owner_id' => $owner['user_id'],
-        'owner_name' => $owner['name']
+        'owner_name' => $owner['name'] . ' ' . $owner['surnames']
     ]);
 
 } catch(PDOException $e){
