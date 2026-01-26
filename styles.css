@@ -1831,11 +1831,19 @@ body.login-page .back-btn:hover {
 }
 
 .profile-page .btn-preview {
-    background-color: #007bff; /* azul */
+    background: linear-gradient(135deg, #b7a7ff, #baa7ff);
+    box-shadow: 0 4px 15px rgba(205, 167, 255, 0.4);
+}
+.profile-page .btn-preview:hover {
+    box-shadow: 0 6px 20px rgba(205, 167, 255, 0.6);
 }
 
 .profile-page .btn-edit {
-    background-color: #28a745; /* verde */
+    background: linear-gradient(135deg, #FFAAA7, #FF9593);
+    box-shadow: 0 4px 15px rgba(255, 170, 167, 0.4);
+}
+.profile-page .btn-edit:hover {
+    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.6);
 }
 
 
