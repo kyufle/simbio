@@ -4554,6 +4554,7 @@ body.login-page .back-btn:hover {
     /* Alinear al centro */
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
     font-weight: 600;
 }
 
