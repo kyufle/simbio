@@ -2,19 +2,10 @@
 /* bd ejemplo */
 require_once __DIR__ . '/logger.php';
 
-$envPath = __DIR__ . '/../.env';
-$env = is_file($envPath) ? parse_ini_file($envPath) : false;
-$username = null;
-$password = null;
-
-if (is_array($env)) {
-	$username = $env['db_user'] ?? null;
-	$password = $env['db_password'] ?? null;
-} else {
-	log_error('Archivo .env no encontrado o inválido', ['path' => $envPath]);
-}
-
+$env = parse_ini_file(__DIR__ .'/../.env');
 $servername = "localhost";
+$username     = $env['db_user'];
+$password = $env['db_password'];
 $dbname = "simbio";
 
 try {
@@ -40,4 +31,6 @@ try {
 	]);
 	die("Error en connectar amb la base de dades.");
 }
+
+?>
 

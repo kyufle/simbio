@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/auth.php';
+require_once 'auth.php';
 header('Content-Type: application/json; charset=utf-8');
 
 // 1. Seguridad: Solo usuarios logueados

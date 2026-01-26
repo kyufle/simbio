@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/auth.php';
-require_once __DIR__ . '/bd_profile.php';
+require_once 'auth.php';
+require_once 'bd_profile.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
