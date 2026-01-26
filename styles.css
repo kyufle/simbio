@@ -4551,6 +4551,7 @@ body.login-page .back-btn:hover {
     margin-bottom: 15px;
     transition: all 0.3s;
     text-decoration: none;
+    align-items: center;
 }
 
 .profile-page .user-projects a.btn.btn-primary:hover {
