@@ -631,3 +631,23 @@
 [2026-01-26 17:40:25] [INFO] [IP: 127.0.0.1] [Usuario: marta.lopez@uab.cat] [GET /includes/projects.php] Conexión a BD establecida exitosamente
 [2026-01-26 17:40:25] [INFO] [IP: 127.0.0.1] [Usuario: marta.lopez@uab.cat] [GET /includes/projects.php] Obteniendo proyectos para usuario: 2
 [2026-01-26 17:40:25] [INFO] [IP: 127.0.0.1] [Usuario: marta.lopez@uab.cat] [GET /includes/projects.php] Proyectos obtenidos: 6
+[2026-01-26 17:59:30] [INFO] [IP: 127.0.0.1] [Usuario: marta.lopez@uab.cat] [GET /discover.php] Conexión a BD establecida exitosamente
+[2026-01-26 17:59:30] [INFO] [IP: 127.0.0.1] [Usuario: marta.lopez@uab.cat] [GET /discover.php] Usuario accedió a discover.php
+[2026-01-26 17:59:30] [INFO] [IP: 127.0.0.1] [Usuario: marta.lopez@uab.cat] [GET /includes/projects.php] Conexión a BD establecida exitosamente
+[2026-01-26 17:59:30] [INFO] [IP: 127.0.0.1] [Usuario: marta.lopez@uab.cat] [GET /includes/projects.php] Obteniendo proyectos para usuario: 2
+[2026-01-26 17:59:30] [INFO] [IP: 127.0.0.1] [Usuario: marta.lopez@uab.cat] [GET /includes/projects.php] Proyectos obtenidos: 6
+[2026-01-26 17:59:33] [INFO] [IP: 127.0.0.1] [Usuario: marta.lopez@uab.cat] [GET /logout.php] Conexión a BD establecida exitosamente
+[2026-01-26 17:59:33] [INFO] [IP: 127.0.0.1] [Usuario: marta.lopez@uab.cat] [GET /logout.php] Usuario desconectado: marta.lopez@uab.cat
+[2026-01-26 17:59:33] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /discover.php] Conexión a BD establecida exitosamente
+[2026-01-26 17:59:33] [WARNING] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /discover.php] Acceso denegado a discover.php - Usuario no autenticado
+[2026-01-26 17:59:33] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-26 18:01:13] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-26 18:01:37] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-26 18:02:07] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-26 18:02:24] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-26 18:02:38] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-26 18:02:50] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-26 18:02:52] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-26 18:02:52] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-26 18:02:52] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente
+[2026-01-26 18:03:18] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /login.php] Conexión a BD establecida exitosamente

@@ -115,7 +115,8 @@ body.login-page button {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(170, 136, 255, 0.22);
+    box-shadow: 0 6px 28px 0 rgba(170, 136, 255, 0.38), 0 1.5px 4px rgba(183,153,255,0.22);
+    text-shadow: 0 1px 6px #B799FF;
 }
 
 body.login-page button:hover {
@@ -138,6 +139,7 @@ body.login-page .registre-btn {
     color: white;
     box-shadow: 0 4px 15px rgba(203, 180, 255, 0.25);
     font-family: 'Josefin Sans', sans-serif;
+    text-shadow: 0 1px 4px #B799FF;
 }
 
 body.login-page .registre-btn:hover {
@@ -152,6 +154,7 @@ body.login-page .back-btn {
     color: white;
     box-shadow: 0 4px 15px rgba(186, 162, 255, 0.20);
     font-family: 'Josefin Sans', sans-serif;
+    text-shadow: 0 1px 4px #B799FF;
 }
 
 body.login-page .back-btn:hover {
