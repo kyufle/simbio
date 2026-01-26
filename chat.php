@@ -56,8 +56,8 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat - <?php echo htmlspecialchars($otherUser['name'] . ' ' . $otherUser['surnames']); ?></title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="css/chat.css?v=<?php echo time(); ?>">
 </head>
 <body>
     <div class="chat-container">
