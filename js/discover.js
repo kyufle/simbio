@@ -168,7 +168,34 @@ function handleLikeAction(card) {
 
     // ⭐ ÚNICO TOAST - Con nombre del proyecto
     if (typeof window.mostrarExito === 'function') {
-        window.mostrarExito("❤️ M'agrada!", `T'ha agradat "${projectTitle}"`);
+        fetch('includes/like_project.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ project_id: projectId })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (!data.success) {
+                console.error('Error al dar like:', data.error);
+                return;
+            }
+
+            // Mostramos toast con opción de ir a la conversación
+            if (typeof window.mostrarExito === 'function') {
+                window.mostrarExito(
+                    `❤️ Has dado like a "${projectTitle}"`,
+                    `Ahora puedes iniciar una conversación con ${data.owner_name}`,
+                    {
+                        actionText: "Ir a conversación",
+                        actionCallback: () => {
+                            // Redirige a chat.php con el usuario propietario
+                            window.location.href = `chat.php?user_id=${data.owner_id}`;
+                        }
+                    }
+                );
+            }
+        })
+        .catch(err => console.error(err));
     }
 
     // Animar salida
