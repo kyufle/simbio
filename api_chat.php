@@ -82,7 +82,8 @@ try {
             SELECT message_id, text, sent_at, user_from_id, user_to_id
             FROM message
             WHERE (
-                (user_from_id = :user1 AND user_to_id = :user2) OR
+                (user_from_id = :user1 AND user_to_id = :user2)
+                OR
                 (user_from_id = :user2 AND user_to_id = :user1)
             )
         ";
@@ -98,6 +99,7 @@ try {
         }
 
         $query .= " ORDER BY message_id ASC LIMIT 100";
+
 
         $stmt = $conn->prepare($query);
         $stmt->execute($params);
