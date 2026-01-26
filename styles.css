@@ -2231,6 +2231,7 @@ body.page-error {
     margin-bottom: 18px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -5265,6 +5266,7 @@ body.register-page .register-form button[type="submit"]:hover{
     margin-bottom: 18px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -6176,4 +6178,196 @@ body.register-page .register-form button[type="submit"]:hover{
 .confirmation-page .confirmation-box button:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(205, 167, 255, 0.6);
+}
+
+/* ========================================
+   MOBILE-FIRST APP SHELL (TIKTOK VERTICAL)
+   Profile / New Project / Edit Project
+   ======================================== */
+
+/* Base mobile-first layout */
+body.profile-page,
+body.new-project-page,
+body.edit-project-page {
+    min-height: 100dvh;
+    margin: 0;
+    overflow: hidden;
+}
+
+body.profile-page main,
+body.new-project-page main,
+body.edit-project-page main {
+    height: 100dvh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 84px 12px calc(90px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Sticky header like TikTok top bar */
+.profile-page .profile-header,
+.new-project-page .new-project-header,
+.edit-project-page .edit-project-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    margin: 0;
+    border-radius: 0;
+}
+
+/* Keep header contents compact on mobile */
+.profile-page .profile-header,
+.new-project-page .new-project-header,
+.edit-project-page .edit-project-header {
+    padding: 12px 12px;
+    gap: 10px;
+}
+
+/* Bottom navigation bar (reusing existing nav markup) */
+.profile-nav,
+.new-project-nav,
+.edit-project-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    margin: 0;
+    padding: 10px 10px calc(10px + env(safe-area-inset-bottom, 0px));
+    display: flex;
+    justify-content: space-around;
+    gap: 8px;
+    background: linear-gradient(0deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.92) 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(6px);
+}
+
+.profile-nav a,
+.new-project-nav a,
+.edit-project-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #2a2a2a;
+}
+
+.profile-nav a:hover,
+.new-project-nav a:hover,
+.edit-project-nav a:hover {
+    background: rgba(255, 255, 255, 0.75);
+    color: #FF6B63;
+}
+
+/* Forms should feel like a full-width vertical card on mobile */
+.profile-form {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto 16px;
+    padding: 18px 16px;
+    border-radius: 16px;
+}
+
+.form-actions {
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-actions .btn {
+    width: 100%;
+}
+
+/* Profile projects: show previews as vertical media cards */
+.profile-page .user-projects {
+    margin: 0 auto;
+    max-width: 520px;
+    padding: 0;
+}
+
+.profile-page .user-projects .project {
+    margin-bottom: 18px;
+}
+
+.profile-page .user-projects .project-preview {
+    width: 100%;
+    max-width: 520px;
+    aspect-ratio: 9 / 16;
+    height: auto;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+/* Tag add UI: stack nicely on small screens */
+.add-tag-container {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+#add-tag-btn {
+    margin-left: 0;
+    width: 100%;
+    padding: 10px 12px;
+}
+
+/* Desktop adjustments (keep existing desktop feel) */
+@media (min-width: 768px) {
+    body.profile-page,
+    body.new-project-page,
+    body.edit-project-page {
+        overflow: auto;
+    }
+
+    body.profile-page main,
+    body.new-project-page main,
+    body.edit-project-page main {
+        height: auto;
+        padding: 24px 24px 24px;
+        overflow: visible;
+    }
+
+    .profile-page .profile-header,
+    .new-project-page .new-project-header,
+    .edit-project-page .edit-project-header {
+        position: relative;
+        border-radius: 0 0 12px 12px;
+        margin-bottom: 20px;
+    }
+
+    .profile-nav,
+    .new-project-nav,
+    .edit-project-nav {
+        position: static;
+        background: transparent;
+        border-top: none;
+        box-shadow: none;
+        padding: 0;
+        justify-content: flex-start;
+    }
+
+    .profile-nav a,
+    .new-project-nav a,
+    .edit-project-nav a {
+        flex: 0 0 auto;
+        background: none;
+        border: none;
+        padding: 0;
+    }
+
+    .profile-page .user-projects {
+        padding: 0;
+        max-width: 900px;
+    }
+
+    .profile-page .user-projects .project-preview {
+        aspect-ratio: auto;
+        max-width: 320px;
+        object-fit: contain;
+    }
 }
