@@ -45,9 +45,7 @@ async function sendMessage(text) {
     try {
         const response = await fetch('api_chat.php?action=send', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 text: text,
                 to_user_id: otherUserId
@@ -58,11 +56,27 @@ async function sendMessage(text) {
 
         if (!data.success) {
             alert('Error al enviar el mensaje');
+            return;
         }
+
+        // 👇 Render inmediato
+        renderMessage({
+            message_id: data.message_id,
+            text: data.text,
+            sent_at: data.sent_at,
+            user_from_id: currentUserId
+        });
+
+        // 👇 Actualizamos lastMessageId
+        lastMessageId = data.message_id;
+
+        scrollToBottom();
+
     } catch (error) {
         console.error('Error enviando mensaje', error);
     }
 }
+
 
 // ==========================
 // RENDERIZAR MENSAJE

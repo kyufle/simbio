@@ -117,6 +117,6 @@ try {
         const otherUserImage = "<?php echo htmlspecialchars($otherUser['image_path'] ?? ''); ?>";
     </script>
 
-    <script src="js/chat.js"></script>
+    <script src="js/chat.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

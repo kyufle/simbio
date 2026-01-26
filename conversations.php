@@ -107,6 +107,6 @@ try {
         </div>
     </div>
 
-    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/chat.css?v=<?php echo time(); ?>">
 </body>
 </html>
