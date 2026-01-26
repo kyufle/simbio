@@ -1832,12 +1832,20 @@ body.login-page .back-btn:hover {
     height: auto;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
 }
 .profile-page .user-projects .project-preview:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Avoid big “hover” zoom on touch devices */
+@media (hover: none), (pointer: coarse) {
+    .profile-page .user-projects .project-preview:hover {
+        transform: none;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
 }
 
 
@@ -6201,7 +6209,7 @@ body.edit-project-page main {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     /* Header arriba + barra inferior: equilibrar espacios en móvil */
-    padding: 120px 12px calc(78px + env(safe-area-inset-bottom, 0px));
+    padding: 120px calc(12px + env(safe-area-inset-right, 0px)) calc(78px + env(safe-area-inset-bottom, 0px)) calc(12px + env(safe-area-inset-left, 0px));
 }
 
 /* Profile: center section title + primary action on mobile */
@@ -6247,7 +6255,7 @@ body.edit-project-page main {
     bottom: 0;
     z-index: 1000;
     margin: 0;
-    padding: 10px 10px calc(10px + env(safe-area-inset-bottom, 0px));
+    padding: 10px calc(10px + env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) calc(10px + env(safe-area-inset-left, 0px));
     display: flex;
     justify-content: space-around;
     gap: 8px;
