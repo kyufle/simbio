@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+// --- Protección anti-abuso: limitar envíos por IP/email (básico) ---
+if (!isset($_SESSION['code_send_times'])) {
+    $_SESSION['code_send_times'] = [];
+}
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/logger.php';
 require_once __DIR__ . '/includes/auth.php';
@@ -47,41 +52,157 @@ if (isLoggedIn()) {
 }
 
 $email = '';
-$errors = []; // Array de errores para mostrar individualmente
+$errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
-    $password = $_POST['password'] ?? '';
 
-    $errors = validateLoginForm($email, $password);
-
-    if (!$errors) {
-        $result = login($email, $password);
-
-        if ($result['success']) {
-            log_auth('LOGIN', $email, true);
-
-            // ✅ Guardar mensaje flash de éxito
-            $_SESSION['flash_message'] = [
-                'tipo' => 'exito',
-                'titulo' => 'Benvingut!',
-                'descripcion' => 'Has iniciat sessió correctament'
-            ];
-
-            header('Location: discover.php');
-            exit;
+    // forgot=2: validar código temporal
+    if (isset($_GET['forgot']) && $_GET['forgot'] == '2') {
+        $code = trim($_POST['code'] ?? '');
+        if ($email === '' || $code === '') {
+            if ($email === '') $errors['email'] = 'El correu electrònic és obligatori';
+            if ($code === '') $errors['code'] = 'El codi és obligatori';
         } else {
-            log_auth('LOGIN', $email, false, $result['error']);
-            
-            // Error de autenticación (credenciales incorrectas)
-            if (is_array($result['errors'])) {
-                $errors = $result['errors'];
+            require_once __DIR__ . '/includes/db.php';
+            $stmt = $conn->prepare("SELECT * FROM user WHERE email = ? LIMIT 1");
+            $stmt->execute([$email]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (!$user) {
+                $errors['email'] = 'No existeix cap compte amb aquest correu electrònic';
+            } elseif (!$user['is_active']) {
+                $errors['email'] = 'El compte no està actiu.';
+            } elseif (!$user['login_code'] || !$user['login_code_expires']) {
+                $errors['code'] = 'No hi ha cap codi actiu per aquest usuari.';
+            } elseif ($user['login_code'] !== $code) {
+                $errors['code'] = 'El codi no és correcte.';
+            } elseif (strtotime($user['login_code_expires']) < time()) {
+                $errors['code'] = 'El codi ha caducat.';
             } else {
-                $errors['auth'] = $result['error'];
+                // Código correcto: iniciar sesión
+                unset($user['password_hash']); // No guardar hash en sesión
+                $_SESSION['user'] = $user;
+                // Limpiar el código de la BD
+                $stmt2 = $conn->prepare("UPDATE user SET login_code = NULL, login_code_expires = NULL WHERE user_id = ?");
+                $stmt2->execute([$user['user_id']]);
+                $_SESSION['flash_message'] = [
+                    'tipo' => 'exito',
+                    'titulo' => 'Benvingut!',
+                    'descripcion' => 'Has iniciat sessió correctament amb codi temporal.'
+                ];
+                header('Location: discover.php');
+                exit;
             }
         }
     }
-}
+        }
+    // forgot=2: reenviar código
+    else if (isset($_GET['forgot']) && $_GET['forgot'] == '2' && isset($_POST['resend_code'])) {
+        // Redirigir a forgot=1 para reenviar el código
+        $email = trim($_POST['email'] ?? '');
+        header('Location: login.php?forgot=1&email=' . urlencode($email) . '&resend=1');
+        exit;
+        }
+    
+    // forgot=1: enviar código temporal
+    else if (isset($_GET['forgot']) && $_GET['forgot'] == '1') {
+        // Validación simple de email
+        if ($email === '') {
+            $errors['email'] = 'El correu electrònic és obligatori';
+        } elseif (strpos($email, '@') === false) {
+            $errors['email'] = 'El correu electrònic no és vàlid (falta "@")';
+        } elseif (strpos($email, ' ') !== false) {
+            $errors['email'] = 'El correu electrònic no pot contenir espais';
+        } elseif (strlen($email) < 5) {
+            $errors['email'] = 'El correu electrònic és massa curt';
+        }
+
+        // Protección anti-abuso: máximo 5 envíos por email/IP cada 15 minutos
+        $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+        $now = time();
+        $key = md5($email . '|' . $ip);
+        // Limpiar envíos antiguos
+        $_SESSION['code_send_times'] = array_filter(
+            $_SESSION['code_send_times'],
+            function($t) use ($now) { return $t > $now - 900; }
+        );
+        $send_count = 0;
+        foreach ($_SESSION['code_send_times'] as $k => $t) {
+            if ($k === $key) $send_count++;
+        }
+        if ($send_count >= 5) {
+            $errors['email'] = 'Has superat el límit d\'enviaments. Espera uns minuts.';
+        }
+        if (!$errors) {
+            require_once __DIR__ . '/includes/mail.php';
+            require_once __DIR__ . '/includes/db.php';
+            // Comprobar si el usuario existe y está activo
+            $stmt = $conn->prepare("SELECT user_id, name, is_active FROM user WHERE email = ? LIMIT 1");
+            $stmt->execute([$email]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (!$user) {
+                $errors['email'] = 'No existeix cap compte amb aquest correu electrònic';
+            } elseif (!$user['is_active']) {
+                $errors['email'] = 'El compte no està actiu.';
+            } else {
+                // Limpiar código anterior
+                $stmt2 = $conn->prepare("UPDATE user SET login_code = NULL, login_code_expires = NULL WHERE user_id = ?");
+                $stmt2->execute([$user['user_id']]);
+                // Generar código de 6 dígitos
+                $code = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+                $expires = date('Y-m-d H:i:s', $now + 15 * 60); // 15 minutos desde ahora
+                // Guardar código y expiración en BD
+                $stmt2 = $conn->prepare("UPDATE user SET login_code = ?, login_code_expires = ? WHERE user_id = ?");
+                $stmt2->execute([$code, $expires, $user['user_id']]);
+                // Enviar email
+                $asunto = "Codi d'accés temporal a Simbio";
+                $mensaje = "<p>El teu codi d'accés és: <b>$code</b></p><p>Caduca en 15 minuts.</p>";
+                $ok = enviarCorreoValidacion($email, $code, $user['name']);
+                if ($ok) {
+                    $_SESSION['code_send_times'][$key] = $now;
+                    $_SESSION['flash_message'] = [
+                        'tipo' => 'info',
+                        'titulo' => 'Codi enviat',
+                        'descripcion' => 'T\'hem enviat un codi temporal al teu correu. Revisa la safata d\'entrada o correu no desitjat.'
+                    ];
+                    // Redirigir a formulario de código
+                    header('Location: login.php?forgot=2&email=' . urlencode($email));
+                    exit;
+                } else {
+                    $errors['email'] = 'No s\'ha pogut enviar el correu. Torna-ho a intentar.';
+                }
+            }
+        }
+        // Mostrar errores si existen
+        if (!empty($errors)) {
+            // Forzar renderizado de errores en el formulario
+        }
+    } else {
+        // Lógica de login normal
+        $password = $_POST['password'] ?? '';
+        $errors = validateLoginForm($email, $password);
+        if (!$errors) {
+            $result = login($email, $password);
+            if ($result['success']) {
+                log_auth('LOGIN', $email, true);
+                $_SESSION['flash_message'] = [
+                    'tipo' => 'exito',
+                    'titulo' => 'Benvingut!',
+                    'descripcion' => 'Has iniciat sessió correctament'
+                ];
+                header('Location: discover.php');
+                exit;
+            } else {
+                log_auth('LOGIN', $email, false, $result['error']);
+                if (is_array($result['errors'])) {
+                    $errors = $result['errors'];
+                } else {
+                    $errors['auth'] = $result['error'];
+                }
+            }
+    }
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -101,47 +222,113 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <!-- ⭐ Mostrar cada error como una notificación separada -->
         <?php if (!empty($errors)): ?>
-            <?php foreach ($errors as $field => $error_message): ?>
+            <?php 
+            // Si solo hay un error general, muéstralo igual
+            if (isset($errors['general'])): ?>
                 <div class="notification error">
-                    <?= htmlspecialchars($error_message) ?>
+                    <?= htmlspecialchars($errors['general']) ?>
                 </div>
+            <?php endif; ?>
+            <?php foreach ($errors as $field => $error_message): ?>
+                <?php if ($field === 'general') continue; ?>
+                <?php if (is_array($error_message)): ?>
+                    <?php foreach ($error_message as $em): ?>
+                        <div class="notification error">
+                            <?= htmlspecialchars($em) ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="notification error">
+                        <?= htmlspecialchars($error_message) ?>
+                    </div>
+                <?php endif; ?>
             <?php endforeach; ?>
         <?php endif; ?>
 
-        <!-- ⭐ IMPORTANTE: novalidate desactiva la validación HTML5 -->
-        <form method="post" novalidate>
-            <label>
-                Correu electrònic
-                <input
-                    type="email" 
-                    name="email"
-                    value="<?= htmlspecialchars($email) ?>"
-                    placeholder="exemple@empresa.cat" 
-                    maxlength="128"
-                    autocomplete="email">
-            </label>
+        <?php if (isset($_GET['forgot']) && $_GET['forgot'] == '2'): ?>
+            <!-- Formulario para introducir el código temporal -->
+            <form method="post" novalidate>
+                <input type="hidden" name="email" value="<?= htmlspecialchars($_GET['email'] ?? $email) ?>">
+                <label>
+                    Correu electrònic
+                    <input
+                        type="email"
+                        value="<?= htmlspecialchars($_GET['email'] ?? $email) ?>"
+                        disabled
+                        maxlength="128">
+                </label>
+                <label>
+                    Codi d'accés
+                    <input
+                        type="text"
+                        name="code"
+                        maxlength="6"
+                        pattern="[0-9]{6}"
+                        placeholder="Introdueix el codi de 6 dígits"
+                        autocomplete="one-time-code">
+                </label>
+                <button type="submit">Validar codi</button>
+            </form>
+            <form method="post" style="margin-top:1em;">
+                <input type="hidden" name="email" value="<?= htmlspecialchars($_GET['email'] ?? $email) ?>">
+                <button type="submit" name="resend_code" value="1">Reenviar codi</button>
+            </form>
+            <div class="button-group">
+                <button onclick="window.location.href='login.php'" class="back-btn">Torna a iniciar sessió</button>
+            </div>
+        <?php elseif (isset($_GET['forgot']) && $_GET['forgot'] == '1'): ?>
+            <!-- Formulario para recuperación de contraseña (solo email) -->
+            <form method="post" novalidate>
+                <label>
+                    Correu electrònic
+                    <input
+                        type="email"
+                        name="email"
+                        value="<?= htmlspecialchars($email) ?>"
+                        placeholder="exemple@empresa.cat"
+                        maxlength="128"
+                        autocomplete="email">
+                </label>
+                <button type="submit">Envia codi d'accés</button>
+            </form>
+            <div class="button-group">
+                <button onclick="window.location.href='login.php'" class="back-btn">Torna a iniciar sessió</button>
+            </div>
+        <?php else: ?>
+            <!-- Formulario de login normal -->
+            <form method="post" novalidate>
+                <label>
+                    Correu electrònic
+                    <input
+                        type="email"
+                        name="email"
+                        value="<?= htmlspecialchars($email) ?>"
+                        placeholder="exemple@empresa.cat"
+                        maxlength="128"
+                        autocomplete="email">
+                </label>
 
-            <label>
-                Contrasenya
-                <input
-                    type="password" 
-                    name="password"
-                    placeholder="********" 
-                    maxlength="128"
-                    autocomplete="current-password">
-            </label>
+                <label>
+                    Contrasenya
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="********"
+                        maxlength="128"
+                        autocomplete="current-password">
+                </label>
 
-            <button type="submit">Iniciar sessió</button>
-        </form>
-        
-        
-        <div class="button-group">
-            <button onclick="window.location.href='register.php'" class="registre-btn">Registrar-se</button>
-            <button onclick="window.location.href='index.php'" class="back-btn">Anar al inici</button>
-        </div>
-        
+                <button type="submit">Iniciar sessió</button>
+            </form>
+            <div style="margin-top: 1em;">
+                <a href="login.php?forgot=1">No recordes la teva contrasenya?</a>
+            </div>
+            <div class="button-group">
+                <button onclick="window.location.href='register.php'" class="registre-btn">Registrar-se</button>
+                <button onclick="window.location.href='index.php'" class="back-btn">Anar al inici</button>
+            </div>
+        <?php endif; ?>
     </main>
-    
     <script src="js/utils.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>
