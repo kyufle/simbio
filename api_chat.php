@@ -132,5 +132,5 @@ try {
 } catch (PDOException $e) {
     http_response_code(500);
     echo json_encode(['success' => false, 'error' => 'Error de base de datos']);
-    error_log("Error en chat API: " . $e->getMessage());
+    log_error("Error en chat API: " . $e->getMessage());
 }
