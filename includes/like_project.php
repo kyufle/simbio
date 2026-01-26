@@ -29,7 +29,7 @@ try {
     $stmt->execute([':user_id'=>$currentUserId, ':project_id'=>$projectId]);
 
     // 2️⃣ Obtener propietario del proyecto
-    $stmt = $conn->prepare("SELECT user_id, name FROM project WHERE project_id = :pid LIMIT 1");
+    $stmt = $conn->prepare("SELECT user_id, title FROM project WHERE project_id = :pid LIMIT 1");
     $stmt->execute([':pid'=>$projectId]);
     $owner = $stmt->fetch(PDO::FETCH_ASSOC);
 
