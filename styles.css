@@ -3210,3 +3210,55 @@ input:focus-visible {
         padding: 0.7rem 0.1rem;
     }
 }
+
+/* ========================================
+   CONFIRM_EMAIL.PHP - STYLES
+   ======================================== */
+
+.confirmation-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Josefin Sans', sans-serif;
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+}
+
+.confirmation-page .confirmation-box {
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.confirmation-page.confirmation-box h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.confirmation-page .confirmation-box p {
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.confirmation-page .confirmation-box button {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #b7a7ff, #baa7ff);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(205, 167, 255, 0.4);
+    text-decoration: none;
+}
+
+.confirmation-page .confirmation-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(205, 167, 255, 0.6);
+}
