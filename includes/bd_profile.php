@@ -1,6 +1,6 @@
 <?php
-require_once 'db.php';
-require_once 'logger.php';
+require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/logger.php';
 
 function getUserProfileByEmail($email) {
     global $conn;
