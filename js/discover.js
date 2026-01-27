@@ -71,7 +71,7 @@ function createProjectCard(project) {
             ${buttonsHTML}
             <nav class="bottom-bar">
                 <a href="profile.php">Perfil</a>
-                <a href="messages.php">Converses</a>
+                <a href="chat.php?user_id=${project.user_id}">Conversa</a>
                 <button class="toggle-details">Detalls</button>
             </nav>
         </section>
