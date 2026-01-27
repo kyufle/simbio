@@ -11,7 +11,7 @@ if (!isLogged()) {
 $currentUserId = $_SESSION['user']['id'];
 
 // Obtener todas las conversaciones del usuario
-$conversations = getUserConversations($currentUserId);
+$conversations = getUserConversations($currentUserId, 100);
 echo '<pre>';
 var_dump($currentUserId);
 var_dump($conversations);

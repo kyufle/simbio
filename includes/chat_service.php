@@ -23,16 +23,16 @@ function getUserConversations(int $userId, int $limit = 50): array {
             FROM message m
             JOIN user u ON u.user_id = 
                 CASE 
-                    WHEN m.user_from_id = :me THEN m.user_to_id
+                    WHEN m.user_from_id = :user1 THEN m.user_to_id
                     ELSE m.user_from_id
                 END
             WHERE m.message_id IN (
                 SELECT MAX(message_id)
                 FROM message
-                WHERE user_from_id = :me OR user_to_id = :me
+                WHERE user_from_id = :user2 OR user_to_id = :user3
                 GROUP BY 
                     CASE 
-                        WHEN user_from_id = :me THEN user_to_id
+                        WHEN user_from_id = :user4 THEN user_to_id
                         ELSE user_from_id
                     END
             )
@@ -41,7 +41,14 @@ function getUserConversations(int $userId, int $limit = 50): array {
         ";
 
         $stmt = $conn->prepare($sql);
-        $stmt->execute([':me' => $userId]);
+
+        // ⚠️ Cada parámetro es único
+        $stmt->execute([
+            ':user1' => $userId,
+            ':user2' => $userId,
+            ':user3' => $userId,
+            ':user4' => $userId
+        ]);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
