@@ -19,16 +19,29 @@ try {
     $pdo = new PDO($dsn, $user, $pass, $options);
     echo "Conexión a la base de datos OK.\n";
 
-    // Script ALTER TABLE
-    $sql = "
-        ALTER TABLE `user`
-        ADD COLUMN `is_active` TINYINT(1) NOT NULL DEFAULT 0 AFTER `type`,
-        ADD COLUMN `validation_token` VARCHAR(64) DEFAULT NULL AFTER `is_active`,
-        ADD COLUMN `validation_expires` DATETIME DEFAULT NULL AFTER `validation_token`;
-    ";
-
-    $pdo->exec($sql);
-    echo "Campos añadidos correctamente: is_active, validation_token, validation_expires.\n";
+    // Añadir columnas una a una, ignorando el error si ya existen
+    $columns = [
+        ["is_active", "TINYINT(1) NOT NULL DEFAULT 0 AFTER `type`"],
+        ["validation_token", "VARCHAR(64) DEFAULT NULL AFTER `is_active`"],
+        ["validation_expires", "DATETIME DEFAULT NULL AFTER `validation_token`"],
+        ["login_code", "VARCHAR(6) DEFAULT NULL AFTER `validation_expires`"],
+        ["login_code_expires", "DATETIME DEFAULT NULL AFTER `login_code`"]
+    ];
+    $added = [];
+    foreach ($columns as [$col, $def]) {
+        try {
+            $sql = "ALTER TABLE `user` ADD COLUMN `$col` $def;";
+            $pdo->exec($sql);
+            $added[] = $col;
+        } catch (PDOException $e) {
+            if (strpos($e->getMessage(), 'Duplicate column name') !== false) {
+                // La columna ya existe, ignorar
+            } else {
+                throw $e;
+            }
+        }
+    }
+    echo "Columnas añadidas correctamente (si no existían): ".implode(", ", $added)."\n";
 
 } catch (\PDOException $e) {
     echo "ERROR: No se pudo modificar la tabla `user`.\n";

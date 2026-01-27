@@ -1747,6 +1747,55 @@ body.register-page .register-form h1{
     font-size: 1.8rem;
     font-weight: 400;
     font-family: 'Fjalla One', sans-serif;
+    font-size: 1.2rem;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.profile-page .user-projects .project-title-link:hover {
+    color: #FFAAA7;
+    text-decoration: underline;
+}
+.profile-page .user-projects .project-preview {
+    width: 250px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+.profile-page .user-projects .project-preview:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Avoid big “hover” zoom on touch devices */
+@media (hover: none), (pointer: coarse) {
+    .profile-page .user-projects .project-preview:hover {
+        transform: none;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+}
+
+
+/* -------- NAV -------- */
+.profile-nav {
+    margin-top: 15px;
+    display: flex;
+    gap: 25px;
+}
+
+.profile-nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.profile-nav a:hover {
+    color: #FFAAA7;
 }
 
 /* Mensajes (consistentes y “limpios”) */
@@ -1773,6 +1822,2425 @@ body.register-page .register-form .success{
     border-left: 8px solid var(--r-mint);
 }
 
+input[readonly],
+input[disabled] {
+    background: #F5F5F5;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.form-actions .btn {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #b7a7ff, #baa7ff);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(205, 167, 255, 0.4);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 4px 15px rgba(205, 167, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: #E8E8E8;
+    color: #333;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.btn-secondary:hover {
+    background-color: #D0D0D0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   PROFILE.PHP - MOBILE
+   ======================================== */
+@media (max-width: 767px) {
+
+    body.profile-page {
+        overflow-x: hidden;
+    }
+
+    /* Header */
+    .profile-page .profile-header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px 15px;
+        text-align: center;
+    }
+
+    .profile-page .profile-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .profile-page .profile-header .session-info {
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    /* User info */
+    .profile-page .user-info {
+        font-size: 0.95rem;
+        margin: 10px 15px;
+    }
+
+    /* Nav */
+    .profile-nav {
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .profile-nav a {
+        font-size: 0.9rem;
+    }
+
+    /* Projects */
+    .profile-page .user-projects {
+        margin: 15px;
+    }
+
+    .profile-page .user-projects h2 {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+    .profile-page .user-projects .project-preview {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Tags */
+    .tag-item {
+        font-size: 0.85rem;
+        padding: 5px 8px;
+    }
+
+    /* Forms */
+    .profile-form {
+        margin: 0 15px 25px;
+        padding: 20px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+}
+
+/* TOAST ESPECÍFICOS POR COLOR */
+.toast.exito .titulo      { color: #2d5a50; font-family: 'Fjalla One', sans-serif;}
+.toast.exito .descripcion { color: #3d6a60; font-family: 'Josefin Sans', sans-serif;}
+.toast.error .titulo      { color: #8b3432; font-family: 'Fjalla One', sans-serif;}
+.toast.error .descripcion { color: #a04442; font-family: 'Josefin Sans', sans-serif;}
+.toast.info .titulo       { color: #2d5a50; font-family: 'Fjalla One', sans-serif;}
+.toast.info .descripcion  { color: #3d6a60; font-family: 'Josefin Sans', sans-serif;}
+.toast.warning .titulo    { color: #7a6c1f; font-family: 'Fjalla One', sans-serif;}
+.toast.warning .descripcion { color: #8a7c2f; font-family: 'Josefin Sans', sans-serif;}
+
+/* ========================================
+   ESTILOS PARA PÁGINAS DE ERROR
+   ======================================== */
+body.page-error {
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+.matches-page .sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: linear-gradient(180deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.85) 100%);
+    padding: 18px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 15px rgba(163, 210, 202, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.matches-page .sidebar .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.matches-page .sidebar .nav-links li a {
+    color: #2d5a50;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.matches-page .sidebar .nav-links li a:hover {
+    color: #FFAAA7;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.matches-page .sidebar .session-info {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: #2d5a50;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.matches-page .sidebar .session-info a {
+    color: #2d5a50;
+    text-decoration: none;
+    font-weight: 600;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.3) 100%);
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.matches-page .sidebar .session-info a:hover {
+    background: linear-gradient(135deg, #FFAAA7 0%, #FF9593 100%);
+    color: white;
+    border-color: #FF7B78;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 170, 167, 0.4);
+}
+
+.matches-page main {
+    padding: 40px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.matches-page h1 {
+    text-align: center;
+    color: #2d5a50;
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+    font-family: 'Fjalla One', sans-serif;
+    text-shadow: 0 2px 4px rgba(163, 210, 202, 0.3);
+}
+
+.matches-page .subtitle {
+    text-align: center;
+    color: #2d5a50;
+    font-size: 1.1rem;
+    margin-bottom: 45px;
+    font-weight: 500;
+    opacity: 0.85;
+}
+
+/* GRID DE MATCHES */
+.matches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.match-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(163, 210, 202, 0.3);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border: 2px solid transparent;
+}
+
+.match-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(163, 210, 202, 0.5);
+    border-color: #A3D2CA;
+}
+
+.match-card .video-container {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    background: linear-gradient(135deg, #E8E8E8 0%, #D8D8D8 100%);
+    overflow: hidden;
+}
+
+.match-card .video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.match-card .mutual-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #FFAAA7 0%, #FF9593 100%);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(255, 170, 167, 0.5);
+    animation: pulse 2s infinite;
+    z-index: 10;
+}
+
+.match-card .card-content {
+    padding: 25px;
+}
+
+.match-card h3 {
+    color: #2d5a50;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-family: 'Fjalla One', sans-serif;
+    margin-top: 0;
+    margin-bottom: 1.2em;
+    text-align: center;
+    color: #8b3432;
+}
+
+.match-card .author {
+    color: #555;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+    opacity: 0.85;
+}
+
+.match-card .description {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.match-card .tags {
+    background: linear-gradient(135deg, #FFF3B0 0%, #FFE259 100%);
+    padding: 12px 16px;
+    border-radius: 12px;
+    color: #7a6c1f;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    box-shadow: 0 2px 8px rgba(255, 243, 176, 0.3);
+}
+
+.match-card .actions {
+    display: flex;
+    gap: 12px;
+}
+
+.match-card .btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.match-card .btn-view {
+    background: linear-gradient(135deg, #B5EAEA 0%, #A3D2CA 100%);
+    color: #2d5a50;
+    box-shadow: 0 4px 12px rgba(181, 234, 234, 0.4);
+}
+
+.match-card .btn-view:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(181, 234, 234, 0.6);
+}
+
+.match-card .btn-contact {
+    background: linear-gradient(135deg, #FFAAA7 0%, #FF9593 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 170, 167, 0.4);
+}
+
+.match-card .btn-contact:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.6);
+}
+
+/* MENSAJE VACÍO */
+.matches-page .empty-message {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.matches-page .empty-icon {
+    font-size: 6rem;
+    margin-bottom: 25px;
+    animation: bounce 2s infinite;
+}
+
+.matches-page .empty-message h2 {
+    color: #2d5a50;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.matches-page .empty-message p {
+    color: #555;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.matches-page .btn-discover {
+    display: inline-block;
+    padding: 15px 35px;
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(163, 210, 202, 0.4);
+}
+
+.matches-page .btn-discover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(163, 210, 202, 0.6);
+}
+
+/* ========== RESPONSIVIDAD ========== */
+@media (max-width: 768px) {
+    .matches-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .matches-page h1 {
+        font-size: 2rem;
+    }
+
+    .matches-page .subtitle {
+        font-size: 1rem;
+    }
+
+    .matches-page .sidebar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .matches-page .sidebar .nav-links {
+        gap: 15px;
+    }
+
+    .discover-page .project-card .buttons {
+        gap: 20px;
+    }
+
+    .discover-page .project-card .buttons button {
+        width: 90px;
+        height: 90px;
+        font-size: 1rem;
+    }
+
+    body.login-page main {
+        padding: 2rem 1.5rem;
+    }
+
+    .contenedor-toast {
+        max-width: calc(100% - 30px);
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .match-card .card-content {
+        padding: 20px;
+    }
+
+    .match-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .discover-page .project-card header {
+        top: 60px;
+        left: 15px;
+        right: 15px;
+        padding: 15px;
+    }
+
+    .discover-page .project-card header h2 {
+        font-size: 1.3rem;
+    }
+
+    .discover-page .project-card .actions {
+        padding: 20px 15px 15px;
+    }
+}
+
+/* ========== MEJORAS ADICIONALES DE PALETA ========== */
+
+/* Refuerzo de colores en elementos interactivos */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #A3D2CA;
+    outline-offset: 2px;
+}
+
+/* Mejora de contraste en textos sobre fondos de color */
+.toast.exito .titulo,
+.toast.exito .descripcion {
+    color: #1a403a;
+    font-weight: 600;
+}
+
+.toast.error .titulo,
+.toast.error .descripcion {
+    color: #5c1210;
+    font-weight: 600;
+}
+
+.toast.info .titulo,
+.toast.info .descripcion {
+    color: #1a403a;
+    font-weight: 600;
+}
+
+.toast.warning .titulo,
+.toast.warning .descripcion {
+    color: #5c4e0f;
+    font-weight: 600;
+}
+
+/* Estados de carga */
+.loading-spinner {
+    border: 3px solid #E8E8E8;
+    border-top: 3px solid #A3D2CA;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Overlay para modales */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(163, 210, 202, 0.3);
+    backdrop-filter: blur(8px);
+    z-index: 9998;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #E8E8E8;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #8BC4BC 0%, #A3D2CA 100%);
+}
+
+/* Selección de texto */
+::selection {
+    background: #B5EAEA;
+    color: #2d5a50;
+}
+
+::-moz-selection {
+    background: #B5EAEA;
+    color: #2d5a50;
+}
+
+body.page-error address {
+    text-align: center;
+    font-style: normal;
+    color: #555;
+    margin-top: 2em;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body.page-error address a {
+    color: #8b3432;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+body.page-error address a:hover {
+    text-decoration: underline;
+}
+
+body.page-error address span {
+    color: #9e9e9e;
+    font-size: 0.94em;
+}
+
+@media (max-width: 540px) {
+    body.page-error .contenedor {
+        width: 100%;
+        max-width: 98vw;
+        padding: 1.3rem 0.5rem;
+    }
+    body.page-error h1 {
+        font-size: 2.2rem;
+    }
+    .discover-page .project-card .buttons button {
+        width: 90px;
+        height: 90px;
+        font-size: 1.3rem;
+    }
+    body.page-error p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 350px) {
+    body.page-error h1 {
+        font-size: 1.5rem;
+    }
+    body.page-error .contenedor {
+        padding: 0.7rem 0.1rem;
+    }
+}
+
+
+/* ===============================
+   ESTILOS EDIT_PROJECT.PHP
+   =============================== */
+.edit-project-page {
+    font-family: 'Josefin Sans', sans-serif;
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* -------- HEADER -------- */
+.edit-project-page .edit-project-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #A3D2CA, #B5EAEA);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 12px 12px;
+    margin-bottom: 20px;
+}
+
+/* -------- NAV -------- */
+.edit-project-nav {
+    margin-top: 15px;
+    display: flex;
+    gap: 25px;
+}
+
+.edit-project-nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.edit-project-nav a:hover {
+    color: #FFAAA7;
+}
+
+/* -------- SESSION INFO -------- */
+.edit-project-page .edit-project-header .session-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.edit-project-page .edit-project-header .session-info a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    background-color: #E8E8E8;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.edit-project-page .edit-project-header .session-info a:hover {
+    color: #FF8A82;
+    background-color: #FFEAEA;
+}
+
+.save-message.success {
+    color: green;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* ========================================
+   EDIT_PROJECT.PHP - MOBILE
+   ======================================== */
+@media (max-width: 767px) {
+
+    body.edit-project-page {
+        overflow-x: hidden;
+    }
+
+    /* Header */
+    .edit-project-page .edit-project-header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px 15px;
+        text-align: center;
+    }
+
+    .edit-project-page .edit-project-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .edit-project-page .edit-project-header .session-info {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    /* Nav */
+    .edit-project-nav {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .edit-project-nav a {
+        font-size: 0.9rem;
+    }
+
+    /* Form */
+    .edit-project-page .profile-form {
+        margin: 0 15px 25px;
+        padding: 20px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+}
+
+/* ===============================
+   ESTILOS NEW_PROJECT.PHP
+   =============================== */
+.new-project-page {
+    font-family: 'Josefin Sans', sans-serif;
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+/* -------- HEADER -------- */
+.new-project-page .new-project-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #A3D2CA, #B5EAEA);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 12px 12px;
+    margin-bottom: 20px;
+}
+
+/* -------- NAV -------- */
+.new-project-nav {
+    margin-top: 15px;
+    display: flex;
+    gap: 25px;
+}
+
+.new-project-nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.new-project-nav a:hover {
+    color: #FFAAA7;
+}
+
+/* -------- SESSION INFO -------- */
+.new-project-page .new-project-header .session-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.new-project-page .new-project-header .session-info a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    background-color: #E8E8E8;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.new-project-page .new-project-header .session-info a:hover {
+    color: #FF8A82;
+    background-color: #FFEAEA;
+}
+
+/* IMPORTAR FUENTES DE GOOGLE */
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Josefin+Sans:wght@300;400;500;600&display=swap');
+
+/* Paleta de colores */
+/* Color           | Hex      | Uso recomendado                        |
+|-----------------|----------|---------------------------------------|
+| Azul cielo suave| #A3D2CA  | Fondo principal, fresco y profesional |
+| Verde menta     | #B5EAEA  | Tarjetas, botones secundarios         |
+| Amarillo pálido | #FFF3B0  | Alertas, llamadas a la acción         |
+| Coral suave     | #FFAAA7  | Botones importantes                    |
+| Gris claro      | #E8E8E8  | Fondos neutros, separadores           | */
+
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+/* ========== VARIABLES DE COLORES ========== */
+:root {
+    /* Paleta principal */
+    --azul-cielo: #A3D2CA;
+    --verde-menta: #B5EAEA;
+    --amarillo-palido: #FFF3B0;
+    --coral-suave: #FFAAA7;
+    --gris-claro: #E8E8E8;
+    
+    /* Toasts */
+    --toast-exito: linear-gradient(135deg, #B5EAEA 0%, #A3D2CA 100%);
+    --toast-error: linear-gradient(135deg, #FFAAA7 0%, #FF9593 100%);
+    --toast-info: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    --toast-warning: linear-gradient(135deg, #FFF3B0 0%, #FFE259 100%);
+}
+
+/* ========== ESTILOS LOGIN.PHP ========== */
+body.login-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+body.login-page main {
+    background-color: #ffffff;
+    padding: 3rem 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(163, 210, 202, 0.3);
+}
+
+body.login-page h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333333;
+    font-size: 1.8rem;
+    font-weight: 400;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+body.login-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+body.login-page label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    color: #555555;
+    font-weight: 500;
+}
+
+body.login-page input {
+    margin-top: 0.5rem;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    border: 2px solid #E8E8E8;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+}
+
+body.login-page input:focus {
+    outline: none;
+    border-color: #A3D2CA;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(163, 210, 202, 0.15);
+}
+
+body.login-page button {
+    margin-top: 1.5rem;
+    padding: 0.9rem;
+    background: linear-gradient(135deg, #FFAAA7, #FF9593);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(205, 167, 255, 0.4);
+}
+
+body.login-page button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(205, 167, 255, 0.6);
+}
+
+body.login-page .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+body.login-page .registre-btn {
+    background: linear-gradient(135deg, #B5EAEA, #A3D2CA);
+    margin-top: 1rem;
+    font-weight: 600;
+    width: 50%;
+    color: white;
+    box-shadow: 0 4px 15px rgba(163, 210, 202, 0.4);
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body.login-page .registre-btn:hover {
+    box-shadow: 0 6px 20px rgba(163, 210, 202, 0.6);
+}
+
+body.login-page .back-btn {
+    background: linear-gradient(135deg, #B5EAEA, #A3D2CA);
+    margin-top: 1rem;
+    font-weight: 600;
+    width: 50%;
+    color: white;
+    box-shadow: 0 4px 15px rgba(163, 210, 202, 0.4);
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body.login-page .back-btn:hover {
+    box-shadow: 0 6px 20px rgba(163, 210, 202, 0.6);
+}
+
+.notification {
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.notification.error {
+    background: linear-gradient(90deg, #FFE8E8 16px 100%);
+    color: #B41F1F;
+    border-left: 8px solid #FFAAA7;
+    border-top: 1px solid #FFAEB0;
+    border-bottom: 1px solid #FFAEB0;
+    border-right: 1px solid #FFD3D2;
+    box-shadow: 0 4px 16px 0 rgba(255, 170, 167, 0.3);
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.notification.warning {
+    background: linear-gradient(90deg, #FFFCE6 16px 100%);
+    color: #9E7700;
+    border-left: 8px solid #FFF3B0;
+    border-top: 1px solid #FFE082;
+    border-bottom: 1px solid #FFE082;
+    border-right: 1px solid #FFF9D6;
+    box-shadow: 0 4px 14px 0 rgba(255, 243, 176, 0.3);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+/* ========================================
+   ESTILOS DISCOVER.PHP - MODO VERTICAL TIKTOK
+   ======================================== */
+
+.discover-page {
+    font-family: 'Josefin Sans', sans-serif;
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+.discover-page .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: linear-gradient(180deg, rgba(163, 210, 202, 0.95) 0%, rgba(163, 210, 202, 0) 100%);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.discover-page .sidebar .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.discover-page .sidebar .nav-links li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.discover-page .sidebar .nav-links li a:hover {
+    color: #FFAAA7;
+}
+
+.discover-page .sidebar .session-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #333;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.discover-page .sidebar .session-info a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    background-color: #E8E8E8;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-family: 'Josefin Sans', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.discover-page .sidebar .session-info a:hover {
+    background-color: #FFAAA7;
+    color: white;
+}
+
+.discover-page main {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.discover-page /* Estilos para la tarjeta del proyecto */
+.project-card {
+    position: relative; /* Necesario para posicionar el icono dentro */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+.project-card {
+    position: relative; /* Indispensable */
+}
+
+.match-icon {
+    position: absolute; /* Para flotar encima del video */
+    top: 20px;
+    right: 20px;
+    z-index: 50;
+    background: rgba(254, 44, 85, 0.9); /* Color TikTok */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* ❤️ INDICADOR DE "YA TE HA GUSTADO" */
+.liked-indicator {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: fadeIn 0.5s ease;
+}
+
+/* Animación de entrada */
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ocultar elementos */
+.hidden {
+    display: none !important;
+}
+
+.discover-page .project-card header {
+    position: absolute;
+    top: 70px;
+    left: 20px;
+    right: 20px;
+    z-index: 10;
+    background: linear-gradient(135deg, rgba(163, 210, 202, 0.95), rgba(181, 234, 234, 0.95));
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.discover-page .project-card header h2 {
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.discover-page .project-card header p {
+    color: #555;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.discover-page .project-card .video-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: #E8E8E8;
+}
+
+.discover-page .project-card .video-section video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.discover-page .project-card .actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: transparent;
+    padding: 30px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.discover-page .project-card .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.discover-page .project-card .buttons button {
+    width: 98px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.discover-page .project-card .nope-btn {
+    background: linear-gradient(135deg, #b7a7ff, #baa7ff);
+    color: #fff;
+    width: 90px;
+}
+
+.discover-page .project-card .nope-btn:hover {
+    transform: scale(1.15) rotate(-10deg);
+    box-shadow: 0 6px 25px rgba(255, 170, 167, 0.6);
+}
+
+.discover-page .project-card .like-btn {
+    background: linear-gradient(135deg, #B5EAEA, #A3D2CA);
+    color: #333;
+    width: 90px;
+}
+
+.discover-page .project-card .like-btn:hover {
+    transform: scale(1.15) rotate(10deg);
+    box-shadow: 0 6px 25px rgba(181, 234, 234, 0.6);
+}
+
+
+
+.discover-page .project-card .next-btn {
+    background: linear-gradient(135deg, #A3D2CA, #8BC4BC);
+    color: white;
+    width: auto;
+    height: auto;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 1rem;
+}
+
+.discover-page .project-card .next-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(163, 210, 202, 0.6);
+}
+
+.discover-page .project-card .next-btn::before {
+    content: '';
+}
+
+.discover-page .project-card .bottom-bar {
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 15px;
+    border-top: 2px solid rgba(255, 255, 255, 0.5);
+    background: linear-gradient(0deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.95) 100%);
+    border-radius: 12px;
+    margin-top: auto;
+}
+
+.discover-page .project-card .bottom-bar a,
+.discover-page .project-card .bottom-bar button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    padding: 8px 12px;
+    text-decoration: none;
+}
+
+.discover-page .project-card .bottom-bar a:hover,
+.discover-page .project-card .bottom-bar button:hover {
+    color: #b7a7ff;
+    transform: translateY(-2px);
+}
+
+.discover-page .project-card .details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    background: linear-gradient(135deg, rgba(163, 210, 202, 0.98), rgba(181, 234, 234, 0.98));
+    padding: 25px 20px 35px 20px;
+    border-radius: 20px 20px 0 0;
+    max-height: 60vh;
+    overflow-y: auto;
+    transform: translateY(0);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.discover-page .project-card .details.hidden {
+    transform: translateY(calc(100% + 50px));
+}
+
+.discover-page .project-card .details h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.discover-page .project-card .details .description {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.discover-page .project-card .details .tags {
+    background-color: #FFF3B0;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: #333;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.discover-page .project-card .details .tags .tag {
+    background-color: #FFF3B0;
+    display: inline-block;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin: 5px 8px 5px 0;
+    font-size: 0.85rem;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.discover-page .close-details {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.discover-page .project-card.swipe-right {
+    transform: translateX(120vw) rotate(25deg) scale(0.7);
+    opacity: 0;
+}
+
+.discover-page .project-card.swipe-left {
+    transform: translateX(-120vw) rotate(-25deg) scale(0.7);
+    opacity: 0;
+}
+
+.swipe-right {
+    animation: swipeRight 0.6s ease-out forwards;
+}
+
+@keyframes swipeRight {
+    0% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(120%) rotate(12deg);
+        opacity: 0;
+    }
+}
+
+.swipe-left {
+    animation: swipeLeft 0.6s ease-out forwards;
+}
+
+@keyframes swipeLeft {
+    0% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-120%) rotate(-12deg);
+        opacity: 0;
+    }
+}
+
+.discover-page .project-card .details::-webkit-scrollbar {
+    width: 6px;
+}
+
+.discover-page .project-card .details::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.discover-page .project-card .details::-webkit-scrollbar-thumb {
+    background: #A3D2CA;
+    border-radius: 10px;
+}
+
+.discover-page .project-card .details::-webkit-scrollbar-thumb:hover {
+    background: #8BC4BC;
+}
+
+.discover-page .project-card .details::-webkit-scrollbar {
+    width: 6px;
+}
+
+.discover-page .project-card .details::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.discover-page .project-card .details::-webkit-scrollbar-thumb {
+    background: #A3D2CA;
+    border-radius: 10px;
+}
+
+.discover-page .project-card .details::-webkit-scrollbar-thumb:hover {
+    background: #8BC4BC;
+}
+
+/* ========================================
+   MEDIA QUERY MOBILE (max-width: 767px)
+   Solo edita esto para cambiar MOBILE
+   ======================================== */
+@media (max-width: 767px) {
+
+    body.discover-page {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+    }
+
+    .discover-page .sidebar {
+        padding: 12px 15px;
+        font-size: 0.8rem;
+        background: linear-gradient(180deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.85) 100%);
+        height: auto;
+    }
+
+    .discover-page .sidebar .nav-links {
+        gap: 12px;
+    }
+
+    .discover-page .sidebar .nav-links li a {
+        font-size: 0.85rem;
+    }
+
+    .discover-page .sidebar .session-info {
+        font-size: 0.8rem;
+        gap: 10px;
+    }
+
+    .discover-page main {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        display: block;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .discover-page .project-card {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .discover-page .project-card header {
+        top: 55px;
+        left: 12px;
+        right: 12px;
+        padding: 12px 15px;
+        border-radius: 12px;
+    }
+
+    .discover-page .project-card header h2 {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+
+    .discover-page .project-card header p {
+        font-size: 0.85rem;
+    }
+
+    .discover-page .project-card .actions {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding: 20px 15px 15px;
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .discover-page .project-card .buttons {
+        gap: 25px;
+        margin-bottom: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .discover-page .project-card .buttons button {
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
+    }
+
+    .discover-page .project-card .bottom-bar {
+        padding: 10px 12px;
+        border-top: none;
+        gap: 5px;
+        background: linear-gradient(0deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.95) 100%);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .discover-page .project-card .bottom-bar a,
+    .discover-page .project-card .bottom-bar button {
+        font-size: 0.75rem;
+        padding: 6px 8px;
+        flex: 1;
+        text-align: center;
+    }
+
+    .discover-page .project-card .details {
+        max-height: 70vh;
+        padding: 25px 20px 35px 20px;
+    }
+
+    .discover-page .project-card .details h3 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+
+    .discover-page .project-card .details .description {
+        font-size: 0.9rem;
+    }
+
+    .discover-page .project-card .details .tags {
+        font-size: 0.85rem;
+    }
+}
+
+
+/* ========================================
+   MEDIA QUERY DESKTOP (min-width: 768px)
+   Solo edita esto para cambiar DESKTOP
+   ======================================== */
+@media (min-width: 768px) {
+
+    body.discover-page {
+        overflow: auto;
+    }
+
+    .discover-page {
+        position: relative;
+    }
+
+    /* Main centrado en desktop */
+    .discover-page main {
+        position: relative;
+        background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    }
+
+    /* Card con tamaño fijo en desktop */
+    .discover-page .project-card {
+        position: relative;
+        max-width: 450px;
+        height: 90vh;
+        border-radius: 20px;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+        margin: auto;
+    }
+
+    /* Sidebar normal en desktop */
+    .discover-page .sidebar {
+        padding: 20px 40px;
+    }
+}
+
+/* ========================================
+   ESTILOS PARA MENSAJES DINÁMICOS
+   ======================================== */
+
+.empty-message {
+    color: #333;
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #A3D2CA, #B5EAEA);
+    border-radius: 20px;
+    margin: 20px;
+}
+
+.empty-message h2 {
+    font-family: 'Fjalla One', sans-serif;
+    margin-bottom: 10px;
+}
+
+/* ========== ESTILOS MENSAJES DINÁMICOS ========== */
+.empty-message,
+.error-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+    padding: 40px 20px;
+    background: #bcc1ff;
+    border-radius: 20px;
+    margin: 20px;
+}
+
+.error-message h2 {
+    margin-bottom: 10px;
+}
+
+/* ========================================
+   VARIABLES CSS PARA TOASTS
+   ======================================== */
+:root {
+    --exito: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);    /* Verde menta intenso - éxito */
+    --error: linear-gradient(135deg, #ff5858 0%, #f98a77 100%);    /* Rojo coral brillante - error */
+    --info: linear-gradient(135deg, #2d8cf0 0%, #6fd6ff 100%);     /* Azul vibrante - info */
+    --warning: linear-gradient(135deg, #ffe259 0%, #ffa751 100%);  /* Amarillo/naranja fuerte - advertencia */
+}
+
+
+/* ========================================
+   CONTENEDOR DE TOASTS
+   ======================================== */
+
+
+.empty-icon,
+.error-icon {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+}
+
+.empty-message h2,
+.error-message h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.empty-message p,
+.error-message p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+    max-width: 400px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.error-message code {
+    background: #E8E8E8;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+/* Botón de reinicio */
+.restart-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(163, 210, 202, 0.4);
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.restart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(163, 210, 202, 0.6);
+}
+
+.restart-btn:active {
+    transform: translateY(0);
+}
+
+/* Icono de match */
+.match-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #FFAAA7 0%, #FF9593 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(255, 170, 167, 0.4);
+    animation: pulse 2s infinite;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Indicador de "Ja t'ha agradat" */
+.liked-indicator {
+    text-align: center;
+    padding: 10px;
+    background: linear-gradient(135deg, #FFF3B0 0%, #FFE259 100%);
+    color: #835000;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 10px rgba(255, 243, 176, 0.4);
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+/* Botones mejorados */
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.like-btn,
+.nope-btn,
+.next-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.like-btn {
+    background: linear-gradient(135deg, #B5EAEA 0%, #A3D2CA 100%);
+    color: #333;
+}
+
+.like-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(181, 234, 234, 0.6);
+}
+
+.nope-btn {
+    background: linear-gradient(135deg, #FFAAA7 0%, #FF9593 100%);
+    color: white;
+}
+
+.nope-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.6);
+}
+
+.next-btn {
+    background: linear-gradient(135deg, #A3D2CA 0%, #8BC4BC 100%);
+    color: white;
+}
+
+.next-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(163, 210, 202, 0.6);
+}
+
+.btn-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Animaciones de swipe */
+.swipe-right {
+    animation: swipeRight 0.6s ease-out forwards;
+}
+
+.swipe-left {
+    animation: swipeLeft 0.6s ease-out forwards;
+}
+
+@keyframes swipeRight {
+    0% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(150%) rotate(20deg);
+        opacity: 0;
+    }
+}
+
+@keyframes swipeLeft {
+    0% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-150%) rotate(-20deg);
+        opacity: 0;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* ========== ESTILOS TOASTS MEJORADOS ========== */
+.contenedor-toast {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: calc(100% - 40px);
+    max-width: 400px;
+    max-height: calc(100vh - 40px);
+    display: flex;
+    gap: 12px;
+    flex-direction: column-reverse;
+    z-index: 9999;
+    pointer-events: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 5px;
+}
+
+/* Scrollbar personalizado para el contenedor de toasts */
+.contenedor-toast::-webkit-scrollbar {
+    width: 6px;
+}
+
+.contenedor-toast::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.contenedor-toast::-webkit-scrollbar-thumb {
+    background: rgba(163, 210, 202, 0.6);
+    border-radius: 3px;
+    transition: background 0.2s ease;
+}
+
+.contenedor-toast::-webkit-scrollbar-thumb:hover {
+    background: rgba(163, 210, 202, 0.9);
+}
+
+/* ========================================
+   TOAST BASE
+   ======================================== */
+.toast {
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+    animation: slideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: all;
+    overflow: hidden;
+    position: relative;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    min-height: 80px;
+}
+
+/* Barra lateral izquierda de color */
+.toast::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    transition: width 0.3s ease;
+}
+
+.toast:hover::before {
+    width: 7px;
+}
+
+/* Colores por tipo */
+.toast.exito {
+    background: linear-gradient(135deg, rgba(181, 234, 234, 0.15) 0%, rgba(163, 210, 202, 0.1) 100%);
+}
+
+.toast.exito::before {
+    background: linear-gradient(180deg, #8BC4BC 0%, #6BAFA5 100%);
+}
+
+.toast.error {
+    background: linear-gradient(135deg, rgba(255, 170, 167, 0.15) 0%, rgba(255, 149, 147, 0.1) 100%);
+}
+
+.toast.error::before {
+    background: linear-gradient(180deg, #FF7B78 0%, #FF5B58 100%);
+}
+
+.toast.info {
+    background: linear-gradient(135deg, rgba(163, 210, 202, 0.15) 0%, rgba(181, 234, 234, 0.1) 100%);
+}
+
+.toast.info::before {
+    background: linear-gradient(180deg, #A3D2CA 0%, #8BC4BC 100%);
+}
+
+.toast.warning {
+    background: linear-gradient(135deg, rgba(255, 243, 176, 0.15) 0%, rgba(255, 226, 89, 0.1) 100%);
+}
+
+.toast.warning::before {
+    background: linear-gradient(180deg, #FFD600 0%, #FFC700 100%);
+}
+
+/* ========================================
+   CONTENIDO DEL TOAST
+   ======================================== */
+.toast .contenido {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 12px 16px 16px;
+    flex: 1;
+}
+
+.toast .icono {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.toast:hover .icono {
+    transform: scale(1.1);
+}
+
+.toast .icono svg {
+    width: 24px;
+    height: 24px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Iconos por tipo */
+.toast.exito .icono {
+    background: linear-gradient(135deg, #B5EAEA 0%, #A3D2CA 100%);
+    color: #2d5a50;
+}
+
+.toast.error .icono {
+    background: linear-gradient(135deg, #FFAAA7 0%, #FF9593 100%);
+    color: #8b3432;
+}
+
+.toast.info .icono {
+    background: linear-gradient(135deg, #A3D2CA 0%, #8BC4BC 100%);
+    color: #2d5a50;
+}
+
+.toast.warning .icono {
+    background: linear-gradient(135deg, #FFF3B0 0%, #FFE259 100%);
+    color: #7a6c1f;
+}
+
+/* Texto */
+.toast .texto {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.toast .titulo {
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Fjalla One', sans-serif;
+    margin: 0;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+}
+
+.toast.exito .titulo {
+    color: #2d5a50;
+}
+
+.toast.error .titulo {
+    color: #8b3432;
+}
+
+.toast.info .titulo {
+    color: #2d5a50;
+}
+
+.toast.warning .titulo {
+    color: #7a6c1f;
+}
+
+.toast .descripcion {
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.5;
+    font-family: 'Josefin Sans', sans-serif;
+    opacity: 0.9;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.toast.exito .descripcion {
+    color: #3d6a60;
+}
+
+.toast.error .descripcion {
+    color: #a04442;
+}
+
+.toast.info .descripcion {
+    color: #3d6a60;
+}
+
+.toast.warning .descripcion {
+    color: #8a7c2f;
+}
+
+/* ========================================
+   BOTÓN CERRAR
+   ======================================== */
+.toast .btn-cerrar {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 16px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    min-width: 48px;
+    position: relative;
+    overflow: hidden;
+}
+
+.toast .btn-cerrar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.toast .btn-cerrar:hover::before {
+    opacity: 1;
+}
+
+.toast .btn-cerrar:active {
+    transform: scale(0.95);
+}
+
+.toast .btn-cerrar .icono {
+    width: 20px;
+    height: 20px;
+    color: rgba(0, 0, 0, 0.5);
+    background: transparent;
+}
+
+.toast .btn-cerrar:hover .icono {
+    color: rgba(0, 0, 0, 0.7);
+    transform: rotate(90deg) scale(1.1);
+}
+
+.toast .btn-cerrar .icono svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ========================================
+   BARRA DE PROGRESO (OPCIONAL)
+   ======================================== */
+.toast .barra-progreso {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.toast .barra-progreso::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    transform-origin: left;
+    animation: progress 5s linear forwards;
+}
+
+.toast.exito .barra-progreso::after {
+    background: linear-gradient(90deg, #8BC4BC 0%, #6BAFA5 100%);
+}
+
+.toast.error .barra-progreso::after {
+    background: linear-gradient(90deg, #FF7B78 0%, #FF5B58 100%);
+}
+
+.toast.info .barra-progreso::after {
+    background: linear-gradient(90deg, #8BC4BC 0%, #6BAFA5 100%);
+}
+
+.toast.warning .barra-progreso::after {
+    background: linear-gradient(90deg, #FFD600 0%, #FFC700 100%);
+}
+
+@keyframes progress {
+    from { transform: scaleX(1); }
+    to { transform: scaleX(0); }
+}
+
+/* ========================================
+   ANIMACIONES
+   ======================================== */
+@keyframes slideIn {
+    0% {
+        transform: translateX(120%) scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(120%) scale(0.8);
+        opacity: 0;
+    }
+}
+
+.toast.cerrando {
+    animation: slideOut 0.3s ease-out forwards;
+}
+
+/* ========================================
+   RESPONSIVE - MÓVIL
+   ======================================== */
+@media (max-width: 767px) {
+    .contenedor-toast {
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+        width: calc(100% - 20px);
+        max-width: none;
+        max-height: calc(100vh - 80px);
+        gap: 10px;
+    }
+
+    .contenedor-toast::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .toast {
+        min-height: 70px;
+    }
+
+    .toast .contenido {
+        grid-template-columns: 40px 1fr;
+        padding: 14px 10px 14px 14px;
+        gap: 10px;
+    }
+
+    .toast .icono {
+        width: 36px;
+        height: 36px;
+    }
+
+    .toast .icono svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .toast .titulo {
+        font-size: 0.95rem;
+    }
+
+    .toast .descripcion {
+        font-size: 0.825rem;
+    }
+
+    .toast .btn-cerrar {
+        padding: 12px;
+        min-width: 44px;
+    }
+
+    .toast .btn-cerrar .icono {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* ========================================
+   ESTADOS ESPECIALES
+   ======================================== */
+
+/* Toast con imagen/avatar */
+.toast.con-avatar .contenido {
+    grid-template-columns: 48px 1fr;
+}
+
+.toast.con-avatar .avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Toast compacto */
+.toast.compacto {
+    min-height: 60px;
+}
+
+.toast.compacto .contenido {
+    padding: 12px;
+    grid-template-columns: 36px 1fr;
+}
+
+.toast.compacto .icono {
+    width: 32px;
+    height: 32px;
+}
+
+.toast.compacto .icono svg {
+    width: 18px;
+    height: 18px;
+}
+
+.toast.compacto .titulo {
+    font-size: 0.9rem;
+}
+
+.toast.compacto .descripcion {
+    font-size: 0.8rem;
+}
+
+/* Efecto de hover en todo el toast */
+.toast {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.toast:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Indicador de cantidad cuando hay muchos toasts */
+.contenedor-toast::after {
+    content: '';
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    width: 8px;
+    height: 8px;
+    background: #A3D2CA;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.contenedor-toast:has(.toast:nth-child(4))::after {
+    opacity: 1;
+}
+
+/* ========================================
+   RESPONSIVE - MÓVIL
+   ======================================== */
+@media (max-width: 767px) {
+    .contenedor-toast {
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+        width: calc(100% - 20px);
+        max-width: none;
+    }
+
+    .toast .contenido {
+        padding: 12px;
+        gap: 10px;
+        grid-template-columns: 30px 1fr;
+    }
+
+    .toast .titulo {
+        font-size: 0.95rem;
+    }
+
+    .toast .descripcion {
+        font-size: 0.8rem;
+    }
+
+    .toast .btn-cerrar {
+        padding: 12px;
+    }
+}
+
+/* ========================================
+   ESTILOS ESPECÍFICOS POR COLOR
+   ======================================== */
+
+/* Toast de éxito - Verde menta */
+.toast.exito .titulo {
+    color: #2d5a50;
+}
+
+.toast.exito .descripcion {
+    color: #3d6a60;
+}
+
+/* Toast de error - Coral */
+.toast.error .titulo {
+    color: #8b3432;
+}
+
+.toast.error .descripcion {
+    color: #a04442;
 body.register-page .register-form .info{
     background: #FFFCE6;
     color: #7a6c1f;
@@ -3652,4 +6120,235 @@ input:focus-visible {
 .confirmation-page .confirmation-box button:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(205, 167, 255, 0.6);
+}
+
+/* ========================================
+   MOBILE-FIRST APP SHELL (TIKTOK VERTICAL)
+   Profile / New Project / Edit Project
+   ======================================== */
+
+/* Base mobile-first layout */
+body.profile-page,
+body.new-project-page,
+body.edit-project-page {
+    min-height: 100dvh;
+    margin: 0;
+    overflow: hidden;
+}
+
+body.profile-page main,
+body.new-project-page main,
+body.edit-project-page main {
+    height: 100dvh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Header arriba + barra inferior: equilibrar espacios en móvil */
+    padding: 120px calc(12px + env(safe-area-inset-right, 0px)) calc(78px + env(safe-area-inset-bottom, 0px)) calc(12px + env(safe-area-inset-left, 0px));
+}
+
+/* Profile: center section title + primary action on mobile */
+.profile-page .user-projects h2 {
+    text-align: center;
+}
+
+.profile-page .user-projects > a.btn.btn-primary {
+    display: block;
+    width: fit-content;
+    margin: 10px auto 16px;
+    text-align: center;
+}
+
+/* Sticky header like TikTok top bar */
+.profile-page .profile-header,
+.new-project-page .new-project-header,
+.edit-project-page .edit-project-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    margin: 0;
+    border-radius: 0;
+}
+
+/* Keep header contents compact on mobile */
+.profile-page .profile-header,
+.new-project-page .new-project-header,
+.edit-project-page .edit-project-header {
+    padding: 12px 12px;
+    gap: 10px;
+}
+
+/* Bottom navigation bar (reusing existing nav markup) */
+.profile-nav,
+.new-project-nav,
+.edit-project-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    margin: 0;
+    padding: 10px calc(10px + env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) calc(10px + env(safe-area-inset-left, 0px));
+    display: flex;
+    justify-content: space-around;
+    gap: 8px;
+    background: linear-gradient(0deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.92) 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(6px);
+}
+
+.profile-nav a,
+.new-project-nav a,
+.edit-project-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #2a2a2a;
+}
+
+.profile-nav a:hover,
+.new-project-nav a:hover,
+.edit-project-nav a:hover {
+    background: rgba(255, 255, 255, 0.75);
+    color: #FF6B63;
+}
+
+/* Forms should feel like a full-width vertical card on mobile */
+.profile-form {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto 16px;
+    padding: 18px 16px;
+    border-radius: 16px;
+}
+
+.form-actions {
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-actions .btn {
+    width: 100%;
+}
+
+/* Profile projects: show previews as vertical media cards */
+.profile-page .user-projects {
+    margin: 0 auto;
+    max-width: 520px;
+    padding: 0;
+}
+
+.profile-page .user-projects .project {
+    margin-bottom: 18px;
+}
+
+.profile-page .user-projects .project-preview {
+    width: 100%;
+    max-width: 520px;
+    aspect-ratio: 9 / 16;
+    height: auto;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+/* Tag add UI: stack nicely on small screens */
+.add-tag-container {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+#add-tag-btn {
+    margin-left: 0;
+    width: 100%;
+    padding: 10px 12px;
+}
+
+/* Desktop adjustments (keep existing desktop feel) */
+@media (min-width: 768px) {
+    body.profile-page,
+    body.new-project-page,
+    body.edit-project-page {
+        overflow: auto;
+    }
+
+    /* Desktop: keep a top bar like discover */
+    body.profile-page main,
+    body.new-project-page main,
+    body.edit-project-page main {
+        height: auto;
+        overflow: visible;
+        padding: 110px 24px 24px;
+    }
+
+    .profile-page .profile-header,
+    .new-project-page .new-project-header,
+    .edit-project-page .edit-project-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        border-radius: 0;
+        background: linear-gradient(180deg, rgba(163, 210, 202, 0.95) 0%, rgba(163, 210, 202, 0) 100%);
+        box-shadow: none;
+    }
+
+    /* Desktop: nav links in header (like discover), not bottom bar */
+    .profile-nav,
+    .new-project-nav,
+    .edit-project-nav {
+        position: static;
+        background: transparent;
+        border-top: none;
+        box-shadow: none;
+        padding: 0;
+        justify-content: flex-start;
+        gap: 20px;
+    }
+
+    .profile-nav a,
+    .new-project-nav a,
+    .edit-project-nav a {
+        flex: 0 0 auto;
+        background: none;
+        border: none;
+        padding: 0;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    /* Desktop: make projects more vertical + centered */
+    .profile-page .user-projects {
+        padding: 0;
+        max-width: 520px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .profile-page .user-projects .project {
+        margin: 0 auto 22px;
+        text-align: center;
+    }
+
+    .profile-page .user-projects .project-title-link {
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    .profile-page .user-projects .project-preview {
+        width: 100%;
+        max-width: 360px;
+        aspect-ratio: 9 / 16;
+        object-fit: cover;
+    }
+}
 }

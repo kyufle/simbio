@@ -28,6 +28,7 @@ $tags = getUserTagsByEmail($email);
 
 // Manejar el guardado del formulario
 // Manejar el guardado del formulario
+
 $save_message = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
