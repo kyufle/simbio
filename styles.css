@@ -205,6 +205,146 @@ body.login-page .back-btn:hover {
     font-family: 'Josefin Sans', sans-serif;
 }
 
+
+/* ========== ESTILOS LOGIN.PHP ADMIN - NUEVA PALETA ========== */
+body.login-page-admin {
+    min-height: 100vh;
+    /* Paleta admin: azul oscuro y dorado */
+    background: linear-gradient(135deg, #212A3E 0%, #394867 70%, #FFD966 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+body.login-page-admin main {
+    background-color: #F5F7FA;
+    padding: 3rem 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(57, 72, 103, 0.18), 0 2px 8px rgba(33,42,62,0.08);
+}
+
+body.login-page-admin h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #212A3E;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+body.login-page-admin form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+body.login-page-admin label {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    color: #394867;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+}
+
+body.login-page-admin input {
+    margin-top: 0.5rem;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    border: 2px solid #FFD966;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    color: #212A3E;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body.login-page-admin input:focus {
+    outline: none;
+    border-color: #FFB200;
+    background-color: #FFFBEA;
+    box-shadow: 0 0 0 3px rgba(255, 217, 102, 0.16);
+}
+
+body.login-page-admin button {
+    margin-top: 1.5rem;
+    padding: 0.9rem;
+    background: linear-gradient(135deg, #FFD966 40%, #FFB200 100%);
+    color: #212A3E;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 28px 0 rgba(255, 188, 51, 0.15), 0 1.5px 4px rgba(33,42,62,0.09);
+    text-shadow: 0 1px 6px #FFF7CC;
+    letter-spacing: 0.1px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body.login-page-admin button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px 0 rgba(255, 178, 0, 0.18), 0 2px 8px rgba(33,42,62,0.12);
+    background: linear-gradient(135deg, #FFDF77 40%, #FFD966 100%);
+    color: #1a2233;
+}
+
+body.login-page-admin .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+
+
+.notification {
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+/* MANTENER EL COLOR ROSA para errores */
+.notification.error {
+    background: linear-gradient(90deg, #FFE8E8 16px 100%);
+    color: #B41F1F;
+    border-left: 8px solid #FFAAA7;
+    border-top: 1px solid #FFAEB0;
+    border-bottom: 1px solid #FFAEB0;
+    border-right: 1px solid #FFD3D2;
+    box-shadow: 0 4px 16px 0 rgba(255, 170, 167, 0.3);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+/* QUITAR rosa de warning/otros */
+.notification.warning {
+    background: linear-gradient(90deg, #FFFDE7 16px 100%);
+    color: #857000;
+    border-left: 8px solid #FFF3B0;
+    border-top: 1px solid #FFE082;
+    border-bottom: 1px solid #FFE082;
+    border-right: 1px solid #FFF9D6;
+    box-shadow: 0 4px 14px 0 rgba(255, 243, 176, 0.3);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
 /* ========================================
    ESTILOS DISCOVER.PHP - MODO VERTICAL TIKTOK
    ======================================== */
