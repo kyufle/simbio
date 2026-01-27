@@ -155,6 +155,48 @@ INSERT INTO `project_tags` VALUES (6,67),(5,81),(1,91),(1,92),(2,126),(4,146),(3
 /*!40000 ALTER TABLE `project_tags` ENABLE KEYS */;
 UNLOCK TABLES;
 
+-- 
+-- Table structure for table `user_tags`
+-- (from create_database.php lines 71-77)
+--
+
+DROP TABLE IF EXISTS `user_tags`;
+CREATE TABLE `user_tags` (
+    user_id INT NOT NULL,
+    tag_id INT NOT NULL,
+    PRIMARY KEY (user_id, tag_id),
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    FOREIGN KEY (tag_id) REFERENCES tag(tag_id)
+);
+
+--
+-- Table structure for table `admin_user`
+--
+
+DROP TABLE IF EXISTS `admin_user`;
+CREATE TABLE `admin_user` (
+  `admin_user_id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `name` varchar(120) NOT NULL,
+  `surnames` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `phone_number` varchar(20) NOT NULL,
+  `entity` varchar(255) NOT NULL,
+  `image_path` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`admin_user_id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `admin_user`
+--
+
+LOCK TABLES `admin_user` WRITE;
+/*!40000 ALTER TABLE `admin_user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `admin_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `tag`
 --

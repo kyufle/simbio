@@ -85,6 +85,10 @@ try {
     (4, 146),
     (5, 81),
     (6, 67);
+
+    /*insertar admin*/
+    INSERT INTO admin_user (email, password_hash, name, surnames, city, phone_number, entity, image_path)
+    VALUES ('admin@simbio.cat', '{$env['seeder_password']}', 'Administrador', 'Principal', 'Barcelona', '+34 600 000 000', 'SIMBIO', NULL);
 SQL;
 
         // Ejecutamos el SQL
