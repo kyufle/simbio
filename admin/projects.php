@@ -141,7 +141,6 @@ if (!isAdminLoggedIn()) {
     </style>
 </head>
 <body class="login-page-admin">
-<main>
     <header>
         <nav>
             <a href="index.php" class="nav-link">Inici</a>
@@ -151,6 +150,7 @@ if (!isAdminLoggedIn()) {
             <a href="login.php" class="nav-link">Tancar sessió</a>
         </nav>
     </header>
+<main>
     <h1>Gestió de Projectes</h1>
     <div id="user-projects"></div>
 </main>
