@@ -114,6 +114,7 @@ if (!isAdminLoggedIn()) {
             border-radius: 8px;
             display: none;
             margin-top: 5px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -146,8 +147,8 @@ async function loadProjects() {
                 ${project.video ? `<video id="video${project.id}" controls><source src="${project.video}" type="video/mp4"></video>` : ''}
                 <div class="project-buttons">
                     ${project.deleted
-                        ? `<a href="projects_action.php?action=restore&id=${project.id}" class="btn btn-restore">Recuperar</a>`
-                        : `<a href="projects_action.php?action=delete&id=${project.id}" class="btn btn-delete" onclick="return confirm('Segur que vols eliminar aquest projecte?')">Eliminar</a>`
+                        ? `<a href="#" class="btn btn-restore">Recuperar</a>`
+                        : `<a href="#" class="btn btn-delete" onclick="return confirm('Segur que vols eliminar aquest projecte?')">Eliminar</a>`
                     }
                     ${project.video ? `<a href="javascript:void(0)" class="btn btn-preview" onclick="toggleVideo('video${project.id}')">Preview</a>` : ''}
                 </div>
