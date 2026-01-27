@@ -177,7 +177,7 @@ if (!isAdminLoggedIn()) {
         </div>
         <div class="header-right">
             <?php if (isAdminLoggedIn()): ?>
-                <a href="logout.php">Tancar sessió</a>
+                <a href="logout.php" class="btn-logout">Tancar sessió</a>
             <?php else: ?>
                 <a href="login.php">Iniciar sessió</a>
             <?php endif; ?>
