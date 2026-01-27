@@ -88,7 +88,8 @@ try {
             'type' => $project['type'],
             'tags' => $projectTags,
             'match' => ($project['possible_match'] == 1), // 💖 esto activa el icono
-            'liked' => $isLiked
+            'liked' => $isLiked,
+            'user_id' => $project['user_id'] // Añadido para enlaces de chat
         ];
     }
 
