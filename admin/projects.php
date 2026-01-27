@@ -25,7 +25,7 @@ if (isset($_GET['action'], $_GET['id'])) {
 }
 
 // Obtener lista de proyectos
-$projects = $db->query("SELECT p.*, u.name as name FROM project p JOIN user u ON p.user_id=u.user_id ORDER BY p.project_id DESC")->fetchAll(PDO::FETCH_ASSOC);
+$projects = $db->query("SELECT p.project_id, p.title, p.image_path, p.video_path, u.name as name FROM project p INNER JOIN user u ON u.user_id=p.user_id ORDER BY p.project_id DESC")->fetchAll(PDO::FETCH_ASSOC);
 
 if (!$projects) {
     log_warning("No se pudieron obtener los proyectos desde la base de datos en admin/projects.php");
