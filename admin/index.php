@@ -15,7 +15,7 @@ if (!isAdminLoggedIn()) {
 <head>
     <meta charset="UTF-8">
     <title>Panell d'Administrador</title>
-    <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../styles.css?v=<?php echo time(); ?>">
 </head>
 <body class="login-page-admin">
     <main>
