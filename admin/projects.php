@@ -28,7 +28,7 @@ if (!isAdminLoggedIn()) {
             align-items: center;
             justify-content: space-between;
             padding: 10px 20px;
-            background: linear-gradient(135deg, #A3D2CA, #B5EAEA);
+            background: linear-gradient(135deg, #212A3E 0%, #394867 70%, #FFD966 100%);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             border-radius: 0 0 12px 12px;
             margin-bottom: 20px;
@@ -140,17 +140,17 @@ if (!isAdminLoggedIn()) {
         }
     </style>
 </head>
-<header>
-    <nav>
-        <a href="index.php" class="nav-link">Inici</a>
-        <a href="users.php" class="nav-link">Usuaris</a>
-        <a href="projects.php" class="nav-link">Projectes</a>
-        <a href="settings.php" class="nav-link">Configuració</a>
-        <a href="login.php" class="nav-link">Tancar sessió</a>
-    </nav>
-</header>
 <body class="login-page-admin">
 <main>
+    <header>
+        <nav>
+            <a href="index.php" class="nav-link">Inici</a>
+            <a href="users.php" class="nav-link">Usuaris</a>
+            <a href="projects.php" class="nav-link">Projectes</a>
+            <a href="settings.php" class="nav-link">Configuració</a>
+            <a href="login.php" class="nav-link">Tancar sessió</a>
+        </nav>
+    </header>
     <h1>Gestió de Projectes</h1>
     <div id="user-projects"></div>
 </main>
