@@ -18,7 +18,6 @@ $stmt = $conn->prepare("
         p.video_path,
         p.deleted
     FROM project p
-    INNER JOIN user u ON u.user_id = p.user_id
 ");
 
 $stmt->execute();
