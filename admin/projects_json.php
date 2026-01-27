@@ -23,10 +23,11 @@ $stmt = $conn->prepare("
 
 $stmt->execute();
 
-$projects = [];
+$projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $project) {
-    $projects[] = [
+$allProjects = [];
+foreach ($projects as $project) {
+    $allProjects[] = [
         'id'      => $project['project_id'],
         'title'   => $project['title'],
         'image'   => '/uploads/' . $project['image_path'],
@@ -35,4 +36,4 @@ foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $project) {
     ];
 }
 
-echo json_encode($projects);
+echo json_encode($allProjects);
