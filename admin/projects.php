@@ -23,7 +23,7 @@ if (isset($_GET['action'], $_GET['id'])) {
 }
 
 // Obtener lista de proyectos
-$projects = $db->query("SELECT p.*, u.name as name FROM project p JOIN users u ON p.user_id=u.user_id ORDER BY p.project_id DESC")->fetchAll(PDO::FETCH_ASSOC);
+$projects = $db->query("SELECT p.*, u.name as name FROM project p JOIN user u ON p.user_id=u.user_id ORDER BY p.project_id DESC")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -31,7 +31,7 @@ $projects = $db->query("SELECT p.*, u.name as name FROM project p JOIN users u O
 <head>
     <meta charset="UTF-8">
     <title>Gestió de Projectes</title>
-    <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../styles.css?v=<?php echo time(); ?>">
     <style>
         /* -------- PROJECTS ADMIN -------- */
         body.login-page-admin main {
