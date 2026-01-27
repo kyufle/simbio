@@ -6,50 +6,20 @@ require_once 'logger.php';
  * Obtiene todas las conversaciones de un usuario
  * Devuelve el último mensaje de cada conversación junto con datos del otro usuario
  */
-function getUserConversations(int $userId, int $limit = 50): array {
+function getUserConversations(int $userId): array {
     global $conn;
 
-    try {
-        $sql = "
-            SELECT
-                u.user_id AS other_user_id,
-                u.name,
-                u.surnames,
-                u.entity,
-                u.type,
-                u.image_path,
-                m.text AS last_message_text,
-                m.sent_at AS last_message_time
-            FROM message m
-            JOIN user u ON u.user_id = 
-                CASE 
-                    WHEN m.user_from_id = :me THEN m.user_to_id
-                    ELSE m.user_from_id
-                END
-            WHERE m.message_id IN (
-                SELECT MAX(message_id)
-                FROM message
-                WHERE user_from_id = :me OR user_to_id = :me
-                GROUP BY 
-                    CASE 
-                        WHEN user_from_id = :me THEN user_to_id
-                        ELSE user_from_id
-                    END
-            )
-            ORDER BY m.sent_at DESC
-            LIMIT $limit
-        ";
+    $stmt = $conn->prepare("
+        SELECT *
+        FROM message
+        WHERE user_from_id = :id OR user_to_id = :id
+        ORDER BY sent_at DESC
+    ");
 
-        $stmt = $conn->prepare($sql);
-        $stmt->execute([':me' => $userId]);
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    } catch (PDOException $e) {
-        log_error("Error conversaciones usuario {$userId}: " . $e->getMessage());
-        return [];
-    }
+    $stmt->execute([':id' => $userId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 
 /**
  * Elimina todos los mensajes entre dos usuarios
