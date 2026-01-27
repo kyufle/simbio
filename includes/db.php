@@ -31,4 +31,4 @@ try {
 	]);
 	die("Error en connectar amb la base de dades.");
 }
-?>
+
