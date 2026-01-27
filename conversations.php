@@ -12,11 +12,6 @@ $currentUserId = $_SESSION['user']['id'];
 
 // Obtener todas las conversaciones del usuario
 $conversations = getUserConversations($currentUserId, 100);
-echo '<pre>';
-var_dump($currentUserId);
-var_dump($conversations);
-echo '</pre>';
-exit;
 
 // Obtener información del usuario actual
 try {
