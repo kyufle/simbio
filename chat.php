@@ -79,7 +79,7 @@ try {
                     <p class="chat-entity"><?php echo htmlspecialchars($otherUser['entity'] . ' (' . $otherUser['type'] . ')'); ?></p>
                 </div>
             </div>
-            <a href="discover.php" class="btn-back">← Tornar</a>
+            <a href="conversations.php" class="btn-back">← Tornar</a>
         </div>
 
         <!-- Contenedor de mensajes -->
