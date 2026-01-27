@@ -6,9 +6,11 @@ require_once __DIR__ . '/../includes/logger.php';
 
 // Comprobar que el admin está logueado
 if (!isAdminLoggedIn()) {
+    log_warning("Acceso denegado a admin/projects.php - Usuario no autenticado");
     header('Location: login.php');
     exit;
 }
+log_info("Administrador accedió a admin/projects.php - Admin Email: " . $_SESSION['admin_user']['email']);
 
 // Acción eliminar o recuperar
 if (isset($_GET['action'], $_GET['id'])) {
@@ -24,7 +26,6 @@ if (isset($_GET['action'], $_GET['id'])) {
 
 // Obtener lista de proyectos
 $projects = $db->query("SELECT p.*, u.name as name FROM project p JOIN user u ON p.user_id=u.user_id ORDER BY p.project_id DESC")->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 <!DOCTYPE html>
 <html lang="ca">

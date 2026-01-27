@@ -6,9 +6,11 @@ require_once __DIR__ . '/../includes/auth.php';
 
 // Comprobar que el admin está logueado
 if (!isAdminLoggedIn()) {
+    log_warning("Acceso denegado a admin/login.php - Usuario no autenticado");
     header('Location: login.php');
     exit;
 }
+log_info("Administrador accedió a admin/index.php - Admin Email: " . $_SESSION['admin_user']['email']);
 ?>
 <!DOCTYPE html>
 <html lang="ca">
