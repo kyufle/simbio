@@ -18,16 +18,15 @@ try {
     ]);
     echo "Conectado a la base de datos...\n";
 
-    // Añadir columna created_at a project_like si no existe
-    $sql = "ALTER TABLE project_like ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;";
+    // Añadir columna created_at a project_like
     try {
-        $pdo->exec($sql);
+        $pdo->exec("ALTER TABLE project_like ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;");
         echo "Columna created_at añadida a project_like.\n";
     } catch (PDOException $e) {
         if (strpos($e->getMessage(), 'Duplicate column name') !== false) {
             echo "La columna created_at ya existe en project_like.\n";
         } else {
-            throw $e;
+            echo "Error al añadir created_at a project_like: " . $e->getMessage() . "\n";
         }
     }
 
@@ -42,16 +41,15 @@ try {
     $pdo->exec($sql);
     echo "Tabla user_tags creada o ya existente.\n";
 
-    // Verificar columna sent_at en message
-    $sql = "ALTER TABLE message ADD COLUMN IF NOT EXISTS sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;";
+    // Añadir columna sent_at a message
     try {
-        $pdo->exec($sql);
+        $pdo->exec("ALTER TABLE message ADD COLUMN sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;");
         echo "Columna sent_at añadida a message.\n";
     } catch (PDOException $e) {
         if (strpos($e->getMessage(), 'Duplicate column name') !== false) {
             echo "La columna sent_at ya existe en message.\n";
         } else {
-            throw $e;
+            echo "Error al añadir sent_at a message: " . $e->getMessage() . "\n";
         }
     }
 
