@@ -1,14 +1,4 @@
-/* IMPORTAR FUENTES DE GOOGLE */
 @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Josefin+Sans:wght@300;400;500;600&display=swap');
-
-/* Paleta de colores */
-/* Color           | Hex      | Uso recomendado                        |
-|-----------------|----------|---------------------------------------|
-| Azul cielo suave| #A3D2CA  | Fondo principal, fresco y profesional |
-| Verde menta     | #B5EAEA  | Tarjetas, botones secundarios         |
-| Amarillo pálido | #FFF3B0  | Alertas, llamadas a la acción         |
-| Coral suave     | #FFAAA7  | Botones importantes                    |
-| Gris claro      | #E8E8E8  | Fondos neutros, separadores           | */
 
 /* RESET BÁSICO */
 * {
@@ -24,14 +14,35 @@
     --azul-cielo: #A3D2CA;
     --verde-menta: #B5EAEA;
     --amarillo-palido: #FFF3B0;
-    --coral-suave: #FFAAA7;
+    --coral-suave: #FFAAA7; /* SOLO errores, rechazos */
+    --azul-lila: #7B68EE;
+    --azul-lila-hover: #6A5ADB;
     --gris-claro: #E8E8E8;
+
+    /* Textos - Mejorado contraste */
+    --texto-oscuro: #1a1a1a;
+    --texto-medio: #2d2d2d;
+    --texto-claro: #4a4a4a;
     
+    /* Fondos para mejor legibilidad */
+    --fondo-blanco: #ffffff;
+    --fondo-claro: #fafafa;
+
     /* Toasts */
     --toast-exito: linear-gradient(135deg, #B5EAEA 0%, #A3D2CA 100%);
     --toast-error: linear-gradient(135deg, #FFAAA7 0%, #FF9593 100%);
-    --toast-info: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    --toast-info: linear-gradient(135deg, #7B68EE 0%, #6A5ADB 100%);
     --toast-warning: linear-gradient(135deg, #FFF3B0 0%, #FFE259 100%);
+}
+
+/* ========== TIPOGRAFÍA GLOBAL ========== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fjalla One', sans-serif;
+    color: var(--texto-oscuro);
+}
+
+p, li, span, a, button, input, textarea, label {
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 /* ========== ESTILOS LOGIN.PHP ========== */
@@ -56,10 +67,9 @@ body.login-page main {
 body.login-page h1 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #333333;
-    font-size: 1.8rem;
+    color: var(--texto-oscuro);
+    font-size: 2rem;
     font-weight: 400;
-    font-family: 'Fjalla One', sans-serif;
 }
 
 body.login-page form {
@@ -71,32 +81,33 @@ body.login-page form {
 body.login-page label {
     display: flex;
     flex-direction: column;
-    font-size: 0.9rem;
-    color: #555555;
-    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--texto-medio);
+    font-weight: 600;
 }
 
 body.login-page input {
     margin-top: 0.5rem;
     padding: 0.9rem 1rem;
     border-radius: 10px;
-    border: 2px solid #E8E8E8;
+    border: 2px solid #607b94;
     font-size: 0.95rem;
     transition: all 0.3s ease;
-    background-color: #fafafa;
+    background-color: var(--fondo-blanco);
+    color: var(--texto-oscuro);
 }
 
 body.login-page input:focus {
     outline: none;
-    border-color: #A3D2CA;
+    border-color: #7B68EE;
     background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(163, 210, 202, 0.15);
+    box-shadow: 0 0 0 3px rgba(123, 104, 238, 0.15);
 }
 
 body.login-page button {
     margin-top: 1.5rem;
     padding: 0.9rem;
-    background: linear-gradient(135deg, #b7a7ff, #baa7ff);
+    background: linear-gradient(135deg, #B79AFF, #AA88FF);
     color: white;
     border: none;
     border-radius: 10px;
@@ -104,12 +115,13 @@ body.login-page button {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(205, 167, 255, 0.4);
+    box-shadow: 0 6px 28px 0 rgba(170, 136, 255, 0.38), 0 1.5px 4px rgba(183,153,255,0.22);
+    text-shadow: 0 1px 6px #B799FF;
 }
 
 body.login-page button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(205, 167, 255, 0.6);
+    box-shadow: 0 8px 25px rgba(170, 136, 255, 0.36);
 }
 
 body.login-page .button-group {
@@ -120,41 +132,44 @@ body.login-page .button-group {
 }
 
 body.login-page .registre-btn {
-    background: linear-gradient(135deg, #B5EAEA, #A3D2CA);
+    background: linear-gradient(135deg, #CBB4FF, #E6C7FE);
     margin-top: 1rem;
     font-weight: 600;
     width: 50%;
     color: white;
-    box-shadow: 0 4px 15px rgba(163, 210, 202, 0.4);
+    box-shadow: 0 4px 15px rgba(203, 180, 255, 0.25);
     font-family: 'Josefin Sans', sans-serif;
+    text-shadow: 0 1px 4px #B799FF;
 }
 
 body.login-page .registre-btn:hover {
-    box-shadow: 0 6px 20px rgba(163, 210, 202, 0.6);
+    box-shadow: 0 6px 20px rgba(170, 136, 255, 0.36);
 }
 
 body.login-page .back-btn {
-    background: linear-gradient(135deg, #B5EAEA, #A3D2CA);
+    background: linear-gradient(135deg, #D6BBFB, #B8C2F6);
     margin-top: 1rem;
     font-weight: 600;
     width: 50%;
     color: white;
-    box-shadow: 0 4px 15px rgba(163, 210, 202, 0.4);
+    box-shadow: 0 4px 15px rgba(186, 162, 255, 0.20);
     font-family: 'Josefin Sans', sans-serif;
+    text-shadow: 0 1px 4px #B799FF;
 }
 
 body.login-page .back-btn:hover {
-    box-shadow: 0 6px 20px rgba(163, 210, 202, 0.6);
+    box-shadow: 0 6px 20px rgba(186, 162, 255, 0.36);
 }
+
 
 .notification {
     padding: 0.9rem 1rem;
     border-radius: 10px;
     margin-bottom: 1rem;
     font-size: 0.9rem;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
+/* MANTENER EL COLOR ROSA para errores */
 .notification.error {
     background: linear-gradient(90deg, #FFE8E8 16px 100%);
     color: #B41F1F;
@@ -163,7 +178,7 @@ body.login-page .back-btn:hover {
     border-bottom: 1px solid #FFAEB0;
     border-right: 1px solid #FFD3D2;
     box-shadow: 0 4px 16px 0 rgba(255, 170, 167, 0.3);
-    font-weight: bold;
+    font-weight: 700;
     font-size: 1rem;
     letter-spacing: 0.5px;
     position: relative;
@@ -172,9 +187,10 @@ body.login-page .back-btn:hover {
     font-family: 'Josefin Sans', sans-serif;
 }
 
+/* QUITAR rosa de warning/otros */
 .notification.warning {
-    background: linear-gradient(90deg, #FFFCE6 16px 100%);
-    color: #9E7700;
+    background: linear-gradient(90deg, #FFFDE7 16px 100%);
+    color: #857000;
     border-left: 8px solid #FFF3B0;
     border-top: 1px solid #FFE082;
     border-bottom: 1px solid #FFE082;
@@ -194,7 +210,6 @@ body.login-page .back-btn:hover {
    ======================================== */
 
 .discover-page {
-    font-family: 'Josefin Sans', sans-serif;
     background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
     margin: 0;
     padding: 0;
@@ -224,40 +239,47 @@ body.login-page .back-btn:hover {
 }
 
 .discover-page .sidebar .nav-links li a {
-    color: #333;
+    color: var(--texto-oscuro);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
-    transition: color 0.2s;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    padding: 8px 14px;
+    border-radius: 8px;
 }
 
 .discover-page .sidebar .nav-links li a:hover {
-    color: #FFAAA7;
+    color: #7B68EE;
+    background: rgba(255, 255, 255, 0.5);
+    text-decoration: underline;
 }
 
 .discover-page .sidebar .session-info {
     display: flex;
     align-items: center;
     gap: 15px;
-    color: #333;
+    color: var(--texto-oscuro);
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .discover-page .sidebar .session-info a {
-    color: #333;
+    color: var(--texto-oscuro);
     text-decoration: none;
     font-weight: 600;
-    background-color: #E8E8E8;
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 8px 16px;
     border-radius: 5px;
-    font-family: 'Josefin Sans', sans-serif;
     transition: all 0.3s ease;
+    border: 2px solid transparent;
 }
 
 .discover-page .sidebar .session-info a:hover {
-    background-color: #FFAAA7;
-    color: white;
+    background: linear-gradient(135deg, #7B68EE 0%, #6A5ADB 100%);
+    color: #fff;
+    border-color: #7B68EE;
+    box-shadow: 0 4px 12px rgba(123, 104, 238, 0.28);
+    transform: translateY(-2px) scale(1.04);
 }
 
 .discover-page main {
@@ -271,31 +293,26 @@ body.login-page .back-btn:hover {
     overflow: hidden;
 }
 
-.discover-page /* Estilos para la tarjeta del proyecto */
-.project-card {
-    position: relative; /* Necesario para posicionar el icono dentro */
+.discover-page .project-card {
+    position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
     background: #000;
 }
 
-.project-card {
-    position: relative; /* Indispensable */
-}
-
 .match-icon {
-    position: absolute; /* Para flotar encima del video */
+    position: absolute;
     top: 20px;
     right: 20px;
     z-index: 50;
-    background: rgba(254, 44, 85, 0.9); /* Color TikTok */
+    background: linear-gradient(135deg, #7B68EE 0%, #6A5ADB 100%);
     color: white;
     padding: 5px 10px;
     border-radius: 20px;
     font-weight: bold;
     font-size: 0.8rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(123, 104, 238, 0.3);
 }
 
 /* ❤️ INDICADOR DE "YA TE HA GUSTADO" */
@@ -333,22 +350,22 @@ body.login-page .back-btn:hover {
     left: 20px;
     right: 20px;
     z-index: 10;
-    background: linear-gradient(135deg, rgba(163, 210, 202, 0.95), rgba(181, 234, 234, 0.95));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95));
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgba(163, 210, 202, 0.3);
 }
 
 .discover-page .project-card header h2 {
-    color: #333;
+    color: var(--texto-oscuro);
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 8px;
-    font-family: 'Fjalla One', sans-serif;
 }
 
 .discover-page .project-card header p {
-    color: #555;
+    color: var(--texto-medio);
     font-size: 1rem;
     font-weight: 500;
 }
@@ -402,32 +419,31 @@ body.login-page .back-btn:hover {
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .discover-page .project-card .nope-btn {
-    background: linear-gradient(135deg, #b7a7ff, #baa7ff);
+    background: linear-gradient(135deg, #D32F2F, #B71C1C);
     color: #fff;
     width: 90px;
 }
 
 .discover-page .project-card .nope-btn:hover {
+    background: linear-gradient(135deg, #B71C1C, #C62828);
     transform: scale(1.15) rotate(-10deg);
-    box-shadow: 0 6px 25px rgba(255, 170, 167, 0.6);
+    box-shadow: 0 6px 25px rgba(211, 47, 47, 0.6);
 }
 
 .discover-page .project-card .like-btn {
-    background: linear-gradient(135deg, #B5EAEA, #A3D2CA);
-    color: #333;
+    background: linear-gradient(135deg, #7B68EE, #6A5ADB);
+    color: white;
     width: 90px;
 }
 
 .discover-page .project-card .like-btn:hover {
+    background: linear-gradient(135deg, #6A5ADB, #5A4AC8);
     transform: scale(1.15) rotate(10deg);
-    box-shadow: 0 6px 25px rgba(181, 234, 234, 0.6);
+    box-shadow: 0 6px 25px rgba(123, 104, 238, 0.6);
 }
-
-
 
 .discover-page .project-card .next-btn {
     background: linear-gradient(135deg, #A3D2CA, #8BC4BC);
@@ -440,6 +456,7 @@ body.login-page .back-btn:hover {
 }
 
 .discover-page .project-card .next-btn:hover {
+    background: linear-gradient(135deg, #8BC4BC, #7AB4AC);
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 6px 20px rgba(163, 210, 202, 0.6);
 }
@@ -450,32 +467,53 @@ body.login-page .back-btn:hover {
 
 .discover-page .project-card .bottom-bar {
     display: flex;
-    justify-content: space-around;
-    padding: 12px 15px;
-    border-top: 2px solid rgba(255, 255, 255, 0.5);
-    background: linear-gradient(0deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.95) 100%);
-    border-radius: 12px;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 14px 18px;
+    border-top: 1px solid #ececec;
+    background: #fff;
+    border-radius: 14px;
     margin-top: auto;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    gap: 14px;
 }
 
 .discover-page .project-card .bottom-bar a,
 .discover-page .project-card .bottom-bar button {
-    background: none;
+    background: #f7f7fa;
     border: none;
     cursor: pointer;
     font-weight: 600;
-    color: #333;
-    font-size: 0.85rem;
-    transition: all 0.2s ease;
-    padding: 8px 12px;
+    color: #5a5a85;
+    font-size: 0.98rem;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    padding: 9px 20px;
     text-decoration: none;
+    border-radius: 7px;
+    box-shadow: 0 1px 2px 0 rgba(160, 160, 160, 0.07);
+    letter-spacing: 0.01em;
+    display: flex;
+    align-items: center;
+    gap: 0.45em;
 }
 
+.discover-page .project-card .bottom-bar a,
+.discover-page .project-card .bottom-bar button {
+    transition: 
+        background 0.45s cubic-bezier(0.4, 0, 0.2, 1), 
+        color 0.45s cubic-bezier(0.4, 0, 0.2, 1), 
+        box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1), 
+        transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
 .discover-page .project-card .bottom-bar a:hover,
 .discover-page .project-card .bottom-bar button:hover {
-    color: #b7a7ff;
-    transform: translateY(-2px);
+    background: #ece7fb;
+    color: #7B68EE;
+    box-shadow: 0 2px 8px rgba(123, 104, 238, 0.1);
+    transform: translateY(-2px) scale(1.03);
 }
+
+
 
 .discover-page .project-card .details {
     position: absolute;
@@ -483,7 +521,7 @@ body.login-page .back-btn:hover {
     left: 0;
     right: 0;
     z-index: 20;
-    background: linear-gradient(135deg, rgba(163, 210, 202, 0.98), rgba(181, 234, 234, 0.98));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95));
     padding: 25px 20px 35px 20px;
     border-radius: 20px 20px 0 0;
     max-height: 60vh;
@@ -491,6 +529,7 @@ body.login-page .back-btn:hover {
     transform: translateY(0);
     transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+    border-top: 3px solid rgba(123, 104, 238, 0.3);
 }
 
 .discover-page .project-card .details.hidden {
@@ -498,15 +537,14 @@ body.login-page .back-btn:hover {
 }
 
 .discover-page .project-card .details h3 {
-    color: #333;
-    font-size: 1.2rem;
+    color: var(--texto-oscuro);
+    font-size: 1.3rem;
     margin-bottom: 10px;
-    font-weight: 600;
-    font-family: 'Fjalla One', sans-serif;
+    font-weight: 400;
 }
 
 .discover-page .project-card .details .description {
-    color: #555;
+    color: var(--texto-medio);
     font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 20px;
@@ -517,21 +555,20 @@ body.login-page .back-btn:hover {
     background-color: #FFF3B0;
     padding: 10px 15px;
     border-radius: 10px;
-    color: #333;
+    color: var(--texto-oscuro);
     font-size: 0.9rem;
     line-height: 1.5;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .discover-page .project-card .details .tags .tag {
     background-color: #FFF3B0;
     display: inline-block;
-    color: #333;
+    color: var(--texto-oscuro);
     padding: 5px 10px;
     border-radius: 8px;
     margin: 5px 8px 5px 0;
     font-size: 0.85rem;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .discover-page .close-details {
@@ -541,9 +578,15 @@ body.login-page .back-btn:hover {
     background: none;
     border: none;
     font-size: 1.5rem;
-    color: #333;
+    color: var(--texto-oscuro);
     cursor: pointer;
     font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.discover-page .close-details:hover {
+    color: #7B68EE;
+    transform: rotate(90deg);
 }
 
 .discover-page .project-card.swipe-right {
@@ -598,30 +641,12 @@ body.login-page .back-btn:hover {
 }
 
 .discover-page .project-card .details::-webkit-scrollbar-thumb {
-    background: #A3D2CA;
+    background: #7B68EE;
     border-radius: 10px;
 }
 
 .discover-page .project-card .details::-webkit-scrollbar-thumb:hover {
-    background: #8BC4BC;
-}
-
-.discover-page .project-card .details::-webkit-scrollbar {
-    width: 6px;
-}
-
-.discover-page .project-card .details::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-}
-
-.discover-page .project-card .details::-webkit-scrollbar-thumb {
-    background: #A3D2CA;
-    border-radius: 10px;
-}
-
-.discover-page .project-card .details::-webkit-scrollbar-thumb:hover {
-    background: #8BC4BC;
+    background: #6A5ADB;
 }
 
 /* ========================================
@@ -630,8 +655,7 @@ body.login-page .back-btn:hover {
    ======================================== */
 @media (max-width: 767px) {
 
-    body.discover-page,
-    html {
+    body.discover-page {
         height: 100vh;
         width: 100vw;
         overflow: hidden;
@@ -770,9 +794,7 @@ body.login-page .back-btn:hover {
    ======================================== */
 @media (min-width: 768px) {
 
-    /* Desktop puede tener scroll */
-    body.discover-page,
-    html {
+    body.discover-page {
         overflow: auto;
     }
 
@@ -807,7 +829,7 @@ body.login-page .back-btn:hover {
    ======================================== */
 
 .empty-message {
-    color: #333;
+    color: var(--texto-oscuro);
     text-align: center;
     padding: 40px 20px;
     background: linear-gradient(135deg, #A3D2CA, #B5EAEA);
@@ -816,7 +838,6 @@ body.login-page .back-btn:hover {
 }
 
 .empty-message h2 {
-    font-family: 'Fjalla One', sans-serif;
     margin-bottom: 10px;
 }
 
@@ -830,7 +851,7 @@ body.login-page .back-btn:hover {
     min-height: 60vh;
     text-align: center;
     padding: 40px 20px;
-    background: #bcc1ff;
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
     border-radius: 20px;
     margin: 20px;
 }
@@ -838,22 +859,6 @@ body.login-page .back-btn:hover {
 .error-message h2 {
     margin-bottom: 10px;
 }
-
-/* ========================================
-   VARIABLES CSS PARA TOASTS
-   ======================================== */
-:root {
-    --exito: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);    /* Verde menta intenso - éxito */
-    --error: linear-gradient(135deg, #ff5858 0%, #f98a77 100%);    /* Rojo coral brillante - error */
-    --info: linear-gradient(135deg, #2d8cf0 0%, #6fd6ff 100%);     /* Azul vibrante - info */
-    --warning: linear-gradient(135deg, #ffe259 0%, #ffa751 100%);  /* Amarillo/naranja fuerte - advertencia */
-}
-
-
-/* ========================================
-   CONTENEDOR DE TOASTS
-   ======================================== */
-
 
 .empty-icon,
 .error-icon {
@@ -865,18 +870,16 @@ body.login-page .back-btn:hover {
 .empty-message h2,
 .error-message h2 {
     font-size: 1.8rem;
-    color: #333;
+    color: var(--texto-oscuro);
     margin-bottom: 10px;
-    font-family: 'Fjalla One', sans-serif;
 }
 
 .empty-message p,
 .error-message p {
     font-size: 1rem;
-    color: #666;
+    color: var(--texto-medio);
     margin-bottom: 20px;
     max-width: 400px;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .error-message code {
@@ -895,18 +898,18 @@ body.login-page .back-btn:hover {
     font-size: 1rem;
     font-weight: 600;
     color: white;
-    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    background: linear-gradient(135deg, #7B68EE 0%, #6A5ADB 100%);
     border: none;
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(163, 210, 202, 0.4);
-    font-family: 'Josefin Sans', sans-serif;
+    box-shadow: 0 4px 15px rgba(123, 104, 238, 0.4);
 }
 
 .restart-btn:hover {
+    background: linear-gradient(135deg, #6A5ADB 0%, #5A4AC8 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(163, 210, 202, 0.6);
+    box-shadow: 0 6px 20px rgba(123, 104, 238, 0.6);
 }
 
 .restart-btn:active {
@@ -918,16 +921,15 @@ body.login-page .back-btn:hover {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: linear-gradient(135deg, #FFAAA7 0%, #FF9593 100%);
+    background: linear-gradient(135deg, #7B68EE 0%, #6A5ADB 100%);
     color: white;
     padding: 8px 16px;
     border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 600;
     z-index: 10;
-    box-shadow: 0 4px 12px rgba(255, 170, 167, 0.4);
+    box-shadow: 0 4px 12px rgba(123, 104, 238, 0.4);
     animation: pulse 2s infinite;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 @keyframes pulse {
@@ -944,13 +946,12 @@ body.login-page .back-btn:hover {
     text-align: center;
     padding: 10px;
     background: linear-gradient(135deg, #FFF3B0 0%, #FFE259 100%);
-    color: #835000;
+    color: #5a4c0f;
     border-radius: 10px;
     margin-bottom: 15px;
     font-weight: 600;
     font-size: 0.95rem;
     box-shadow: 0 2px 10px rgba(255, 243, 176, 0.4);
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 /* Botones mejorados */
@@ -975,27 +976,28 @@ body.login-page .back-btn:hover {
     font-size: 1.5rem;
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .like-btn {
-    background: linear-gradient(135deg, #B5EAEA 0%, #A3D2CA 100%);
-    color: #333;
+    background: linear-gradient(135deg, #7B68EE 0%, #6A5ADB 100%);
+    color: white;
 }
 
 .like-btn:hover {
+    background: linear-gradient(135deg, #6A5ADB 0%, #5A4AC8 100%);
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 6px 20px rgba(181, 234, 234, 0.6);
+    box-shadow: 0 6px 20px rgba(123, 104, 238, 0.6);
 }
 
 .nope-btn {
-    background: linear-gradient(135deg, #FFAAA7 0%, #FF9593 100%);
+    background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%);
     color: white;
 }
 
 .nope-btn:hover {
+    background: linear-gradient(135deg, #B71C1C 0%, #C62828 100%);
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.6);
+    box-shadow: 0 6px 20px rgba(211, 47, 47, 0.6);
 }
 
 .next-btn {
@@ -1004,6 +1006,7 @@ body.login-page .back-btn:hover {
 }
 
 .next-btn:hover {
+    background: linear-gradient(135deg, #8BC4BC 0%, #7AB4AC 100%);
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 6px 20px rgba(163, 210, 202, 0.6);
 }
@@ -1011,7 +1014,6 @@ body.login-page .back-btn:hover {
 .btn-text {
     font-size: 0.85rem;
     font-weight: 600;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .hidden {
@@ -1086,13 +1088,13 @@ body.login-page .back-btn:hover {
 }
 
 .contenedor-toast::-webkit-scrollbar-thumb {
-    background: rgba(163, 210, 202, 0.6);
+    background: rgba(123, 104, 238, 0.6);
     border-radius: 3px;
     transition: background 0.2s ease;
 }
 
 .contenedor-toast::-webkit-scrollbar-thumb:hover {
-    background: rgba(163, 210, 202, 0.9);
+    background: rgba(123, 104, 238, 0.9);
 }
 
 /* ========================================
@@ -1147,11 +1149,11 @@ body.login-page .back-btn:hover {
 }
 
 .toast.info {
-    background: linear-gradient(135deg, rgba(163, 210, 202, 0.15) 0%, rgba(181, 234, 234, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(123, 104, 238, 0.15) 0%, rgba(106, 90, 219, 0.1) 100%);
 }
 
 .toast.info::before {
-    background: linear-gradient(180deg, #A3D2CA 0%, #8BC4BC 100%);
+    background: linear-gradient(180deg, #7B68EE 0%, #6A5ADB 100%);
 }
 
 .toast.warning {
@@ -1198,22 +1200,22 @@ body.login-page .back-btn:hover {
 /* Iconos por tipo */
 .toast.exito .icono {
     background: linear-gradient(135deg, #B5EAEA 0%, #A3D2CA 100%);
-    color: #2d5a50;
+    color: #1a4a3f;
 }
 
 .toast.error .icono {
     background: linear-gradient(135deg, #FFAAA7 0%, #FF9593 100%);
-    color: #8b3432;
+    color: #8b1f1f;
 }
 
 .toast.info .icono {
-    background: linear-gradient(135deg, #A3D2CA 0%, #8BC4BC 100%);
-    color: #2d5a50;
+    background: linear-gradient(135deg, #7B68EE 0%, #6A5ADB 100%);
+    color: white;
 }
 
 .toast.warning .icono {
     background: linear-gradient(135deg, #FFF3B0 0%, #FFE259 100%);
-    color: #7a6c1f;
+    color: #6a5c0f;
 }
 
 /* Texto */
@@ -1227,26 +1229,25 @@ body.login-page .back-btn:hover {
 .toast .titulo {
     font-size: 1rem;
     font-weight: 700;
-    font-family: 'Fjalla One', sans-serif;
     margin: 0;
     letter-spacing: 0.02em;
     line-height: 1.3;
 }
 
 .toast.exito .titulo {
-    color: #2d5a50;
+    color: #1a4a3f;
 }
 
 .toast.error .titulo {
-    color: #8b3432;
+    color: #8b1f1f;
 }
 
 .toast.info .titulo {
-    color: #2d5a50;
+    color: #4A3A9E;
 }
 
 .toast.warning .titulo {
-    color: #7a6c1f;
+    color: #6a5c0f;
 }
 
 .toast .descripcion {
@@ -1254,26 +1255,25 @@ body.login-page .back-btn:hover {
     font-weight: 400;
     margin: 0;
     line-height: 1.5;
-    font-family: 'Josefin Sans', sans-serif;
     opacity: 0.9;
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
 
 .toast.exito .descripcion {
-    color: #3d6a60;
+    color: #2d5a50;
 }
 
 .toast.error .descripcion {
-    color: #a04442;
+    color: #8b1f1f;
 }
 
 .toast.info .descripcion {
-    color: #3d6a60;
+    color: #5A4AC8;
 }
 
 .toast.warning .descripcion {
-    color: #8a7c2f;
+    color: #6a5c0f;
 }
 
 /* ========================================
@@ -1361,7 +1361,7 @@ body.login-page .back-btn:hover {
 }
 
 .toast.info .barra-progreso::after {
-    background: linear-gradient(90deg, #8BC4BC 0%, #6BAFA5 100%);
+    background: linear-gradient(90deg, #7B68EE 0%, #6A5ADB 100%);
 }
 
 .toast.warning .barra-progreso::after {
@@ -1459,74 +1459,107 @@ body.login-page .back-btn:hover {
     }
 }
 
-/* ========================================
-   ESTADOS ESPECIALES
-   ======================================== */
-
-/* Toast con imagen/avatar */
-.toast.con-avatar .contenido {
-    grid-template-columns: 48px 1fr;
+/* ===============================
+   ESTILOS PROFILE.PHP
+   =============================== */
+.profile-page {
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
-.toast.con-avatar .avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(255, 255, 255, 0.5);
+/* -------- HEADER -------- */
+.profile-page .profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #A3D2CA, #B5EAEA);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 12px 12px;
+    margin-bottom: 20px;
 }
 
-/* Toast compacto */
-.toast.compacto {
-    min-height: 60px;
+.profile-page .profile-header h1 {
+    flex: 1;
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--texto-oscuro);
+    margin: 0;
 }
 
-.toast.compacto .contenido {
-    padding: 12px;
-    grid-template-columns: 36px 1fr;
+.profile-page .profile-header .session-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--texto-oscuro);
 }
 
-.toast.compacto .icono {
-    width: 32px;
-    height: 32px;
+.profile-page .profile-header .session-info a {
+    color: var(--texto-oscuro);
+    text-decoration: none;
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
-.toast.compacto .icono svg {
-    width: 18px;
-    height: 18px;
+.profile-page .profile-header .session-info a:hover {
+    color: white;
+    background: linear-gradient(135deg, #7B68EE, #6A5ADB);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(123, 104, 238, 0.4);
 }
 
-.toast.compacto .titulo {
+/* -------- USER INFO -------- */
+.profile-page .user-info {
+    color: var(--texto-medio);
+    font-size: 1rem;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* -------- TAGS -------- */
+.profile-page .tags-list,
+.tag-item {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-item {
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #FFF3B0, #FFE5B4);
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #FFD580;
+}
+
+.tag-item span {
+    font-weight: 600;
+    color: var(--texto-oscuro);
     font-size: 0.9rem;
 }
 
-.toast.compacto .descripcion {
-    font-size: 0.8rem;
+.remove-tag-btn {
+    background: none;
+    border: none;
+    color: #D32F2F;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
 }
 
-/* Efecto de hover en todo el toast */
-.toast {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.toast:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Indicador de cantidad cuando hay muchos toasts */
-.contenedor-toast::after {
-    content: '';
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
-    width: 8px;
-    height: 8px;
-    background: #A3D2CA;
-    border-radius: 50%;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
+.remove-tag-btn:hover {
+    color: #B71C1C;
 }
 
 .contenedor-toast:has(.toast:nth-child(4))::after {
@@ -1660,162 +1693,59 @@ body.login-page .back-btn:hover {
     background-color: #FFEAEA;
 }
 
-/* -------- USER INFO -------- */
-.profile-page .user-info {
-    color: #555;
-    font-size: 1rem;
-    margin-bottom: 15px;
-    text-align: center;
-    font-family: 'Fjalla One', sans-serif;
-}
+/* ========================================
+   ESTILOS Register (centrado como login + responsive)
+   ======================================== */
 
-/* -------- TAGS -------- */
-.profile-page .tags-list,
-.tag-item {
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
+/* Nota: variables solo para register (sin tocar :root global de toasts) */
+body.register-page{
+    --r-sky: #A3D2CA;   /* Azul cielo suave */
+    --r-mint: #B5EAEA;  /* Verde menta */
+    --r-pale: #FFF3B0;  /* Amarillo pálido */
+    --r-coral: #FFAAA7; /* Coral suave */
+    --r-gray: #E8E8E8;  /* Gris claro */
+    --r-ink: #333333;
+    --r-muted: #555555;
 
-.tag-item {
-    align-items: center;
-    gap: 6px;
-    background: linear-gradient(135deg, #FFF3B0, #FFE5B4);
-    padding: 6px 10px;
-    border-radius: 8px;
-    border: 1px solid #FFD580;
-}
-
-.tag-item span {
-    font-weight: 500;
-    color: #333;
-    font-size: 0.9rem;
-}
-
-.remove-tag-btn {
-    background: none;
-    border: none;
-    color: #FF9593;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    line-height: 1;
-    transition: color 0.2s;
-}
-
-.remove-tag-btn:hover {
-    color: #FF6B63;
-}
-
-.add-tag-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--r-sky) 0%, var(--r-mint) 100%);
     display: flex;
-    gap: 10px;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    overflow-y: auto; /* por si el contenido supera el viewport */
 }
 
-.tag-search-wrapper {
-    flex: 1;
-    position: relative;
-}
-
-.tag-search-input {
+/* Tarjeta centrada (equivalente a login main) */
+body.register-page .register-shell{
+    background-color: #ffffff;
     width: 100%;
-    padding: 10px 12px;
-    border: 2px solid #E0E0E0;
-    border-radius: 8px;
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-}
-.tag-search-input:focus {
-    outline: none;
-    border-color: #B5EAEA;
-    box-shadow: 0 0 10px rgba(181, 234, 234, 0.3);
-}
-.tag-suggestions {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
-    border: 1px solid #E0E0E0;
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 10;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 720px; /* “horizontal” por ancho, sin moverlo a la derecha */
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.10);
+    padding: 2.4rem 2.2rem;
 }
 
-.suggestion-item {
-    padding: 10px 12px;
-    cursor: pointer;
-    border-bottom: 1px solid #F0F0F0;
-    font-size: 0.9rem;
-    color: #333;
-    transition: background-color 0.2s ease;
+/* El form ya no es “otra tarjeta” */
+body.register-page .register-form{
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    overflow: visible;
+    max-height: none;
 }
 
-.suggestion-item:hover {
-    background-color: #F5F5F5;
-}
-
-.suggestion-item:last-child {
-    border-bottom: none;
-}
-#add-tag-btn {
-    margin-left: 15px;
-    padding: 6px 12px;
-    background: linear-gradient(135deg, #FFAAA7, #FF9593);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(255, 170, 167, 0.4);
-    transition: all 0.3s;
-}
-
-#add-tag-btn:hover {
-    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.5);
-}
-
-/* -------- PROJECTS -------- */
-.profile-page .user-projects {
-    margin: 20px;
-}
-
-.profile-page .user-projects h2 {
-    font-family: 'Fjalla One', sans-serif;
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 15px;
+body.register-page .register-form h1{
     text-align: center;
-}
-
-.profile-page .user-projects a.btn.btn-primary {
-    text-decoration: none;
-    color: #333;
-    background-color: #E8E8E8;
-    padding: 10px 16px;
-    border-radius: 8px;
-    display: inline-block;
-    margin-bottom: 15px;
-    transition: all 0.3s;
-    text-decoration: none;
-}
-
-.profile-page .user-projects a.btn.btn-primary:hover {
-    background-color: #D0D0D0;
-}
-.profile-page .user-projects h2 {
-    text-align: start;
-}
-.profile-page .user-projects .project {
-    margin-bottom: 25px;
-    text-align: start;
-}
-.profile-page .user-projects .project-title-link {
+    margin-bottom: 0.3rem;
+    color: var(--r-ink);
+    font-size: 1.8rem;
+    font-weight: 400;
     font-family: 'Fjalla One', sans-serif;
     font-size: 1.2rem;
     color: #333;
@@ -1868,52 +1798,28 @@ body.login-page .back-btn:hover {
     color: #FFAAA7;
 }
 
-/* -------- FORMULARIOS -------- */
-.profile-form {
-    max-width: 600px;
-    margin: 0 auto 30px;
-    background: #fff;
-    padding: 30px;
+/* Mensajes (consistentes y “limpios”) */
+body.register-page .register-form .success,
+body.register-page .register-form .error,
+body.register-page .register-form .info{
+    padding: 0.9rem 1rem;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.profile-form h3 {
-    font-family: 'Fjalla One', sans-serif;
-    color: #333;
-    font-size: 1.1rem;
-    margin: 0 0 15px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group label {
-    font-family: 'Fjalla One', sans-serif;
-    color: #333;
     font-size: 0.95rem;
     font-weight: 600;
-    margin-bottom: 8px;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #ffffff;
 }
 
-.form-group input,
-.form-group textarea {
-    padding: 12px;
-    border: 2px solid #E0E0E0;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    font-family: 'Josefin Sans', sans-serif;
-    transition: all 0.3s ease;
+body.register-page .register-form .error{
+    background: #FFF2F2;
+    color: #8b3432;
+    border-left: 8px solid var(--r-coral);
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #B5EAEA;
-    box-shadow: 0 0 10px rgba(181, 234, 234, 0.3);
+body.register-page .register-form .success{
+    background: #F2FFFB;
+    color: #1f4b44;
+    border-left: 8px solid var(--r-mint);
 }
 
 input[readonly],
@@ -4335,81 +4241,97 @@ body.login-page .back-btn:hover {
 
 .toast.error .descripcion {
     color: #a04442;
-}
-
-/* Toast de info - Azul cielo */
-.toast.info .titulo {
-    color: #2d5a50;
-}
-
-.toast.info .descripcion {
-    color: #3d6a60;
-}
-
-/* Toast de warning - Amarillo */
-.toast.warning .titulo {
+body.register-page .register-form .info{
+    background: #FFFCE6;
     color: #7a6c1f;
+    border-left: 8px solid var(--r-pale);
 }
 
-.toast.warning .descripcion {
-    color: #8a7c2f;
+body.register-page .register-form .error ul{
+    margin-left: 1.1rem;
 }
 
-/* ===============================
-   ESTILOS PROFILE.PHP
-   =============================== */
-.profile-page {
-    font-family: 'Josefin Sans', sans-serif;
-    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-}
-
-/* -------- HEADER -------- */
-.profile-page .profile-header {
+/* Inputs (alineados al estilo login) */
+body.register-page .register-form label{
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background: linear-gradient(135deg, #A3D2CA, #B5EAEA);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    border-radius: 0 0 12px 12px;
-    margin-bottom: 20px;
-}
-
-.profile-page .profile-header h1 {
-    flex: 1;
-    text-align: center;
-    font-family: 'Fjalla One', sans-serif;
-    font-size: 1.8rem;
-    color: #333;
-    margin: 0;
-}
-
-.profile-page .profile-header .session-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    flex-direction: column;
     font-size: 0.9rem;
+    color: var(--r-muted);
     font-weight: 500;
-    color: #333;
 }
 
-.profile-page .profile-header .session-info a {
-    color: #333;
-    text-decoration: none;
+body.register-page .register-form input,
+body.register-page .register-form select{
+    margin-top: 0.5rem;
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    border: 2px solid var(--r-gray);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+}
+
+body.register-page .register-form input:focus,
+body.register-page .register-form select:focus{
+    outline: none;
+    border-color: var(--r-sky);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(163, 210, 202, 0.15);
+}
+
+/* Filas “horizontales” (2 columnas) */
+body.register-page .register-form .form-row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+body.register-page .register-form .form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Botón (paleta coral) */
+body.register-page .register-form button[type="submit"]{
+    margin-top: 0.8rem;
+    padding: 0.95rem;
+    background: linear-gradient(135deg, var(--r-coral), var(--r-coral));
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
     font-weight: 600;
-    background-color: #E8E8E8;
-    padding: 6px 12px;
-    border-radius: 5px;
-    transition: all 0.2s ease;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.5);
 }
 
-.profile-page .profile-header .session-info a:hover {
-    color: #FF8A82;
-    background-color: #FFEAEA;
+body.register-page .register-form button[type="submit"]:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 170, 167, 0.6);
 }
+
+/* Responsive */
+@media (max-width: 767px){
+    body.register-page{
+        align-items: flex-start; /* si no cabe, que empiece arriba y puedas scrollear */
+        padding-bottom: 2rem;
+    }
+
+    body.register-page .register-shell{
+        padding: 1.6rem 1.2rem;
+        border-radius: 16px;
+        max-width: 420px; /* como login en móvil */
+        max-height: calc(100vh - 2rem);
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    body.register-page .register-form .form-row{
+        grid-template-columns: 1fr;
+    }
+}
+
 
 /* -------- USER INFO -------- */
 .profile-page .user-info {
@@ -4474,14 +4396,15 @@ body.login-page .back-btn:hover {
     padding: 10px 12px;
     border: 2px solid #E0E0E0;
     border-radius: 8px;
-    font-family: 'Josefin Sans', sans-serif;
     font-size: 0.9rem;
+    color: var(--texto-oscuro);
+    background-color: var(--fondo-blanco);
     transition: all 0.3s ease;
 }
 .tag-search-input:focus {
     outline: none;
-    border-color: #B5EAEA;
-    box-shadow: 0 0 10px rgba(181, 234, 234, 0.3);
+    border-color: #7B68EE;
+    box-shadow: 0 0 10px rgba(123, 104, 238, 0.3);
 }
 .tag-suggestions {
     position: absolute;
@@ -4503,92 +4426,112 @@ body.login-page .back-btn:hover {
     cursor: pointer;
     border-bottom: 1px solid #F0F0F0;
     font-size: 0.9rem;
-    color: #333;
+    color: var(--texto-oscuro);
+    background-color: var(--fondo-blanco);
     transition: background-color 0.2s ease;
 }
 
 .suggestion-item:hover {
-    background-color: #F5F5F5;
+    background-color: rgba(123, 104, 238, 0.1);
+    color: #7B68EE;
 }
 
 .suggestion-item:last-child {
     border-bottom: none;
 }
-#add-tag-btn {
-    margin-left: 15px;
-    padding: 6px 12px;
-    background: linear-gradient(135deg, #FFAAA7, #FF9593);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(255, 170, 167, 0.4);
-    transition: all 0.3s;
-}
 
-#add-tag-btn:hover {
-    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.5);
-}
 
 /* -------- PROJECTS -------- */
-.profile-page .user-projects {
-    margin: 20px;
+.profile-page #user-projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centrar las tarjetas */
+    gap: 20px; /* Espacio entre tarjetas */
+    margin-top: 20px;
+}
+
+.profile-page .project-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 15px;
+    width: 250px; /* ancho de cada tarjeta */
+    text-align: center; /* centrar contenido */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-page .project-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.profile-page .project-image {
+    width: 100%;
+    height: auto;
+    max-height: 180px; /* limitar altura */
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.profile-page .project-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: auto;
+}
+
+.profile-page .project-buttons .btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    color: black;
+}
+
+.profile-page .btn-preview {
+    background: linear-gradient(135deg, #b7a7ff, #baa7ff);
+    box-shadow: 0 4px 15px rgba(205, 167, 255, 0.4);
+}
+.profile-page .btn-preview:hover {
+    box-shadow: 0 6px 20px rgba(205, 167, 255, 0.6);
+}
+
+.profile-page .btn-edit {
+    background: linear-gradient(135deg, #FFAAA7, #FF9593);
+    box-shadow: 0 4px 15px rgba(255, 170, 167, 0.4);
+}
+.profile-page .btn-edit:hover {
+    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.6);
 }
 
 .profile-page .user-projects h2 {
-    font-family: 'Fjalla One', sans-serif;
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 15px;
     text-align: center;
+    color: var(--texto-oscuro);
+    margin-bottom: 15px;
+    font-family: 'Fjalla One', sans-serif;
 }
 
 .profile-page .user-projects a.btn.btn-primary {
+    display: block;              /* 🔑 clave */
+    width: fit-content;          /* para que no ocupe todo el ancho */
+    margin: 0 auto 15px auto;    /* centrado horizontal */
+    
     text-decoration: none;
     color: #333;
     background-color: #E8E8E8;
     padding: 10px 16px;
     border-radius: 8px;
-    display: inline-block;
-    margin-bottom: 15px;
     transition: all 0.3s;
-    text-decoration: none;
+    text-align: center;
+    font-weight: 600;
 }
-
 .profile-page .user-projects a.btn.btn-primary:hover {
-    background-color: #D0D0D0;
-}
-.profile-page .user-projects h2 {
-    text-align: start;
-}
-.profile-page .user-projects .project {
-    margin-bottom: 25px;
-    text-align: start;
-}
-.profile-page .user-projects .project-title-link {
-    font-family: 'Fjalla One', sans-serif;
-    font-size: 1.2rem;
-    color: #333;
-    text-decoration: none;
-    margin-bottom: 10px;
-    display: inline-block;
-}
-.profile-page .user-projects .project-title-link:hover {
-    color: #FFAAA7;
-    text-decoration: underline;
-}
-.profile-page .user-projects .project-preview {
-    width: 250px;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-}
-.profile-page .user-projects .project-preview:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #b7a7ff, #baa7ff);
+    color: #FFF;
+    box-shadow: 0 4px 15px rgba(205, 167, 255, 0.6);
 }
 
 
@@ -4600,11 +4543,13 @@ body.login-page .back-btn:hover {
 }
 
 .profile-nav a {
-    color: #333;
+    color: var(--texto-oscuro);
     text-decoration: none;
     font-weight: 600;
     font-size: 1rem;
-    transition: color 0.2s;
+    transition: all 0.3s ease;
+    padding: 6px 12px;
+    border-radius: 6px;
 }
 
 .profile-nav a:hover {
@@ -4622,9 +4567,8 @@ body.login-page .back-btn:hover {
 }
 
 .profile-form h3 {
-    font-family: 'Fjalla One', sans-serif;
-    color: #333;
-    font-size: 1.1rem;
+    color: var(--texto-oscuro);
+    font-size: 1.3rem;
     margin: 0 0 15px;
 }
 
@@ -4635,8 +4579,7 @@ body.login-page .back-btn:hover {
 }
 
 .form-group label {
-    font-family: 'Fjalla One', sans-serif;
-    color: #333;
+    color: var(--texto-medio);
     font-size: 0.95rem;
     font-weight: 600;
     margin-bottom: 8px;
@@ -4648,15 +4591,16 @@ body.login-page .back-btn:hover {
     border: 2px solid #E0E0E0;
     border-radius: 8px;
     font-size: 0.95rem;
-    font-family: 'Josefin Sans', sans-serif;
+    color: var(--texto-oscuro);
+    background-color: var(--fondo-blanco);
     transition: all 0.3s ease;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #B5EAEA;
-    box-shadow: 0 0 10px rgba(181, 234, 234, 0.3);
+    border-color: #7B68EE;
+    box-shadow: 0 0 10px rgba(123, 104, 238, 0.3);
 }
 
 input[readonly],
@@ -4681,27 +4625,27 @@ input[disabled] {
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
-.btn-primary {
-    background: linear-gradient(135deg, #b7a7ff, #baa7ff);
+.profile-page .btn.btn-primary {
+    background: linear-gradient(135deg, #7B68EE, #6A5ADB);
     color: #fff;
-    box-shadow: 0 4px 15px rgba(205, 167, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(123, 104, 238, 0.4);
 }
 
-.btn-primary:hover {
-    box-shadow: 0 4px 15px rgba(205, 167, 255, 0.6);
+.profile-page .btn.btn-primary:hover {
+    background: linear-gradient(135deg, #6A5ADB, #5A4AC8);
+    box-shadow: 0 6px 20px rgba(123, 104, 238, 0.6);
     transform: translateY(-2px);
 }
 
-.btn-primary:active {
+.profile-page .btn.btn-primary:active {
     transform: translateY(0);
 }
 
 .btn-secondary {
     background: #E8E8E8;
-    color: #333;
+    color: var(--texto-oscuro);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
@@ -5061,26 +5005,6 @@ body.register-page .register-form .form-group{
     flex-direction: column;
 }
 
-/* Botón (paleta coral) */
-body.register-page .register-form button[type="submit"]{
-    margin-top: 0.8rem;
-    padding: 0.95rem;
-    background: linear-gradient(135deg, var(--r-coral), var(--r-coral));
-    color: #ffffff;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.5);
-}
-
-body.register-page .register-form button[type="submit"]:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 170, 167, 0.6);
-}
-
 /* Responsive */
 @media (max-width: 767px){
     body.register-page{
@@ -5102,6 +5026,35 @@ body.register-page .register-form button[type="submit"]:hover{
     }
 }
 
+body.page-error address {
+    text-align: center;
+    font-style: normal;
+    color: var(--texto-claro);
+    margin-top: 2em;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+}
+
+body.page-error address a {
+    color: #7B68EE;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+body.page-error address a:hover {
+    color: #6A5ADB;
+    text-decoration: underline;
+}
+
+body.page-error address span {
+    color: #9e9e9e;
+    font-size: 0.94em;
+}
+
+/* ========================================
+   ESTILOS MATCHES.PHP
+   ======================================== */
 .matches-page .sidebar {
     position: sticky;
     top: 0;
@@ -5124,7 +5077,7 @@ body.register-page .register-form button[type="submit"]:hover{
 }
 
 .matches-page .sidebar .nav-links li a {
-    color: #2d5a50;
+    color: var(--texto-oscuro);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
@@ -5142,13 +5095,13 @@ body.register-page .register-form button[type="submit"]:hover{
     display: flex;
     align-items: center;
     gap: 18px;
-    color: #2d5a50;
+    color: var(--texto-oscuro);
     font-size: 0.95rem;
     font-weight: 600;
 }
 
 .matches-page .sidebar .session-info a {
-    color: #2d5a50;
+    color: var(--texto-oscuro);
     text-decoration: none;
     font-weight: 600;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.3) 100%);
@@ -5159,11 +5112,11 @@ body.register-page .register-form button[type="submit"]:hover{
 }
 
 .matches-page .sidebar .session-info a:hover {
-    background: linear-gradient(135deg, #FFAAA7 0%, #FF9593 100%);
+    background: linear-gradient(135deg, #7B68EE 0%, #6A5ADB 100%);
     color: white;
-    border-color: #FF7B78;
+    border-color: #6A5ADB;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 170, 167, 0.4);
+    box-shadow: 0 4px 12px rgba(123, 104, 238, 0.4);
 }
 
 .matches-page main {
@@ -5174,17 +5127,16 @@ body.register-page .register-form button[type="submit"]:hover{
 
 .matches-page h1 {
     text-align: center;
-    color: #2d5a50;
+    color: var(--texto-oscuro);
     font-size: 2.5rem;
     font-weight: 400;
     margin-bottom: 15px;
-    font-family: 'Fjalla One', sans-serif;
     text-shadow: 0 2px 4px rgba(163, 210, 202, 0.3);
 }
 
 .matches-page .subtitle {
     text-align: center;
-    color: #2d5a50;
+    color: var(--texto-medio);
     font-size: 1.1rem;
     margin-bottom: 45px;
     font-weight: 500;
@@ -5232,13 +5184,13 @@ body.register-page .register-form button[type="submit"]:hover{
     position: absolute;
     top: 15px;
     right: 15px;
-    background: linear-gradient(135deg, #FFAAA7 0%, #FF9593 100%);
-    color: white;
+    background: linear-gradient(135deg, #FFF3B0 0%, #FFE259 100%);
+    color: #7a6c1f;
     padding: 8px 18px;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 700;
-    box-shadow: 0 4px 12px rgba(255, 170, 167, 0.5);
+    box-shadow: 0 4px 12px rgba(255, 243, 176, 0.5);
     animation: pulse 2s infinite;
     z-index: 10;
 }
@@ -5248,27 +5200,23 @@ body.register-page .register-form button[type="submit"]:hover{
 }
 
 .match-card h3 {
-    color: #2d5a50;
+    color: var(--texto-oscuro);
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 10px;
-    font-family: 'Fjalla One', sans-serif;
     margin-top: 0;
-    margin-bottom: 1.2em;
     text-align: center;
-    color: #8b3432;
 }
 
 .match-card .author {
-    color: #555;
+    color: var(--texto-medio);
     font-size: 0.95rem;
     margin-bottom: 15px;
     font-weight: 500;
-    opacity: 0.85;
 }
 
 .match-card .description {
-    color: #666;
+    color: var(--texto-medio);
     font-size: 0.95rem;
     line-height: 1.7;
     margin-bottom: 18px;
@@ -5283,7 +5231,7 @@ body.register-page .register-form button[type="submit"]:hover{
     background: linear-gradient(135deg, #FFF3B0 0%, #FFE259 100%);
     padding: 12px 16px;
     border-radius: 12px;
-    color: #7a6c1f;
+    color: #5a4c0f;
     font-size: 0.88rem;
     font-weight: 600;
     margin-bottom: 20px;
@@ -5305,29 +5253,30 @@ body.register-page .register-form button[type="submit"]:hover{
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-family: 'Josefin Sans', sans-serif;
 }
 
 .match-card .btn-view {
-    background: linear-gradient(135deg, #B5EAEA 0%, #A3D2CA 100%);
-    color: #2d5a50;
-    box-shadow: 0 4px 12px rgba(181, 234, 234, 0.4);
+    background: linear-gradient(135deg, #7B68EE 0%, #6A5ADB 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(123, 104, 238, 0.4);
 }
 
 .match-card .btn-view:hover {
+    background: linear-gradient(135deg, #6A5ADB 0%, #5A4AC8 100%);
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(181, 234, 234, 0.6);
+    box-shadow: 0 6px 20px rgba(123, 104, 238, 0.6);
 }
 
 .match-card .btn-contact {
-    background: linear-gradient(135deg, #FFAAA7 0%, #FF9593 100%);
+    background: linear-gradient(135deg, #A3D2CA 0%, #8BC4BC 100%);
     color: white;
-    box-shadow: 0 4px 12px rgba(255, 170, 167, 0.4);
+    box-shadow: 0 4px 12px rgba(163, 210, 202, 0.4);
 }
 
 .match-card .btn-contact:hover {
+    background: linear-gradient(135deg, #8BC4BC 0%, #7AB4AC 100%);
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.6);
+    box-shadow: 0 6px 20px rgba(163, 210, 202, 0.6);
 }
 
 /* MENSAJE VACÍO */
@@ -5343,14 +5292,13 @@ body.register-page .register-form button[type="submit"]:hover{
 }
 
 .matches-page .empty-message h2 {
-    color: #2d5a50;
+    color: var(--texto-oscuro);
     font-size: 2rem;
     margin-bottom: 15px;
-    font-family: 'Fjalla One', sans-serif;
 }
 
 .matches-page .empty-message p {
-    color: #555;
+    color: var(--texto-medio);
     font-size: 1.1rem;
     margin-bottom: 30px;
     max-width: 500px;
@@ -5362,243 +5310,26 @@ body.register-page .register-form button[type="submit"]:hover{
 .matches-page .btn-discover {
     display: inline-block;
     padding: 15px 35px;
-    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    background: linear-gradient(135deg, #7B68EE 0%, #6A5ADB 100%);
     color: white;
     text-decoration: none;
     border-radius: 25px;
     font-weight: 600;
     font-size: 1.05rem;
     transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(163, 210, 202, 0.4);
+    box-shadow: 0 6px 20px rgba(123, 104, 238, 0.4);
 }
 
 .matches-page .btn-discover:hover {
+    background: linear-gradient(135deg, #6A5ADB 0%, #5A4AC8 100%);
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(163, 210, 202, 0.6);
+    box-shadow: 0 8px 25px rgba(123, 104, 238, 0.6);
 }
-
-/* ========== RESPONSIVIDAD ========== */
-@media (max-width: 768px) {
-    .matches-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .matches-page h1 {
-        font-size: 2rem;
-    }
-
-    .matches-page .subtitle {
-        font-size: 1rem;
-    }
-
-    .matches-page .sidebar {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
-    }
-
-    .matches-page .sidebar .nav-links {
-        gap: 15px;
-    }
-
-    .discover-page .project-card .buttons {
-        gap: 20px;
-    }
-
-    .discover-page .project-card .buttons button {
-        width: 90px;
-        height: 90px;
-        font-size: 1rem;
-    }
-
-    body.login-page main {
-        padding: 2rem 1.5rem;
-    }
-
-    .contenedor-toast {
-        max-width: calc(100% - 30px);
-        right: 15px;
-        bottom: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .match-card .card-content {
-        padding: 20px;
-    }
-
-    .match-card h3 {
-        font-size: 1.3rem;
-    }
-
-    .discover-page .project-card header {
-        top: 60px;
-        left: 15px;
-        right: 15px;
-        padding: 15px;
-    }
-
-    .discover-page .project-card header h2 {
-        font-size: 1.3rem;
-    }
-
-    .discover-page .project-card .actions {
-        padding: 20px 15px 15px;
-    }
-}
-
-/* ========== MEJORAS ADICIONALES DE PALETA ========== */
-
-/* Refuerzo de colores en elementos interactivos */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible {
-    outline: 3px solid #A3D2CA;
-    outline-offset: 2px;
-}
-
-/* Mejora de contraste en textos sobre fondos de color */
-.toast.exito .titulo,
-.toast.exito .descripcion {
-    color: #1a403a;
-    font-weight: 600;
-}
-
-.toast.error .titulo,
-.toast.error .descripcion {
-    color: #5c1210;
-    font-weight: 600;
-}
-
-.toast.info .titulo,
-.toast.info .descripcion {
-    color: #1a403a;
-    font-weight: 600;
-}
-
-.toast.warning .titulo,
-.toast.warning .descripcion {
-    color: #5c4e0f;
-    font-weight: 600;
-}
-
-/* Estados de carga */
-.loading-spinner {
-    border: 3px solid #E8E8E8;
-    border-top: 3px solid #A3D2CA;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Overlay para modales */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(163, 210, 202, 0.3);
-    backdrop-filter: blur(8px);
-    z-index: 9998;
-}
-
-/* Scrollbar personalizado */
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #E8E8E8;
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #8BC4BC 0%, #A3D2CA 100%);
-}
-
-/* Selección de texto */
-::selection {
-    background: #B5EAEA;
-    color: #2d5a50;
-}
-
-::-moz-selection {
-    background: #B5EAEA;
-    color: #2d5a50;
-}
-
-body.page-error address {
-    text-align: center;
-    font-style: normal;
-    color: #555;
-    margin-top: 2em;
-    font-size: 0.95rem;
-    letter-spacing: 0.01em;
-    font-family: 'Josefin Sans', sans-serif;
-}
-
-body.page-error address a {
-    color: #8b3432;
-    text-decoration: none;
-    font-weight: 700;
-}
-
-body.page-error address a:hover {
-    text-decoration: underline;
-}
-
-body.page-error address span {
-    color: #9e9e9e;
-    font-size: 0.94em;
-}
-
-@media (max-width: 540px) {
-    body.page-error .contenedor {
-        width: 100%;
-        max-width: 98vw;
-        padding: 1.3rem 0.5rem;
-    }
-    body.page-error h1 {
-        font-size: 2.2rem;
-    }
-    .discover-page .project-card .buttons button {
-        width: 90px;
-        height: 90px;
-        font-size: 1.3rem;
-    }
-    body.page-error p {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 350px) {
-    body.page-error h1 {
-        font-size: 1.5rem;
-    }
-    body.page-error .contenedor {
-        padding: 0.7rem 0.1rem;
-    }
-}
-
 
 /* ===============================
    ESTILOS EDIT_PROJECT.PHP
    =============================== */
 .edit-project-page {
-    font-family: 'Josefin Sans', sans-serif;
     background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
     min-height: 100vh;
     margin: 0;
@@ -5617,6 +5348,11 @@ body.page-error address span {
     margin-bottom: 20px;
 }
 
+.edit-project-page .edit-project-header h1 {
+    color: var(--texto-oscuro);
+    font-size: 1.8rem;
+}
+
 /* -------- NAV -------- */
 .edit-project-nav {
     margin-top: 15px;
@@ -5625,11 +5361,13 @@ body.page-error address span {
 }
 
 .edit-project-nav a {
-    color: #333;
+    color: var(--texto-oscuro);
     text-decoration: none;
     font-weight: 600;
     font-size: 1rem;
-    transition: color 0.2s;
+    transition: all 0.3s ease;
+    padding: 6px 12px;
+    border-radius: 6px;
 }
 
 .edit-project-nav a:hover {
@@ -5642,29 +5380,32 @@ body.page-error address span {
     align-items: center;
     gap: 15px;
     font-size: 0.9rem;
-    font-weight: 500;
-    color: #333;
+    font-weight: 600;
+    color: var(--texto-oscuro);
 }
 
 .edit-project-page .edit-project-header .session-info a {
-    color: #333;
+    color: var(--texto-oscuro);
     text-decoration: none;
     font-weight: 600;
-    background-color: #E8E8E8;
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 6px 12px;
     border-radius: 5px;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .edit-project-page .edit-project-header .session-info a:hover {
-    color: #FF8A82;
-    background-color: #FFEAEA;
+    color: white;
+    background: linear-gradient(135deg, #7B68EE, #6A5ADB);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(123, 104, 238, 0.4);
 }
 
 .save-message.success {
     color: green;
     text-align: center;
     margin-bottom: 15px;
+    font-weight: 600;
 }
 
 /* ========================================
@@ -5725,7 +5466,6 @@ body.page-error address span {
    ESTILOS NEW_PROJECT.PHP
    =============================== */
 .new-project-page {
-    font-family: 'Josefin Sans', sans-serif;
     background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
     min-height: 100vh;
     margin: 0;
@@ -5743,6 +5483,11 @@ body.page-error address span {
     margin-bottom: 20px;
 }
 
+.new-project-page .new-project-header h1 {
+    color: var(--texto-oscuro);
+    font-size: 1.8rem;
+}
+
 /* -------- NAV -------- */
 .new-project-nav {
     margin-top: 15px;
@@ -5751,11 +5496,13 @@ body.page-error address span {
 }
 
 .new-project-nav a {
-    color: #333;
+    color: var(--texto-oscuro);
     text-decoration: none;
     font-weight: 600;
     font-size: 1rem;
-    transition: color 0.2s;
+    transition: all 0.3s ease;
+    padding: 6px 12px;
+    border-radius: 6px;
 }
 
 .new-project-nav a:hover {
@@ -5768,23 +5515,25 @@ body.page-error address span {
     align-items: center;
     gap: 15px;
     font-size: 0.9rem;
-    font-weight: 500;
-    color: #333;
+    font-weight: 600;
+    color: var(--texto-oscuro);
 }
 
 .new-project-page .new-project-header .session-info a {
-    color: #333;
+    color: var(--texto-oscuro);
     text-decoration: none;
     font-weight: 600;
-    background-color: #E8E8E8;
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 6px 12px;
     border-radius: 5px;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .new-project-page .new-project-header .session-info a:hover {
-    color: #FF8A82;
-    background-color: #FFEAEA;
+    color: white;
+    background: linear-gradient(135deg, #7B68EE, #6A5ADB);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(123, 104, 238, 0.4);
 }
 
 .alert.alert-success {
@@ -5864,23 +5613,6 @@ body.page-error address span {
     }
 }
 
-/* Estilos para campos con error en formulario de registro */
-body.register-page .register-form .form-group-error input,
-body.register-page .register-form .form-group-error select{
-    border-color: #FF6B6B !important;
-    background-color: rgba(255, 107, 107, 0.08) !important;
-    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15) !important;
-}
-
-body.register-page .register-form .form-group-error input:focus,
-body.register-page .register-form .form-group-error select:focus{
-    border-color: #FF6B6B !important;
-    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.25) !important;
-}
-
-body.register-page .register-form .form-group-error label{
-    color: #FF6B6B;
-}
 body.page-error a.button:hover {
     box-shadow: 0 8px 25px rgba(255, 170, 167, 0.6);
     transform: translateY(-2px) scale(1.03);
@@ -6016,25 +5748,50 @@ body.register-page .register-form .form-group{
     flex-direction: column;
 }
 
-/* Botón (paleta coral) */
-body.register-page .register-form button[type="submit"]{
-    margin-top: 0.8rem;
-    padding: 0.95rem;
-    background: linear-gradient(135deg, var(--r-coral), var(--r-coral));
-    color: #ffffff;
+/* Botón Register (registro principal) */
+body.register-page .register-form button[type="submit"] {
+    margin-top: 1.5rem;
+    padding: 0.9rem;
+    background: linear-gradient(135deg, #B5EAEA 0%, #A3D2CA 100%); /* Verde menta y azul cielo: positivo/primario */
+    color: #23414e;
     border: none;
     border-radius: 10px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.5);
+    box-shadow: 0 4px 15px rgba(163, 210, 202, 0.22);
 }
 
-body.register-page .register-form button[type="submit"]:hover{
+body.register-page .register-form button[type="submit"]:hover {
+    background: linear-gradient(135deg, #A3D2CA 0%, #7B68EE 100%); /* azul cielo a lila */
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(91, 175, 183, 0.24);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 170, 167, 0.6);
 }
+
+/* Botón Añadir Tag (acción secundaria) */
+#add-tag-btn {
+    margin-left: 15px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #FFF3B0 0%, #FFD966 100%); /* Amarillo suave: secundario/informativo */
+    color: #856700;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 215, 102, 0.25);
+    transition: all 0.3s;
+}
+
+#add-tag-btn:hover {
+    background: linear-gradient(135deg, #FFD966 0%, #FFF3B0 100%);
+    color: #564400;
+    box-shadow: 0 6px 20px rgba(255, 183, 0, 0.18);
+    transform: translateY(-2px);
+}
+
 
 /* Responsive */
 @media (max-width: 767px){
@@ -6063,19 +5820,26 @@ body.register-page .register-form button[type="submit"]:hover{
     color: green;
     text-align: center;
     margin-bottom: 15px;
+    font-weight: 600;
 }
 .alert.alert-error {
     color: red;
     text-align: center;
     margin-bottom: 15px;
+    font-weight: 600;
 }
 .new-project-page .form-group input[type="file"] {
     padding: 6px;
     border: 2px solid #E0E0E0;
     border-radius: 8px;
     font-size: 0.95rem;
-    font-family: 'Josefin Sans', sans-serif;
+    color: var(--texto-oscuro);
     transition: all 0.3s ease;
+}
+
+.new-project-page .form-group input[type="file"]:focus {
+    border-color: #7B68EE;
+    box-shadow: 0 0 10px rgba(123, 104, 238, 0.3);
 }
 
 /* ========================================
@@ -6133,6 +5897,176 @@ body.register-page .register-form button[type="submit"]:hover{
 
     .form-actions .btn {
         width: 100%;
+    }
+}
+
+/* ========================================
+   MEJORAS GENERALES
+   ======================================== */
+
+/* Refuerzo de colores en elementos interactivos */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #7B68EE;
+    outline-offset: 2px;
+}
+
+/* Estados de carga */
+.loading-spinner {
+    border: 3px solid #E8E8E8;
+    border-top: 3px solid #7B68EE;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Overlay para modales */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(163, 210, 202, 0.3);
+    backdrop-filter: blur(8px);
+    z-index: 9998;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #E8E8E8;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #7B68EE 0%, #6A5ADB 100%);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #6A5ADB 0%, #5A4AC8 100%);
+}
+
+/* Selección de texto */
+::selection {
+    background: #B5EAEA;
+    color: var(--texto-oscuro);
+}
+
+::-moz-selection {
+    background: #B5EAEA;
+    color: var(--texto-oscuro);
+}
+
+/* ========================================
+   RESPONSIVE GENERAL
+   ======================================== */
+@media (max-width: 768px) {
+    .matches-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .matches-page h1 {
+        font-size: 2rem;
+    }
+
+    .matches-page .subtitle {
+        font-size: 1rem;
+    }
+
+    .matches-page .sidebar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .matches-page .sidebar .nav-links {
+        gap: 15px;
+    }
+
+    .discover-page .project-card .buttons {
+        gap: 20px;
+    }
+
+    .discover-page .project-card .buttons button {
+        width: 90px;
+        height: 90px;
+        font-size: 1rem;
+    }
+
+    body.login-page main {
+        padding: 2rem 1.5rem;
+    }
+
+    .contenedor-toast {
+        max-width: calc(100% - 30px);
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
+@media (max-width: 540px) {
+    body.page-error .contenedor {
+        width: 100%;
+        max-width: 98vw;
+        padding: 1.3rem 0.5rem;
+    }
+    body.page-error h1 {
+        font-size: 2.2rem;
+    }
+    .discover-page .project-card .buttons button {
+        width: 90px;
+        height: 90px;
+        font-size: 1.3rem;
+    }
+    body.page-error p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .match-card .card-content {
+        padding: 20px;
+    }
+
+    .match-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .discover-page .project-card header {
+        top: 60px;
+        left: 15px;
+        right: 15px;
+        padding: 15px;
+    }
+
+    .discover-page .project-card header h2 {
+        font-size: 1.3rem;
+    }
+
+    .discover-page .project-card .actions {
+        padding: 20px 15px 15px;
+    }
+}
+
+@media (max-width: 350px) {
+    body.page-error h1 {
+        font-size: 1.5rem;
+    }
+    body.page-error .contenedor {
+        padding: 0.7rem 0.1rem;
     }
 }
 
@@ -6416,4 +6350,5 @@ body.edit-project-page main {
         aspect-ratio: 9 / 16;
         object-fit: cover;
     }
+}
 }

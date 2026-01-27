@@ -1,5 +1,6 @@
 <?php
-$env = parse_ini_file('../.env');
+require_once __DIR__ . '/../includes/logger.php';
+$env = parse_ini_file(__DIR__ . '/../.env');
 $host     = 'localhost';
 $db       = 'simbio';
 $user     = $env['db_user'];
@@ -140,28 +141,6 @@ try {
     (4, 146),
     (5, 81),
     (6, 67);
-
-
-    -- NUEVOS TAGS PARA MATCHES REALES
-    -- Proyecto 1 (Alejandro) hace match con Proyecto 6 (Rehabilitación) por tag 92
-    INSERT INTO project_tags (project_id, tag_id) VALUES (6, 92);
-
-    -- Proyecto 2 (Inditex) hace match con Proyecto 5 (Menú Gastronómico) por tag 126
-    INSERT INTO project_tags (project_id, tag_id) VALUES (5, 126);
-
-    -- Proyecto 3 (Seat 600) hace match con Proyecto 2 (Eco-Packaging) por tag 155
-    INSERT INTO project_tags (project_id, tag_id) VALUES (2, 155);
-
-    -- Proyecto 4 (Fleca Saludable) hace match con Proyecto 1 (Residus) por tag 91
-    INSERT INTO project_tags (project_id, tag_id) VALUES (4, 91);
-
-    -- Proyecto 5 (Menú Gastronómico) también hace match con Proyecto 1 (Residus) por tag 81
-    INSERT INTO project_tags (project_id, tag_id) VALUES (1, 81);
-
-    -- Proyecto 6 (Rehabilitación) hace match con Proyecto 3 (Seat 600) por tag 67
-    INSERT INTO project_tags (project_id, tag_id) VALUES (3, 67);
-
-
 SQL;
 
         // Ejecutamos el SQL

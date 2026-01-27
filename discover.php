@@ -31,7 +31,7 @@ $flash = $_SESSION['flash_message'] ?? null;
     <ul class="nav-links">
         <li><a href="discover.php">Descobrir</a></li>
         <li><a href="profile.php">Perfil</a></li>
-        <li><a href="messages.php">Converses</a></li>
+        <li><a href="conversations.php">Converses</a></li>
     </ul>
     <div class="session-info">
         <?php if (isLogged()): ?>
@@ -47,13 +47,10 @@ $flash = $_SESSION['flash_message'] ?? null;
     <p style="color: #333; text-align: center; padding: 20px;">Carregant projectes...</p>
 </main>
 
-<!-- ⭐ IMPORTANTE: Cargar utils.js PRIMERO -->
 <script src="js/utils.js?v=<?php echo time(); ?>"></script>
 
-<!-- ⭐ Luego el script del flash message -->
 <?php if (isset($flash) && is_array($flash)): ?>
 <script>
-    // Esperar a que utils.js esté cargado
     (function() {
         const showFlash = function() {
             <?php
@@ -90,7 +87,6 @@ $flash = $_SESSION['flash_message'] ?? null;
             ?>
         };
 
-        // Ejecutar inmediatamente si el DOM ya está listo
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', showFlash);
         } else {
@@ -100,12 +96,11 @@ $flash = $_SESSION['flash_message'] ?? null;
     })();
 </script>
 <?php 
-    // ⭐ IMPORTANTE: Limpiar el flash message después de mostrarlo
     unset($_SESSION['flash_message']); 
 endif; 
 ?>
 
-<!-- ⭐ Cargar discover.js al final -->
+<!-- Cargar discover.js -->
 <script src="js/discover.js?v=<?php echo filemtime('js/discover.js'); ?>"></script>
 
 </body>
