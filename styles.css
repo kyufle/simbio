@@ -1472,70 +1472,99 @@ body.login-page-admin video {
 
 
 /* -------- PROJECTS -------- */
-.profile-page .user-projects {
-    margin: 20px;
+.profile-page #user-projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centrar las tarjetas */
+    gap: 20px; /* Espacio entre tarjetas */
+    margin-top: 20px;
+}
+
+.profile-page .project-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 15px;
+    width: 250px; /* ancho de cada tarjeta */
+    text-align: center; /* centrar contenido */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-page .project-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.profile-page .project-image {
+    width: 100%;
+    height: auto;
+    max-height: 180px; /* limitar altura */
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.profile-page .project-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: auto;
+}
+
+.profile-page .project-buttons .btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    color: black;
+}
+
+.profile-page .btn-preview {
+    background: linear-gradient(135deg, #b7a7ff, #baa7ff);
+    box-shadow: 0 4px 15px rgba(205, 167, 255, 0.4);
+}
+.profile-page .btn-preview:hover {
+    box-shadow: 0 6px 20px rgba(205, 167, 255, 0.6);
+}
+
+.profile-page .btn-edit {
+    background: linear-gradient(135deg, #FFAAA7, #FF9593);
+    box-shadow: 0 4px 15px rgba(255, 170, 167, 0.4);
+}
+.profile-page .btn-edit:hover {
+    box-shadow: 0 6px 20px rgba(255, 170, 167, 0.6);
 }
 
 .profile-page .user-projects h2 {
-    font-size: 1.5rem;
+    text-align: center;
     color: var(--texto-oscuro);
     margin-bottom: 15px;
-    text-align: start;
+    font-family: 'Fjalla One', sans-serif;
 }
 
 .profile-page .user-projects a.btn.btn-primary {
+    display: block;              /* 🔑 clave */
+    width: fit-content;          /* para que no ocupe todo el ancho */
+    margin: 0 auto 15px auto;    /* centrado horizontal */
+    
     text-decoration: none;
-    color: white;
-    background: linear-gradient(135deg, #7B68EE, #6A5ADB);
+    color: #333;
+    background-color: #E8E8E8;
     padding: 10px 16px;
     border-radius: 8px;
-    display: inline-block;
-    margin-bottom: 15px;
     transition: all 0.3s;
+    text-align: center;
     font-weight: 600;
-    box-shadow: 0 4px 15px rgba(123, 104, 238, 0.4);
 }
-
 .profile-page .user-projects a.btn.btn-primary:hover {
-    background: linear-gradient(135deg, #6A5ADB, #5A4AC8);
-    box-shadow: 0 6px 20px rgba(123, 104, 238, 0.6);
-    transform: translateY(-2px);
+    background: linear-gradient(135deg, #b7a7ff, #baa7ff);
+    color: #FFF;
+    box-shadow: 0 4px 15px rgba(205, 167, 255, 0.6);
 }
 
-.profile-page .user-projects .project {
-    margin-bottom: 25px;
-    text-align: start;
-}
 
-.profile-page .user-projects .project-title-link {
-    font-size: 1.2rem;
-    color: var(--texto-oscuro);
-    text-decoration: none;
-    margin-bottom: 10px;
-    display: inline-block;
-    font-weight: 400;
-    transition: all 0.3s ease;
-}
-
-.profile-page .user-projects .project-title-link:hover {
-    color: #7B68EE;
-    text-decoration: underline;
-    transition: color 0.3s ease;
-}
-
-.profile-page .user-projects .project-preview {
-    width: 250px;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-}
-
-.profile-page .user-projects .project-preview:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-}
 
 
 /* -------- NAV -------- */
