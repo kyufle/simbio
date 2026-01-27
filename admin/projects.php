@@ -176,7 +176,7 @@ if (!isAdminLoggedIn()) {
             <a href="settings.php" class="nav-link">Configuració</a>
         </div>
         <div class="header-right">
-            <a href="../logout.php" class="btn-logout">Tancar sessió</a>
+            <a href="logout.php" class="btn-logout">Tancar sessió</a>
         </div>
     </header>
 <main>
