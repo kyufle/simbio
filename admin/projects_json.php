@@ -1,6 +1,7 @@
 <?php
 require_once  __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/bd_profile.php';
+require_once __DIR__ . '/../includes/bd.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -9,8 +10,6 @@ if (!isLogged()) {
     echo json_encode([]);
     exit;
 }
-
-$email = $_SESSION['user']['email'];
 
 $stmt = $conn->prepare("
     SELECT 
