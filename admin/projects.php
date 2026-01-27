@@ -176,7 +176,8 @@ function toggleVideo(videoId, imgId, videoSrc) {
         img.style.display = 'block';
     } else {
         // Mostrar video y ocultar imagen
-        if(video.querySelector('src').src !== videoSrc){
+        const sourceElement = video.querySelector('source');
+        if(!sourceElement || sourceElement.src !== videoSrc){
             video.innerHTML = `<source src="${videoSrc}" type="video/mp4">`;
             video.load();
         }
