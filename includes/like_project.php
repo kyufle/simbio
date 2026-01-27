@@ -1,10 +1,12 @@
 <?php
 require_once 'auth.php';
 require_once 'db.php';
+require_once 'logger.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
 if(!isLogged()){
+    log_warning("Acceso denegado a like_project.php: no autenticado");
     http_response_code(401);
     echo json_encode(['success'=>false,'error'=>'No autenticado']);
     exit;
@@ -52,6 +54,7 @@ try {
     ]);
 
 } catch(PDOException $e){
+    log_error("Error al registrar like para proyecto {$projectId} por usuario {$currentUserId}: " . $e->getMessage());
     http_response_code(500);
     echo json_encode(['success'=>false,'error'=>$e->getMessage()]);
 }

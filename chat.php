@@ -1,9 +1,11 @@
 <?php
 require_once 'includes/auth.php';
 require_once 'includes/db.php';
+require_once 'includes/logger.php';
 
 // Verificar que el usuario está logueado
 if (!isLogged()) {
+    log_warning("Acceso no autenticado a chat.php");
     header('Location: login.php');
     exit;
 }
@@ -13,6 +15,7 @@ $otherUserId = isset($_GET['user_id']) ? (int)$_GET['user_id'] : null;
 
 // Validar que se proporcione un ID de usuario válido
 if (!$otherUserId || $otherUserId === $currentUserId) {
+    log_warning("ID de usuario inválido o igual al usuario actual en chat.php: user_id=$otherUserId");
     header('Location: discover.php');
     exit;
 }

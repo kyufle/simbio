@@ -1,7 +1,7 @@
 <?php
-require_once '/../includes/db.php';
-require_once '/../includes/logger.php';
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/logger.php';
 
-logout();
-header('Location: index.php');
-exit;
+logoutAdmin();
+header('Location: login.php', true, 302);
+exit();

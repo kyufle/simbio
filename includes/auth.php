@@ -127,7 +127,8 @@ function logoutAdmin()
         log_info("Admin desconectado: " . $_SESSION['admin_user']['email']);
     }
     session_unset();
-    session_destroy();}
+    session_destroy();
+}
 
 function logout()
 {

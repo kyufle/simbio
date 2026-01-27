@@ -6,25 +6,31 @@ require_once __DIR__ . '/../includes/auth.php';
 
 // Comprobar que el admin está logueado
 if (!isAdminLoggedIn()) {
+    log_warning("Acceso denegado a admin/login.php - Usuario no autenticado");
     header('Location: login.php');
     exit;
 }
-
+log_info("Administrador accedió a admin/index.php - Admin Email: " . $_SESSION['admin_user']['email']);
 ?>
 <!DOCTYPE html>
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
     <title>Panell d'Administrador</title>
-    <link rel="stylesheet" href="styles.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="../styles.css?v=<?php echo time(); ?>">
 </head>
-<body>
+<body class="login-page-admin">
     <main>
-        <h1>Hola, <?= htmlspecialchars($_SESSION['admin_user']['name']) ?>, estàs en admin/index.php</h1>
-        <!-- Aquí iría tu panel de admin -->
+        <h1>Hola, <?= htmlspecialchars($_SESSION['admin_user']['name']) ?>!</h1>
+        <p style="text-align:center; color:#394867; margin-bottom:2rem;">Benvingut al panell d'administració</p>
+        
         <nav>
-            <ul>
-                <li><a href="login.php">Tancar sessió</a></li>
+            <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:1rem;">
+                <li><a href="users.php" class="button-link">Gestió d'usuaris</a></li>
+                <li><a href="menus.php" class="button-link">Gestió de menús</a></li>
+                <li><a href="projects.php" class="button-link">Gestió de projectes</a></li>
+                <li><a href="settings.php" class="button-link">Configuració</a></li>
+                <li><a href="login.php" class="button-link">Tancar sessió</a></li>
             </ul>
         </nav>
     </main>

@@ -15,6 +15,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Verificar que el usuario está logueado
 if (!isLogged()) {
+    log_error("Intento de acceso no autenticado a api_chat.php");
     http_response_code(401);
     echo json_encode(['success' => false, 'error' => 'No autenticado']);
     exit;
@@ -35,6 +36,7 @@ try {
         $toUserId = (int)($data['to_user_id'] ?? 0);
 
         if (empty($text) || $toUserId <= 0) {
+            log_error("Datos inválidos al enviar mensaje: to_user_id=$toUserId, text_length=" . strlen($text));
             http_response_code(400);
             echo json_encode(['success' => false, 'error' => 'Datos inválidos']);
             exit;
@@ -61,6 +63,7 @@ try {
                 'user_from_id' => $currentUserId
             ]);
         } else {
+            log_error("Error al guardar el mensaje en la base de datos");
             http_response_code(500);
             echo json_encode(['success' => false, 'error' => 'Error al guardar el mensaje']);
         }
@@ -73,6 +76,7 @@ try {
         $lastMessageId = (int)($_GET['last_message_id'] ?? 0);
 
         if ($otherUserId <= 0) {
+            log_error("user_id inválido al obtener mensajes: user_id=$otherUserId");
             http_response_code(400);
             echo json_encode(['success' => false, 'error' => 'user_id inválido']);
             exit;
@@ -131,6 +135,7 @@ try {
     // ACCIÓN INVÁLIDA
     // ==========================
     } else {
+        log_error("Acción inválida en api_chat.php: action=$action");
         http_response_code(400);
         echo json_encode(['success' => false, 'error' => 'Acción no válida']);
     }
