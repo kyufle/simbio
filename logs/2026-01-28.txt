@@ -1,0 +1,12 @@
+[2026-01-28 00:00:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
+[2026-01-28 00:00:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":7,"errors":0}
+[2026-01-28 00:10:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
+[2026-01-28 00:10:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":7,"errors":0}
+[2026-01-28 00:20:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
+[2026-01-28 00:20:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":7,"errors":0}
+[2026-01-28 00:30:02] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
+[2026-01-28 00:30:02] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":7,"errors":0}
+[2026-01-28 00:40:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
+[2026-01-28 00:40:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":7,"errors":0}
+[2026-01-28 00:50:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
+[2026-01-28 00:50:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":7,"errors":0}
