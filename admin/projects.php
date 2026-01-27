@@ -24,15 +24,22 @@ if (!isAdminLoggedIn()) {
         }
 
         header {
-            background-color: #394867;
-            padding: 1rem 2rem;
-            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #A3D2CA, #B5EAEA);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            border-radius: 0 0 12px 12px;
+            margin-bottom: 20px;
         }
         header nav a {
-            color: #FFFFFF;
-            margin-right: 1.5rem;
             text-decoration: none;
             font-weight: 600;
+            background-color: #E8E8E8;
+            padding: 6px 12px;
+            border-radius: 5px;
+            transition: all 0.2s ease;
         }
         header nav a:hover {
             text-decoration: underline;
