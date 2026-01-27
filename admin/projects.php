@@ -125,7 +125,7 @@ if (!isAdminLoggedIn()) {
 <script>
 async function loadProjects() {
     try {
-        const res = await fetch('/admin/projects_json.php'); // Endpoint que devuelve JSON de proyectos
+        const res = await fetch('projects_json.php'); // Endpoint que devuelve JSON de proyectos
         const projects = await res.json();
         const container = document.getElementById('user-projects');
         container.innerHTML = '';
