@@ -82,16 +82,20 @@ try {
             SELECT message_id, text, sent_at, user_from_id, user_to_id
             FROM message
             WHERE (
-                (user_from_id = :user1 AND user_to_id = :user2)
+                (user_from_id = :from1 AND user_to_id = :to1)
                 OR
-                (user_from_id = :user2 AND user_to_id = :user1)
+                (user_from_id = :from2 AND user_to_id = :to2)
             )
         ";
 
+
         $params = [
-            ':user1' => $currentUserId,
-            ':user2' => $otherUserId
+            ':from1' => $currentUserId,
+            ':to1'   => $otherUserId,
+            ':from2' => $otherUserId,
+            ':to2'   => $currentUserId
         ];
+
 
         if ($lastMessageId > 0) {
             $query .= " AND message_id > :last_id";
