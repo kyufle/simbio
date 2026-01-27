@@ -33,24 +33,24 @@ foreach ($users as $user) {
             $stmtMsgs = $conn->prepare("SELECT text FROM message WHERE user_from_id = ? AND user_to_id = ? AND sent_at BETWEEN ? AND ?");
             $stmtMsgs->execute([$userId, $chatUser['user_id'], $start, $end]);
             $msgs = $stmtMsgs->fetchAll(PDO::FETCH_COLUMN);
-            $chatSection .= "<b>Hoy has hablado con: " . htmlspecialchars($chatUser['name']) . "</b><br>";
+            $chatSection .= "<b>Avui has parlat amb: " . htmlspecialchars($chatUser['name']) . "</b><br>";
             foreach ($msgs as $msg) {
                 $chatSection .= "- " . htmlspecialchars($msg) . "<br>";
             }
         }
     } else {
-        $chatSection = "Hoy no has tenido conversaciones.";
+        $chatSection = "Avui no has tingut converses.";
     }
 
     // --- Matches section ---
     if (count($matches) > 0) {
-        $matchSection = "<b>Matches de hoy:</b><br>" . implode('<br>', array_map('htmlspecialchars', $matches));
+        $matchSection = "<b>Matches d'avui:</b><br>" . implode('<br>', array_map('htmlspecialchars', $matches));
     } else {
-        $matchSection = "Hoy no has habido matches.";
+        $matchSection = "Avui no has tingut cap match.";
     }
 
     // --- Email body ---
-    $body = "<h2>Resumen diario de interacciones</h2><br>" . $matchSection . "<br><br>" . $chatSection;
+    $body = "<h2>Resum diari d'interaccions</h2><br>" . $matchSection . "<br><br>" . $chatSection;
 
     // Enviar email
     enviarCorreoDigest($email, $name, $body);

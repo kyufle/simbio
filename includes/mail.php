@@ -115,7 +115,7 @@ function enviarCorreoDigest($email, $nombre, $body) {
 	<h3 style=\"color: #A3D2CA; text-align:center; font-weight:600; margin-bottom: 24px;\">Resum diari d'interaccions</h3>
 	" . $body . "
 	<hr style=\"margin: 32px 0; border: none; border-top: 1px solid #E8E8E8;\">
-	<p style=\"font-size: 13px; color: #aaa;\">Aquest és el teu resum diari automàtic de Simbio.</p>
+	<p style=\"font-size: 13px; color: #aaa;\">Aquest és el teu resum diari automàtic de Simbio. No responguis a aquest correu. Si tens dubtes, contacta amb el suport de Simbio.</p>
 	</div></body></html>";
 
 	$mail = new PHPMailer(true);
@@ -133,7 +133,7 @@ function enviarCorreoDigest($email, $nombre, $body) {
 		$mail->isHTML(true);
 		$mail->Subject = $asunto;
 		$mail->Body    = $mensaje;
-		$mail->AltBody = 'Hola ' . $nombre . ", este es tu resumen diario de Simbio.";
+		$mail->AltBody = 'Hola ' . $nombre . ", aquest és el teu resum diari automàtic de Simbio.";
 
 		$mail->SMTPDebug = 0;
 		$mail->send();
