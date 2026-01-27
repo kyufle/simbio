@@ -26,7 +26,7 @@ if (!isAdminLoggedIn()) {
             <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:1rem;">
                 <li><a href="users.php" class="button-link">Gestió d'usuaris</a></li>
                 <li><a href="menus.php" class="button-link">Gestió de menús</a></li>
-                <li><a href="projectes_admin.php" class="button-link">Gestió de projectes</a></li>
+                <li><a href="projects.php" class="button-link">Gestió de projectes</a></li>
                 <li><a href="settings.php" class="button-link">Configuració</a></li>
                 <li><a href="login.php" class="button-link">Tancar sessió</a></li>
             </ul>
