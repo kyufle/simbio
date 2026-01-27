@@ -143,16 +143,19 @@ async function loadProjects() {
 
             card.innerHTML = `
                 <div class="project-title">${project.title}</div>
-                <img src="${project.image}" class="project-image" onclick="toggleVideo('video${project.id}')">
-                ${project.video ? `<video id="video${project.id}" controls><source src="${project.video}" type="video/mp4"></video>` : ''}
+                <div class="media-wrapper" style="position:relative; width:100%; height:auto;">
+                    <img src="${project.image}" class="project-image" id="img${project.id}" style="display:block; width:100%; height:auto; cursor:pointer;">
+                    ${project.video ? `<video id="video${project.id}" controls style="display:none; width:100%; height:auto;"></video>` : ''}
+                </div>
                 <div class="project-buttons">
                     ${project.deleted
                         ? `<a href="#" class="btn btn-restore">Recuperar</a>`
                         : `<a href="#" class="btn btn-delete" onclick="return confirm('Segur que vols eliminar aquest projecte?')">Eliminar</a>`
                     }
-                    ${project.video ? `<a href="javascript:void(0)" class="btn btn-preview" onclick="toggleVideo('video${project.id}')">Preview</a>` : ''}
+                    ${project.video ? `<a href="javascript:void(0)" class="btn btn-preview" onclick="toggleVideo('video${project.id}', 'img${project.id}', '${project.video}')">Preview</a>` : ''}
                 </div>
             `;
+
 
             container.appendChild(card);
         });
@@ -162,13 +165,22 @@ async function loadProjects() {
         document.getElementById('user-projects').innerHTML = '<p style="text-align:center; color:#FF3B3B;">Error cargando proyectos.</p>';
     }
 }
+function toggleVideo(videoId, imgId, videoSrc) {
+    const video = document.getElementById(videoId);
+    const img = document.getElementById(imgId);
 
-function toggleVideo(id){
-    const video = document.getElementById(id);
-    if(video.style.display === 'block'){
+    if (video.style.display === 'block') {
+        // Ocultar video y mostrar imagen
         video.pause();
         video.style.display = 'none';
+        img.style.display = 'block';
     } else {
+        // Mostrar video y ocultar imagen
+        if(video.querySelector('source').src !== videoSrc){
+            video.innerHTML = `<source src="${videoSrc}" type="video/mp4">`;
+            video.load();
+        }
+        img.style.display = 'none';
         video.style.display = 'block';
         video.play();
     }
