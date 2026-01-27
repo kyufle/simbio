@@ -1,3 +1,24 @@
+    // Añadir columnas login_code y login_code_expires a user
+    try {
+        $pdo->exec("ALTER TABLE user ADD COLUMN login_code VARCHAR(6) DEFAULT NULL;");
+        echo "Columna login_code añadida a user.\n";
+    } catch (PDOException $e) {
+        if (strpos($e->getMessage(), 'Duplicate column name') !== false) {
+            echo "La columna login_code ya existe en user.\n";
+        } else {
+            echo "Error al añadir login_code a user: " . $e->getMessage() . "\n";
+        }
+    }
+    try {
+        $pdo->exec("ALTER TABLE user ADD COLUMN login_code_expires DATETIME DEFAULT NULL;");
+        echo "Columna login_code_expires añadida a user.\n";
+    } catch (PDOException $e) {
+        if (strpos($e->getMessage(), 'Duplicate column name') !== false) {
+            echo "La columna login_code_expires ya existe en user.\n";
+        } else {
+            echo "Error al añadir login_code_expires a user: " . $e->getMessage() . "\n";
+        }
+    }
 <?php
 // Seeder para actualizar la base de datos con los cambios recientes
 // Añade la columna created_at a project_like y crea la tabla user_tags si no existe
