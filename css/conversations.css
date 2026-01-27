@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Conversations Container */
 .conversations-container {
     max-width: 600px;
@@ -45,12 +46,131 @@
     flex: 1;
     overflow-y: auto;
     padding: 0;
+=======
+
+/* CONVERSATIONS */
+body.conversations-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--verde-menta), var(--azul-cielo));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px
+}
+
+/* SIDEBAR */
+body.conversations-page .sidebar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 18px 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: linear-gradient(180deg, rgba(163, 210, 202, 0.98), rgba(163, 210, 202, 0.85));
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 15px rgba(163, 210, 202, 0.3);
+    z-index: 1000;
+}
+
+body.conversations-page .sidebar .conversation-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+body.conversations-page .sidebar .conversation-info a {
+    color: var(--texto-oscuro);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.4);
+    transition: 0.3s;
+}
+
+body.conversations-page .sidebar .conversation-info a:hover {
+    color: white;
+    background: linear-gradient(135deg, var(--azul-lila), var(--azul-lila-hover));
+    box-shadow: 0 4px 12px rgba(123, 104, 238, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   Conversations Container
+   ======================================== */
+
+.conversations-container {
+    background: var(--fondo-blanco);
+    padding: 50px 32px;
+    width: 100%;
+    max-width: 680px;
+    border-radius: 24px;
+    border: 2px solid var(--azul-cielo);
+    box-shadow: 0 12px 40px rgba(123, 104, 238, 0.10), 0 2px 8px rgba(179, 234, 234, 0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+    max-height: 80vh;
+    overflow: hidden;
+}
+
+/* ========================================
+   Conversations Header
+   ======================================== */
+
+.conversations-header {
+    background: linear-gradient(135deg, var(--azul-lila), var(--azul-cielo));
+    color: white;
+    padding: 32px 29px 19px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid var(--azul-cielo);
+    border-radius: 18px 18px 0 0;
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    box-shadow: 0 1px 14px rgba(123, 104, 238, 0.10);
+}
+
+.conversations-header h1 {
+    font-size: 34px;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(123, 104, 238, 0.08);
+}
+
+.conversations-header .btn-back {
+    background: var(--amarillo-palido);
+    color: var(--azul-lila);
+    border: 2px solid var(--verde-menta);
+    padding: 14px 34px;
+    border-radius: 24px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.conversations-header .btn-back:hover {
+    filter: brightness(1.06);
+    color: var(--texto-oscuro);
+}
+
+
+/* ========================================
+   Conversations List
+   ======================================== */
+
+.conversations-list {
+    flex: 1;
+    overflow-y: auto;
+>>>>>>> dbe92734b786746b02f83de0ca3e55ba0d9a593f
     display: flex;
     flex-direction: column;
 }
 
 .conversations-list::-webkit-scrollbar {
     width: 8px;
+<<<<<<< HEAD
 }
 
 .conversations-list::-webkit-scrollbar-track {
@@ -98,6 +218,64 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+=======
+    background: var(--azul-cielo);
+}
+
+.conversations-list::-webkit-scrollbar-thumb {
+    background: var(--verde-menta);
+    border-radius: 7px;
+}
+
+.conversations-list::-webkit-scrollbar-thumb:hover {
+    background: var(--azul-lila);
+}
+
+
+/* ========================================
+   Conversation Item
+   ======================================== */
+
+.conversation-item {
+    display: flex;
+    align-items: center;
+    gap: 21px;
+    padding: 19px;
+    border-bottom: 1.4px solid var(--azul-cielo);
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.conversation-item:hover {
+    background: linear-gradient(90deg, var(--fondo-claro) 77%, var(--amarillo-palido) 100%);
+}
+
+.conversation-item.unread {
+    background: linear-gradient(90deg, var(--verde-menta) 65%, var(--azul-cielo) 100%);
+    font-weight: 700;
+}
+
+.conversation-item.selected {
+    background: var(--azul-cielo);
+    box-shadow: 0 2px 12px rgba(179, 234, 234, 0.15);
+}
+
+
+/* ========================================
+   Avatar
+   ======================================== */
+
+.conversation-avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2.5px solid var(--azul-cielo);
+    background: var(--fondo-claro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+>>>>>>> dbe92734b786746b02f83de0ca3e55ba0d9a593f
 }
 
 .conversation-avatar img {
@@ -107,6 +285,7 @@
 }
 
 .avatar-placeholder {
+<<<<<<< HEAD
     width: 100%;
     height: 100%;
     display: flex;
@@ -122,12 +301,31 @@
 .conversation-info {
     flex: 1;
     min-width: 0;
+=======
+    background: linear-gradient(135deg, var(--azul-lila), var(--azul-cielo));
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+/* ========================================
+   Conversation Text
+   ======================================== */
+
+.conversation-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+>>>>>>> dbe92734b786746b02f83de0ca3e55ba0d9a593f
 }
 
 .conversation-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+<<<<<<< HEAD
     margin-bottom: 0.25rem;
 }
 
@@ -155,11 +353,20 @@
     margin: 0;
     font-size: 0.85rem;
     color: #999;
+=======
+}
+
+.conversation-header h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--azul-lila);
+>>>>>>> dbe92734b786746b02f83de0ca3e55ba0d9a593f
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
+<<<<<<< HEAD
 /* Arrow */
 .conversation-arrow {
     font-size: 1.25rem;
@@ -174,10 +381,33 @@
 }
 
 /* Empty State */
+=======
+.conversation-time {
+    font-size: 15px;
+    color: var(--texto-claro);
+    opacity: 0.75;
+}
+
+.conversation-preview {
+    font-size: 16px;
+    color: var(--texto-claro);
+    opacity: 0.92;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* ========================================
+   Empty State
+   ======================================== */
+
+>>>>>>> dbe92734b786746b02f83de0ca3e55ba0d9a593f
 .empty-state {
     display: flex;
     flex-direction: column;
     align-items: center;
+<<<<<<< HEAD
     justify-content: center;
     height: 100%;
     color: #999;
@@ -234,3 +464,34 @@
         font-size: 0.8rem;
     }
 }
+=======
+    padding: 40px 20px;
+    background: linear-gradient(135deg, var(--fondo-blanco), var(--azul-cielo));
+    border-radius: 14px;
+    box-shadow: 0 2px 14px rgba(181, 234, 234, 0.12);
+}
+
+.empty-icon {
+    font-size: 35px;
+    margin-bottom: 18px;
+}
+
+.empty-state p {
+    font-size: 17px;
+    color: var(--texto-claro);
+    opacity: 0.8;
+}
+
+.empty-state .btn-primary {
+    background: var(--toast-info);
+    color: white;
+    padding: 12px 37px;
+    border-radius: 23px;
+    font-weight: 700;
+    transition: 0.15s;
+}
+
+.empty-state .btn-primary:hover {
+    filter: brightness(1.1);
+}
+>>>>>>> dbe92734b786746b02f83de0ca3e55ba0d9a593f

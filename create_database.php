@@ -32,6 +32,9 @@ try {
         entity VARCHAR(255) NOT NULL,
         type ENUM('Empresa', 'Centre') NOT NULL,
         image_path VARCHAR(255),
+        is_active TINYINT(1) DEFAULT 0,
+        validation_token VARCHAR(255) NULL,
+        validation_expires DATETIME NULL,
         PRIMARY KEY (user_id)
     );
 

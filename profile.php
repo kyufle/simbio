@@ -5,7 +5,7 @@ require_once 'includes/logger.php';
 
 // Si no està connectat, redirigeix a login.php
 if (!isLogged()) {
-    log_warning("Acceso denegado a discover.php - Usuario no autenticado");
+    log_warning("Acceso denegado a profile.php - Usuario no autenticado");
     header('Location: login.php');
     exit;
 }
@@ -28,6 +28,7 @@ $tags = getUserTagsByEmail($email);
 
 // Manejar el guardado del formulario
 // Manejar el guardado del formulario
+
 $save_message = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

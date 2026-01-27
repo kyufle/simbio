@@ -1,11 +1,13 @@
 <?php
-$env = parse_ini_file('../.env');
+require_once __DIR__ . '/../includes/logger.php';
+$env = parse_ini_file(__DIR__ . '/../.env');
 $host     = 'localhost';
 $db       = 'simbio';
 $user     = $env['db_user'];
 $password = $env['db_password'];
 $charset  = 'utf8mb4';
 
+// DSN para la conexión
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 
 try {
@@ -16,6 +18,61 @@ try {
     ]);
 
     echo "Conectado a la base de datos...\n";
+
+    // Crear/alterar estructura necesaria para funcionalidades nuevas
+    // Añadir columnas login_code y login_code_expires a user
+    try {
+        $pdo->exec("ALTER TABLE user ADD COLUMN login_code VARCHAR(6) DEFAULT NULL;");
+        echo "Columna login_code añadida a user.\n";
+    } catch (PDOException $e) {
+        if (strpos($e->getMessage(), 'Duplicate column name') !== false) {
+            echo "La columna login_code ya existe en user.\n";
+        } else {
+            echo "Error al añadir login_code a user: " . $e->getMessage() . "\n";
+        }
+    }
+    try {
+        $pdo->exec("ALTER TABLE user ADD COLUMN login_code_expires DATETIME DEFAULT NULL;");
+        echo "Columna login_code_expires añadida a user.\n";
+    } catch (PDOException $e) {
+        if (strpos($e->getMessage(), 'Duplicate column name') !== false) {
+            echo "La columna login_code_expires ya existe en user.\n";
+        } else {
+            echo "Error al añadir login_code_expires a user: " . $e->getMessage() . "\n";
+        }
+    }
+    // Añadir columna created_at a project_like
+    try {
+        $pdo->exec("ALTER TABLE project_like ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;");
+        echo "Columna created_at añadida a project_like.\n";
+    } catch (PDOException $e) {
+        if (strpos($e->getMessage(), 'Duplicate column name') !== false) {
+            echo "La columna created_at ya existe en project_like.\n";
+        } else {
+            echo "Error al añadir created_at a project_like: " . $e->getMessage() . "\n";
+        }
+    }
+    // Crear tabla user_tags si no existe
+    $sqlUserTags = "CREATE TABLE IF NOT EXISTS user_tags (
+        user_id INT NOT NULL,
+        tag_id INT NOT NULL,
+        PRIMARY KEY (user_id, tag_id),
+        FOREIGN KEY (user_id) REFERENCES user(user_id),
+        FOREIGN KEY (tag_id) REFERENCES tag(tag_id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+    $pdo->exec($sqlUserTags);
+    echo "Tabla user_tags creada o ya existente.\n";
+    // Añadir columna sent_at a message
+    try {
+        $pdo->exec("ALTER TABLE message ADD COLUMN sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;");
+        echo "Columna sent_at añadida a message.\n";
+    } catch (PDOException $e) {
+        if (strpos($e->getMessage(), 'Duplicate column name') !== false) {
+            echo "La columna sent_at ya existe en message.\n";
+        } else {
+            echo "Error al añadir sent_at a message: " . $e->getMessage() . "\n";
+        }
+    }
 
     $sql = <<<SQL
     SET FOREIGN_KEY_CHECKS=0;
@@ -85,27 +142,9 @@ try {
     (5, 81),
     (6, 67);
 
-
-    -- NUEVOS TAGS PARA MATCHES REALES
-    -- Proyecto 1 (Alejandro) hace match con Proyecto 6 (Rehabilitación) por tag 92
-    INSERT INTO project_tags (project_id, tag_id) VALUES (6, 92);
-
-    -- Proyecto 2 (Inditex) hace match con Proyecto 5 (Menú Gastronómico) por tag 126
-    INSERT INTO project_tags (project_id, tag_id) VALUES (5, 126);
-
-    -- Proyecto 3 (Seat 600) hace match con Proyecto 2 (Eco-Packaging) por tag 155
-    INSERT INTO project_tags (project_id, tag_id) VALUES (2, 155);
-
-    -- Proyecto 4 (Fleca Saludable) hace match con Proyecto 1 (Residus) por tag 91
-    INSERT INTO project_tags (project_id, tag_id) VALUES (4, 91);
-
-    -- Proyecto 5 (Menú Gastronómico) también hace match con Proyecto 1 (Residus) por tag 81
-    INSERT INTO project_tags (project_id, tag_id) VALUES (1, 81);
-
-    -- Proyecto 6 (Rehabilitación) hace match con Proyecto 3 (Seat 600) por tag 67
-    INSERT INTO project_tags (project_id, tag_id) VALUES (3, 67);
-
-
+    /*insertar admin*/
+    INSERT INTO admin_user (email, password_hash, name, surnames, city, phone_number, entity, image_path)
+    VALUES ('admin@simbio.cat', '{$env['seeder_password']}', 'Administrador', 'Principal', 'Barcelona', '+34 600 000 000', 'SIMBIO', NULL);
 SQL;
 
         // Ejecutamos el SQL
