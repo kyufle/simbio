@@ -18,9 +18,58 @@ if (!isAdminLoggedIn()) {
     <link rel="stylesheet" href="../styles.css?v=<?= time() ?>">
     <style>
         /* -------- DASHBOARD ADMIN PROJECTS -------- */
+        header {
+            position: fixed; /* fijo arriba */
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #212A3E 0%, #394867 100%);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+        }
+
+        header .header-left,
+        header .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        header .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: #FFD966;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        header .nav-link:hover {
+            background-color: rgba(255, 217, 102, 0.2);
+            text-decoration: none;
+        }
+
+        header .btn-logout {
+            text-decoration: none;
+            font-weight: 600;
+            background-color: #FF6B6B;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        header .btn-logout:hover {
+            background-color: #FF3B3B;
+        }
         body.login-page-admin main {
             max-width: 1000px;
             padding: 2rem;
+            margin-top: 80px;
         }
 
         header {
@@ -28,7 +77,7 @@ if (!isAdminLoggedIn()) {
             align-items: center;
             justify-content: space-between;
             padding: 10px 20px;
-            background: linear-gradient(135deg, #212A3E 0%, #394867 70%, #FFD966 100%);
+            background: linear-gradient(135deg, #212A3E 0%, #394867 100%);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             border-radius: 0 0 12px 12px;
             margin-bottom: 20px;
@@ -142,13 +191,15 @@ if (!isAdminLoggedIn()) {
 </head>
 <body class="login-page-admin">
     <header>
-        <nav>
+        <div class="header-left">
             <a href="index.php" class="nav-link">Inici</a>
             <a href="users.php" class="nav-link">Usuaris</a>
             <a href="projects.php" class="nav-link">Projectes</a>
             <a href="settings.php" class="nav-link">Configuració</a>
-            <a href="login.php" class="nav-link">Tancar sessió</a>
-        </nav>
+        </div>
+        <div class="header-right">
+            <a href="login.php" class="btn-logout">Tancar sessió</a>
+        </div>
     </header>
 <main>
     <h1>Gestió de Projectes</h1>
