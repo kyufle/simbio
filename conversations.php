@@ -1,9 +1,11 @@
 <?php
 require_once 'includes/auth.php';
 require_once 'includes/chat_service.php';
+require_once 'includes/logger.php';
 
 // Verificar que el usuario está logueado
 if (!isLogged()) {
+    log_warning("Acceso no autenticado a conversations.php");
     header('Location: login.php');
     exit;
 }
