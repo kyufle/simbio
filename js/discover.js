@@ -143,26 +143,6 @@ function handleLikeAction(card) {
     // Guardar en sesión
     userLikedSession.add(parseInt(projectId));
 
-    // Llamada AJAX para registrar el like y gestionar el match/email
-    fetch('includes/like_project.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'project_id=' + encodeURIComponent(projectId)
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success && data.match) {
-            if (typeof window.mostrarExito === 'function') {
-                window.mostrarExito('💖 Match!', 'Heu fet match amb aquest projecte!');
-            }
-        }
-    })
-    .catch(err => {
-        console.error('Error al registrar like/match:', err);
-    });
-
     // Feedback visual inmediato (Transformar botones)
     const buttonsContainer = card.querySelector('.buttons');
     const actionsContainer = card.querySelector('.actions');

@@ -33,10 +33,22 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Missatges - Simbio</title>
-    <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="css/conversations.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="styles-copia.css?v=<?php echo time(); ?>">
+    <!-- <link rel="stylesheet" href="css/conversations.css?v="> -->
 </head>
-<body>
+<body class="conversations-page">
+
+    <nav class="sidebar">
+        <div class="conversation-info">
+            <?php if (isLogged()): ?>
+                <span><?= htmlspecialchars($_SESSION['user']['name']) ?></span>
+                <a href="logout.php">Tancar sessió</a>
+            <?php else: ?>
+                <a href="login.php">Iniciar sessió</a>
+            <?php endif; ?>
+        </div>
+    </nav>
+
     <div class="conversations-container">
         <!-- Header -->
         <div class="conversations-header">

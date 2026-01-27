@@ -59,7 +59,7 @@ try {
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="css/chat.css?v=<?php echo time(); ?>">
 </head>
-<body>
+<body class="page-chat">
     <div class="chat-container">
         <!-- Header del chat -->
         <div class="chat-header">
