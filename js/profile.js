@@ -22,33 +22,51 @@ async function fetchUserProjects(userEmail) {
 async function displayUserProjects(userEmail) {
     const projectsContainer = document.getElementById('user-projects');
     projectsContainer.innerHTML = '';
-
+    
     const projects = await fetchUserProjects(userEmail);
 
     projects.forEach(project => {
-        const projectElement = document.createElement('div');
-        projectElement.classList.add('project');
+        const card = document.createElement('div');
+        card.classList.add('project-card');
 
-        // Enlace que contiene el título
-        const projectLink = document.createElement('a');
-        projectLink.href = `preview_video.php?video=${encodeURIComponent(project.video)}`;
-        projectLink.textContent = project.title; // ✅ solo aquí va el título
-        projectLink.classList.add('project-title-link');
+        // Título del proyecto
+        const title = document.createElement('h3');
+        title.textContent = project.title;
+        title.classList.add('project-title');
+        card.appendChild(title);
 
-        // Imagen de preview
-        const projectImage = document.createElement('img');
-        const enlaceEdit = document.createElement('a');
-        enlaceEdit.href = `edit_project.php?id=${encodeURIComponent(project.id)}`;
-        projectImage.src = project.image;
-        projectImage.alt = project.title;
-        enlaceEdit.appendChild(projectImage);
-        projectImage.classList.add('project-preview');
+        // Imagen centrada
+        const image = document.createElement('img');
+        image.src = project.image;
+        image.alt = project.title;
+        image.classList.add('project-image');
+        card.appendChild(image);
 
-        // Agregar elementos al contenedor
-        projectElement.appendChild(projectLink);
-        projectElement.appendChild(document.createElement('br')); // Salto de línea entre título e imagen
-        projectElement.appendChild(enlaceEdit);
-        projectsContainer.appendChild(projectElement);
+        // Contenedor de botones
+        const buttonsContainer = document.createElement('div');
+        buttonsContainer.classList.add('project-buttons');
+
+        // Botón Preview
+        const previewBtn = document.createElement('a');
+        previewBtn.href = `preview_video.php?video=${encodeURIComponent(project.video)}`;
+        previewBtn.textContent = 'Preview';
+        previewBtn.classList.add('btn', 'btn-preview');
+
+        // Botón Edit
+        const editBtn = document.createElement('a');
+        editBtn.href = `edit_project.php?id=${encodeURIComponent(project.id)}`;
+        editBtn.textContent = 'Editar';
+        editBtn.classList.add('btn', 'btn-edit');
+
+        // Agregar botones al contenedor
+        buttonsContainer.appendChild(previewBtn);
+        buttonsContainer.appendChild(editBtn);
+
+        // Agregar botones a la tarjeta
+        card.appendChild(buttonsContainer);
+
+        // Agregar tarjeta al contenedor principal
+        projectsContainer.appendChild(card);
     });
 
     console.log(projects);
