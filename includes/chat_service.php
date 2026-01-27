@@ -10,51 +10,43 @@ function getUserConversations(int $userId, int $limit = 50): array {
     global $conn;
 
     try {
-        $stmt = $conn->prepare("
-            SELECT 
-                -- Identificar al otro usuario
-                CASE 
-                    WHEN m.user_from_id = :user_id THEN m.user_to_id
-                    ELSE m.user_from_id
-                END AS other_user_id,
+        $sql = "
+            SELECT
+                u.user_id AS other_user_id,
                 u.name,
                 u.surnames,
                 u.entity,
                 u.type,
                 u.image_path,
-                -- Último mensaje de la conversación
-                (SELECT text 
-                 FROM message 
-                 WHERE (user_from_id = :user_id AND user_to_id = CASE WHEN m.user_from_id = :user_id THEN m.user_to_id ELSE m.user_from_id END)
-                    OR (user_from_id = CASE WHEN m.user_from_id = :user_id THEN m.user_to_id ELSE m.user_from_id END AND user_to_id = :user_id)
-                 ORDER BY sent_at DESC
-                 LIMIT 1
-                ) AS last_message_text,
-                (SELECT sent_at 
-                 FROM message 
-                 WHERE (user_from_id = :user_id AND user_to_id = CASE WHEN m.user_from_id = :user_id THEN m.user_to_id ELSE m.user_from_id END)
-                    OR (user_from_id = CASE WHEN m.user_from_id = :user_id THEN m.user_to_id ELSE m.user_from_id END AND user_to_id = :user_id)
-                 ORDER BY sent_at DESC
-                 LIMIT 1
-                ) AS last_message_time
+                m.text AS last_message_text,
+                m.sent_at AS last_message_time
             FROM message m
-            JOIN user u ON u.user_id = CASE 
-                WHEN m.user_from_id = :user_id THEN m.user_to_id
-                ELSE m.user_from_id
-            END
-            WHERE m.user_from_id = :user_id OR m.user_to_id = :user_id
-            GROUP BY other_user_id
-            ORDER BY last_message_time DESC
-            LIMIT :limit
-        ");
+            JOIN user u ON u.user_id = 
+                CASE 
+                    WHEN m.user_from_id = :me THEN m.user_to_id
+                    ELSE m.user_from_id
+                END
+            WHERE m.message_id IN (
+                SELECT MAX(message_id)
+                FROM message
+                WHERE user_from_id = :me OR user_to_id = :me
+                GROUP BY 
+                    CASE 
+                        WHEN user_from_id = :me THEN user_to_id
+                        ELSE user_from_id
+                    END
+            )
+            ORDER BY m.sent_at DESC
+            LIMIT $limit
+        ";
 
-        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
-        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-        $stmt->execute();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([':me' => $userId]);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     } catch (PDOException $e) {
-        log_error("Error al obtener conversaciones del usuario {$userId}: " . $e->getMessage());
+        log_error("Error conversaciones usuario {$userId}: " . $e->getMessage());
         return [];
     }
 }
