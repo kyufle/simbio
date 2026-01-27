@@ -18,7 +18,7 @@ if (!isAdminLoggedIn()) {
     <link rel="stylesheet" href="../styles.css?v=<?= time() ?>">
     <style>
         /* -------- DASHBOARD ADMIN PROJECTS -------- */
-        header {
+        body.login-page-admin header {
             position: fixed; /* fijo arriba */
             top: 0;
             left: 0;
@@ -32,14 +32,14 @@ if (!isAdminLoggedIn()) {
             z-index: 1000;
         }
 
-        header .header-left,
-        header .header-right {
+        body.login-page-admin header .header-left,
+        body.login-page-admin header .header-right {
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        header .nav-link {
+        body.login-page-admin header .nav-link {
             text-decoration: none;
             font-weight: 600;
             color: #FFD966;
@@ -48,12 +48,12 @@ if (!isAdminLoggedIn()) {
             transition: all 0.2s ease;
         }
 
-        header .nav-link:hover {
+        body.login-page-admin header .nav-link:hover {
             background-color: rgba(255, 217, 102, 0.2);
             text-decoration: none;
         }
 
-        header .btn-logout {
+        body.login-page-admin header .btn-logout {
             text-decoration: none;
             font-weight: 600;
             background-color: #FF6B6B;
@@ -63,35 +63,13 @@ if (!isAdminLoggedIn()) {
             transition: all 0.2s ease;
         }
 
-        header .btn-logout:hover {
+        body.login-page-admin header .btn-logout:hover {
             background-color: #FF3B3B;
         }
         body.login-page-admin main {
             max-width: 1000px;
             padding: 2rem;
             margin-top: 80px;
-        }
-
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #212A3E 0%, #394867 100%);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-            border-radius: 0 0 12px 12px;
-            margin-bottom: 20px;
-        }
-        header nav a {
-            text-decoration: none;
-            font-weight: 600;
-            background-color: #E8E8E8;
-            padding: 6px 12px;
-            border-radius: 5px;
-            transition: all 0.2s ease;
-        }
-        header nav a:hover {
-            text-decoration: underline;
         }
 
         #user-projects {
@@ -198,7 +176,7 @@ if (!isAdminLoggedIn()) {
             <a href="settings.php" class="nav-link">Configuració</a>
         </div>
         <div class="header-right">
-            <a href="login.php" class="btn-logout">Tancar sessió</a>
+            <a href="../logout.php" class="btn-logout">Tancar sessió</a>
         </div>
     </header>
 <main>
