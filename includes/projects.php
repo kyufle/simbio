@@ -31,6 +31,7 @@ try {
     $sql = "
     SELECT 
         p.project_id,
+        p.user_id,
         p.title,
         p.description,
         p.image_path,
