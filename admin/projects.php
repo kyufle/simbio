@@ -12,7 +12,7 @@ if (!isAdminLoggedIn()) {
 }
 log_info("Administrador accedió a admin/projects.php - Admin Email: " . $_SESSION['admin_user']['email']);
 
-/*
+// Manejar acciones de eliminar o restaurar proyecto
 if (isset($_GET['action'], $_GET['id'])) {
     $project_id = (int)$_GET['id'];
     if ($_GET['action'] === 'delete') {
@@ -22,10 +22,14 @@ if (isset($_GET['action'], $_GET['id'])) {
         $stmt = $db->prepare("UPDATE project SET deleted=0 WHERE project_id=?");
         $stmt->execute([$project_id]);
     }
-} */
+}
 
 // Obtener lista de proyectos
 $projects = $db->query("SELECT p.*, u.name as name FROM project p JOIN user u ON p.user_id=u.user_id ORDER BY p.project_id DESC")->fetchAll(PDO::FETCH_ASSOC);
+
+if (!$projects) {
+    log_warning("No se pudieron obtener los proyectos desde la base de datos en admin/projects.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="ca">
