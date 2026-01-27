@@ -23,6 +23,21 @@ if (!isAdminLoggedIn()) {
             padding: 2rem;
         }
 
+        header {
+            background-color: #394867;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+        }
+        header nav a {
+            color: #FFFFFF;
+            margin-right: 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
         #user-projects {
             display: flex;
             flex-wrap: wrap;
@@ -119,6 +134,15 @@ if (!isAdminLoggedIn()) {
     </style>
 </head>
 <body class="login-page-admin">
+<header>
+    <nav>
+        <a href="index.php" class="nav-link">Inici</a>
+        <a href="users.php" class="nav-link">Usuaris</a>
+        <a href="projects.php" class="nav-link">Projectes</a>
+        <a href="settings.php" class="nav-link">Configuració</a>
+        <a href="login.php" class="nav-link">Tancar sessió</a>
+    </nav>
+</header>
 <main>
     <h1>Gestió de Projectes</h1>
     <div id="user-projects"></div>
