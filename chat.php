@@ -27,7 +27,7 @@ try {
     ");
     $stmt->execute([':user_id' => $otherUserId]);
     $otherUser = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
     if (!$otherUser) {
         header('Location: discover.php');
         exit;
@@ -57,7 +57,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat - <?php echo htmlspecialchars($otherUser['name'] . ' ' . $otherUser['surnames']); ?></title>
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="css/chat.css?v=<?php echo time(); ?>">
+    <!-- <link rel="stylesheet" href="css/chat.css?v="> -->
 </head>
 <body class="page-chat">
     <div class="chat-container">
@@ -79,7 +79,7 @@ try {
                     <p class="chat-entity"><?php echo htmlspecialchars($otherUser['entity'] . ' (' . $otherUser['type'] . ')'); ?></p>
                 </div>
             </div>
-            <a href="conversations.php" class="btn-back">← Tornar</a>
+            <a href="messages.php" class="btn-back">← Tornar</a>
         </div>
 
         <!-- Contenedor de mensajes -->
@@ -97,7 +97,7 @@ try {
                     placeholder="Escriu un missatge..."
                     autocomplete="off"
                     required
-                >
+                />
                 <button type="submit" class="btn-send">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.48-.088l-1.22-4.696-4.696-1.22a.75.75 0 0 1-.088-1.48L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 8.431L15.312 4.9z"/>

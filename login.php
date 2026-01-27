@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $errors['code'] = 'El codi ha caducat.';
             } else {
                 // Código correcto: iniciar sesión
-                unset($user['password_hash']); // No guardar hash en sesión
+                unset($user['password_hash']);
                 $_SESSION['user'] = [
                     'id' => $user['user_id'],
                     'email' => $user['email'],
@@ -268,10 +268,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main>
         <h1>Iniciar sessió</h1>
 
-        <!-- ⭐ Mostrar cada error como una notificación separada -->
         <?php if (!empty($errors)): ?>
             <?php 
-            // Si solo hay un error general, muéstralo igual
             if (isset($errors['general'])): ?>
                 <div class="notification error">
                     <?= htmlspecialchars($errors['general']) ?>
@@ -373,7 +371,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="button-group">
                 <button onclick="window.location.href='register.php'" class="registre-btn">Registrar-se</button>
-                <button onclick="window.location.href='index.php'" class="back-btn">Anar al inici</button>
             </div>
         <?php endif; ?>
     </main>

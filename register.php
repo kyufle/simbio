@@ -243,6 +243,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
             <button type="submit">Registrarse</button>
+            <a href="login.php" class="login_regist">Tornar a login</a>
         </form>
     </div>
     <script>
