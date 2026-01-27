@@ -4,7 +4,7 @@ require_once __DIR__ . '/../includes/db.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
-if (!isLogged()) {
+if (!isAdminLoggedIn()) {
     http_response_code(401);
     echo json_encode([]);
     exit;
