@@ -15,7 +15,7 @@ if (!isAdminLoggedIn()) {
 <head>
     <meta charset="UTF-8">
     <title>Gestió de Projectes</title>
-    <link rel="stylesheet" href="../styles.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="../styles.css?v=<?php echo time(); ?>">
     <style>
         /* -------- DASHBOARD ADMIN PROJECTS -------- */
         body.login-page-admin header {
