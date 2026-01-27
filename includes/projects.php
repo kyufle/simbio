@@ -19,6 +19,7 @@ try {
     $sql = "
     SELECT 
         p.project_id,
+        p.user_id,
         p.title,
         p.description,
         p.image_path,
@@ -80,6 +81,9 @@ try {
             'match' => $tagsEnComun > 0, // TRUE solo si comparten tags
             'tags_en_comun' => $tagsEnComun,
             'liked' => $isLiked
+            'match' => ($project['possible_match'] == 1), // 💖 esto activa el icono
+            'liked' => $isLiked,
+            'user_id' => $project['user_id'] // Añadido para enlaces de chat
         ];
     }
 
