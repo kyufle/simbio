@@ -125,12 +125,7 @@ function updateUserTags($email, $new_tags): bool {
             throw new Exception("Usuario no encontrado");
         }
 
-        // Obtener proyectos del usuario
-        $stmt = $conn->prepare("SELECT project_id FROM project WHERE user_id = ?");
-        $stmt->execute([$user_id]);
-        $projects = $stmt->fetchAll(PDO::FETCH_COLUMN);
-
-        if (empty($projects) || empty($new_tags)) {
+        if (empty($new_tags)) {
             return true;
         }
 
@@ -142,14 +137,11 @@ function updateUserTags($email, $new_tags): bool {
             ON DUPLICATE KEY UPDATE tag_id = tag_id
         ");
 
-        foreach ($projects as $project_id) {
-            foreach ($new_tags as $tag_name) {
-                $stmtTag->execute([$tag_name]);
-                $tag_id = $stmtTag->fetchColumn();
-
-                if ($tag_id) {
-                    $stmtInsert->execute([$project_id, $tag_id]);
-                }
+        foreach ($new_tags as $tag_name) {
+            $stmtTag->execute([$tag_name]);
+            $tag_id = $stmtTag->fetchColumn();
+            if ($tag_id) {
+                $stmtInsert->execute([$user_id, $tag_id]);
             }
         }
 

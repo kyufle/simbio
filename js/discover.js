@@ -71,7 +71,7 @@ function createProjectCard(project) {
             ${buttonsHTML}
             <nav class="bottom-bar">
                 <a href="profile.php">Perfil</a>
-                <a href="messages.php">Converses</a>
+                <a href="chat.php?user_id=${project.user_id}">Conversa</a>
                 <button class="toggle-details">Detalls</button>
             </nav>
         </section>
@@ -143,6 +143,26 @@ function handleLikeAction(card) {
     // Guardar en sesión
     userLikedSession.add(parseInt(projectId));
 
+    // Llamada AJAX para registrar el like y gestionar el match/email
+    fetch('includes/like_project.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'project_id=' + encodeURIComponent(projectId)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success && data.match) {
+            if (typeof window.mostrarExito === 'function') {
+                window.mostrarExito('💖 Match!', 'Heu fet match amb aquest projecte!');
+            }
+        }
+    })
+    .catch(err => {
+        console.error('Error al registrar like/match:', err);
+    });
+
     // Feedback visual inmediato (Transformar botones)
     const buttonsContainer = card.querySelector('.buttons');
     const actionsContainer = card.querySelector('.actions');
@@ -167,9 +187,33 @@ function handleLikeAction(card) {
     }
 
     // ⭐ ÚNICO TOAST - Con nombre del proyecto
-    if (typeof window.mostrarExito === 'function') {
-        window.mostrarExito("❤️ M'agrada!", `T'ha agradat "${projectTitle}"`);
-    }
+    fetch('includes/like_project.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ project_id: projectId })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("Respuesta like_project.php:", data); // 👈 para debug
+
+        if (data.success) {
+            if (typeof window.mostrarExito === 'function') {
+                window.mostrarExito(
+                    `❤️ Has dado like a "${projectTitle}"`,
+                    `Ahora puedes <a href="chat.php?user_id=${data.owner_id}">iniciar una conversación</a> con ${data.owner_name}`,
+                    {
+                        actionText: "Ir a conversación",
+                        actionCallback: () => {
+                            window.location.href = `chat.php?user_id=${data.owner_id}`;
+                        }
+                    }
+                );
+            }
+        } else {
+            console.error('Error al dar like:', data.error || 'Unknown error');
+        }
+    })
+    .catch(err => console.error('Fallo en fetch like_project.php:', err));
 
     // Animar salida
     animateSwipe(card, "like");
