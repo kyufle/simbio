@@ -47,20 +47,21 @@ try {
         exit;
     }
 
-    // 3️⃣ Detectar MATCH: El propietario ha dado like a algún proyecto del usuario actual?
+    // 3️⃣ Detectar MATCH: ¿El usuario tiene las mismas etiquetas que el proyecto?
     $stmt = $conn->prepare("
-        SELECT COUNT(*) 
-        FROM project_like pl 
-        INNER JOIN project p ON pl.project_id = p.project_id 
-        WHERE pl.user_id = :owner_id AND p.user_id = :current_user_id
+        SELECT COUNT(DISTINCT pt.tag_id) AS etiquetas_comunes
+        FROM project_tags pt
+        INNER JOIN user_tags ut ON pt.tag_id = ut.tag_id
+        WHERE pt.project_id = :project_id AND ut.user_id = :user_id
     ");
     $stmt->execute([
-        ':owner_id' => $owner['user_id'],
-        ':current_user_id' => $currentUserId
+        ':project_id' => $projectId,
+        ':user_id' => $currentUserId
     ]);
-    $match = $stmt->fetchColumn() > 0;
+    $etiquetasComunes = (int)$stmt->fetchColumn();
+    $match = $etiquetasComunes > 0;
 
-    log_info("Verificación de match: usuario {$currentUserId} dio like a proyecto {$projectId} del owner {$owner['user_id']} - Match: " . ($match ? 'SI' : 'NO'));
+    log_info("Verificación de match: usuario {$currentUserId} dio like a proyecto {$projectId} - Etiquetas en común: {$etiquetasComunes} - Match: " . ($match ? 'SI' : 'NO'));
 
     // 4️⃣ Si hay match, enviar correos a ambos usuarios
     if ($match) {
