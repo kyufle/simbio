@@ -10,3 +10,5 @@
 [2026-01-28 00:40:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":7,"errors":0}
 [2026-01-28 00:50:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Inici
 [2026-01-28 00:50:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":7,"errors":0}
+[2026-01-28 14:22:21] [ERROR] [IP: ::1] [Usuario: ANONIMO] [GET /messages.php] Error de conexión a BD | {"servidor":"localhost","base_datos":"simbio","error":"could not find driver"}
+[2026-01-28 14:22:22] [ERROR] [IP: ::1] [Usuario: ANONIMO] [GET /discover.php] Error de conexión a BD | {"servidor":"localhost","base_datos":"simbio","error":"could not find driver"}

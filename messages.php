@@ -36,7 +36,7 @@ try {
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
     <!-- <link rel="stylesheet" href="css/conversations.css?v="> -->
 </head>
-<body>
+<body class="conversations-page">
     <div id="contenedor-toast" class="contenedor-toast"></div>
 
     <nav class="sidebar">
