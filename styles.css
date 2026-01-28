@@ -509,13 +509,13 @@ body.discover-page .sidebar {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    flex-wrap: wrap;
 }
 
 body.discover-page .sidebar .nav-links {
     display: flex;
     list-style: none;
     gap: 20px;
+    flex: 1;
 }
 
 body.discover-page .sidebar .nav-links li a {
