@@ -27,6 +27,7 @@ $flash = $_SESSION['flash_message'] ?? null;
 <!-- ⭐ Contenedor de toasts (importante que esté aquí) -->
 <div id="contenedor-toast" class="contenedor-toast"></div>
 
+
 <nav class="sidebar">
     <ul class="nav-links">
         <li><a href="discover.php">Descobrir</a></li>

@@ -503,12 +503,13 @@ body.discover-page .sidebar {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: linear-gradient(180deg, rgba(163, 210, 202, 0.95) 0%, rgba(163, 210, 202, 0) 100%);
+    background: linear-gradient(180deg, rgba(163, 210, 202, 0.95) 0%, rgba(163, 210, 202, 0.85) 100%);
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 body.discover-page .sidebar .nav-links {
@@ -562,9 +563,9 @@ body.discover-page .sidebar .session-info a:hover {
 }
 
 .discover-page main {
-    height: 100vh;
+    height: calc(100vh - 60px);
     width: 100vw;
-    margin: 0;
+    margin-top: 60px;
     padding: 0;
     display: flex;
     justify-content: center;
