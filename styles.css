@@ -565,7 +565,7 @@ body.login-page-admin video {
 .discover-page main {
     height: 100vh;
     width: 100vw;
-    margin-top: 60px;
+    margin-top: 20px;
     padding: 0;
     display: flex;
     justify-content: center;
