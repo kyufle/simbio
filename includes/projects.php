@@ -1,4 +1,5 @@
 <?php
+require_once 'db.php';
 require_once 'auth.php';
 require_once 'logger.php';
 header('Content-Type: application/json; charset=utf-8');
@@ -80,6 +81,7 @@ try {
             'type' => $project['type'],
             'tags' => $projectTags,
             'match' => $tagsEnComun > 0, // TRUE solo si comparten tags
+            'tags_en_comun' => $tagsEnComun,
             'liked' => $isLiked,
             'user_id' => $project['user_id'] // Añadido para enlaces de chat
         ];
