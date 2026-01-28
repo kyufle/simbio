@@ -37,14 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image_path = $_FILES['image']['name'] ?? null;
     $video_path = $_FILES['video']['name'] ?? null;
 
-    // Validaciones básicas
-    if (!$title) {
-        $errors[] = "El título es obligatorio";
-    }
-    if (!$description) {
-        $errors[] = "La descripción es obligatoria";
-    }
-
     // Guardar archivos
     if ($image_path) {
         $image_tmp = $_FILES['image']['tmp_name'];
