@@ -5,7 +5,7 @@ require_once 'includes/bd_profile.php';
 require_once "includes/logger.php";
     if (isset($_GET['validate'])) {
         $token = $_GET['validate'];
-        $stmt = $conn->prepare("SELECT user_id, validation_expiforgot_password.phpforgot_password.phpres, is_active FROM user WHERE validation_token = ? LIMIT 1");
+        $stmt = $conn->prepare("SELECT user_id, validation_expires, is_active FROM user WHERE validation_token = ? LIMIT 1");
         $stmt->execute([$token]);
         $usuario = $stmt->fetch();
         if ($usuario && !$usuario['is_active'] && $usuario['validation_expires'] > date('Y-m-d H:i:s')) {
