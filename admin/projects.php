@@ -26,7 +26,7 @@ if (!isAdminLoggedIn()) {
             <a href="settings.php" class="nav-link">Configuració</a>
         </div>
         <div class="header-right">
-            <a href="https://youtu.be/zSXbPNl1RJw" target="_blank">Video</a>
+            <a href="https://youtu.be/zSXbPNl1RJw" target="_blank" class="btn-logout">Video</a>
             |
             <?php if (isAdminLoggedIn()): ?>
                 <a href="logout.php" class="btn-logout">Tancar sessió</a>
