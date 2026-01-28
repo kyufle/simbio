@@ -35,7 +35,7 @@ try {
         ON ut.tag_id = pt.tag_id 
         AND ut.user_id = ?
     WHERE p.user_id != ?
-    AND p.is_deleted = 0
+    AND p.deleted = 0
     GROUP BY p.project_id
     ORDER BY tags_en_comun DESC, p.project_id DESC
     ";
