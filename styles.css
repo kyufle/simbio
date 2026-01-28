@@ -488,7 +488,7 @@ body.login-page-admin video {
 
 /* =========== ESTILOS DISCOVER ============ */
 
-.discover-page {
+body.discover-page {
     background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
     margin: 0;
     padding: 0;
@@ -497,7 +497,7 @@ body.login-page-admin video {
     width: 100vw;
 }
 
-.discover-page .sidebar {
+body.discover-page .sidebar {
     position: fixed;
     top: 0;
     left: 0;
@@ -508,16 +508,16 @@ body.login-page-admin video {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1000;
+    width: 100%;
 }
 
-.discover-page .sidebar .nav-links {
+body.discover-page .sidebar .nav-links {
     display: flex;
     list-style: none;
     gap: 20px;
 }
 
-.discover-page .sidebar .nav-links li a {
+body.discover-page .sidebar .nav-links li a {
     color: var(--texto-oscuro);
     text-decoration: none;
     font-weight: 600;
@@ -527,13 +527,13 @@ body.login-page-admin video {
     border-radius: 8px;
 }
 
-.discover-page .sidebar .nav-links li a:hover {
+body.discover-page .sidebar .nav-links li a:hover {
     color: #7B68EE;
     background: rgba(255, 255, 255, 0.5);
     text-decoration: underline;
 }
 
-.discover-page .sidebar .session-info {
+body.discover-page .sidebar .session-info {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -542,7 +542,7 @@ body.login-page-admin video {
     color: var(--texto-oscuro);
 }
 
-.discover-page .sidebar .session-info a {
+body.discover-page .sidebar .session-info a {
     color: var(--texto-oscuro);
     text-decoration: none;
     font-weight: 600;
@@ -553,7 +553,7 @@ body.login-page-admin video {
     border: 2px solid transparent;
 }
 
-.discover-page .sidebar .session-info a:hover {
+body.discover-page .sidebar .session-info a:hover {
     background: linear-gradient(135deg, #7B68EE 0%, #6A5ADB 100%);
     color: #fff;
     border-color: #7B68EE;
