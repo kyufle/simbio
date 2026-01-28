@@ -518,7 +518,7 @@ body.login-page-admin video {
     gap: 20px;
 }
 
-.discover-page header .nav-links li a {
+.discover-page header .nav-links a {
     color: var(--texto-oscuro);
     text-decoration: none;
     font-weight: 600;
@@ -528,7 +528,7 @@ body.login-page-admin video {
     border-radius: 8px;
 }
 
-.discover-page header .nav-links li a:hover {
+.discover-page header .nav-links a:hover {
     color: #7B68EE;
     background: rgba(255, 255, 255, 0.5);
     text-decoration: underline;
