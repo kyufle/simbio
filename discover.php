@@ -34,6 +34,8 @@ $flash = $_SESSION['flash_message'] ?? null;
         <li><a href="messages.php">Converses</a></li>
     </div>
     <div class="session-info">
+        <a href="https://youtu.be/zSXbPNl1RJw" target="_blank">Video</a>
+        |
         <?php if (isLogged()): ?>
             <span><?= htmlspecialchars($_SESSION['user']['name']) ?></span>
             <a href="logout.php">Tancar sessió</a>
