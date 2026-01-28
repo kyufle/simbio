@@ -110,12 +110,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group">
                     <label for="title">Titol</label>
-                    <input type="text" name="title" id="title" value="<?php echo htmlspecialchars($_POST['title'] ?? ''); ?>" required>
+                    <input type="text" name="title" id="title" value="<?php echo htmlspecialchars($_POST['title'] ?? ''); ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="description">Descripció</label>
-                    <textarea name="description" id="description" required><?php echo htmlspecialchars($_POST['description'] ?? ''); ?></textarea>
+                    <textarea name="description" id="description"><?php echo htmlspecialchars($_POST['description'] ?? ''); ?></textarea>
                 </div>
 
                 <div class="form-group">
