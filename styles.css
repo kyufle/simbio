@@ -540,6 +540,7 @@ body.login-page-admin video {
     color: var(--texto-oscuro);
     font-size: 0.9rem;
     font-weight: 600;
+    margin-left: auto;
 }
 
 .discover-page .sidebar .session-info a {
