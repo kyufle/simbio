@@ -60,6 +60,8 @@ try {
     ]);
     $match = $stmt->fetchColumn() > 0;
 
+    log_info("Verificación de match: usuario {$currentUserId} dio like a proyecto {$projectId} del owner {$owner['user_id']} - Match: " . ($match ? 'SI' : 'NO'));
+
     // 4️⃣ Si hay match, enviar correos a ambos usuarios
     if ($match) {
         // Obtener datos del usuario actual
@@ -67,10 +69,15 @@ try {
         $stmt->execute([':uid' => $currentUserId]);
         $currentUser = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        $projectImg = $owner['image_path'] ? ("/uploads/" . $owner['image_path']) : '';
+        // URL absoluta para la imagen en el correo
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+        $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+        $projectImg = $owner['image_path'] ? "{$protocol}://{$host}/uploads/" . $owner['image_path'] : '';
+        
+        log_info("Enviando correo de match a {$currentUser['email']} y {$owner['email']}");
         
         // Enviar correo de match
-        enviarCorreoMatch(
+        $resultEmail = enviarCorreoMatch(
             $currentUser['email'], 
             $currentUser['name'] . ' ' . $currentUser['surnames'],
             $owner['email'], 
@@ -80,7 +87,11 @@ try {
             $projectImg
         );
         
-        log_info("Match detectado entre usuario {$currentUserId} y propietario {$owner['user_id']} - Correos enviados");
+        if ($resultEmail) {
+            log_info("Match detectado entre usuario {$currentUserId} y propietario {$owner['user_id']} - Correos enviados exitosamente");
+        } else {
+            log_error("Match detectado pero falló el envío de correos entre usuario {$currentUserId} y propietario {$owner['user_id']}");
+        }
     }
 
     // Retornamos info para el toast / redirección
