@@ -144,7 +144,7 @@ try {
 
     /*insertar admin*/
     INSERT INTO admin_user (email, password_hash, name, surnames, city, phone_number, entity, image_path)
-    VALUES ('admin@simbio.cat', '{$env['seeder_password']}', 'Administrador', 'Principal', 'Barcelona', '+34 600 000 000', 'SIMBIO', NULL);
+    VALUES ('admin@simbio.cat', '{$env['seeder_password']}', 'Profe', 'Principal', 'Barcelona', '+34 600 000 000', 'SIMBIO', NULL);
 SQL;
 
         // Ejecutamos el SQL

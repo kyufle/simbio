@@ -63,8 +63,8 @@ async function loadProjects() {
                 </div>
                 <div class="project-buttons">
                     ${project.deleted
-                        ? `<a href="#" class="btn btn-restore">Recuperar</a>`
-                        : `<a href="#" class="btn btn-delete" onclick="return confirm('Segur que vols eliminar aquest projecte?')">Eliminar</a>`
+                        ? `<a href="#" class="btn btn-restore" onclick="toggleProjectStatus(${project.id}, 'restore'); return false;">Recuperar</a>`
+                        : `<a href="#" class="btn btn-delete" onclick="toggleProjectStatus(${project.id}, 'delete'); return false;">Eliminar</a>`
                     }
                     ${project.video ? `<a href="javascript:void(0)" class="btn btn-preview" onclick="toggleVideo('video${project.id}', 'img${project.id}', '${project.video}')">Preview</a>` : ''}
                 </div>
@@ -77,6 +77,40 @@ async function loadProjects() {
     } catch (e) {
         console.error("Error cargando proyectos:", e);
         document.getElementById('user-projects').innerHTML = '<p style="text-align:center; color:#FF3B3B;">Error cargando proyectos.</p>';
+    }
+}
+
+async function toggleProjectStatus(projectId, action) {
+    const actionText = action === 'delete' ? 'eliminar' : 'recuperar';
+    
+    if (action === 'delete' && !confirm('Segur que vols eliminar aquest projecte?')) {
+        return;
+    }
+    
+    try {
+        const res = await fetch('toggle_project_status.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                project_id: projectId,
+                action: action
+            })
+        });
+        
+        const data = await res.json();
+        
+        if (data.success) {
+            alert(data.message);
+            // Recargar los proyectos
+            loadProjects();
+        } else {
+            alert('Error: ' + data.message);
+        }
+    } catch (e) {
+        console.error('Error:', e);
+        alert('Error al ' + actionText + ' el projecte');
     }
 }
 function toggleVideo(videoId, imgId, videoSrc) {
