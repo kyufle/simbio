@@ -2,6 +2,7 @@
 require_once 'auth.php';
 require_once 'db.php';
 require_once 'logger.php';
+require_once 'mail_match.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -30,9 +31,9 @@ try {
     ");
     $stmt->execute([':user_id'=>$currentUserId, ':project_id'=>$projectId]);
 
-    // 2️⃣ Obtener propietario del proyecto
+    // 2️⃣ Obtener propietario del proyecto y datos del proyecto
     $stmt = $conn->prepare("
-        SELECT u.user_id, u.name, u.surnames 
+        SELECT u.user_id, u.name, u.surnames, u.email, p.title, p.description, p.image_path
         FROM project p
         JOIN user u ON p.user_id = u.user_id
         WHERE p.project_id = :pid
@@ -46,11 +47,48 @@ try {
         exit;
     }
 
+    // 3️⃣ Detectar MATCH: El propietario ha dado like a algún proyecto del usuario actual?
+    $stmt = $conn->prepare("
+        SELECT COUNT(*) 
+        FROM project_like pl 
+        INNER JOIN project p ON pl.project_id = p.project_id 
+        WHERE pl.user_id = :owner_id AND p.user_id = :current_user_id
+    ");
+    $stmt->execute([
+        ':owner_id' => $owner['user_id'],
+        ':current_user_id' => $currentUserId
+    ]);
+    $match = $stmt->fetchColumn() > 0;
+
+    // 4️⃣ Si hay match, enviar correos a ambos usuarios
+    if ($match) {
+        // Obtener datos del usuario actual
+        $stmt = $conn->prepare("SELECT email, name, surnames FROM user WHERE user_id = :uid");
+        $stmt->execute([':uid' => $currentUserId]);
+        $currentUser = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        $projectImg = $owner['image_path'] ? ("/uploads/" . $owner['image_path']) : '';
+        
+        // Enviar correo de match
+        enviarCorreoMatch(
+            $currentUser['email'], 
+            $currentUser['name'] . ' ' . $currentUser['surnames'],
+            $owner['email'], 
+            $owner['name'] . ' ' . $owner['surnames'],
+            $owner['title'], 
+            $owner['description'], 
+            $projectImg
+        );
+        
+        log_info("Match detectado entre usuario {$currentUserId} y propietario {$owner['user_id']} - Correos enviados");
+    }
+
     // Retornamos info para el toast / redirección
     echo json_encode([
         'success' => true,
         'owner_id' => $owner['user_id'],
-        'owner_name' => $owner['name'] . ' ' . $owner['surnames']
+        'owner_name' => $owner['name'] . ' ' . $owner['surnames'],
+        'match' => $match
     ]);
 
 } catch(PDOException $e){
