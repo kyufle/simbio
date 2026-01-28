@@ -537,10 +537,9 @@ body.login-page-admin video {
     display: flex;
     align-items: center;
     gap: 15px;
-    color: var(--texto-oscuro);
     font-size: 0.9rem;
     font-weight: 600;
-    margin-left: auto;
+    color: var(--texto-oscuro);
 }
 
 .discover-page .sidebar .session-info a {
