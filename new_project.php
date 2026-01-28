@@ -2,6 +2,7 @@
 require_once 'includes/auth.php';
 require_once 'includes/project_service.php';
 require_once 'includes/bd_profile.php';
+require_once 'includes/logger.php';
 
 if (!isLogged()) {
     header('Location: login.php');
@@ -21,11 +22,20 @@ $user_id = $profile['user_id'];
 // Manejo del formulario
 $save_message = '';
 $errors = [];
+$form_title = '';
+$form_description = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // DEBUG: Ver qué llega
+    log_warning('DEBUG POST: ' . print_r($_POST, true));
+    
     $title       = trim($_POST['title'] ?? '');
     $description = trim($_POST['description'] ?? '');
     $tags        = $_POST['tags'] ?? [];
+
+    // Guardar valores para mostrar en el formulario
+    $form_title = htmlspecialchars($title);
+    $form_description = htmlspecialchars($description);
 
     // Archivos subidos
     $image_path = $_FILES['image']['name'] ?? null;
@@ -34,6 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validaciones básicas
     if (!$title) {
         $errors[] = "El título es obligatorio";
+    }
+    if (!$description) {
+        $errors[] = "La descripción es obligatoria";
     }
 
     // Guardar archivos
@@ -60,7 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $save_message = "Projecte creat correctament";
             // Limpiar formulario
-            $_POST = [];
+            $form_title = '';
+            $form_description = '';
         } else {
             $errors[] = "Error al crear el projecte";
         }
@@ -107,12 +121,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group">
                     <label for="title">Titol</label>
-                    <input type="text" name="title" id="title" value="<?php echo htmlspecialchars($_POST['title'] ?? ''); ?>" required>
+                    <input type="text" name="title" id="title" value="<?php echo $form_title; ?>" />
                 </div>
 
                 <div class="form-group">
                     <label for="description">Descripció</label>
-                    <textarea name="description" id="description" required><?php echo htmlspecialchars($_POST['description'] ?? ''); ?></textarea>
+                    <textarea name="description" id="description"><?php echo $form_description; ?></textarea>
                 </div>
 
                 <div class="form-group">

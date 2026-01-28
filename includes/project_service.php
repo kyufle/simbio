@@ -66,8 +66,8 @@ function createProject(int $user_id, string $title, string $description, ?string
 
     try {
         $stmt = $conn->prepare("
-            INSERT INTO project (user_id, title, description, image_path, video_path)
-            VALUES (:user_id, :title, :description, :image_path, :video_path)
+            INSERT INTO project (user_id, title, description, image_path, video_path, deleted)
+            VALUES (:user_id, :title, :description, :image_path, :video_path, 0)
         ");
         $stmt->execute([
             ':user_id'     => $user_id,
