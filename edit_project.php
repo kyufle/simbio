@@ -69,6 +69,8 @@ if (!$project) {
             </nav>
             <h1>Edit Project <?php echo htmlspecialchars($project['title']); ?></h1>
             <div class="session-info">
+                <a href="https://youtu.be/zSXbPNl1RJw" target="_blank">Video</a>
+                |
                 <?php if (isLogged()): ?>
                 <span><?= htmlspecialchars($_SESSION['user']['name']) ?></span>
                     <a href="logout.php">Tancar sessió</a>

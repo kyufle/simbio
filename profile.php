@@ -76,6 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </nav>
             <h1>Perfil <?php echo htmlspecialchars($profile['name']); ?></h1>
             <div class="session-info">
+                <a href="https://youtu.be/zSXbPNl1RJw" target="_blank">Video</a>
+                |
                 <?php if (isLogged()): ?>
                 <span><?= htmlspecialchars($_SESSION['user']['name']) ?></span>
                     <a href="logout.php">Tancar sessió</a>

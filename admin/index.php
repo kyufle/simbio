@@ -20,6 +20,23 @@ log_info("Administrador accedió a admin/index.php - Admin Email: " . $_SESSION[
     <link rel="stylesheet" href="../styles.css?v=<?php echo time(); ?>">
 </head>
 <body class="login-page-admin">
+    <header>
+        <div class="header-left">
+            <a href="index.php" class="nav-link">Inici</a>
+            <a href="users.php" class="nav-link">Usuaris</a>
+            <a href="projects.php" class="nav-link">Projectes</a>
+            <a href="settings.php" class="nav-link">Configuració</a>
+        </div>
+        <div class="header-right">
+            <a href="https://youtu.be/zSXbPNl1RJw" target="_blank">Video</a>
+            |
+            <?php if (isAdminLoggedIn()): ?>
+                <a href="logout.php" class="btn-logout">Tancar sessió</a>
+            <?php else: ?>
+                <a href="login.php">Iniciar sessió</a>
+            <?php endif; ?>
+        </div>
+    </header>
     <main>
         <h1>Hola, <?= htmlspecialchars($_SESSION['admin_user']['name']) ?>!</h1>
         <p style="text-align:center; color:#394867; margin-bottom:2rem;">Benvingut al panell d'administració</p>

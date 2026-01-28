@@ -99,6 +99,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </nav>
             <h1>Crear nou projecte</h1>
             <div class="session-info">
+                <a href="https://youtu.be/zSXbPNl1RJw" target="_blank">Video</a>
+                |
                 <?php if (isLogged()): ?>
                     <span><?php echo htmlspecialchars($_SESSION['user']['name']); ?></span>
                     <a href="logout.php">Tancar sessió</a>
