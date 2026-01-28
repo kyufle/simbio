@@ -3439,7 +3439,7 @@ main.conversations-page {
     }
 
     .discover-page .project-card .buttons {
-        gap: 15px;
+        gap: 25px;
         margin-bottom: 8px;
         display: flex;
         justify-content: center;
@@ -3447,9 +3447,9 @@ main.conversations-page {
     }
 
     .discover-page .project-card .buttons button {
-        width: 56px;
-        height: 56px;
-        font-size: 1.4rem;
+        width: 70px;
+        height: 70px;
+        font-size: 1.6rem;
         border-radius: 50%;
         padding: 0;
         flex-shrink: 0;
