@@ -510,6 +510,7 @@ body.login-page-admin video {
     background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     z-index: 1000;
+    margin-bottom: 20px;
 }
 
 .discover-page header .nav-links {
