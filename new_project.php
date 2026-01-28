@@ -2,6 +2,7 @@
 require_once 'includes/auth.php';
 require_once 'includes/project_service.php';
 require_once 'includes/bd_profile.php';
+require_once 'includes/logger.php';
 
 if (!isLogged()) {
     header('Location: login.php');
@@ -25,6 +26,9 @@ $form_title = '';
 $form_description = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // DEBUG: Ver qué llega
+    log_warning('DEBUG POST: ' . print_r($_POST, true));
+    
     $title       = trim($_POST['title'] ?? '');
     $description = trim($_POST['description'] ?? '');
     $tags        = $_POST['tags'] ?? [];
