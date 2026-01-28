@@ -3449,7 +3449,7 @@ main.conversations-page {
     .discover-page .project-card .buttons button {
         width: 70px;
         height: 70px;
-        font-size: 1.2rem;
+        font-size: 0.8rem;
         border-radius: 50%;
         padding: 0;
         flex-shrink: 0;
@@ -3716,7 +3716,7 @@ main.conversations-page {
     .discover-page .project-card .buttons button {
         width: 70px;
         height: 70px;
-        font-size: 1.2rem;
+        font-size: 0.8rem;
     }
 }
 
@@ -3815,7 +3815,7 @@ body.page-error a.button:hover {
     .discover-page .project-card .buttons button {
         width: 70px;
         height: 70px;
-        font-size: 1.2rem;
+        font-size: 0.8rem;
     }
 
     body.login-page main {
