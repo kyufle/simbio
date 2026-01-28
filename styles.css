@@ -729,7 +729,10 @@ body.login-page-admin video {
     font-weight: 600;
     color: #5a5a85;
     font-size: 0.98rem;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    transition: background 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 9px 20px;
     text-decoration: none;
     border-radius: 7px;
@@ -738,15 +741,6 @@ body.login-page-admin video {
     display: flex;
     align-items: center;
     gap: 0.45em;
-}
-
-.discover-page .project-card .bottom-bar a,
-.discover-page .project-card .bottom-bar button {
-    transition:
-        background 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-        color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-        box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-        transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .discover-page .project-card .bottom-bar a:hover,
