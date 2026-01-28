@@ -216,6 +216,63 @@ body.login-page .back-btn:hover {
     font-family: 'Josefin Sans', sans-serif;
 }
 
+/* ========== CONFIRMATION PAGE ========== */
+body.confirmation-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.confirmation-box {
+    background-color: #ffffff;
+    padding: 3rem 2.5rem;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(163, 210, 202, 0.3);
+    text-align: center;
+}
+
+.confirmation-box h1 {
+    color: var(--texto-oscuro);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.confirmation-box p {
+    color: var(--texto-medio);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.confirmation-box button {
+    background: linear-gradient(135deg, #7B68EE, #6A5ADB);
+    border: none;
+    padding: 0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(123, 104, 238, 0.25);
+}
+
+.confirmation-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(123, 104, 238, 0.35);
+}
+
+.confirmation-box button a {
+    display: block;
+    padding: 0.9rem 2.5rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
 /* ========== LOGIN ADMIN ========== */
 body.login-page-admin {
     min-height: 100vh;
