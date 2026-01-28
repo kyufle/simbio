@@ -3322,34 +3322,34 @@ main.conversations-page {
     }
 
     .discover-page header {
-        padding: 0.4em 0.8em;
-        gap: 0.4em;
+        padding: 0.5em 0.9em;
+        gap: 0.5em;
         flex-direction: row;
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         height: auto;
     }
 
     .discover-page header .nav-links {
-        gap: 0.4em;
+        gap: 0.5em;
         justify-content: center;
         flex-wrap: wrap;
     }
 
     .discover-page header .nav-links a {
-        font-size: 0.7rem;
-        padding: 0.4em 0.7em;
+        font-size: 0.75rem;
+        padding: 0.5em 0.8em;
     }
 
     .discover-page header .session-info {
         justify-content: center;
-        gap: 0.4em;
+        gap: 0.5em;
         flex-wrap: wrap;
-        font-size: 0.7rem;
+        font-size: 0.75rem;
     }
 
     .discover-page header .session-info a {
-        font-size: 0.7rem;
-        padding: 0.4em 0.7em;
+        font-size: 0.75rem;
+        padding: 0.5em 0.8em;
     }
 
     .discover-page main {
