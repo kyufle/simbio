@@ -80,7 +80,6 @@ try {
             'type' => $project['type'],
             'tags' => $projectTags,
             'match' => $tagsEnComun > 0, // TRUE solo si comparten tags
-            'tags_en_comun' => $tagsEnComun,
             'liked' => $isLiked,
             'user_id' => $project['user_id'] // Añadido para enlaces de chat
         ];
