@@ -3321,51 +3321,35 @@ main.conversations-page {
         overflow: auto;
     }
 
-    .discover-page .sidebar {
-        padding: 0.7em 1em;
-        gap: 0.5em;
-        flex-direction: column;
-        font-size: 0.9rem;
-        background: linear-gradient(180deg, rgba(163, 210, 202, 0.98) 0%, rgba(163, 210, 202, 0.85) 100%);
+    .discover-page header {
+        padding: 0.4em 0.8em;
+        gap: 0.4em;
+        flex-direction: row;
+        font-size: 0.7rem;
         height: auto;
-        width: 100%;
-        border-radius: 0;
     }
 
-    .discover-page .sidebar .nav-links {
-        gap: 0.5em;
+    .discover-page header .nav-links {
+        gap: 0.4em;
         justify-content: center;
         flex-wrap: wrap;
     }
 
-    .discover-page .sidebar .nav-links li a {
-        font-size: 0.85rem;
-        padding: 0.5em 0.8em;
+    .discover-page header .nav-links a {
+        font-size: 0.7rem;
+        padding: 0.4em 0.7em;
     }
 
-    .discover-page .sidebar .session-info {
+    .discover-page header .session-info {
         justify-content: center;
-        gap: 0.5em;
+        gap: 0.4em;
         flex-wrap: wrap;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
 
-    .discover-page .sidebar .nav-links {
-        gap: 0.6em;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .discover-page .sidebar .nav-links li a {
-        font-size: 0.9rem;
-        padding: 0.6em 1em;
-    }
-
-    .discover-page .sidebar .session-info {
-        justify-content: center;
-        gap: 0.6em;
-        flex-wrap: wrap;
-        font-size: 0.85rem;
+    .discover-page header .session-info a {
+        font-size: 0.7rem;
+        padding: 0.4em 0.7em;
     }
 
     .discover-page main {
@@ -3378,7 +3362,7 @@ main.conversations-page {
         padding: 0;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: flex-end;
         align-items: stretch;
         background: #fff;
     }
