@@ -510,7 +510,6 @@ body.login-page-admin video {
     background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     z-index: 1000;
-    bottom: 50px;
 }
 
 .discover-page header .nav-links {
@@ -572,6 +571,7 @@ body.login-page-admin video {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    margin-top: 70px;
 }
 
 .discover-page .project-card {
