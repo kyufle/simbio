@@ -12,3 +12,18 @@
 [2026-01-28 00:50:01] [INFO] [IP: DESCONOCIDA] [Usuario: ANONIMO] [CLI CLI] CRON: Fi | {"processed":0,"skipped":7,"errors":0}
 [2026-01-28 14:22:21] [ERROR] [IP: ::1] [Usuario: ANONIMO] [GET /messages.php] Error de conexión a BD | {"servidor":"localhost","base_datos":"simbio","error":"could not find driver"}
 [2026-01-28 14:22:22] [ERROR] [IP: ::1] [Usuario: ANONIMO] [GET /discover.php] Error de conexión a BD | {"servidor":"localhost","base_datos":"simbio","error":"could not find driver"}
+[2026-01-28 16:04:58] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /admin/login.php] Conexión a BD establecida exitosamente
+[2026-01-28 16:05:07] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [POST /admin/login.php] Conexión a BD establecida exitosamente
+[2026-01-28 16:05:07] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [POST /admin/login.php] Administrador autenticat: admin@simbio.cat
+[2026-01-28 16:05:07] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /admin/index.php] Conexión a BD establecida exitosamente
+[2026-01-28 16:05:07] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /admin/index.php] Administrador accedió a admin/index.php - Admin Email: admin@simbio.cat
+[2026-01-28 16:05:11] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /admin/projects.php] Conexión a BD establecida exitosamente
+[2026-01-28 16:05:11] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /admin/projects_json.php] Conexión a BD establecida exitosamente
+[2026-01-28 16:07:03] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /admin/projects.php] Conexión a BD establecida exitosamente
+[2026-01-28 16:07:03] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /admin/projects_json.php] Conexión a BD establecida exitosamente
+[2026-01-28 16:07:05] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /admin/projects.php] Conexión a BD establecida exitosamente
+[2026-01-28 16:07:05] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /admin/projects_json.php] Conexión a BD establecida exitosamente
+[2026-01-28 16:07:05] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /admin/projects.php] Conexión a BD establecida exitosamente
+[2026-01-28 16:07:05] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /admin/projects_json.php] Conexión a BD establecida exitosamente
+[2026-01-28 16:07:05] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /admin/projects.php] Conexión a BD establecida exitosamente
+[2026-01-28 16:07:05] [INFO] [IP: 127.0.0.1] [Usuario: ANONIMO] [GET /admin/projects_json.php] Conexión a BD establecida exitosamente
