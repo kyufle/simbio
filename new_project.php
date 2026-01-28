@@ -37,6 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image_path = $_FILES['image']['name'] ?? null;
     $video_path = $_FILES['video']['name'] ?? null;
 
+    // Validaciones básicas
+    if (!$title) {
+        $errors[] = "El título es obligatorio";
+    }
+    if (!$description) {
+        $errors[] = "La descripción es obligatoria";
+    }
+
     // Guardar archivos
     if ($image_path) {
         $image_tmp = $_FILES['image']['tmp_name'];
@@ -109,12 +117,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="form-group">
                     <label for="title">Titol</label>
-                    <input type="text" name="title" id="title" value="<?php echo $form_title; ?>" required />
+                    <input type="text" name="title" id="title" value="<?php echo $form_title; ?>" />
                 </div>
 
                 <div class="form-group">
                     <label for="description">Descripció</label>
-                    <textarea name="description" id="description" required><?php echo $form_description; ?></textarea>
+                    <textarea name="description" id="description"><?php echo $form_description; ?></textarea>
                 </div>
 
                 <div class="form-group">
@@ -159,18 +167,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const allAvailableTags = <?php echo json_encode(getAllAvailableTags()); ?>;
     </script>
     <script src="js/etiquetas.js?v=<?php echo time(); ?>"></script>
-    <script>
-        // Debug del formulario
-        document.getElementById('profile-form').addEventListener('submit', function(e) {
-            const title = document.getElementById('title').value;
-            console.log('Título enviado:', title);
-            console.log('Título trimmed:', title.trim());
-            console.log('Largo del título:', title.length);
-            
-            if (!title.trim()) {
-                e.preventDefault();
-                alert('El título está vacío');
-                return false;
-            }
-        });
-    </script>
+</body>
+</html>
