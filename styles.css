@@ -499,7 +499,7 @@ body.login-page-admin video {
     padding: 0;
     overflow: hidden;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
 }
 
 .discover-page header {
@@ -515,7 +515,6 @@ body.login-page-admin video {
     background: linear-gradient(135deg, #A3D2CA 0%, #B5EAEA 100%);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     z-index: 1000;
-    height: 60px;
 }
 
 .discover-page header .nav-links {
@@ -569,9 +568,9 @@ body.login-page-admin video {
 }
 
 .discover-page main {
-    height: calc(100vh - 60px);
+    height: 100vh;
     width: 100%;
-    margin-top: 60px;
+    margin-top: 0;
     padding: 0;
     display: flex;
     justify-content: center;
