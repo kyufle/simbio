@@ -497,27 +497,28 @@ body.login-page-admin video {
     width: 100vw;
 }
 
-.discover-page .sidebar {
+.discover-page header {
     position: fixed;
+    /* fijo arriba */
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
-    background: linear-gradient(180deg, rgba(163, 210, 202, 0.95) 0%, rgba(163, 210, 202, 0) 100%);
-    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #212A3E 0%, #394867 100%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
 }
 
-.discover-page .sidebar .nav-links {
+.discover-page header .sidebar .nav-links {
     display: flex;
     list-style: none;
     gap: 20px;
 }
 
-.discover-page .sidebar .nav-links li a {
+.discover-page header .sidebar .nav-links li a {
     color: var(--texto-oscuro);
     text-decoration: none;
     font-weight: 600;
@@ -527,13 +528,13 @@ body.login-page-admin video {
     border-radius: 8px;
 }
 
-.discover-page .sidebar .nav-links li a:hover {
+.discover-page header .sidebar .nav-links li a:hover {
     color: #7B68EE;
     background: rgba(255, 255, 255, 0.5);
     text-decoration: underline;
 }
 
-.discover-page .sidebar .session-info {
+.discover-page header .sidebar .session-info {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -542,7 +543,7 @@ body.login-page-admin video {
     color: var(--texto-oscuro);
 }
 
-.discover-page .sidebar .session-info a {
+.discover-page header .sidebar .session-info a {
     color: var(--texto-oscuro);
     text-decoration: none;
     font-weight: 600;
@@ -553,7 +554,7 @@ body.login-page-admin video {
     border: 2px solid transparent;
 }
 
-.discover-page .sidebar .session-info a:hover {
+.discover-page header .sidebar .session-info a:hover {
     background: linear-gradient(135deg, #7B68EE 0%, #6A5ADB 100%);
     color: #fff;
     border-color: #7B68EE;

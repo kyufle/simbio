@@ -27,22 +27,23 @@ $flash = $_SESSION['flash_message'] ?? null;
 <!-- ⭐ Contenedor de toasts (importante que esté aquí) -->
 <div id="contenedor-toast" class="contenedor-toast"></div>
 
-
-<nav class="sidebar">
-    <ul class="nav-links">
-        <li><a href="discover.php">Descobrir</a></li>
-        <li><a href="profile.php">Perfil</a></li>
-        <li><a href="messages.php">Converses</a></li>
-    </ul>
-    <div class="session-info">
-        <?php if (isLogged()): ?>
-            <span><?= htmlspecialchars($_SESSION['user']['name']) ?></span>
-            <a href="logout.php">Tancar sessió</a>
-        <?php else: ?>
-            <a href="login.php">Iniciar sessió</a>
-        <?php endif; ?>
-    </div>
-</nav>
+<header>
+    <nav class="sidebar">
+        <ul class="nav-links">
+            <li><a href="discover.php">Descobrir</a></li>
+            <li><a href="profile.php">Perfil</a></li>
+            <li><a href="messages.php">Converses</a></li>
+        </ul>
+        <div class="session-info">
+            <?php if (isLogged()): ?>
+                <span><?= htmlspecialchars($_SESSION['user']['name']) ?></span>
+                <a href="logout.php">Tancar sessió</a>
+            <?php else: ?>
+                <a href="login.php">Iniciar sessió</a>
+            <?php endif; ?>
+        </div>
+    </nav>
+</header>
 
 <main id="discover-container">
     <p style="color: #333; text-align: center; padding: 20px;">Carregant projectes...</p>
