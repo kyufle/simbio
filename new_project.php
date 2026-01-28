@@ -35,6 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$title) {
         $errors[] = "El título es obligatorio";
     }
+    if (!$description) {
+        $errors[] = "La descripción es obligatoria";
+    }
 
     // Guardar archivos
     if ($image_path) {
@@ -157,5 +160,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const allAvailableTags = <?php echo json_encode(getAllAvailableTags()); ?>;
     </script>
     <script src="js/etiquetas.js?v=<?php echo time(); ?>"></script>
-</body>
-</html>
+    <script>
+        // Debug del formulario
+        document.getElementById('profile-form').addEventListener('submit', function(e) {
+            const title = document.getElementById('title').value;
+            console.log('Título enviado:', title);
+            console.log('Título trimmed:', title.trim());
+            console.log('Largo del título:', title.length);
+            
+            if (!title.trim()) {
+                e.preventDefault();
+                alert('El título está vacío');
+                return false;
+            }
+        });
+    </script>
