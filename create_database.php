@@ -32,6 +32,9 @@ try {
         entity VARCHAR(255) NOT NULL,
         type ENUM('Empresa', 'Centre') NOT NULL,
         image_path VARCHAR(255),
+        is_active TINYINT(1) DEFAULT 0,
+        validation_token VARCHAR(255) NULL,
+        validation_expires DATETIME NULL,
         PRIMARY KEY (user_id)
     );
 
@@ -63,6 +66,14 @@ try {
         PRIMARY KEY (message_id),
         FOREIGN KEY (user_from_id) REFERENCES user(user_id),
         FOREIGN KEY (user_to_id) REFERENCES user(user_id)
+    );
+
+    CREATE TABLE user_tags (
+        user_id INT NOT NULL,
+        tag_id INT NOT NULL,
+        PRIMARY KEY (user_id, tag_id),
+        FOREIGN KEY (user_id) REFERENCES user(user_id),
+        FOREIGN KEY (tag_id) REFERENCES tag(tag_id)
     );
 
     CREATE TABLE project_tags (

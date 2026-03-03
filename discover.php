@@ -27,13 +27,15 @@ $flash = $_SESSION['flash_message'] ?? null;
 <!-- ⭐ Contenedor de toasts (importante que esté aquí) -->
 <div id="contenedor-toast" class="contenedor-toast"></div>
 
-<nav class="sidebar">
-    <ul class="nav-links">
+<header>
+    <div class="nav-links">
         <li><a href="discover.php">Descobrir</a></li>
         <li><a href="profile.php">Perfil</a></li>
         <li><a href="messages.php">Converses</a></li>
-    </ul>
+    </div>
     <div class="session-info">
+        <a href="https://youtu.be/zSXbPNl1RJw" target="_blank">Video</a>
+        |
         <?php if (isLogged()): ?>
             <span><?= htmlspecialchars($_SESSION['user']['name']) ?></span>
             <a href="logout.php">Tancar sessió</a>
@@ -41,19 +43,16 @@ $flash = $_SESSION['flash_message'] ?? null;
             <a href="login.php">Iniciar sessió</a>
         <?php endif; ?>
     </div>
-</nav>
+</header>
 
 <main id="discover-container">
     <p style="color: #333; text-align: center; padding: 20px;">Carregant projectes...</p>
 </main>
 
-<!-- ⭐ IMPORTANTE: Cargar utils.js PRIMERO -->
 <script src="js/utils.js?v=<?php echo time(); ?>"></script>
 
-<!-- ⭐ Luego el script del flash message -->
 <?php if (isset($flash) && is_array($flash)): ?>
 <script>
-    // Esperar a que utils.js esté cargado
     (function() {
         const showFlash = function() {
             <?php
@@ -90,7 +89,6 @@ $flash = $_SESSION['flash_message'] ?? null;
             ?>
         };
 
-        // Ejecutar inmediatamente si el DOM ya está listo
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', showFlash);
         } else {
@@ -100,12 +98,11 @@ $flash = $_SESSION['flash_message'] ?? null;
     })();
 </script>
 <?php 
-    // ⭐ IMPORTANTE: Limpiar el flash message después de mostrarlo
     unset($_SESSION['flash_message']); 
 endif; 
 ?>
 
-<!-- ⭐ Cargar discover.js al final -->
+<!-- Cargar discover.js -->
 <script src="js/discover.js?v=<?php echo filemtime('js/discover.js'); ?>"></script>
 
 </body>
